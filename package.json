@@ -5,7 +5,8 @@
   "main": "index.html",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --mode=watch"
   },
   "keywords": [
     "typing",
