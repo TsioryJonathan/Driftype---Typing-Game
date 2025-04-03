@@ -24,7 +24,15 @@
         <p id="results">Results : </p>
     </main>
 
-    <script src="script.js"></script>
+    <button id="login-btn">Login</button>
+
+    <script type="module">
+        const loginBtn = document.getElementById('login-btn');
+        loginBtn.addEventListener('click', () => {
+            window.location.href = 'src/components/pages/login.html';
+        });
+    </script>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>
