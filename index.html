@@ -1,30 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/css/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
     <title>Typing Test</title>
-</head>
+  </head>
 
-<body>
-    <header>
-        <h1>Typing Test</h1>
-        <label for="mode">Select Mode:</label>
-        <select id="mode">
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-        </select>
+  <body class="font-poppins text-white bg-secondary">
+    <!-- NAVBAR -->
+    <header class="w-screen h-16 bg-midnight fixed top-0 left-0 right-0">
+      <nav class="w-full h-full flex justify-between items-center px-10">
+        <div class="flex items-center justify-center gap-2">
+          <i class="fa-solid fa-keyboard text-4xl text-blue-500"></i>
+          <h1 class="text-blue-600 text-3xl font-bold">Typing Master</h1>
+        </div>
+        <ul class="flex gap-10 w-1/3">
+          <li class="hover:text-blue-500 transition-colors duration-300">
+            <a href="#">Home</a>
+          </li>
+          <li class="hover:text-blue-500 transition-colors duration-300">
+            <a href="#features">Features</a>
+          </li>
+          <li class="hover:text-blue-500 transition-colors duration-300">
+            <a href="#testimonials">Testimonials</a>
+          </li>
+        </ul>
+
+        <button class="bg-active py-2 px-5 rounded-xl cursor-pointer">
+          Begin Now
+        </button>
+      </nav>
     </header>
 
+    <!-- BODY -->
     <main>
-        <p id="word-display"></p>
-        <input type="text" id="input-field" autofocus>
-        <p id="results">Results : </p>
+      <!-- HERO -->
+      <section
+        id="home"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 w-full h-screen px-10"
+      >
+        <div class="flex flex-col justify-center px-5 gap-10">
+          <h1 class="text-6xl font-bold leading-20">
+            Level Up Your Typing Skills
+          </h1>
+          <p class="text-xl">
+            Improve your typing speed and accuracy with our personalized
+            exercises and real-time performance tracking.
+          </p>
+          <div class="flex gap-5">
+            <button
+              class="bg-active py-3 px-5 rounded-lg cursor-pointer group w-fit flex gap-2 items-center justify-center text-xl hover:bg-blue-800 transition-all duration-300"
+            >
+              <i
+                class="fa-solid fa-rocket group-hover:-translate-y-1 duration-300"
+              ></i
+              >Get Started Now
+            </button>
+            <button
+              class="py-3 px-5 rounded-lg cursor-pointer w-fit flex gap-2 items-center justify-center text-xl border border-gray-600"
+            >
+              Learn more
+            </button>
+          </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <div class="bg-gray-700 rounded-lg py-16 px-5 shadow-2xl">
+            <img
+              src="./public/landing.jpg"
+              alt="Illustration"
+              class="rounded-2xl"
+            />
+          </div>
+        </div>
+      </section>
     </main>
-
-    <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
