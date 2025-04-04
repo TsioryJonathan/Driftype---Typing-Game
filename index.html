@@ -13,7 +13,7 @@
 
   <body class="font-poppins text-white bg-secondary relative">
     <!-- NAVBAR -->
-    <header class="w-screen h-16 bg-midnight fixed top-0 left-0 right-0">
+    <header class="w-screen h-16 bg-midnight fixed top-0 left-0 right-0 z-99">
       <nav class="w-full h-full flex justify-between items-center px-10">
         <div class="flex items-center justify-center gap-2">
           <i class="fa-solid fa-keyboard text-4xl text-blue-500"></i>
@@ -44,9 +44,11 @@
       <!-- HERO -->
       <section
         id="home"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 w-full h-screen px-10"
+        class="grid grid-cols-1 lg:grid-cols-2 w-full min-h-screen px-10"
       >
-        <div class="flex flex-col justify-center px-5 gap-10">
+        <div
+          class="flex flex-col justify-center items-center px-5 gap-10 min-h-screen"
+        >
           <h1 class="text-6xl font-bold leading-20">
             Level Up Your Typing Skills
           </h1>
@@ -64,19 +66,76 @@
               >Get Started Now
             </button>
             <button
-              class="py-3 px-5 rounded-lg cursor-pointer w-fit flex gap-2 items-center justify-center text-xl border border-gray-600"
+              class="py-3 px-5 rounded-lg cursor-pointer w-fit flex gap-2 items-center justify-center text-xl border border-gray-600 hover:bg-gray-800 transition-all duration-300"
             >
               Learn more
             </button>
           </div>
         </div>
-        <div class="flex items-center justify-center">
+        <div class="flex items-center justify-center min-h-screen">
           <div class="bg-gray-700 rounded-lg py-16 px-5 shadow-2xl">
             <img
               src="./public/landing.jpg"
               alt="Illustration"
               class="rounded-2xl"
             />
+          </div>
+        </div>
+      </section>
+      <section
+        id="features"
+        class="min-h-screen flex flex-col gap-5 bg-gray-700 py-10 px-14 justify-center"
+      >
+        <h1 class="text-center text-4xl font-bold">Features</h1>
+        <p class="text-lg text-center">We offer many option for you</p>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
+          <div
+            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg"
+          >
+            <div
+              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit"
+            >
+              <i class="fa-solid fa-keyboard text-xl text-white"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Multiple levels</h2>
+            <p class="text-gray-300">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
+              ab aspernatur nam, amet ratione corporis sit veritatis sint
+              voluptate suscipit accusamus laudantium libero eius labore
+              blanditiis? Aspernatur aliquam animi inventore!
+            </p>
+          </div>
+          <div
+            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg"
+          >
+            <div
+              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit"
+            >
+              <i class="fa-solid fa-keyboard text-xl text-white"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Multiple levels</h2>
+            <p class="text-gray-300">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
+              ab aspernatur nam, amet ratione corporis sit veritatis sint
+              voluptate suscipit accusamus laudantium libero eius labore
+              blanditiis? Aspernatur aliquam animi inventore!
+            </p>
+          </div>
+          <div
+            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg"
+          >
+            <div
+              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit"
+            >
+              <i class="fa-solid fa-keyboard text-xl text-white"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Multiple levels</h2>
+            <p class="text-gray-300">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
+              ab aspernatur nam, amet ratione corporis sit veritatis sint
+              voluptate suscipit accusamus laudantium libero eius labore
+              blanditiis? Aspernatur aliquam animi inventore!
+            </p>
           </div>
         </div>
       </section>
