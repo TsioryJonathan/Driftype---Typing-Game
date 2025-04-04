@@ -2,21 +2,34 @@
   "name": "typing-website-template",
   "version": "1.0.0",
   "description": "A barebones typing website for you to complete. ",
-  "main": "index.html",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --mode=watch"
+    "build": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --mode=watch",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "keywords": [
     "typing",
     "game",
-    "speedtyping"
+    "speedtyping",
+    "toja",
+    "tojatype"
   ],
   "author": "HEI Madagascar : Toky & Fiantso",
   "license": "ISC",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.1",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.14.1",
     "tailwindcss": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }
