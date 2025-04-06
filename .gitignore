@@ -1,13 +1,9 @@
-# Node modules
+src/css/output.css
+.vscode/
 node_modules/
-
-# Logs
-logs/
-*.log
-
-# Environment variables
+.prettierrc
+.prettierignore
 .env
+test-connection.js
 
-# Build output
-dist/
-build/
+
