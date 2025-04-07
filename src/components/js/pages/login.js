@@ -1,7 +1,7 @@
 import { inputStyle, logoStyle, showPassword } from "../formStyle.js";
 import { Logger } from "../../../utils/Logger.js";
 
-const logger = Logger.getLogger('Authentication');
+const logger = Logger.getLogger("Authentication");
 
 export const API_URL = "http://localhost:3000/api" || process.env.API_URL;
 export const TOKEN_KEY = "typing_game_token";
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const initLogin = () => {
   const loginForm = document.getElementById("loginForm");
   if (!loginForm) {
-    logger.error('Login form not found', { component: 'LoginForm' });
+    logger.error("Login form not found", { component: "LoginForm" });
     return;
   }
 
@@ -148,8 +148,11 @@ const setLoadingState = (button, isLoading) => {
 // Store auth data
 export const storeAuthData = (token, user) => {
   if (!token || !user) {
-    logger.error('Invalid authentication data received', { token: !!token, user: !!user });
-    throw new Error('Invalid auth data');
+    logger.error("Invalid authentication data received", {
+      token: !!token,
+      user: !!user,
+    });
+    throw new Error("Invalid auth data");
   }
 
   try {
@@ -161,10 +164,10 @@ export const storeAuthData = (token, user) => {
 
     localStorage.setItem(TOKEN_KEY, token);
     localStorage.setItem(USER_KEY, JSON.stringify(userData));
-    logger.info('Authentication data stored successfully', { userId: user.id });
+    logger.info("Authentication data stored successfully", { userId: user.id });
   } catch (e) {
-    logger.error('Failed to store authentication data', { error: e.message });
-    throw new Error('Storage error: ' + e.message);
+    logger.error("Failed to store authentication data", { error: e.message });
+    throw new Error("Storage error: " + e.message);
   }
 };
 
@@ -184,12 +187,12 @@ export const redirectToDashboard = () => {
   try {
     const redirectUrl = new URL(
       "src/components/pages/dashboard.html",
-      window.location.origin,
+      window.location.origin
     );
-    logger.debug('Redirecting to dashboard', { url: redirectUrl.toString() });
+    logger.debug("Redirecting to dashboard", { url: redirectUrl.toString() });
     window.location.replace(redirectUrl.toString());
   } catch (e) {
-    logger.error('Failed to redirect to dashboard', { error: e.message });
+    logger.error("Failed to redirect to dashboard", { error: e.message });
     console.error("Redirection error:", e);
   }
 };
