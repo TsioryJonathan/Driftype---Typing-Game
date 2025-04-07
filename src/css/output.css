@@ -92,9 +92,7 @@
     --font-poppins: "Poppins";
     --color-midnight-50: #f8fafc;
     --color-midnight-300: #cbd5e1;
-    --color-midnight-400: #94a3b8;
     --color-midnight-500: #1f2937;
-    --color-midnight-800: #64748b;
     --color-midnight-900: #0f172a;
     --color-midnight-950: #020617;
     --color-active-500: #2563eb;
@@ -356,6 +354,9 @@
   .w-4 {
     width: calc(var(--spacing) * 4);
   }
+  .w-10 {
+    width: calc(var(--spacing) * 10);
+  }
   .w-12 {
     width: calc(var(--spacing) * 12);
   }
@@ -533,14 +534,8 @@
   .bg-green-300 {
     background-color: var(--color-green-300);
   }
-  .bg-midnight-400 {
-    background-color: var(--color-midnight-400);
-  }
   .bg-midnight-500 {
     background-color: var(--color-midnight-500);
-  }
-  .bg-midnight-800 {
-    background-color: var(--color-midnight-800);
   }
   .bg-midnight-950 {
     background-color: var(--color-midnight-950);
