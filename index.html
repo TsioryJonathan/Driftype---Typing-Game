@@ -43,7 +43,7 @@
         <!-- Bouton sur mobile -->
         <div class="hidden md:block">
           <button
-            class="bg-active-500 py-2 px-5 rounded-xl cursor-pointer flex items-center gap-2 hover:bg-blue-500 duration-300"
+            class="bg-active-500 py-2 px-5 rounded-xl cursor-pointer flex items-center gap-2 hover:bg-blue-500 duration-300" aria-label="Begin Now"
           >
             Begin Now <i class="fa-solid fa-arrow-right"></i>
           </button>
@@ -51,7 +51,7 @@
     
         <!-- Menu -->
         <div class="md:hidden flex items-center">
-          <button id="hamburger" class="text-white focus:outline-none">
+          <button id="hamburger" class="text-white focus:outline-none" aria-label="Open-menu">
             <i class="fa-solid fa-bars text-4xl"></i>
           </button>
         </div>
@@ -74,12 +74,13 @@
             <a href="#testimonials">Testimonials</a>
           </li>
           <button
-          class="bg-active-500 py-2 px-5 rounded-xl w-fit cursor-pointer flex items-center gap-2 hover:bg-blue-500 duration-300 mt-10"
+          class="bg-active-500 py-2 px-5 rounded-xl w-fit cursor-pointer flex items-center gap-2 hover:bg-blue-500 duration-300 mt-10" aria-label="Begin Now"
         >
           Begin Now <i class="fa-solid fa-arrow-right"></i>
 
-          <button class="absolute top-5 right-5" id="close-button"><i class="fa-solid fa-xmark text-4xl"></i>
-          </button>
+          
+        </button>
+        <button class="absolute top-5 right-5" id="close-button" aria-label="Close button"><i class="fa-solid fa-xmark text-4xl"></i>
         </button>
         </ul>
         
@@ -110,7 +111,7 @@
           
           <div class="flex gap-5">
             <button
-              class="bg-active-500 py-3 px-5 rounded-lg cursor-pointer group w-fit flex gap-2 items-center justify-center text-xl hover:bg-blue-800 transition-all duration-300"
+              class="bg-active-500 py-3 px-5 rounded-lg cursor-pointer group w-fit flex gap-2 items-center justify-center text-xl hover:bg-blue-800 transition-all duration-300" aria-label="Get Started Now"
             >
               <i
                 class="fa-solid fa-rocket group-hover:-translate-y-1 duration-300"
@@ -118,7 +119,7 @@
               >Get Started Now
             </button>
             <button
-              class="py-3 px-5 rounded-lg cursor-pointer w-fit flex gap-2 items-center justify-center text-xl border border-gray-600 hover:bg-gray-800 transition-all duration-300"
+              class="py-3 px-5 rounded-lg cursor-pointer w-fit flex gap-2 items-center justify-center text-xl border border-gray-600 hover:bg-gray-800 transition-all duration-300" aria-label="Learn More"
             >
               Learn more
             </button>
@@ -271,7 +272,7 @@
             </label>
           </div>
           <button
-            class="w-30 border-1 border-gray-400 px-4 py-3 rounded-4xl cursor-pointer hover:bg-gray-800"
+            class="w-30 border-1 border-gray-400 px-4 py-3 rounded-4xl cursor-pointer hover:bg-gray-800" aria-label="Subscribe"
           >
             Subscribe
           </button>
