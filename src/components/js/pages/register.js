@@ -25,7 +25,7 @@ const initRegister = () => {
               type="email"
               id="email"
               name="email"
-              placeholder="email"
+              placeholder="enter your email"
               required
               class="input-form"
             />
@@ -41,7 +41,7 @@ const initRegister = () => {
               type="password"
               id="password"
               name="password"
-              placeholder="password"
+              placeholder="enter your password"
               required
               class="input-form"
             />
@@ -67,7 +67,7 @@ const initRegister = () => {
           type="submit"
           class="bg-active-600 hover:bg-active-700 focus:ring-active-500 w-full rounded-md px-4 py-2 text-white focus:ring-2 focus:ring-offset-2 focus:outline-none"
         >
-          Register
+          Sign up
         </button>
   `
   inputStyle();

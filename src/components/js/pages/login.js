@@ -28,7 +28,7 @@ const initLogin = () => {
               type="email"
               id="email"
               name="email"
-              placeholder="email"
+              placeholder="enter your email"
               required
               class="input-form"
             />
@@ -44,7 +44,7 @@ const initLogin = () => {
               type="password"
               id="password"
               name="password"
-              placeholder="password"
+              placeholder="enter your password"
               required
               class="input-form"
             />
@@ -119,12 +119,6 @@ const validateInputs = (email, password, errorElement) => {
     showError(errorElement, "Please fill in all fields");
     return false;
   }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    showError(errorElement, "Please enter a valid email");
-    return false;
-  }
-
   return true;
 };
 
