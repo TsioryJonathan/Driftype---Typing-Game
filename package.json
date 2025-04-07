@@ -2,21 +2,25 @@
   "name": "typing-website-template",
   "version": "1.0.0",
   "description": "A barebones typing website for you to complete. ",
-  "main": "index.html",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --mode=watch"
+    "build": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --watch"
   },
   "keywords": [
     "typing",
     "game",
-    "speedtyping"
+    "speedtyping",
+    "toja",
+    "tojatype"
   ],
   "author": "HEI Madagascar : Toky & Fiantso",
   "license": "ISC",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.1",
     "tailwindcss": "^4.1.1"
+  },
+  "devDependencies": {
+    "prettier-plugin-tailwindcss": "^0.6.11"
   }
 }
