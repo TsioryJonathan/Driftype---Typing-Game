@@ -1,13 +1,6 @@
-# Node modules
+.vscode
 node_modules/
-
-# Logs
-logs/
 *.log
-
-# Environment variables
 .env
-
-# Build output
-dist/
-build/
+.prettierrc
+.prettierignore
