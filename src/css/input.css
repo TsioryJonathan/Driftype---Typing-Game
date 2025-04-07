@@ -38,7 +38,7 @@
 [data-theme="light"] {
     --color-bg: var(--color-midnight-50);
     --color-text: var(--color-midnight-900);
-    --color-primary: var(--color-midnight-500);
+    --color-primary: var(--color-midnight-300);
 }
 
 /* Thème dark */
