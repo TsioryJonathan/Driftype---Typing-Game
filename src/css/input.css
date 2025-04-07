@@ -69,3 +69,11 @@ body {
   @apply bg-[--color-bg] text-[--color-text] font-poppins;
   transition: background-color 0.3s, color 0.3s;
 }
+
+
+#get-started {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('/public/typing.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
