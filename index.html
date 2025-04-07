@@ -1,29 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TajoType</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/css/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+        <title>TajoType</title>
     <link rel="shortcut icon" href="assets/noBgColor.png" type="image/x-icon">
-</head>
+  </head>
 
-<body>
-    <header>
-        <h1>Typing Test</h1>
-        <label for="mode">Select Mode:</label>
-        <select id="mode">
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-        </select>
+  <body class="font-poppins text-white bg-secondary relative">
+    <!-- NAVBAR -->
+    <header class="w-screen h-16 bg-midnight fixed top-0 left-0 right-0 z-99">
+      <nav class="w-full h-full flex justify-between items-center px-10">
+        <div class="flex items-center justify-center gap-2">
+          <i class="fa-solid fa-keyboard text-4xl text-blue-500"></i>
+          <h1 class="text-blue-600 text-3xl font-bold">Typing Master</h1>
+        </div>
+        <ul class="flex gap-10 w-1/3">
+          <li class="hover:text-blue-500 transition-colors duration-300">
+            <a href="#">Home</a>
+          </li>
+          <li class="hover:text-blue-500 transition-colors duration-300">
+            <a href="#features">Features</a>
+          </li>
+          <li class="hover:text-blue-500 transition-colors duration-300">
+            <a href="#testimonials">Testimonials</a>
+          </li>
+        </ul>
+
+
+        <button
+          class="bg-active py-2 px-5 rounded-xl cursor-pointer flex items-center gap-2 hover:bg-blue-500 duration-300"
+        >
+          Begin Now <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </nav>
     </header>
 
+    <!-- BODY -->
     <main>
-        <p id="word-display"></p>
-        <input type="text" id="input-field" autofocus>
-        <p id="results">Results : </p>
+      <!-- HERO -->
+      <section
+        id="home"
+        class="grid grid-cols-1 lg:grid-cols-2 w-full min-h-screen px-10"
+      >
+        <div
+          class="flex flex-col justify-center items-center px-5 gap-10 min-h-screen"
+        >
+          <h1 class="text-6xl font-bold leading-20">
+            Level Up Your Typing Skills
+          </h1>
+          <p class="text-xl">
+            Improve your typing speed and accuracy with our personalized
+            exercises and real-time performance tracking.
+          </p>
+          <div class="flex gap-5">
+            <button
+              class="bg-active py-3 px-5 rounded-lg cursor-pointer group w-fit flex gap-2 items-center justify-center text-xl hover:bg-blue-800 transition-all duration-300"
+            >
+              <i
+                class="fa-solid fa-rocket group-hover:-translate-y-1 duration-300"
+              ></i
+              >Get Started Now
+            </button>
+            <button
+              class="py-3 px-5 rounded-lg cursor-pointer w-fit flex gap-2 items-center justify-center text-xl border border-gray-600 hover:bg-gray-800 transition-all duration-300"
+            >
+              Learn more
+            </button>
+          </div>
+        </div>
+        <div class="flex items-center justify-center min-h-screen">
+          <div class="bg-gray-700 rounded-lg py-16 px-5 shadow-2xl">
+            <img
+              src="./public/landing.jpg"
+              alt="Illustration"
+              class="rounded-2xl"
+            />
+          </div>
+        </div>
+      </section>
+      <section
+        id="features"
+        class="min-h-screen flex flex-col gap-5 bg-gray-700 py-10 px-14 justify-center"
+      >
+        <h1 class="text-center text-4xl font-bold">Features</h1>
+        <p class="text-lg text-center">We offer many option for you</p>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
+          <div
+            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg"
+          >
+            <div
+              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit"
+            >
+              <i class="fa-solid fa-keyboard text-xl text-white"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Multiple levels</h2>
+            <p class="text-gray-300">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
+              ab aspernatur nam, amet ratione corporis sit veritatis sint
+              voluptate suscipit accusamus laudantium libero eius labore
+              blanditiis? Aspernatur aliquam animi inventore!
+            </p>
+          </div>
+          <div
+            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg"
+          >
+            <div
+              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit"
+            >
+              <i class="fa-solid fa-keyboard text-xl text-white"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Multiple levels</h2>
+            <p class="text-gray-300">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
+              ab aspernatur nam, amet ratione corporis sit veritatis sint
+              voluptate suscipit accusamus laudantium libero eius labore
+              blanditiis? Aspernatur aliquam animi inventore!
+            </p>
+          </div>
+          <div
+            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg"
+          >
+            <div
+              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit"
+            >
+              <i class="fa-solid fa-keyboard text-xl text-white"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Multiple levels</h2>
+            <p class="text-gray-300">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
+              ab aspernatur nam, amet ratione corporis sit veritatis sint
+              voluptate suscipit accusamus laudantium libero eius labore
+              blanditiis? Aspernatur aliquam animi inventore!
+            </p>
+          </div>
+        </div>
+      </section>
+      <section
+        class="min-h-screen flex flex-col gap-5 justify-center"
+        id="testimonials"
+      >
+        <h1 class="text-center text-4xl font-bold">Testimonials</h1>
+        <p class="text-lg text-center">See what people are saying about us</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 px-16">
+          <div
+            class="p-6 rounded-lg shadow-sm border border-gray-200 bg-gray-800"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="./public/user.jpg"
+                alt="John Doe"
+                class="w-12 h-12 rounded-full object-cover"
+              />
+              <div>
+                <h3 class="">John Doe</h3>
+                <p class="text-sm text-white">Secrétaire chez ADM</p>
+              </div>
+            </div>
+            <p class="text-white italic">
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+              fugiat iure dolor aut, amet consequuntur earum mollitia suscipit
+              dolorem neque minus. Magnam quae, ratione deserunt quam architecto
+              commodi obcaecati itaque?"
+            </p>
+          </div>
+          <div
+            class="p-6 rounded-lg shadow-sm border border-gray-200 bg-gray-800"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="./public/user.jpg"
+                alt="John Doe"
+                class="w-12 h-12 rounded-full object-cover"
+              />
+              <div>
+                <h3 class="">John Doe</h3>
+                <p class="text-sm text-white">Secrétaire chez ADM</p>
+              </div>
+            </div>
+            <p class="text-white italic">
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+              fugiat iure dolor aut, amet consequuntur earum mollitia suscipit
+              dolorem neque minus. Magnam quae, ratione deserunt quam architecto
+              commodi obcaecati itaque?"
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
+    <!-- FOOTER -->
+    <footer
+      class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 min-h-60 w-full gap-5 bg-midnight px-5 py-10"
+    >
+      <div class="flex flex-col gap-3">
+        <div class="flex gap-2">
+          <i class="fa-solid fa-keyboard text-4xl text-blue-500"></i>
+          <h1 class="text-blue-600 text-3xl font-bold">Typing Master</h1>
+        </div>
+        <p class="text-lg">
+          Level up your typing skills with our personnalized exercises
+        </p>
+        <div class="flex flex-col gap-5 mt-10">
+          <h1 class="text-2xl font-bold">Inscrivez-vous à notre newsletter</h1>
+          <div class="flex flex-col gap-2">
+            <label htmlFor="newsletter-inscription">Addresse e-mail</label>
+            <input
+              type="text"
+              placeholder="Votre e-mail"
+              class="outline-none p-2 border-1 border-gray-500 bg-gray-800 rounded-xl w-[90%] focus:bg-gray-900"
+            />
+          </div>
+          <div class="flex gap-2">
+            <input type="checkbox" name="approbation" />
+            <label htmlFor="approbation" class="text-sm">
+              J&apos;autorise ce site à conserver mes données personnelles
+              transmises via ce formulaire. Vos données personnelles seront
+              utilisées pour traiter votre commande, soutenir votre expérience
+              tout au long de ce site Web, et à d’autres fins décrites dans
+              notre politique-de-confidentialité.
+            </label>
+          </div>
+          <button
+            class="w-30 border-1 border-gray-400 px-4 py-3 rounded-4xl cursor-pointer hover:bg-gray-800"
+          >
+            Souscrire
+          </button>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <h1 class="text-left md:text-center lg:text-center font-bold text-2xl">
+          Navigation
+        </h1>
+        <ul class="flex flex-col gap-10">
+          <li
+            class="hover:text-blue-500 transition-colors duration-300 text-lg"
+          >
+            <a href="#">Home</a>
+          </li>
+          <li
+            class="hover:text-blue-500 transition-colors duration-300 text-lg"
+          >
+            <a href="#features">Features</a>
+          </li>
+          <li
+            class="hover:text-blue-500 transition-colors duration-300 text-lg"
+          >
+            <a href="#testimonials">Testimonials</a>
+          </li>
+        </ul>
+      </div>
+      <div class="flex flex-col">
+        <h2
+          class="text-left md:text-center lg:text-center font-bold text-2xl mb-4"
+        >
+          Contact
+        </h2>
+        <div class="flex flex-col gap-5">
+          <p class="text-gray-300 text-xl">📍 123 Rue de la Tech, Paris</p>
+          <p class="text-gray-300 text-xl">📧 contact@kitikard.com</p>
+          <p class="text-gray-300 text-xl">📞 +33 1 23 45 67 89</p>
+        </div>
+      </div>
+    </footer>
 
     <button id="login-btn">Login</button>
 
@@ -34,6 +278,6 @@
         });
     </script>
     <script type="module" src="script.js"></script>
-</body>
-
+  </body>
 </html>
+
