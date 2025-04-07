@@ -20,9 +20,7 @@
     class="font-poppins text-[var(--color-text)] bg-[var(--color-bg)] relative"
   >
     <!-- NAVBAR -->
-    <header
-      class="w-screen h-16 bg-[var(--color-primary)] fixed top-0 left-0 right-0 z-99"
-    >
+    <header class="w-screen h-16 bg-[var(--color-primary)] fixed top-0 left-0 right-0 z-50">
       <nav class="w-full h-full flex justify-between items-center px-10">
         <div class="flex items-center justify-center gap-2">
           <img
@@ -32,7 +30,9 @@
           />
           <h1 class="text-blue-600 text-3xl font-bold">TajoType</h1>
         </div>
-        <ul class="flex gap-10 w-1/3">
+    
+        <!-- Menu principal -->
+        <ul class="hidden md:flex gap-10 w-1/3">
           <li class="hover:text-blue-500 transition-colors duration-300">
             <a href="#">Home</a>
           </li>
@@ -43,13 +43,51 @@
             <a href="#testimonials">Testimonials</a>
           </li>
         </ul>
-
-        <button
-          class="bg-active-500 py-2 px-5 rounded-xl cursor-pointer flex items-center gap-2 hover:bg-blue-500 duration-300"
+    
+        <!-- Bouton sur mobile -->
+        <div class="hidden md:block">
+          <button
+            class="bg-active-500 py-2 px-5 rounded-xl cursor-pointer flex items-center gap-2 hover:bg-blue-500 duration-300"
+          >
+            Begin Now <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+    
+        <!-- Menu -->
+        <div class="md:hidden flex items-center">
+          <button id="hamburger" class="text-white focus:outline-none">
+            <i class="fa-solid fa-bars text-4xl"></i>
+          </button>
+        </div>
+      </nav>
+    
+      <!-- Menu mobile -->
+      <div id="mobile-menu" class="md:hidden translate-x-[999px] bg-[var(--color-primary)] w-[80vw] h-screen fixed top-0 right-0 py-4 px-10 flex flex-col text-center gap-10 transition-all ease-in duration-500">
+        <div class="flex gap-2 items-center">
+          <img src="./src/assets/noBgWhite.png" alt="TajoType" class="w-14 h-14 object-cover">
+          <h1 class="text-blue-600 text-3xl font-bold">TajoType</h1>
+        </div>
+        <ul class="flex flex-col items-center gap-6" id="link-list">
+          <li class="hover:text-blue-500 transition-colors duration-300 text-2xl">
+            <a href="#">Home</a>
+          </li>
+          <li class="hover:text-blue-500 transition-colors duration-300 text-2xl">
+            <a href="#features">Features</a>
+          </li>
+          <li class="hover:text-blue-500 transition-colors duration-300 text-2xl">
+            <a href="#testimonials">Testimonials</a>
+          </li>
+          <button
+          class="bg-active-500 py-2 px-5 rounded-xl w-fit cursor-pointer flex items-center gap-2 hover:bg-blue-500 duration-300 mt-10"
         >
           Begin Now <i class="fa-solid fa-arrow-right"></i>
+
+          <button class="absolute top-5 right-5" id="close-button"><i class="fa-solid fa-xmark text-4xl"></i>
+          </button>
         </button>
-      </nav>
+        </ul>
+        
+      </div>
     </header>
 
     <!-- BODY -->
@@ -69,7 +107,7 @@
             Improve your typing speed and accuracy with our personalized
             exercises and real-time performance tracking.
           </p>
-          <div class=" bg-[var(--color-third)] px-10 py-3 rounded-lg min-w-[100%]">
+          <div class=" bg-[var(--color-third)] px-10 py-3 rounded-lg min-w-[100%] flex justify-center">
             <h1 class="text-2xl"><span id="typed"></span>
             </h1>
           </div>
@@ -283,19 +321,22 @@
     <!-- SCRIPT TYPED -->
     
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="./src/components/js/toggleMenu.js"></script>
     <script>
       const typed = new Typed('#typed', {
-        strings: [
-        "Type faster.",
-        "Think smarter.",
-        "Write like a pro.",
-        "Master your keyboard.",
-        "Unlock your typing potential!"
-      ],
-        smartBackspace: true,
-        typeSpeed: 50,
-        backSpeed : 30,
-      });
+  strings: [
+    "Ready to type?",
+    "Let's do this!",
+    "Start practicing, now.",
+    "<b>Type faster</b>, <i>think smarter</i>.",
+    "Become <span style='color: green;'>unstoppable</span>!"
+  ],
+  typeSpeed: 50,
+  backSpeed: 25,
+  backDelay: 1000,  // Pause entre chaque phrase avant de revenir en arrière
+  startDelay: 500,  // Pause avant de commencer
+  loop: true
+});
     </script>
   </body>
 </html>
