@@ -5,5 +5,5 @@ node_modules/
 .prettierignore
 .env
 test-connection.js
-
-
+*.log
+application.log
