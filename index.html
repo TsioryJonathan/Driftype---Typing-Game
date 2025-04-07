@@ -69,6 +69,11 @@
             Improve your typing speed and accuracy with our personalized
             exercises and real-time performance tracking.
           </p>
+          <div class=" bg-[var(--color-third)] px-10 py-3 rounded-lg min-w-[100%]">
+            <h1 class="text-2xl"><span id="typed"></span>
+            </h1>
+          </div>
+          
           <div class="flex gap-5">
             <button
               class="bg-active-500 py-3 px-5 rounded-lg cursor-pointer group w-fit flex gap-2 items-center justify-center text-xl hover:bg-blue-800 transition-all duration-300"
@@ -86,7 +91,9 @@
           </div>
         </div>
         <div class="flex items-center justify-center min-h-screen">
-          <div class="bg-gray-700 rounded-lg py-16 px-5 shadow-2xl">
+          <div
+            class="bg-[var(--color-primary)] rounded-lg py-16 px-5 shadow-2xl"
+          >
             <img
               src="./public/landing.jpg"
               alt="Illustration"
@@ -97,7 +104,7 @@
       </section>
       <section
         id="features"
-        class="min-h-screen flex flex-col gap-5 bg-gray-700 py-10 px-14 justify-center"
+        class="min-h-screen flex flex-col gap-5 bg-[var(--color-primary)] py-10 px-14 justify-center"
       >
         <h1 class="text-center text-4xl font-bold">Features</h1>
         <p class="text-lg text-center">We offer many options for you</p>
@@ -155,7 +162,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 px-16">
           <div
-            class="p-6 rounded-lg shadow-sm border border-gray-200 bg-gray-800"
+            class="p-6 rounded-lg shadow-sm border border-gray-200 bg-[var(--color-third)]"
           >
             <div class="flex items-center gap-4 mb-4">
               <img
@@ -164,8 +171,8 @@
                 class="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <h3 class="">John Doe</h3>
-                <p class="text-sm text-white">Secrétaire chez ADM</p>
+                <h3 >John Doe</h3>
+                <p class="text-sm text-white">Computer Science Teacher</p>
               </div>
             </div>
             <p class="text-white italic">
@@ -174,22 +181,21 @@
             </p>
           </div>
           <div
-            class="p-6 rounded-lg shadow-sm border border-gray-200 bg-gray-800"
+            class="p-6 rounded-lg shadow-sm border border-gray-200 bg-[var(--color-third)]"
           >
             <div class="flex items-center gap-4 mb-4">
               <img
                 src="./public/user.jpg"
-                alt="John Doe"
+                alt="Claire Dubois"
                 class="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <h3 class="">John Doe</h3>
-                <p class="text-sm text-white">Secrétaire chez ADM</p>
+                <h3 >Claire Duboise</h3>
+                <p class="text-sm text-white">Administrative Assistant</p>
               </div>
             </div>
             <p class="text-white italic">
-              "I love the achievements feature! It keeps me motivated to
-              practice every day and improve my accuracy."
+              "Thanks to this site, I doubled my typing speed in just a few weeks. It’s a real time-saver in my daily work. I recommend it to anyone who works at a desk!"
             </p>
           </div>
         </div>
@@ -197,40 +203,43 @@
     </main>
     <!-- FOOTER -->
     <footer
-      class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 min-h-60 w-full gap-5 bg-midnight-950 px-5 py-10"
+      class="text-white grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 min-h-60 w-full gap-5 bg-midnight-950 px-5 py-10"
     >
       <div class="flex flex-col gap-3">
-        <div class="flex gap-2">
-          <i class="fa-solid fa-keyboard text-4xl text-blue-500"></i>
-          <h1 class="text-blue-600 text-3xl font-bold">Typing Master</h1>
+        <div class="flex gap-2 items-center">
+          <img
+            src="/src/assets/noBgWhite.png"
+            alt="Tajo Logo"
+            class="w-14 h-14 object-cover"
+          />
+          <h1 class="text-blue-600 text-3xl font-bold">TajoType</h1>
         </div>
         <p class="text-lg">
           Level up your typing skills with our personnalized exercises
         </p>
         <div class="flex flex-col gap-5 mt-10">
-          <h1 class="text-2xl font-bold">Inscrivez-vous à notre newsletter</h1>
+          <h1 class="text-2xl font-bold">Subscribe to our newsletter</h1>
           <div class="flex flex-col gap-2">
-            <label htmlFor="newsletter-inscription">Addresse e-mail</label>
+            <label for="newsletter-inscription">E-mail adress</label>
             <input
               type="text"
-              placeholder="Votre e-mail"
+              placeholder="Enter your e-mail adress"
               class="outline-none p-2 border-1 border-gray-500 bg-gray-800 rounded-xl w-[90%] focus:bg-gray-900"
             />
           </div>
           <div class="flex gap-2">
             <input type="checkbox" name="approbation" />
-            <label htmlFor="approbation" class="text-sm">
-              J&apos;autorise ce site à conserver mes données personnelles
-              transmises via ce formulaire. Vos données personnelles seront
-              utilisées pour traiter votre commande, soutenir votre expérience
-              tout au long de ce site Web, et à d’autres fins décrites dans
-              notre politique-de-confidentialité.
+            <label for="approbation" class="text-sm">
+              I authorize this site to keep my personal data transmitted via
+              this form. Your personal data will be used to process your order,
+              support your experience throughout this website, and for other
+              purposes described in our Privacy Policy.
             </label>
           </div>
           <button
             class="w-30 border-1 border-gray-400 px-4 py-3 rounded-4xl cursor-pointer hover:bg-gray-800"
           >
-            Souscrire
+            Subscribe
           </button>
         </div>
       </div>
@@ -269,5 +278,24 @@
         </div>
       </div>
     </footer>
+
+
+    <!-- SCRIPT TYPED -->
+    
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+      const typed = new Typed('#typed', {
+        strings: [
+        "Type faster.",
+        "Think smarter.",
+        "Write like a pro.",
+        "Master your keyboard.",
+        "Unlock your typing potential!"
+      ],
+        smartBackspace: true,
+        typeSpeed: 50,
+        backSpeed : 30,
+      });
+    </script>
   </body>
 </html>

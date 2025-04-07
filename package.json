@@ -18,7 +18,8 @@
   "license": "ISC",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.1",
-    "tailwindcss": "^4.1.1"
+    "tailwindcss": "^4.1.1",
+    "typed.js": "^2.1.0"
   },
   "devDependencies": {
     "prettier-plugin-tailwindcss": "^0.6.11"
