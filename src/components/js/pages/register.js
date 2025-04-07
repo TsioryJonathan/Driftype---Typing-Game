@@ -25,7 +25,6 @@ const initRegister = () => {
               type="email"
               id="email"
               name="email"
-              placeholder="enter your email"
               required
               class="input-form"
             />
@@ -41,7 +40,6 @@ const initRegister = () => {
               type="password"
               id="password"
               name="password"
-              placeholder="enter your password"
               required
               class="input-form"
             />
@@ -57,7 +55,6 @@ const initRegister = () => {
               type="password"
               id="confirmPassword"
               name="confirmPassword"
-              placeholder="password"
               required
               class="input-form"
             />
