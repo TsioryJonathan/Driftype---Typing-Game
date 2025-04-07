@@ -16,7 +16,7 @@
     class="font-poppins text-[var(--color-text)] bg-[var(--color-bg)] relative"
   >
     <!-- NAVBAR -->
-    <header class="w-screen h-16 bg-[var(--color-primary)] fixed top-0 left-0 right-0 z-50">
+    <header class="w-screen h-16 bg-gradient-to-r from-blue-950 to-blue-900 text-[var(--color-text-secondary)] fixed top-0 left-0 right-0 z-50">
       <nav class="w-full h-full flex justify-between items-center px-10">
         <div class="flex items-center justify-center gap-2">
           <img
@@ -103,7 +103,7 @@
         <div
           class="flex flex-col justify-center items-center px-5 gap-10 min-h-screen"
         >
-          <h1 class="text-6xl font-bold leading-20">
+          <h1 class="font-bold leading-20 text-5xl md:text-6xl ">
             Level Up Your Typing Skills
           </h1>
           <p class="text-xl">
@@ -111,13 +111,13 @@
             exercises and real-time performance tracking.
           </p>
           <div class=" bg-[var(--color-third)] px-10 py-3 rounded-lg min-w-[100%] flex justify-center">
-            <h1 class="text-2xl"><span id="typed"></span>
+            <h1 class="text-2xl text-[var(--color-text-secondary)]"><span id="typed"></span>
             </h1>
           </div>
           
           <div class="flex gap-5">
             <button
-              class="bg-active-500 py-3 px-5 rounded-lg cursor-pointer group w-fit flex gap-2 items-center justify-center text-xl hover:bg-blue-800 transition-all duration-300" aria-label="Get Started Now"
+              class=" bg-active-500 py-3 px-2 md:px-5 rounded-lg cursor-pointer group w-fit flex gap-2 items-center justify-center text-md md:text-xl hover:bg-blue-800 transition-all duration-300 text-[var(--color-text-secondary)] " aria-label="Get Started Now"
             >
               <i
                 class="fa-solid fa-rocket group-hover:-translate-y-1 duration-300"
@@ -125,7 +125,7 @@
               >Get Started Now
             </button>
             <button
-              class="py-3 px-5 rounded-lg cursor-pointer w-fit flex gap-2 items-center justify-center text-xl border border-gray-600 hover:bg-gray-800 transition-all duration-300" aria-label="Learn More"
+              class="py-3 px-2 md:px-5 rounded-lg cursor-pointer w-fit flex gap-2 items-center justify-center text-md md:text-xl border border-gray-600 hover:bg-gray-700 transition-all duration-300" aria-label="Learn More"
             >
               Learn more
             </button>
@@ -133,7 +133,7 @@
         </div>
         <div class="flex items-center justify-center min-h-screen">
           <div
-            class="bg-[var(--color-primary)] rounded-lg py-16 px-5 shadow-2xl"
+            class="bg-[var(--color-primary)] rounded-lg py-12 px-5 shadow-2xl"
           >
             <img
               src="./public/landing.jpg"
@@ -152,43 +152,43 @@
         <p class="text-lg text-center">We offer many options for you</p>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
           <div
-            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg"
+            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg group hover:shadow-2xl hover:-translate-y-2 transition-all ease-in duration-200 "
           >
             <div
-              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit"
+              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit group-hover:scale-105 ease-in transition-all duration-150"
             >
-              <i class="fa-solid fa-keyboard text-xl text-white"></i>
+              <i class="fa-solid fa-keyboard text-xl text-white group-hover:text-2xl duration-150 transition-all ease-in-out"></i>
             </div>
             <h2 class="text-2xl font-bold">Multiple levels</h2>
-            <p class="text-gray-300">
+            <p class="text-[var(--color-text-secondary)]">
               Challenge yourself with various difficulty levels, from beginner
               to expert, and improve your typing skills step by step.
             </p>
           </div>
           <div
-            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg"
+            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg group hover:shadow-2xl hover:-translate-y-2 transition-all ease-in duration-200"
           >
             <div
-              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit"
+              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit group-hover:scale-105 ease-in transition-all duration-150"
             >
-              <i class="fa-solid fa-clock text-xl text-white"></i>
+              <i class="fa-solid fa-clock text-xl text-white group-hover:text-2xl duration-150 transition-all ease-in-out"></i>
             </div>
             <h2 class="text-2xl font-bold">Time Tracking</h2>
-            <p class="text-gray-300">
+            <p class="text-[var(--color-text-secondary)]">
               Keep track of your typing speed and accuracy with our built-in
               timer and performance metrics.
             </p>
           </div>
           <div
-            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg"
+            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg group hover:shadow-2xl hover:-translate-y-2 transition-all ease-in duration-200 "
           >
             <div
-              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit"
+              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit group-hover:scale-105 ease-in transition-all duration-150"
             >
-              <i class="fa-solid fa-trophy text-xl text-white"></i>
+              <i class="fa-solid fa-trophy text-xl text-white group-hover:text-2xl duration-150 transition-all ease-in-out"></i>
             </div>
             <h2 class="text-2xl font-bold">Achievements</h2>
-            <p class="text-gray-300">
+            <p class="text-[var(--color-text-secondary)]">
               Unlock achievements as you progress and reach new milestones in
               your typing journey.
             </p>
@@ -215,7 +215,7 @@
                 class="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <h3 >John Doe</h3>
+                <h3 class="text-[var(--color-text-secondary)]">John Doe</h3>
                 <p class="text-sm text-white">Computer Science Teacher</p>
               </div>
             </div>
@@ -234,7 +234,7 @@
                 class="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <h3 >Claire Duboise</h3>
+                <h3 class="text-[var(--color-text-secondary)]">Claire Duboise</h3>
                 <p class="text-sm text-white">Administrative Assistant</p>
               </div>
             </div>
@@ -253,8 +253,8 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label
-                htmlFor="name"
-                class="block text-lg font-medium text-[var(--color-text)] mb-1 bg-transparent"
+                for="name"
+                class="block text-lg font-medium text-[var(--color-text)] mb-1 "
               >
                 Name
               </label>
@@ -262,14 +262,14 @@
                 type="text"
                 id="name"
                 name="name"               
-                class="w-full px-4 py-2 border outline-none border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-transparent"
+                class="w-full px-4 py-2 border outline-none border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-[var(--color-input)]"
                 placeholder="John Doe"
               />
             </div>
             <div>
               <label
-                htmlFor="email"
-                class="block text-lg font-medium text-[var(--color-text)] mb-1 bg-transparent"
+                for="email"
+                class="block text-lg font-medium text-[var(--color-text)] mb-1 "
               >
                 Email *
               </label>
@@ -278,14 +278,14 @@
                 id="email"
                 name="email"
                 required
-                class="w-full px-4 py-2 border outline-none border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-transparent"
+                class="w-full px-4 py-2 border outline-none border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-[var(--color-input)]"
                 placeholder="john@example.com"
               />
             </div>
           </div>
           <div>
             <label
-              htmlFor="subject"
+              for="subject"
               class="block text-lg font-medium text-[var(--color-text)] mb-1"
             >
               Subject
@@ -294,13 +294,13 @@
               type="text"
               id="subject"
               name="subject"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-transparent"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-[var(--color-input)]"
               placeholder="How can we help you?"
             />
           </div>
           <div>
             <label
-              htmlFor="message"
+              for="message"
               class="block text-lg font-medium text-[var(--color-text)] mb-1"
             >
               Message *
@@ -310,7 +310,7 @@
               name="message"
               required
               rows="4"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-transparent"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-[var(--color-input)]"
               placeholder="Your message here..."
           >
         </textarea>
@@ -328,8 +328,8 @@
 
        <!-- GET STARTED -->
        <section class="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-10 gap-10" id="get-started">
-        <h1 class="text-4xl font-bold text-center text-[var(--color-text)] mb-4 ">Get Started with Us</h1>
-        <p class="text-lg text-center text-[var(--color-text)] mb-6 ">
+        <h1 class="text-4xl font-bold text-center text-[var(--color-text-secondary)] mb-4 ">Get Started with Us</h1>
+        <p class="text-lg text-center text-[var(--color-text-secondary)] mb-6 ">
           Join us today and take your skills to the next level with our platform. Let's get started!
         </p>
         <button class="bg-blue-600 text-white py-3 px-6 rounded-lg text-xl hover:bg-blue-700 transition-all duration-300 cursor-pointer">
@@ -399,6 +399,11 @@
             class="hover:text-blue-500 transition-colors duration-300 text-lg"
           >
             <a href="#testimonials">Testimonials</a>
+          </li>
+          <li
+            class="hover:text-blue-500 transition-colors duration-300 text-lg"
+          >
+            <a href="#contact">Contact Us</a>
           </li>
         </ul>
       </div>

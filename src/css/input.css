@@ -33,14 +33,18 @@
   --color-text: var(--color-midnight-900);
   --color-primary: var(--color-midnight-500);
   --color-third: var(--color-midnight-800);
+
+  --color-input:var(--color-midnight-800)
 }
 
 :root,
 [data-theme="light"] {
-  --color-bg: var(--color-midnight-50);
-  --color-text: var(--color-midnight-900);
+  --color-bg: var(--color-midnight-200);
+  --color-text: var(--color-midnight-500);
   --color-primary: var(--color-midnight-300);
   --color-third: var(--color-midnight-600);
+  --color-input:white;
+  --color-text-secondary:white
 }
 
 /* Thème dark */
@@ -49,6 +53,8 @@
   --color-text: var(--color-midnight-50);
   --color-primary: var(--color-midnight-500);
   --color-third: var(--color-midnight-800);
+  --color-input:var(--color-midnight-800);
+  --color-text-secondary:var(--color-midnight-50)
 }
 
 /* Auto - based on system preferences */
@@ -58,6 +64,8 @@
     --color-bg: var(--color-midnight-900);
     --color-text: var(--color-midnight-50);
     --color-primary: var(--color-midnight-500);
+    --color-input:var(--color-midnight-600);
+
   }
 }
 
