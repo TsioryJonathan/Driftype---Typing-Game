@@ -2,11 +2,10 @@ import { inputStyle, logoStyle, showPassword } from "../formStyle.js";
 import { Logger } from "../../../utils/Logger.js";
 
 const logger = Logger.getLogger("Authentication");
-
-export const API_URL = "http://localhost:3000/api" || process.env.API_URL;
 export const TOKEN_KEY = "typing_game_token";
 export const USER_KEY = "typing_game_user";
 const DEFAULT_ERROR_MSG = "An error occurred. Please try again.";
+export const API_URL = "http://localhost:3000/api";
 
 document.addEventListener("DOMContentLoaded", () => {
   initLogin();
@@ -120,7 +119,7 @@ const validateInputs = (email, password, errorElement) => {
   return true;
 };
 
-// Set loading state
+// loading state
 const setLoadingState = (button, isLoading) => {
   if (!button) return;
 
@@ -148,7 +147,7 @@ export const storeAuthData = (token, user) => {
   }
 
   try {
-    // safe storage of user data with expiration date (7 days)
+    // storage of user data with expiration date (7 days)
     const userData = {
       ...user,
       expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
@@ -162,18 +161,6 @@ export const storeAuthData = (token, user) => {
     throw new Error("Storage error: " + e.message);
   }
 };
-
-// Descomment for production
-/*
-const setAuthCookie = (token) => {
-  document.cookie = `${
-    TOKEN_KEY}=${token}; 
-    Secure; 
-    SameSite=Strict; 
-    max-age=${7 * 24 * 60 * 60}; 
-    path=/`;
-};
-*/
 
 export const redirectToDashboard = () => {
   try {
