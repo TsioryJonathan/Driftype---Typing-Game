@@ -22,6 +22,7 @@
     "typed.js": "^2.1.0"
   },
   "devDependencies": {
+    "@awmottaz/prettier-plugin-void-html": "^1.8.0",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11"
   }
