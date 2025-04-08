@@ -62,12 +62,12 @@ export const login = async (req, res) => {
     const user = await User.findByEmail(email);
 
 if (!user) {
-  return res.status(401).json({ message: 'Authentication failed peraps email is incorrect' });
+  return res.status(401).json({ message: 'Password or Email incorrect' });
 }
 
 const isValidPassword = await bcrypt.compare(password, user.password);
 if (!isValidPassword) {
-  return res.status(401).json({ message: 'Authentication failed peraps password is incorrect' });
+  return res.status(401).json({ message: 'Password or Email incorrect' });
 }
 
     // Generate JWT token
@@ -111,9 +111,11 @@ export const forgotPassword = async (req, res) => {
       to: email,
       subject: '[TajoType] Password Reset Request',
       html: `
-        <p>You requested a password reset</p>
+      <div style="color: #333; width: 100%;margin: 0 auto;text-align: center">
+        <p style="margin: 10px 0;font-size: 16px;">You requested a password reset</p>
         <p>Click this <a href="${resetUrl}">link</a> to reset your password</p>
         <p>If you didn't request this, please ignore this email</p>
+      </div>
       `
     });
 
