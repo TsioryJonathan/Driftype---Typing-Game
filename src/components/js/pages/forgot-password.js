@@ -80,7 +80,7 @@ const handleForgotPassword = async (e) => {
     logger.info("Password reset email sent successfully", { email });
     showSuccess(
       errorMessage,
-      "Reset password link has been sent to your email"
+      "We have sent a reset password link to your email"
     );
   } catch (error) {
     logger.error("Password reset error", { error: error.message });
