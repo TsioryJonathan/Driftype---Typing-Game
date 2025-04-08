@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import sql from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
+import { backupData, restoreData } from './utils/backup/backupManager.js';
 import 'dotenv/config';
 
 const app = express();
@@ -61,9 +62,27 @@ const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
   await testDatabaseConnection();
-  app.listen(PORT, () => {
+  
+  // Restore database
+  await restoreData();
+  
+  const server = app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
+
+  // Handle graceful shutdown
+  const handleShutdown = async () => {
+    console.log('Server shutting down...');
+    await backupData();
+    server.close(() => {
+      console.log('Server stopped');
+      process.exit(0);
+    });
+  };
+
+  // Handle signals
+  process.on('SIGTERM', handleShutdown);
+  process.on('SIGINT', handleShutdown);
 };
 
 startServer();
