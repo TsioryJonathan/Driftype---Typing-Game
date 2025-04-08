@@ -1,44 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/css/output.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/css/output.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
-        <title>TajoType</title>
-    <link rel="shortcut icon" href="assets/noBgColor.png" type="image/x-icon">
+    >
+    <title>TajoType</title>
+    <link
+      rel="shortcut icon"
+      href="/src/assets/noBgWhite.png"
+      type="image/x-icon"
+    >
   </head>
 
-  <body class="font-poppins text-white bg-secondary relative">
+  <body
+    class="font-poppins relative bg-[var(--color-bg)] text-[var(--color-text)]"
+  >
     <!-- NAVBAR -->
-    <header class="w-screen h-16 bg-midnight fixed top-0 left-0 right-0 z-99">
-      <nav class="w-full h-full flex justify-between items-center px-10">
+    <header
+      class="fixed left-0 right-0 top-0 z-50 h-14 w-screen bg-gradient-to-r from-blue-950 to-blue-900 text-[var(--color-text-secondary)]"
+    >
+      <nav class="flex h-full w-full items-center justify-between px-10">
         <div class="flex items-center justify-center gap-2">
-          <i class="fa-solid fa-keyboard text-4xl text-blue-500"></i>
-          <h1 class="text-blue-600 text-3xl font-bold">Typing Master</h1>
+          <img
+            src="/src/assets/noBgWhite.png"
+            alt="Tajo Logo"
+            class="h-12 w-12 object-cover"
+          >
+          <h2 class="text-3xl font-bold text-blue-600">TajoType</h2>
         </div>
-        <ul class="flex gap-10 w-1/3">
-          <li class="hover:text-blue-500 transition-colors duration-300">
+
+        <!-- Menu principal -->
+        <ul class="hidden w-1/3 justify-center gap-10 md:flex">
+          <li class="transition-colors duration-300 hover:text-blue-500">
             <a href="#">Home</a>
           </li>
-          <li class="hover:text-blue-500 transition-colors duration-300">
+          <li class="transition-colors duration-300 hover:text-blue-500">
             <a href="#features">Features</a>
           </li>
-          <li class="hover:text-blue-500 transition-colors duration-300">
+          <li class="transition-colors duration-300 hover:text-blue-500">
             <a href="#testimonials">Testimonials</a>
+          </li>
+          <li class="transition-colors duration-300 hover:text-blue-500">
+            <a href="#contact">Contact Us</a>
           </li>
         </ul>
 
+        <div class="hidden md:flex gap-3">
+          <button
+            class="bg-active-500 flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 duration-300 hover:bg-blue-700"
+            id="login-btn"
+            aria-label="Login"
+          >
+            Login
+            <i class="fa-solid fa-sign-in-alt"></i>
+          </button>
+          <button
+            class="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 border border-gray-400 hover:bg-gray-600 transition-all duration-150 ease-in-out"
+            id="sign-up-btn"
+            aria-label="Sign Up"
+          >
+            Sign up
+            <i class="fa-solid fa-user-plus"></i>
+          </button>
+        </div>
 
-        <button
-          class="bg-active py-2 px-5 rounded-xl cursor-pointer flex items-center gap-2 hover:bg-blue-500 duration-300"
-        >
-          Begin Now <i class="fa-solid fa-arrow-right"></i>
-        </button>
+        <!-- Menu hamburger and login on mobile-->
+        <div class="flex items-center md:hidden gap-5">
+          <button id="login-btn">
+            <i class="fa-solid fa-user text-2xl"></i>
+          </button>
+          <button
+            id="hamburger"
+            class="text-white focus:outline-none"
+            aria-label="Open menu"
+          >
+            <i class="fa-solid fa-bars text-3xl"></i>
+          </button>
+        </div>
       </nav>
+
+      <!-- Menu mobile -->
+      <div
+        id="mobile-menu"
+        class="fixed right-0 top-0 flex h-screen w-[80vw] translate-x-[999px] flex-col gap-10 bg-[var(--color-primary)] px-10 py-4 text-center transition-all duration-500 ease-in md:hidden"
+      >
+        <div class="flex items-center gap-2">
+          <img
+            src="/src/assets/noBgWhite.png"
+            alt="TajoType"
+            class="h-14 w-14 object-cover"
+          >
+          <h2 class="text-3xl font-bold text-blue-600">TajoType</h2>
+        </div>
+        <ul class="flex flex-col items-center gap-6" id="link-list">
+          <li
+            class="text-2xl transition-colors duration-300 hover:text-blue-500"
+          >
+            <a href="#">Home</a>
+          </li>
+          <li
+            class="text-2xl transition-colors duration-300 hover:text-blue-500"
+          >
+            <a href="#features">Features</a>
+          </li>
+          <li
+            class="text-2xl transition-colors duration-300 hover:text-blue-500"
+          >
+            <a href="#testimonials">Testimonials</a>
+          </li>
+          <li
+            class="text-2xl transition-colors duration-300 hover:text-blue-500"
+          >
+            <a href="#contact">Contact Us</a>
+          </li>
+          <li>
+            <button
+              class="bg-active-500 mt-10 flex w-fit cursor-pointer items-center gap-2 rounded-xl px-5 py-2 duration-300 hover:bg-blue-600"
+              id="get-started-btn"
+              aria-label="Begin Now"
+            >
+              Begin Now
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </li>
+          <li>
+            <button
+              class="absolute right-5 top-5"
+              id="close-button"
+              aria-label="Close menu"
+            >
+              <i class="fa-solid fa-xmark text-4xl"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
     </header>
 
     <!-- BODY -->
@@ -46,238 +145,392 @@
       <!-- HERO -->
       <section
         id="home"
-        class="grid grid-cols-1 lg:grid-cols-2 w-full min-h-screen px-10"
+        class="grid min-h-screen w-full grid-cols-1 px-10 lg:grid-cols-2"
       >
         <div
-          class="flex flex-col justify-center items-center px-5 gap-10 min-h-screen"
+          class="flex min-h-screen flex-col items-center justify-center gap-10 px-5"
         >
-          <h1 class="text-6xl font-bold leading-20">
+          <h2 class="leading-20 text-5xl font-bold md:text-6xl">
             Level Up Your Typing Skills
-          </h1>
+          </h2>
           <p class="text-xl">
             Improve your typing speed and accuracy with our personalized
             exercises and real-time performance tracking.
           </p>
+          <div
+            class="flex min-w-[100%] justify-center rounded-lg bg-[var(--color-third)] px-10 py-3"
+          >
+            <h3 class="text-2xl text-[var(--color-text-secondary)]">
+              <span id="typed"></span>
+            </h3>
+          </div>
+
           <div class="flex gap-5">
             <button
-              class="bg-active py-3 px-5 rounded-lg cursor-pointer group w-fit flex gap-2 items-center justify-center text-xl hover:bg-blue-800 transition-all duration-300"
+              class="bg-active-500 text-md group flex w-fit cursor-pointer items-center justify-center gap-2 rounded-lg px-2 py-3 text-[var(--color-text-secondary)] transition-all duration-300 hover:bg-blue-800 md:px-5 md:text-xl"
+              aria-label="Get Started Now"
+              id="get-started-btn"
             >
               <i
-                class="fa-solid fa-rocket group-hover:-translate-y-1 duration-300"
-              ></i
-              >Get Started Now
+                class="fa-solid fa-rocket duration-300 group-hover:-translate-y-1"
+              ></i>
+              Get Started Now
             </button>
             <button
-              class="py-3 px-5 rounded-lg cursor-pointer w-fit flex gap-2 items-center justify-center text-xl border border-gray-600 hover:bg-gray-800 transition-all duration-300"
+              class="text-md flex w-fit cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-600 px-2 py-3 transition-all duration-300 hover:bg-gray-700 md:px-5 md:text-xl"
+              aria-label="Learn More"
             >
               Learn more
             </button>
           </div>
         </div>
-        <div class="flex items-center justify-center min-h-screen">
-          <div class="bg-gray-700 rounded-lg py-16 px-5 shadow-2xl">
+        <div class="flex min-h-screen items-center justify-center">
+          <div
+            class="rounded-lg bg-[var(--color-primary)] px-5 py-12 shadow-2xl"
+          >
             <img
               src="./public/landing.jpg"
               alt="Illustration"
               class="rounded-2xl"
-            />
+            >
           </div>
         </div>
       </section>
+      <!-- FEATURES -->
       <section
         id="features"
-        class="min-h-screen flex flex-col gap-5 bg-gray-700 py-10 px-14 justify-center"
+        class="flex min-h-screen flex-col justify-center gap-5 bg-[var(--color-primary)] px-14 py-10"
       >
-        <h1 class="text-center text-4xl font-bold">Features</h1>
-        <p class="text-lg text-center">We offer many option for you</p>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
+        <h2 class="text-center text-4xl font-bold">Features</h2>
+        <p class="text-center text-lg">We offer many options for you</p>
+        <div class="grid grid-cols-1 gap-24 lg:grid-cols-3">
           <div
-            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg"
+            class="group flex flex-col gap-3 rounded-lg border border-gray-300 bg-[#2222227e] p-5 backdrop-blur-lg transition-all duration-200 ease-in hover:-translate-y-2 hover:shadow-2xl"
           >
             <div
-              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit"
+              class="flex w-fit items-center justify-center rounded-md bg-gray-600 p-2 transition-all duration-150 ease-in group-hover:scale-105"
             >
-              <i class="fa-solid fa-keyboard text-xl text-white"></i>
+              <i
+                class="fa-solid fa-keyboard text-xl text-white transition-all duration-150 ease-in-out group-hover:text-2xl"
+              ></i>
             </div>
             <h2 class="text-2xl font-bold">Multiple levels</h2>
-            <p class="text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-              ab aspernatur nam, amet ratione corporis sit veritatis sint
-              voluptate suscipit accusamus laudantium libero eius labore
-              blanditiis? Aspernatur aliquam animi inventore!
+            <p class="text-[var(--color-text-secondary)]">
+              Challenge yourself with various difficulty levels, from beginner
+              to expert, and improve your typing skills step by step.
             </p>
           </div>
           <div
-            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg"
+            class="group flex flex-col gap-3 rounded-lg border border-gray-300 bg-[#2222227e] p-5 backdrop-blur-lg transition-all duration-200 ease-in hover:-translate-y-2 hover:shadow-2xl"
           >
             <div
-              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit"
+              class="flex w-fit items-center justify-center rounded-md bg-gray-600 p-2 transition-all duration-150 ease-in group-hover:scale-105"
             >
-              <i class="fa-solid fa-keyboard text-xl text-white"></i>
+              <i
+                class="fa-solid fa-clock text-xl text-white transition-all duration-150 ease-in-out group-hover:text-2xl"
+              ></i>
             </div>
-            <h2 class="text-2xl font-bold">Multiple levels</h2>
-            <p class="text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-              ab aspernatur nam, amet ratione corporis sit veritatis sint
-              voluptate suscipit accusamus laudantium libero eius labore
-              blanditiis? Aspernatur aliquam animi inventore!
+            <h2 class="text-2xl font-bold">Time Tracking</h2>
+            <p class="text-[var(--color-text-secondary)]">
+              Keep track of your typing speed and accuracy with our built-in
+              timer and performance metrics.
             </p>
           </div>
           <div
-            class="flex flex-col gap-3 border border-gray-300 rounded-lg p-5 bg-[#2222227e] backdrop-blur-lg"
+            class="group flex flex-col gap-3 rounded-lg border border-gray-300 bg-[#2222227e] p-5 backdrop-blur-lg transition-all duration-200 ease-in hover:-translate-y-2 hover:shadow-2xl"
           >
             <div
-              class="flex items-center justify-center p-2 bg-gray-600 rounded-md w-fit"
+              class="flex w-fit items-center justify-center rounded-md bg-gray-600 p-2 transition-all duration-150 ease-in group-hover:scale-105"
             >
-              <i class="fa-solid fa-keyboard text-xl text-white"></i>
+              <i
+                class="fa-solid fa-trophy text-xl text-white transition-all duration-150 ease-in-out group-hover:text-2xl"
+              ></i>
             </div>
-            <h2 class="text-2xl font-bold">Multiple levels</h2>
-            <p class="text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-              ab aspernatur nam, amet ratione corporis sit veritatis sint
-              voluptate suscipit accusamus laudantium libero eius labore
-              blanditiis? Aspernatur aliquam animi inventore!
+            <h2 class="text-2xl font-bold">Achievements</h2>
+            <p class="text-[var(--color-text-secondary)]">
+              Unlock achievements as you progress and reach new milestones in
+              your typing journey.
             </p>
           </div>
         </div>
       </section>
+
+      <!-- TESTIMONIALS -->
       <section
-        class="min-h-screen flex flex-col gap-5 justify-center"
+        class="flex min-h-screen flex-col justify-center gap-5"
         id="testimonials"
       >
-        <h1 class="text-center text-4xl font-bold">Testimonials</h1>
-        <p class="text-lg text-center">See what people are saying about us</p>
+        <h2 class="text-center text-4xl font-bold">Testimonials</h2>
+        <p class="text-center text-lg">See what people are saying about us</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 px-16">
+        <div class="grid grid-cols-1 gap-5 px-16 md:grid-cols-2 lg:grid-cols-2">
           <div
-            class="p-6 rounded-lg shadow-sm border border-gray-200 bg-gray-800"
+            class="rounded-lg border border-gray-200 bg-[var(--color-third)] p-6 shadow-sm"
           >
-            <div class="flex items-center gap-4 mb-4">
+            <div class="mb-4 flex items-center gap-4">
               <img
                 src="./public/user.jpg"
                 alt="John Doe"
-                class="w-12 h-12 rounded-full object-cover"
-              />
+                class="h-12 w-12 rounded-full object-cover"
+              >
               <div>
-                <h3 class="">John Doe</h3>
-                <p class="text-sm text-white">Secrétaire chez ADM</p>
+                <h3 class="text-[var(--color-text-secondary)]">John Doe</h3>
+                <p class="text-sm text-white">Computer Science Teacher</p>
               </div>
             </div>
-            <p class="text-white italic">
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-              fugiat iure dolor aut, amet consequuntur earum mollitia suscipit
-              dolorem neque minus. Magnam quae, ratione deserunt quam architecto
-              commodi obcaecati itaque?"
+            <p class="italic text-white">
+              "This typing game has completely transformed my typing speed. I
+              went from 40 WPM to 80 WPM in just a few weeks!"
             </p>
           </div>
           <div
-            class="p-6 rounded-lg shadow-sm border border-gray-200 bg-gray-800"
+            class="rounded-lg border border-gray-200 bg-[var(--color-third)] p-6 shadow-sm"
           >
-            <div class="flex items-center gap-4 mb-4">
+            <div class="mb-4 flex items-center gap-4">
               <img
                 src="./public/user.jpg"
-                alt="John Doe"
-                class="w-12 h-12 rounded-full object-cover"
-              />
+                alt="Claire Dubois"
+                class="h-12 w-12 rounded-full object-cover"
+              >
               <div>
-                <h3 class="">John Doe</h3>
-                <p class="text-sm text-white">Secrétaire chez ADM</p>
+                <h3 class="text-[var(--color-text-secondary)]">
+                  Claire Duboise
+                </h3>
+                <p class="text-sm text-white">Administrative Assistant</p>
               </div>
             </div>
-            <p class="text-white italic">
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-              fugiat iure dolor aut, amet consequuntur earum mollitia suscipit
-              dolorem neque minus. Magnam quae, ratione deserunt quam architecto
-              commodi obcaecati itaque?"
+            <p class="italic text-white">
+              "Thanks to this site, I doubled my typing speed in just a few
+              weeks. It’s a real time-saver in my daily work. I recommend it to
+              anyone who works at a desk!"
             </p>
           </div>
         </div>
+      </section>
+
+      <!-- CONTACT FORM -->
+      <section
+        class="flex min-h-screen flex-col gap-5 bg-[var(--color-primary)] p-0 py-10 md:px-40"
+        id="contact"
+      >
+        <h2 class="text-center text-4xl font-bold">Get in Touch</h2>
+        <p class="text-center text-lg">
+          Have questions or feedback? We'd love to hear from you.
+        </p>
+        <form
+          action="https://formspree.io/f/mblgpkgj"
+          id="contact-form"
+          method="POST"
+          class="flex flex-col gap-5 p-5"
+        >
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div>
+              <label
+                for="name"
+                class="mb-1 block text-lg font-medium text-[var(--color-text)]"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="w-full rounded-lg border border-gray-300 bg-[var(--color-input)] px-4 py-2 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
+                placeholder="John Doe"
+              >
+            </div>
+            <div>
+              <label
+                for="email"
+                class="mb-1 block text-lg font-medium text-[var(--color-text)]"
+              >
+                Email *
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full rounded-lg border border-gray-300 bg-[var(--color-input)] px-4 py-2 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
+                placeholder="john@example.com"
+              >
+            </div>
+          </div>
+          <div>
+            <label
+              for="subject"
+              class="mb-1 block text-lg font-medium text-[var(--color-text)]"
+            >
+              Subject
+            </label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              class="w-full rounded-lg border border-gray-300 bg-[var(--color-input)] px-4 py-2 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
+              placeholder="How can we help you?"
+            >
+          </div>
+          <div>
+            <label
+              for="message"
+              class="mb-1 block text-lg font-medium text-[var(--color-text)]"
+            >
+              Message *
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="4"
+              class="w-full rounded-lg border border-gray-300 bg-[var(--color-input)] px-4 py-2 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
+              placeholder="Your message here..."
+            ></textarea>
+          </div>
+          <div class="flex items-center justify-center">
+            <button
+              class="group flex w-full cursor-pointer items-center justify-center gap-5 rounded-lg bg-indigo-800 px-10 py-3 font-medium text-white transition-all duration-200 hover:bg-indigo-600"
+              form="contact-form"
+            >
+              <i
+                class="fa-solid fa-paper-plane transition-transform duration-300 ease-in group-hover:-translate-y-1 group-hover:translate-x-1"
+              ></i>
+              Send Message
+            </button>
+          </div>
+          <p class="text-center text-xs text-gray-500">
+            * Required fields. We'll get back to you within 24-48 hours.
+          </p>
+        </form>
+      </section>
+
+      <!-- GET STARTED -->
+      <section
+        class="flex min-h-screen flex-col items-center justify-center gap-10 bg-gray-100 p-10"
+        id="get-started"
+      >
+        <h2
+          class="mb-4 text-center text-4xl font-bold text-[var(--color-text-secondary)]"
+        >
+          Get Started with Us
+        </h2>
+        <p class="mb-6 text-center text-lg text-[var(--color-text-secondary)]">
+          Join us today and take your skills to the next level with our
+          platform. Let's get started!
+        </p>
+        <button
+          class="cursor-pointer rounded-lg bg-blue-600 px-6 py-3 text-xl text-white transition-all duration-300 hover:bg-blue-700"
+          id="get-started-btn"
+        >
+          Get Started
+        </button>
       </section>
     </main>
     <!-- FOOTER -->
     <footer
-      class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 min-h-60 w-full gap-5 bg-midnight px-5 py-10"
+      class="bg-midnight-950 grid min-h-60 w-full grid-cols-1 gap-5 px-5 py-10 text-white md:grid-cols-3 lg:grid-cols-3"
     >
       <div class="flex flex-col gap-3">
-        <div class="flex gap-2">
-          <i class="fa-solid fa-keyboard text-4xl text-blue-500"></i>
-          <h1 class="text-blue-600 text-3xl font-bold">Typing Master</h1>
+        <div class="flex items-center gap-2">
+          <img
+            src="/src/assets/noBgWhite.png"
+            alt="Tajo Logo"
+            class="h-14 w-14 object-cover"
+          >
+          <h2 class="text-3xl font-bold text-blue-600">TajoType</h2>
         </div>
         <p class="text-lg">
-          Level up your typing skills with our personnalized exercises
+          Level up your typing skills with our personalized exercises
         </p>
-        <div class="flex flex-col gap-5 mt-10">
-          <h1 class="text-2xl font-bold">Inscrivez-vous à notre newsletter</h1>
+        <div class="mt-10 flex flex-col gap-5">
+          <h2 class="text-2xl font-bold">Subscribe to our newsletter</h2>
           <div class="flex flex-col gap-2">
-            <label htmlFor="newsletter-inscription">Addresse e-mail</label>
+            <label for="newsletter-inscription">E-mail address</label>
             <input
               type="text"
-              placeholder="Votre e-mail"
-              class="outline-none p-2 border-1 border-gray-500 bg-gray-800 rounded-xl w-[90%] focus:bg-gray-900"
-            />
+              placeholder="Enter your e-mail address"
+              id="newsletter-inscription"
+              class="border-1 w-[90%] rounded-xl border-gray-500 bg-gray-800 p-2 outline-none focus:bg-gray-900"
+            >
           </div>
           <div class="flex gap-2">
-            <input type="checkbox" name="approbation" />
-            <label htmlFor="approbation" class="text-sm">
-              J&apos;autorise ce site à conserver mes données personnelles
-              transmises via ce formulaire. Vos données personnelles seront
-              utilisées pour traiter votre commande, soutenir votre expérience
-              tout au long de ce site Web, et à d’autres fins décrites dans
-              notre politique-de-confidentialité.
+            <input type="checkbox" name="approbation" id="approbation">
+            <label for="approbation" class="text-sm">
+              I authorize this site to keep my personal data transmitted via
+              this form. Your personal data will be used to process your order,
+              support your experience throughout this website, and for other
+              purposes described in our Privacy Policy.
             </label>
           </div>
           <button
-            class="w-30 border-1 border-gray-400 px-4 py-3 rounded-4xl cursor-pointer hover:bg-gray-800"
+            class="w-30 border-1 rounded-4xl cursor-pointer border-gray-400 px-4 py-3 hover:bg-gray-800"
+            aria-label="Subscribe"
           >
-            Souscrire
+            Subscribe
           </button>
         </div>
       </div>
       <div class="flex flex-col gap-2">
-        <h1 class="text-left md:text-center lg:text-center font-bold text-2xl">
+        <h2 class="text-left text-2xl font-bold md:text-center lg:text-center">
           Navigation
-        </h1>
+        </h2>
         <ul class="flex flex-col gap-10">
           <li
-            class="hover:text-blue-500 transition-colors duration-300 text-lg"
+            class="text-lg transition-colors duration-300 hover:text-blue-500"
           >
             <a href="#">Home</a>
           </li>
           <li
-            class="hover:text-blue-500 transition-colors duration-300 text-lg"
+            class="text-lg transition-colors duration-300 hover:text-blue-500"
           >
             <a href="#features">Features</a>
           </li>
           <li
-            class="hover:text-blue-500 transition-colors duration-300 text-lg"
+            class="text-lg transition-colors duration-300 hover:text-blue-500"
           >
             <a href="#testimonials">Testimonials</a>
+          </li>
+          <li
+            class="text-lg transition-colors duration-300 hover:text-blue-500"
+          >
+            <a href="#contact">Contact Us</a>
           </li>
         </ul>
       </div>
       <div class="flex flex-col">
         <h2
-          class="text-left md:text-center lg:text-center font-bold text-2xl mb-4"
+          class="mb-4 text-left text-2xl font-bold md:text-center lg:text-center"
         >
           Contact
         </h2>
         <div class="flex flex-col gap-5">
-          <p class="text-gray-300 text-xl">📍 123 Rue de la Tech, Paris</p>
-          <p class="text-gray-300 text-xl">📧 contact@kitikard.com</p>
-          <p class="text-gray-300 text-xl">📞 +33 1 23 45 67 89</p>
+          <p class="text-xl text-gray-300">📍 123 Rue de la Tech, Paris</p>
+          <p class="text-xl text-gray-300">📧 contact@tajospeedtype.com</p>
+          <p class="text-xl text-gray-300">📞 033 12 235 48</p>
         </div>
       </div>
     </footer>
 
-    <button id="login-btn">Login</button>
+    <!-- SCRIPT TYPED -->
 
-    <script type="module">
-        const loginBtn = document.getElementById('login-btn');
-        loginBtn.addEventListener('click', () => {
-            window.location.href = 'src/components/pages/login.html';
-        });
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="./src/components/js/toggleMenu.js"></script>
+    <script src="./src/components/js/redirectionScript.js"></script>
+    <script>
+      const typed = new Typed('#typed', {
+        strings: [
+          'Ready to type?',
+          "Let's do this!",
+          'Start practicing, now.',
+          '<b>Type faster</b>, <i>think smarter</i>.',
+          "Become <span style='color: green;'>unstoppable</span>!",
+        ],
+        typeSpeed: 50,
+        backSpeed: 25,
+        backDelay: 1000,
+        startDelay: 500,
+        loop: true,
+      });
     </script>
-    <script type="module" src="script.js"></script>
   </body>
 </html>
-

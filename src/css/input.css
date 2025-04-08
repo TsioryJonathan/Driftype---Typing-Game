@@ -1,86 +1,87 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Playfair+Display:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Playfair+Display:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "tailwindcss";
 
 @theme {
-    --font-poppins: "Poppins";
-    --font-fira-code: "Fira Code";
-    --font-playfair-display: "Playfair Display";
+  --font-poppins: "Poppins";
+  --font-fira-code: "Fira Code";
+  --font-playfair-display: "Playfair Display";
 
-    --color-midnight-50: #f8fafc;
-    --color-midnight-100: #f1f5f9;
-    --color-midnight-200: #e2e8f0;
-    --color-midnight-300: #cbd5e1;
-    --color-midnight-400: #94a3b8;
-    --color-midnight-500: #1f2937;
-    --color-midnight-600: #334155;
-    --color-midnight-700: #475569;
-    --color-midnight-800: #64748b;
-    --color-midnight-900: #0f172a;
-    --color-midnight-950: #020617;
+  --color-midnight-50: #f8fafc;
+  --color-midnight-100: #f1f5f9;
+  --color-midnight-200: #e2e8f0;
+  --color-midnight-300: #cbd5e1;
+  --color-midnight-400: #94a3b8;
+  --color-midnight-500: #1f2937;
+  --color-midnight-600: #334155;
+  --color-midnight-700: #475569;
+  --color-midnight-800: #64748b;
+  --color-midnight-900: #0f172a;
+  --color-midnight-950: #020617;
 
-    --color-active-50: #eff6ff;
-    --color-active-100: #dbeafe;
-    --color-active-200: #bfdbfe;
-    --color-active-300: #93c5fd;
-    --color-active-400: #60a5fa;
-    --color-active-500: #2563eb;
-    --color-active-600: #1d4ed8;
-    --color-active-700: #1e40af;
-    --color-active-800: #1e3a8a;
-    --color-active-900: #172554;
+  --color-active-50: #eff6ff;
+  --color-active-100: #dbeafe;
+  --color-active-200: #bfdbfe;
+  --color-active-300: #93c5fd;
+  --color-active-400: #60a5fa;
+  --color-active-500: #2563eb;
+  --color-active-600: #1d4ed8;
+  --color-active-700: #1e40af;
+  --color-active-800: #1e3a8a;
+  --color-active-900: #172554;
 
-    --color-bg: var(--color-midnight-50);
-    --color-text: var(--color-midnight-900);
-    --color-primary: var(--color-midnight-500);
+  --color-bg: var(--color-midnight-50);
+  --color-text: var(--color-midnight-900);
+  --color-primary: var(--color-midnight-500);
+  --color-third: var(--color-midnight-800);
+
+  --color-input:var(--color-midnight-800)
 }
 
 :root,
 [data-theme="light"] {
-    --color-bg: var(--color-midnight-50);
-    --color-text: var(--color-midnight-900);
-    --color-primary: var(--color-midnight-300);
+  --color-bg: var(--color-midnight-200);
+  --color-text: var(--color-midnight-500);
+  --color-primary: var(--color-midnight-300);
+  --color-third: var(--color-midnight-600);
+  --color-input:white;
+  --color-text-secondary:white
 }
 
 /* Thème dark */
 [data-theme="dark"] {
-    --color-bg: var(--color-midnight-900);
-    --color-text: var(--color-midnight-50);
-    --color-primary: var(--color-midnight-500);
+  --color-bg: var(--color-midnight-900);
+  --color-text: var(--color-midnight-50);
+  --color-primary: var(--color-midnight-500);
+  --color-third: var(--color-midnight-800);
+  --color-input:var(--color-midnight-800);
+  --color-text-secondary:var(--color-midnight-50)
 }
 
 /* Auto - based on system preferences */
 @media (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+  [data-theme="auto"] {
+    --color-bg: var(--color-midnight-900);
+    --color-text: var(--color-midnight-50);
+    --color-primary: var(--color-midnight-500);
+    --color-input:var(--color-midnight-600);
 
-    :root:not([data-theme]),
-    [data-theme="auto"] {
-        --color-bg: var(--color-midnight-900);
-        --color-text: var(--color-midnight-50);
-        --color-primary: var(--color-midnight-500);
-    }
+  }
 }
 
 * {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    @apply bg-[--color-bg] text-[--color-text] font-poppins;
-    transition: background-color 0.3s, color 0.3s;
+  @apply bg-[--color-bg] text-[--color-text] font-poppins;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* animaiton for the change page */
-@keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .animate-fadeInUp {
-    animation: fadeInUp 0.7s ease-out;
-  }
+
+#get-started {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('/public/typing.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
