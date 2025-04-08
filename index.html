@@ -49,25 +49,36 @@
           </li>
         </ul>
 
-        <!-- Bouton sur mobile -->
-        <div class="hidden md:block">
+        <div class="hidden md:flex gap-3">
           <button
-            class="bg-active-500 flex cursor-pointer items-center gap-2 rounded-xl px-5 py-2 duration-300 hover:bg-blue-600"
-            aria-label="Begin Now"
+            class="bg-active-500 flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 duration-300 hover:bg-blue-700"
+            id="login-btn"
+            aria-label="Login"
           >
-            Begin Now
-            <i class="fa-solid fa-arrow-right"></i>
+            Login
+            <i class="fa-solid fa-sign-in-alt"></i>
+          </button>
+          <button
+            class="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 border border-gray-400 hover:bg-gray-600 transition-all duration-150 ease-in-out"
+            id="sign-up-btn"
+            aria-label="Sign Up"
+          >
+            Sign up
+            <i class="fa-solid fa-user-plus"></i>
           </button>
         </div>
 
-        <!-- Menu hamburger -->
-        <div class="flex items-center md:hidden">
+        <!-- Menu hamburger and login on mobile-->
+        <div class="flex items-center md:hidden gap-5">
+          <button id="login-btn">
+            <i class="fa-solid fa-user text-2xl"></i>
+          </button>
           <button
             id="hamburger"
             class="text-white focus:outline-none"
             aria-label="Open menu"
           >
-            <i class="fa-solid fa-bars text-4xl"></i>
+            <i class="fa-solid fa-bars text-3xl"></i>
           </button>
         </div>
       </nav>
@@ -109,6 +120,7 @@
           <li>
             <button
               class="bg-active-500 mt-10 flex w-fit cursor-pointer items-center gap-2 rounded-xl px-5 py-2 duration-300 hover:bg-blue-600"
+              id="get-started-btn"
               aria-label="Begin Now"
             >
               Begin Now
@@ -157,6 +169,7 @@
             <button
               class="bg-active-500 text-md group flex w-fit cursor-pointer items-center justify-center gap-2 rounded-lg px-2 py-3 text-[var(--color-text-secondary)] transition-all duration-300 hover:bg-blue-800 md:px-5 md:text-xl"
               aria-label="Get Started Now"
+              id="get-started-btn"
             >
               <i
                 class="fa-solid fa-rocket duration-300 group-hover:-translate-y-1"
@@ -407,6 +420,7 @@
         </p>
         <button
           class="cursor-pointer rounded-lg bg-blue-600 px-6 py-3 text-xl text-white transition-all duration-300 hover:bg-blue-700"
+          id="get-started-btn"
         >
           Get Started
         </button>
@@ -501,6 +515,7 @@
 
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="./src/components/js/toggleMenu.js"></script>
+    <script src="./src/components/js/redirectionScript.js"></script>
     <script>
       const typed = new Typed('#typed', {
         strings: [
