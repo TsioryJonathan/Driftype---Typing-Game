@@ -17,7 +17,9 @@
   "author": "HEI Madagascar : Toky & Fiantso",
   "license": "ISC",
   "dependencies": {
+    "@barba/core": "^2.10.3",
     "@tailwindcss/cli": "^4.1.1",
+    "animate.css": "^4.1.1",
     "tailwindcss": "^4.1.1"
   },
   "devDependencies": {

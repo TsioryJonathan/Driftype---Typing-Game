@@ -23,7 +23,7 @@ const initForgotPassword = () => {
                 <label for="email" class="block text-sm font-medium">Email</label>
                 <div class="relative flex items-center justify-center">
                     <i class="fa-solid fa-envelope icon-form"></i>
-                    <input type="email" id="email" name="email" placeholder="enter your email" required class="input-form">
+                    <input type="email" id="email" name="email" required class="input-form">
                 </div>
             </div>
             <button type="submit"

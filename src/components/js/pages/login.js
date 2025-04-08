@@ -27,7 +27,6 @@ const initLogin = () => {
               type="email"
               id="email"
               name="email"
-              placeholder="enter your email"
               required
               class="input-form"
             />
@@ -43,7 +42,6 @@ const initLogin = () => {
               type="password"
               id="password"
               name="password"
-              placeholder="enter your password"
               required
               class="input-form"
             />
