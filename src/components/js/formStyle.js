@@ -5,7 +5,7 @@ export const logoStyle = () => {
     dark: "../../assets/noBgBlack.png",
   };
   const theme = localStorage.getItem("theme") || "light";
-  logo.innerHTML = `<img src="${logoSrc[theme]}" alt="TajoType Logo" class="w-16 h-16 mx-auto">`;
+  logo.innerHTML = `<img src="${logoSrc[theme]}" alt="TajoType Logo" class="w-26 mx-auto">`;
 };
 
 export const inputStyle = () => {

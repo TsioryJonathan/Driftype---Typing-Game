@@ -26,15 +26,19 @@
     ></script>
   </head>
   <body
-    class="flex min-h-screen items-center justify-center bg-[var(--color-bg)]"
+    class="flex min-h-screen items-center justify-center bg-[var(--color-bg)] relative"
   >
+  <div class="hidden md:block">
+    <img src="../../assets/bg-clipboard.png" alt="illustration" class="rounded-lg absolute bottom-1/2 translate-y-1/2 md:translate-0 md:relative  w-full md:max-w-lg z-[-2]">
+    <p class="text-[var(--color-text)] text-2xl font-bold text-center"> Welcome to TajoType! </p>
+  </div>
     <div class="w-96 rounded-lg p-8 shadow-lg">
       <div class="mb-6 text-center">
         <div id="logo"></div>
         <h1
           class="text-2xl font-bold text-[var(--color-text)]"
         >
-          Register
+          Create an account
         </h1>
       </div>
       <form id="registerForm" class="space-y-4">
@@ -42,7 +46,7 @@
       <p class="mt-4 text-center text-sm text-gray-600">
         Already have an account?
         <a href="login.html" class="text-active-500 hover:text-active-600"
-          >Login here</a
+          >Sign in</a
         >
       </p>
       <div

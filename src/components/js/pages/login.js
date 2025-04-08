@@ -1,12 +1,11 @@
 import { inputStyle, logoStyle, showPassword } from "../formStyle.js";
 import { Logger } from "../../../utils/Logger.js";
 
-const logger = Logger.getLogger('Authentication');
-
-export const API_URL = "http://localhost:3000/api" || process.env.API_URL;
+const logger = Logger.getLogger("Authentication");
 export const TOKEN_KEY = "typing_game_token";
 export const USER_KEY = "typing_game_user";
 const DEFAULT_ERROR_MSG = "An error occurred. Please try again.";
+export const API_URL = "http://localhost:3000/api";
 
 document.addEventListener("DOMContentLoaded", () => {
   initLogin();
@@ -15,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const initLogin = () => {
   const loginForm = document.getElementById("loginForm");
   if (!loginForm) {
-    logger.error('Login form not found', { component: 'LoginForm' });
+    logger.error("Login form not found", { component: "LoginForm" });
     return;
   }
 
@@ -28,7 +27,6 @@ const initLogin = () => {
               type="email"
               id="email"
               name="email"
-              placeholder="email"
               required
               class="input-form"
             />
@@ -44,7 +42,6 @@ const initLogin = () => {
               type="password"
               id="password"
               name="password"
-              placeholder="password"
               required
               class="input-form"
             />
@@ -119,16 +116,10 @@ const validateInputs = (email, password, errorElement) => {
     showError(errorElement, "Please fill in all fields");
     return false;
   }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    showError(errorElement, "Please enter a valid email");
-    return false;
-  }
-
   return true;
 };
 
-// Set loading state
+// loading state
 const setLoadingState = (button, isLoading) => {
   if (!button) return;
 
@@ -148,12 +139,15 @@ const setLoadingState = (button, isLoading) => {
 // Store auth data
 export const storeAuthData = (token, user) => {
   if (!token || !user) {
-    logger.error('Invalid authentication data received', { token: !!token, user: !!user });
-    throw new Error('Invalid auth data');
+    logger.error("Invalid authentication data received", {
+      token: !!token,
+      user: !!user,
+    });
+    throw new Error("Invalid auth data");
   }
 
   try {
-    // safe storage of user data with expiration date (7 days)
+    // storage of user data with expiration date (7 days)
     const userData = {
       ...user,
       expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
@@ -161,35 +155,23 @@ export const storeAuthData = (token, user) => {
 
     localStorage.setItem(TOKEN_KEY, token);
     localStorage.setItem(USER_KEY, JSON.stringify(userData));
-    logger.info('Authentication data stored successfully', { userId: user.id });
+    logger.info("Authentication data stored successfully", { userId: user.id });
   } catch (e) {
-    logger.error('Failed to store authentication data', { error: e.message });
-    throw new Error('Storage error: ' + e.message);
+    logger.error("Failed to store authentication data", { error: e.message });
+    throw new Error("Storage error: " + e.message);
   }
 };
-
-// Descomment for production
-/*
-const setAuthCookie = (token) => {
-  document.cookie = `${
-    TOKEN_KEY}=${token}; 
-    Secure; 
-    SameSite=Strict; 
-    max-age=${7 * 24 * 60 * 60}; 
-    path=/`;
-};
-*/
 
 export const redirectToDashboard = () => {
   try {
     const redirectUrl = new URL(
       "src/components/pages/dashboard.html",
-      window.location.origin,
+      window.location.origin
     );
-    logger.debug('Redirecting to dashboard', { url: redirectUrl.toString() });
+    logger.debug("Redirecting to dashboard", { url: redirectUrl.toString() });
     window.location.replace(redirectUrl.toString());
   } catch (e) {
-    logger.error('Failed to redirect to dashboard', { error: e.message });
+    logger.error("Failed to redirect to dashboard", { error: e.message });
     console.error("Redirection error:", e);
   }
 };
