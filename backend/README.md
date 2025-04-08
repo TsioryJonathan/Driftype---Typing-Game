@@ -20,9 +20,7 @@ Backend server for the TajoType typing game, handling user authentication, passw
 
 1. Install dependencies:
    ```bash
-   # Clone the local repository
-   git clone https://github.com/your-username/tajotype-backend.git
-   cd tajotype-backend
+   cd backend
    npm install
    ```
 
@@ -37,7 +35,7 @@ Backend server for the TajoType typing game, handling user authentication, passw
 
    # JWT Configuration
    JWT_SECRET=your-jwt-secret
-   JWT_EXPIRES_IN=24h
+   JWT_EXPIRES_IN=1h
 
    # Email Configuration
    SMTP_HOST=smtp.gmail.com
@@ -48,11 +46,12 @@ Backend server for the TajoType typing game, handling user authentication, passw
    # Server Configuration
    PORT=3000
    NODE_ENV=development
+   FRONTEND_URL=http://localhost:3000 (example)
    ```
 
 3. Create the database tables:
    - Use the SQL commands in `src/utils/database.sql`
-   - Execute them in your Supabase SQL editor
+   - Execute them in your Supabase SQL editor or local PostgreSQL
 
 4. Start the server:
    ```bash
