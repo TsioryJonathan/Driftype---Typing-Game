@@ -11,6 +11,37 @@ document.addEventListener("DOMContentLoaded", () => {
   initLogin();
 });
 
+
+window.handleGoogleSignIn = async (response) => {
+  const errorElement = document.getElementById("errorMessage");
+
+  try {
+    const { credential } = response;
+
+    const googleResponse = await fetch(`${API_URL}/auth/google`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ credential }),
+      credentials: "include",
+    });
+
+    if (!googleResponse.ok) {
+      const data = await googleResponse.json();
+      showError(errorElement, data.message || DEFAULT_ERROR_MSG);
+      return;
+    }
+
+    const data = await googleResponse.json();
+    storeAuthData(data.token, data.user);
+    redirectToDashboard();
+  } catch (error) {
+    console.error("Google Sign-In Error:", error);
+    showError(errorElement, error.message || DEFAULT_ERROR_MSG);
+  }
+};
+
 const initLogin = () => {
   const loginForm = document.getElementById("loginForm");
   if (!loginForm) {
