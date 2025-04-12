@@ -71,4 +71,3 @@ Use VS Code with Live Server for frontend development. The backend will run on h
 ## Contributing
 Feel free to enrich it with new features and a sexy design. Just keep it as a vanilla JavaScript project (no frameworks like React, Vue, or Svelte).
 
-And most important of all, have fun 🔥
