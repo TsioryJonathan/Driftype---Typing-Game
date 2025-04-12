@@ -1,3 +1,4 @@
+import 'animate.css';
 /**
  * Point culture (en Français car je suis un peu obligé): 
  * Dans ce genre de jeu, un mot equivaut a 5 caractères, y compris les espaces. 
