@@ -58,12 +58,9 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-100: oklch(93.6% 0.032 17.717);
     --color-red-300: oklch(80.8% 0.114 19.571);
-    --color-red-500: oklch(63.7% 0.237 25.331);
     --color-red-700: oklch(50.5% 0.213 27.518);
     --color-green-300: oklch(87.1% 0.15 154.449);
-    --color-green-500: oklch(72.3% 0.219 149.579);
     --color-green-700: oklch(52.7% 0.154 150.069);
     --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-blue-600: oklch(54.6% 0.245 262.881);
@@ -117,6 +114,9 @@
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --animate-spin: spin 1s linear infinite;
+    --animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    --animate-bounce: bounce 1s infinite;
     --blur-sm: 8px;
     --blur-lg: 16px;
     --default-transition-duration: 150ms;
@@ -285,6 +285,17 @@
   }
 }
 @layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
   .absolute {
     position: absolute;
   }
@@ -405,6 +416,12 @@
   .h-4 {
     height: calc(var(--spacing) * 4);
   }
+  .h-5 {
+    height: calc(var(--spacing) * 5);
+  }
+  .h-6 {
+    height: calc(var(--spacing) * 6);
+  }
   .h-9 {
     height: calc(var(--spacing) * 9);
   }
@@ -416,6 +433,9 @@
   }
   .h-14 {
     height: calc(var(--spacing) * 14);
+  }
+  .h-16 {
+    height: calc(var(--spacing) * 16);
   }
   .h-full {
     height: 100%;
@@ -434,6 +454,15 @@
   }
   .w-4 {
     width: calc(var(--spacing) * 4);
+  }
+  .w-5 {
+    width: calc(var(--spacing) * 5);
+  }
+  .w-6 {
+    width: calc(var(--spacing) * 6);
+  }
+  .w-10 {
+    width: calc(var(--spacing) * 10);
   }
   .w-12 {
     width: calc(var(--spacing) * 12);
@@ -485,6 +514,15 @@
   .translate-y-1\/2 {
     --tw-translate-y: calc(1/2 * 100%);
     translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .animate-bounce {
+    animation: var(--animate-bounce);
+  }
+  .animate-ping {
+    animation: var(--animate-ping);
+  }
+  .animate-pulse {
+    animation: var(--animate-pulse);
   }
   .animate-spin {
     animation: var(--animate-spin);
@@ -611,12 +649,6 @@
   .bg-\[\#2222227e\] {
     background-color: #2222227e;
   }
-  .bg-\[var\(\)\] {
-    background-color: var();
-  }
-  .bg-\[var\(--\)\] {
-    background-color: var(--);
-  }
   .bg-\[var\(--color-bg\)\] {
     background-color: var(--color-bg);
   }
@@ -634,9 +666,6 @@
   }
   .bg-\[var\(--color-third\)\] {
     background-color: var(--color-third);
-  }
-  .bg-\[var\] {
-    background-color: var;
   }
   .bg-active-500 {
     background-color: var(--color-active-500);
@@ -670,9 +699,6 @@
   }
   .bg-midnight-950 {
     background-color: var(--color-midnight-950);
-  }
-  .bg-red-100 {
-    background-color: var(--color-red-100);
   }
   .bg-red-300 {
     background-color: var(--color-red-300);
@@ -767,9 +793,6 @@
   .text-left {
     text-align: left;
   }
-  .font-mono {
-    font-family: var(--font-mono);
-  }
   .font-poppins {
     font-family: var(--font-poppins);
   }
@@ -827,23 +850,14 @@
   .whitespace-pre-wrap {
     white-space: pre-wrap;
   }
-  .text-\[-color-text-secondary\] {
-    color: -color-text-secondary;
+  .text-\[v\] {
+    color: v;
   }
   .text-\[var\(\)\] {
     color: var();
   }
-  .text-\[var\(--\)\] {
-    color: var(--);
-  }
   .text-\[var\(--color-text\)\] {
     color: var(--color-text);
-  }
-  .text-\[var\(--color-text\)\]\/0 {
-    color: color-mix(in srgb, var(--color-midnight-900) 0%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, var(--color-text) 0%, transparent);
-    }
   }
   .text-\[var\(--color-text\)\]\/50 {
     color: color-mix(in srgb, var(--color-midnight-900) 50%, transparent);
@@ -860,18 +874,6 @@
   .text-\[var\(--color-text-secondary\)\] {
     color: var(--color-text-secondary);
   }
-  .text-\[var\(--text\)\] {
-    color: var(--text);
-  }
-  .text-\[var\(--text-s\)\] {
-    color: var(--text-s);
-  }
-  .text-\[var\(--text-secondary\)\] {
-    color: var(--text-secondary);
-  }
-  .text-\[var-color-text-secondary\] {
-    color: var-color-text-secondary;
-  }
   .text-active-500 {
     color: var(--color-active-500);
   }
@@ -887,14 +889,8 @@
   .text-gray-600 {
     color: var(--color-gray-600);
   }
-  .text-green-500 {
-    color: var(--color-green-500);
-  }
   .text-green-700 {
     color: var(--color-green-700);
-  }
-  .text-red-500 {
-    color: var(--color-red-500);
   }
   .text-red-700 {
     color: var(--color-red-700);
@@ -904,6 +900,12 @@
   }
   .italic {
     font-style: italic;
+  }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .underline-offset-4 {
+    text-underline-offset: 4px;
   }
   .shadow-2xl {
     --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
@@ -1093,6 +1095,13 @@
       }
     }
   }
+  .hover\:underline {
+    &:hover {
+      @media (hover: hover) {
+        text-decoration-line: underline;
+      }
+    }
+  }
   .hover\:shadow-2xl {
     &:hover {
       @media (hover: hover) {
@@ -1130,11 +1139,6 @@
   .focus\:ring-indigo-500 {
     &:focus {
       --tw-ring-color: var(--color-indigo-500);
-    }
-  }
-  .focus\:ring-primary {
-    &:focus {
-      --tw-ring-color: var(--color-primary);
     }
   }
   .focus\:ring-offset-2 {
@@ -1294,6 +1298,7 @@
     --color-bg: var(--color-midnight-900);
     --color-text: var(--color-midnight-50);
     --color-primary: var(--color-midnight-500);
+    --color-third: var(--color-midnight-800);
     --color-input: var(--color-midnight-600);
     --color-third: var(--color-midnight-800);
     --color-text-secondary: var(--color-midnight-50);
@@ -1520,5 +1525,26 @@ body {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
 }
