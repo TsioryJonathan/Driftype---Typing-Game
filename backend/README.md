@@ -5,6 +5,7 @@ Backend server for the TajoType typing game, handling user authentication, passw
 ## Features
 
 - User registration and login
+- Google Sign-In integration
 - Password reset functionality with email notifications
 - Game statistics tracking
 - JWT-based authentication
@@ -15,14 +16,12 @@ Backend server for the TajoType typing game, handling user authentication, passw
 - Node.js (v14 or higher)
 - PostgreSQL database (via Supabase or local)
 - SMTP server for sending emails
+- Google OAuth 2.0 credentials (for Google Sign-In)
 
 ## Setup
 
 1. Install dependencies:
    ```bash
-   # Clone the local repository
-   git clone https://github.com/your-username/tajotype-backend.git
-   cd tajotype-backend
    npm install
    ```
 
@@ -48,6 +47,11 @@ Backend server for the TajoType typing game, handling user authentication, passw
    # Server Configuration
    PORT=3000
    NODE_ENV=development
+   FRONTEND_URL=http://localhost:5500
+
+   # Google OAuth Configuration
+   GOOGLE_CLIENT_ID=your-google-client-id
+   GOOGLE_CLIENT_SECRET=your-google-client-secret
    ```
 
 3. Create the database tables:
@@ -75,6 +79,13 @@ Backend server for the TajoType typing game, handling user authentication, passw
   }
   ```
 
+- `POST /api/auth/google` - Sign in with Google
+  ```json
+  {
+    "credential": "google-id-token"
+  }
+  ```
+
 - `POST /api/auth/login` - Login user
   ```json
   {
@@ -97,6 +108,25 @@ Backend server for the TajoType typing game, handling user authentication, passw
     "newPassword": "newpassword123"
   }
   ```
+
+## Google Sign-In Setup
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select an existing one
+3. Enable the Google+ API
+4. Go to "Credentials" and create an OAuth 2.0 Client ID
+5. Add your authorized JavaScript origins:
+   ```
+   http://localhost:5500
+   http://your-production-domain.com
+   ```
+6. Add your authorized redirect URIs:
+   ```
+   http://localhost:5500/src/components/pages/login.html
+   http://your-production-domain.com/src/components/pages/login.html
+   ```
+7. Copy your Client ID and Client Secret
+8. Update your `.env` file with these credentials
 
 ## Security
 
