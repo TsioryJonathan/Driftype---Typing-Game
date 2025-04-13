@@ -65,14 +65,17 @@
     --color-text: var(--color-midnight-50);
     --color-primary: var(--color-midnight-500);
     --color-third: var(--color-midnight-800);
-    --color-input:var(--color-midnight-600);
-    --color-third: var(--color-midnight-800);
+    --color-input:var(--color-midnight-800);
     --color-text-secondary:var(--color-midnight-50)
   }
 }
 
 * {
   scroll-behavior: smooth;
+}
+
+html {
+  scrollbar-color: var(--color-bg)
 }
 
 body {

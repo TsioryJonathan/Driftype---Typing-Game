@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,190 +28,79 @@
       referrerpolicy="no-referrer"
       defer
     ></script>
+    <script src="https://unpkg.com/i18next@22.4.15/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@2.2.0/i18nextHttpBackend.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   </head>
   <body class="bg-[var(--color-primary)] text-[var(--color-text)]">
-    <div class="container mx-auto px-4 py-8">
-      <div
-        class="container flex h-16 items-center justify-between px-4 md:px-6"
-      >
-        <a href="/" class="flex items-center gap-2 font-bold text-xl">
-          <img
-            src="/src/assets/noBgColor.png"
-            alt="Tajo Logo"
-            class="h-12 w-12 object-cover"
-          /><h2 class="text-3xl font-bold text-[var(--color-text)] animate__hinge">TajoType</h2>
-          </a
+    <header class="sticky top-0 backdrop-blur-md">
+      <div class="container mx-auto 2">
+        <div
+          class="container flex h-16 items-center justify-between px-4 md:px-6"
         >
-        <nav class="hidden md:flex gap-6">
-          <a
-            href="/practice"
-            class="text-sm font-medium underline underline-offset-4"
-            >Practice</a
-          ><a
-            href="/stats"
-            class="text-sm font-medium hover:underline underline-offset-4"
-            >Statistics</a
-          ><a
-            href="/settings"
-            class="text-sm font-medium hover:underline underline-offset-4"
-            >Settings</a
-          >
-        </nav>
-        <button
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-10 w-10"
-          type="button"
-          id="radix-«r6r»"
-          aria-haspopup="menu"
-          aria-expanded="false"
-          data-state="closed"
-        >
-        <i class="fa-regular fa-user text-xl"></i><span class="sr-only">User menu</span>
-        </button>
+          <a href="/" class="flex items-center gap-2 font-bold text-xl">
+            <img
+              src="/src/assets/noBgColor.png"
+              alt="Tajo Logo"
+              class="h-12 w-12 object-cover"
+            />
+            <h1
+              class="text-3xl font-bold text-[var(--color-active-600)]"
+            >
+              TajoType
+            </h1>
+          </a>
+          <!-- avatar -->
+          <div class="relative" id="user-menu-container"></div>
+        </div>
       </div>
-
-      <main>
-        <main class="flex-1 container px-4 py-8 md:px-6">
-          <div class="max-w-4xl mx-auto">
-            <div class="mb-8">
-              <h1 class="text-3xl font-bold mb-4">TajoType Practice</h1>
-              <div dir="ltr" data-orientation="horizontal">
-                <div class="flex justify-between items-center mb-4">
-                  <div
-                    role="tablist"
-                    aria-orientation="horizontal"
-                    class="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground"
-                    tabindex="0"
-                    data-orientation="horizontal"
-                    style="outline: none"
-                  >
-                    <button
-                      type="button"
-                      role="tab"
-                      aria-selected="false"
-                      aria-controls="radix-«r1t»-content-time"
-                      data-state="inactive"
-                      id="radix-«r1t»-trigger-time"
-                      class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-                      tabindex="-1"
-                      data-orientation="horizontal"
-                      data-radix-collection-item=""
-                    >
-                      Time</button
-                    ><button
-                      type="button"
-                      role="tab"
-                      aria-selected="false"
-                      aria-controls="radix-«r1t»-content-words"
-                      data-state="inactive"
-                      id="radix-«r1t»-trigger-words"
-                      class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-                      tabindex="-1"
-                      data-orientation="horizontal"
-                      data-radix-collection-item=""
-                    >
-                      Words</button
-                    ><button
-                      type="button"
-                      role="tab"
-                      aria-selected="true"
-                      aria-controls="radix-«r1t»-content-custom"
-                      data-state="active"
-                      id="radix-«r1t»-trigger-custom"
-                      class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-                      tabindex="0"
-                      data-orientation="horizontal"
-                      data-radix-collection-item=""
-                    >
-                      Custom
-                    </button>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <button
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"
-                    >
-                      Reset
-                    </button>
-                  </div>
-                </div>
-                <div
-                  data-state="inactive"
-                  data-orientation="horizontal"
-                  role="tabpanel"
-                  aria-labelledby="radix-«r1t»-trigger-time"
-                  id="radix-«r1t»-content-time"
-                  tabindex="0"
-                  class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 space-y-4"
-                  style=""
-                  hidden=""
-                ></div>
-                <div
-                  data-state="inactive"
-                  data-orientation="horizontal"
-                  role="tabpanel"
-                  aria-labelledby="radix-«r1t»-trigger-words"
-                  id="radix-«r1t»-content-words"
-                  tabindex="0"
-                  class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 space-y-4"
-                  hidden=""
-                ></div>
-                <div
-                  data-state="active"
-                  data-orientation="horizontal"
-                  role="tabpanel"
-                  aria-labelledby="radix-«r1t»-trigger-custom"
-                  id="radix-«r1t»-content-custom"
-                  tabindex="0"
-                  class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 space-y-4"
-                >
-                  <div class="text-sm text-muted-foreground">
-                    Custom test options coming soon!
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="mb-6 flex justify-between items-center">
-              <div class="flex gap-4">
-                <div class="text-sm">
-                  <span class="font-medium">WPM:</span> 7
-                </div>
-                <div class="text-sm">
-                  <span class="font-medium">Accuracy:</span> 99%
-                </div>
-                <div class="text-sm">
-                  <span class="font-medium">Time:</span> 267s
-                </div>
-              </div>
-            </div>
-            <div
-              class="mb-6 p-6 border rounded-lg font-poppins text-lg leading-relaxed whitespace-pre-wrap"
-              id=""
-            ></div>
-            <div class="mb-6">
-              <input
-                class="w-full p-4 border rounded-lg font-poppins text-lg focus:outline-none focus:ring-2 focus:ring-active-500"
-                placeholder=""
-                autocomplete="off"
-                autocapitalize="off"
-                autocorrect="off"
-                spellcheck="false"
-                type="text"
-                value=""
-              />
-            </div>
-            <div class="mt-8 p-4 border rounded-lg bg-[var(--color-bg)]">
-              <h3 class="font-medium mb-2">Tips:</h3>
-              <ul class="text-sm text-[var(--color-text-secondary)] space-y-1">
-                <li>• Focus on accuracy first, then speed will follow</li>
-                <li>• Keep your fingers on the home row (ASDF JKL;)</li>
-                <li>• Look at the screen, not your keyboard</li>
-                <li>• Practice regularly to build muscle memory</li>
-              </ul>
-            </div>
-          </div>
-        </main>
-      </main>
+    </header>
+    <!-- main -->
+    <main class="flex-1 container px-4 py-8 md:px-6">
+      <div class="max-w-4xl mx-auto">
+        <label for="mode">Select Mode:</label>
+        <select id="mode">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <div
+          class="mb-6 text-justify text-xl leading-relaxed whitespace-pre-wrap"
+          id="test-container"
+        >
+        <div class="relative flex group" tabindex="0">
+          <p id="word-display" class="line-clamp-3 font-fira-code text-3xl blur-xs group-focus:blur-none"></p>
+          <p class="test-focus absolute t-0 w-full h-full flex justify-center items-center cursor-default text-[var[--color-text]] text-2xl group-focus:hidden" >Click here to focus</p>
+        </div>
+          <input
+            id="input-field"
+            class="w-full p-4 border rounded-lg font-poppins text-lg focus:outline-none focus:ring-2 focus:ring-active-500"
+            type="text"
+            autofocus
+          />
+          <p id="results">Results :</p>
+        </div>
+        <div class="mb-6"></div>
+        <div class="mt-8 p-4 border rounded-lg bg-[var(--color-bg)]">
+          <h3 class="font-medium mb-2">Tips:</h3>
+          <ul class="text-sm text-[var(--color-text)]/80 space-y-1">
+            <li>• Focus on accuracy first, then speed will follow</li>
+            <li>• Keep your fingers on the home row (ASDF JKL;)</li>
+            <li>• Look at the screen, not your keyboard</li>
+            <li>• Practice regularly to build muscle memory</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <!-- navigation bar -->
+    <div>
+      <nav
+        id="navbar"
+        class="fixed z-50 w-full h-11 max-w-sm -translate-x-1/2 bg-white border border-[var(--color-text)] rounded-full bottom-4 left-1/2"
+      ></nav>
     </div>
 
     <script type="module" src="../js/pages/dashboard.js"></script>
+    <script type="module" src="../js/script.js"></script>
   </body>
 </html>
