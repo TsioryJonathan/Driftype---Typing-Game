@@ -1,4 +1,3 @@
-import 'animate.css';
 /**
  * Point culture (en Français car je suis un peu obligé): 
  * Dans ce genre de jeu, un mot equivaut a 5 caractères, y compris les espaces. 
@@ -12,6 +11,7 @@ const wordsToType = [];
 
 const modeSelect = document.getElementById("mode");
 const wordDisplay = document.getElementById("word-display");
+const wordFocus = document.querySelector(".test-focus")
 const inputField = document.getElementById("input-field");
 const results = document.getElementById("results");
 
@@ -39,12 +39,13 @@ const startTest = (wordCount = 50) => {
         wordsToType.push(getRandomWord(modeSelect.value));
     }
 
-    wordsToType.forEach((word, index) => {
-        const span = document.createElement("span");
-        span.textContent = word + " ";
-        if (index === 0) span.style.color = "red"; // Highlight first word
+    wordsToType.join(" ").split('').forEach((letter, index) => {
+        const span = document.createElement('span');
+        span.innerText = letter;
+        console.log(span);
+        
         wordDisplay.appendChild(span);
-    });
+    })
 
     inputField.value = "";
     results.textContent = "";
