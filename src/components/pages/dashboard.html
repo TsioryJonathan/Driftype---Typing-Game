@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TajoType - Dashboard</title>
+    <title>Driftype - Dashboard</title>
     <link
       rel="shortcut icon"
       href="/src/assets/noBgColor.png"
@@ -25,7 +25,7 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
       integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+      referrerpolicy="no-referrer"Driftype
       defer
     ></script>
     <script src="https://unpkg.com/i18next@22.4.15/dist/umd/i18next.min.js"></script>
@@ -47,7 +47,7 @@
             <h1
               class="text-3xl font-bold text-[var(--color-active-600)]"
             >
-              TajoType
+              Driftype
             </h1>
           </a>
           <!-- avatar -->
@@ -56,28 +56,29 @@
       </div>
     </header>
     <!-- main -->
-    <main class="flex-1 container px-4 py-8 md:px-6">
+    <main class="flex-1 px-4 py-8 md:px-6">
       <div class="max-w-4xl mx-auto">
-        <label for="mode">Select Mode:</label>
-        <select id="mode">
+        <label for="mode" class="bg-active-500 rounded-s-md p-2 py-1"><i class="fa-solid fa-hexagon-nodes text-amber-500 "></i></label>
+        <select id="mode" class="mr-4 p-1 rounded-e-md bg-active-500 outline-0 border-0">
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
         </select>
+        <label for="timer" class="bg-active-500 rounded-s-md p-2 py-1"><i class="fa-solid fa-clock text-amber-500"></i></label>
+        <select id="timer" class="p-1 rounded-e-md bg-active-500 outline-0 border-0">
+          <option value="30">30 seconds</option>
+          <option value="60">60 seconds</option>
+          <option value="90" class="rounded">90 seconds</option>
+        </select>
         <div
-          class="mb-6 text-justify text-xl leading-relaxed whitespace-pre-wrap"
-          id="test-container"
+          class="mb-6 mt-4 text-justify text-xl leading-relaxed whitespace-pre-wrap"
         >
-        <div class="relative flex group" tabindex="0">
-          <p id="word-display" class="line-clamp-3 font-fira-code text-3xl blur-xs group-focus:blur-none"></p>
-          <p class="test-focus absolute t-0 w-full h-full flex justify-center items-center cursor-default text-[var[--color-text]] text-2xl group-focus:hidden" >Click here to focus</p>
+        <div class="relative flex group inset-0 outline-0 border-0" tabindex="0" id="test-container">
+          <div id="word-display-wrapper" class="w-full h-[6.5em] overflow-hidden relative">
+            <p id="word-display" class="font-fira-code text-3xl blur-xs group-focus:blur-none text-[var(--color-text)]/60 absolute top-0 transition-transform duration-200 leading-[1.5em]"></p>
+          </div>
+          <p class="test-focus absolute t-0 w-full h-full flex justify-center items-center cursor-default text-[var(--color-text)] text-2xl group-focus:hidden" >Click here to focus</p>
         </div>
-          <input
-            id="input-field"
-            class="w-full p-4 border rounded-lg font-poppins text-lg focus:outline-none focus:ring-2 focus:ring-active-500"
-            type="text"
-            autofocus
-          />
           <p id="results">Results :</p>
         </div>
         <div class="mb-6"></div>
