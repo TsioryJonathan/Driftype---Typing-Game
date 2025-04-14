@@ -1,10 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Playfair+Display:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Fira+Code:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import 'tailwindcss';
 
 @theme {
-  --font-poppins: "Poppins";
-  --font-fira-code: "Fira Code";
-  --font-playfair-display: "Playfair Display";
+  --font-poppins: 'Poppins';
+  --font-fira-code: 'Fira Code';
+  --font-playfair-display: 'Playfair Display';
+  --font-architects: 'Architects Daughter';
 
   --color-midnight-50: #f8fafc;
   --color-midnight-100: #f1f5f9;
@@ -34,39 +35,39 @@
   --color-primary: var(--color-midnight-500);
   --color-third: var(--color-midnight-600);
 
-  --color-input:var(--color-midnight-800)
+  --color-input: var(--color-midnight-800);
 }
 
 :root,
-[data-theme="light"] {
+[data-theme='light'] {
   --color-bg: var(--color-midnight-200);
   --color-text: var(--color-midnight-500);
   --color-primary: var(--color-midnight-300);
   --color-third: var(--color-midnight-600);
-  --color-input:white;
-  --color-text-secondary:white
+  --color-input: white;
+  --color-text-secondary: white;
 }
 
 /* Thème dark */
-[data-theme="dark"] {
+[data-theme='dark'] {
   --color-bg: var(--color-midnight-900);
   --color-text: var(--color-midnight-50);
   --color-primary: var(--color-midnight-500);
   --color-third: var(--color-midnight-800);
-  --color-input:var(--color-midnight-800);
-  --color-text-secondary:var(--color-midnight-50)
+  --color-input: var(--color-midnight-800);
+  --color-text-secondary: var(--color-midnight-50);
 }
 
 /* Auto - based on system preferences */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]),
-  [data-theme="auto"] {
+  [data-theme='auto'] {
     --color-bg: var(--color-midnight-900);
     --color-text: var(--color-midnight-50);
     --color-primary: var(--color-midnight-500);
     --color-third: var(--color-midnight-800);
-    --color-input:var(--color-midnight-800);
-    --color-text-secondary:var(--color-midnight-50)
+    --color-input: var(--color-midnight-800);
+    --color-text-secondary: var(--color-midnight-50);
   }
 }
 
@@ -75,18 +76,38 @@
 }
 
 html {
-  scrollbar-color: var(--color-bg)
+  scrollbar-color: var(--color-bg);
 }
 
 body {
-  @apply bg-[--color-bg] text-[--color-text] font-poppins;
-  transition: background-color 0.3s, color 0.3s;
+  @apply font-poppins bg-[--color-bg] text-[--color-text];
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
-
 #get-started {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('/public/typing.jpg');
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
+    url('/public/typing.jpg');
   background-position: center;
   background-size: cover;
 }
 
+#blinker {
+  animation-name: blink;
+  animation-duration: 0.7s;
+  animation-iteration-count: infinite;
+  opacity: 0;
+  background-color: aliceblue;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

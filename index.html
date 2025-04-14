@@ -8,16 +8,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     >
-    <title>TajoType</title>
+    <title>Driftype</title>
+    <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon">
     <link
-      rel="shortcut icon"
-      href="/src/assets/noBgColor.png"
-      type="image/x-icon"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     >
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
   </head>
 
   <body
@@ -25,16 +21,21 @@
   >
     <!-- NAVBAR -->
     <header
-      class="fixed left-0 right-0 top-0 z-50 h-14 w-screen bg-gradient-to-r from-blue-950 to-blue-900 text-[var(--color-text-secondary)]"
+      class="fixed left-0 right-0 top-0 z-50 h-14 w-screen bg-transparent backdrop-blur-lg to-blue-900 text-[var(--color-text-secondary)]"
     >
       <nav class="flex h-full w-full items-center justify-between px-10">
         <div class="flex items-center justify-center gap-2">
           <img
-            src="/src/assets/noBgColor.png"
+            src="/src/assets/noBg.png"
             alt="Tajo Logo"
             class="h-12 w-12 object-cover"
           >
-          <h2 class="text-3xl font-bold text-blue-600 animate__hinge">TajoType</h2>
+          <h2
+            class="flex items-center text-3xl font-architects bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent"
+          >
+            Driftype
+            <span class="inline-block h-7 w-1" id="blinker"></span>
+          </h2>
         </div>
 
         <!-- Menu principal -->
@@ -55,7 +56,7 @@
 
         <div class="hidden md:flex gap-3">
           <button
-            class="bg-active-500 flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 duration-300 hover:bg-blue-700"
+            class="bg-gradient-to-r from-blue-600 to-violet-600 text-md group flex w-fit cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2 text-white transition-all duration-300 hover:brightness-120"
             id="login-btn"
             aria-label="Login"
           >
@@ -171,7 +172,7 @@
 
           <div class="flex gap-5">
             <button
-              class="bg-active-500 text-md group flex w-fit cursor-pointer items-center justify-center gap-2 rounded-lg px-2 py-3 text-[var(--color-text-secondary)] transition-all duration-300 hover:bg-blue-800 md:px-5 md:text-xl"
+              class="bg-gradient-to-r from-blue-600 to-violet-600 text-md group flex w-fit cursor-pointer items-center justify-center gap-2 rounded-lg px-2 py-3 text-white transition-all duration-300 hover:brightness-110 md:px-5 md:text-xl"
               aria-label="Get Started Now"
               id="get-started-btn"
             >
@@ -180,6 +181,7 @@
               ></i>
               Get Started Now
             </button>
+
             <button
               class="text-md flex w-fit cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-600 px-2 py-3 transition-all duration-300 hover:bg-gray-700 md:px-5 md:text-xl"
               aria-label="Learn More"
@@ -437,11 +439,15 @@
       <div class="flex flex-col gap-3">
         <div class="flex items-center gap-2">
           <img
-            src="/src/assets/noBgColor.png"
+            src="/src/assets/noBg.png"
             alt="Tajo Logo"
             class="h-14 w-14 object-cover"
           >
-          <h2 class="text-3xl font-bold text-blue-600">TajoType</h2>
+          <h2
+            class="flex items-center text-3xl font-architects bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent"
+          >
+            Driftype
+          </h2>
         </div>
         <p class="text-lg">
           Level up your typing skills with our personalized exercises
