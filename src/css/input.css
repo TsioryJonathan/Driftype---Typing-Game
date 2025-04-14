@@ -52,16 +52,16 @@
   --color-input: white; /* Fond blanc pour les champs de saisie */
   --color-text-secondary: #6c4f8c; /* Un rose-violet doux pour le texte secondaire */
 
-  --gradient-start: #9626bbe0; /* Gradient clair vers un violet doux */
+  --gradient-start: #edb8ff; /* Gradient clair vers un violet doux */
   --gradient-end: #b972ff; /* Un rose pâle avec un ton violet */
 }
 
 /* Thème sombre */
 [data-theme='dark'] {
-  --color-bg: #221152c5; /* Fond très sombre, presque noir avec une touche de violet */
+  --color-bg: #0a0427; /* Fond très sombre, presque noir avec une touche de violet */
   --color-text: #f0e6f7; /* Texte clair pour contraster avec le fond sombre */
   --color-primary: #6c5b8a; /* Un violet moyen pour les éléments principaux */
-  --color-third: #6018b8d2; /* Un violet sombre pour les accents */
+  --color-third: #240c42; /* Un violet sombre pour les accents */
   --color-input: #1a1a2e; /* Fond sombre pour les champs de saisie */
   --color-text-secondary: #b385e7; /* Un violet clair pour le texte secondaire */
 
