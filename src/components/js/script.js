@@ -21,15 +21,60 @@ const wordDisplay = document.getElementById("word-display");
 const testContainer = document.getElementById("test-container");
 const results = document.getElementById("results");
 
-const words = {
-    easy: ["apple", "banana", "grape", "orange", "cherry"],
-    medium: ["keyboard", "monitor", "printer", "charger", "battery"],
-    hard: ["synchronize", "complicated", "development", "extravagant", "misconception"]
+// Dictionnaires de mots par langue
+const wordDictionaries = {
+    en: {
+        easy: ['the', 'be', 'to', 'of', 'and', 'with', 'this', 'from', 'they', 'will', 'word', 'good', 'time', 'year', 'work', 'life', 'place', 'after', 'thing', 'under', 'great', 'light', 'house', 'right', 'small', 'world'],
+        medium: ['because', 'people', 'before', 'through', 'should', 'number', 'family', 'system', 'question', 'between', 'answer', 'school', 'country', 'example', 'morning', 'another'],
+        hard: ['government', 'something', 'important', 'different', 'education', 'university', 'technology', 'experience', 'everything', 'development', 'environment', 'communication']
+    },
+    fr: {
+        easy: ['le', 'la', 'les', 'est', 'sont', 'pour', 'dans', 'avec', 'mais', 'nous', 'vous', 'elle', 'tout', 'bien', 'rien', 'aime', 'voir', 'jours', 'temps', 'petit', 'grand', 'sous', 'mains', 'beaux', 'table'],
+        medium: ['bonjour', 'maison', 'voiture', 'travail', 'famille', 'histoire', 'moment', 'personne', 'semaine', 'français', 'pendant', 'toujours', 'écrire', 'musique', 'lecture'],
+        hard: ['maintenant', 'développer', 'université', 'différent', 'informatique', 'magnifique', 'restaurant', 'comprendre', 'appartement', 'administration', 'communication']
+    },
+    es: {
+        easy: ['el', 'la', 'de', 'que', 'en', 'por', 'con', 'todo', 'pero', 'bien', 'algo', 'tú', 'nada', 'luz', 'casa', 'hoy', 'noche', 'voces', 'libro', 'manos', 'cosas', 'hasta', 'antes', 'sobre'],
+        medium: ['tiempo', 'siempre', 'gracias', 'trabajo', 'después', 'español', 'momento', 'durante', 'primero', 'persona', 'familia', 'caminar', 'palabra'],
+        hard: ['desarrollo', 'diferente', 'siguiente', 'necesario', 'estudiante', 'importante', 'tecnología', 'restaurante', 'comunicación', 'aprendizaje']
+    },
+    de: {
+        easy: ['der', 'die', 'und', 'ist', 'von', 'sie', 'mit', 'für', 'aber', 'nach', 'mehr', 'haus', 'licht', 'nacht', 'leben', 'uhr', 'dunkel', 'woche', 'unter', 'dinge'],
+        medium: ['arbeit', 'freund', 'wasser', 'sprache', 'familie', 'fenster', 'straße', 'morgen', 'abend', 'deutsch', 'zwischen', 'denken', 'lesen'],
+        hard: ['geschichte', 'entwicklung', 'universität', 'wissenschaft', 'technologie', 'verschiedene', 'interessant', 'kommunikation', 'entscheidung']
+    },
+    it: {
+        easy: ['il', 'la', 'che', 'per', 'con', 'una', 'sono', 'ma', 'hai', 'più', 'luna', 'tempo', 'notte', 'amico', 'luce', 'casa', 'gioco', 'vento', 'fuoco'],
+        medium: ['grazie', 'lavoro', 'sempre', 'quando', 'italiano', 'momento', 'durante', 'famiglia', 'persona', 'settimana', 'scrivere', 'pensare'],
+        hard: ['sviluppo', 'università', 'differente', 'tecnologia', 'importante', 'ristorante', 'bellissimo', 'significato', 'comunicazione']
+    },
+    pt: {
+        easy: ['o', 'a', 'de', 'que', 'em', 'um', 'com', 'não', 'uma', 'bem', 'luz', 'vida', 'coisa', 'certo', 'tempo', 'hoje', 'falar', 'porta', 'festa', 'gente'],
+        medium: ['trabalho', 'sempre', 'depois', 'durante', 'primeiro', 'pessoa', 'família', 'momento', 'obrigado', 'escrever', 'pensando'],
+        hard: ['desenvolvimento', 'diferente', 'tecnologia', 'universidade', 'importante', 'restaurante', 'experiência', 'comunicação']
+    }
+};
+
+
+// Function to get words based on difficulty and language
+const getWordsByDifficulty = (mode, lang = 'en') => {
+    const dictionary = wordDictionaries[lang] || wordDictionaries['en'];
+    const wordList = dictionary[mode] || dictionary['medium'];
+    const words = [];
+    const wordCount = 20;
+
+    for (let i = 0; i < wordCount; i++) {
+        const randomIndex = Math.floor(Math.random() * wordList.length);
+        words.push(wordList[randomIndex]);
+    }
+    
+    return words;
 };
 
 // Generate a random word from the selected mode
 const getRandomWord = (mode) => {
-    const wordList = words[mode];
+    const lang = document.getElementById('language').value;
+    const wordList = getWordsByDifficulty(mode, lang);
     return wordList[Math.floor(Math.random() * wordList.length)];
 };
 
@@ -45,6 +90,12 @@ const startTest = (wordCount = 50) => {
     startTime = null;
     clearInterval(timerInterval);
     timeLeft = parseInt(timerSelect.value);
+
+    // Reset chart
+    if (resultsChart) {
+        resultsChart.destroy();
+        resultsChart = null;
+    }
 
     // Generate words
     for (let i = 0; i < wordCount; i++) {
@@ -124,6 +175,7 @@ const updateLetter = (event) => {
             const prevLetter = letters[totalLetters - 1];
             
             // Remove styling from previous letter
+            prevLetter.textContent == "_" ? prevLetter.textContent = " " : prevLetter.textContent = prevLetter.textContent;
             prevLetter.classList.remove("text-amber-500", "text-red-500");
             prevLetter.style.textDecoration = "underline";
             
@@ -172,6 +224,7 @@ const updateLetter = (event) => {
         currentLetter.classList.add("text-amber-500");
         correctLetters++;
     } else {
+        currentLetter.textContent == " " ? currentLetter.textContent = "_" : currentLetter.textContent = currentLetter.textContent;
         currentLetter.classList.add("text-red-500");
     }
 
@@ -215,14 +268,58 @@ const endTest = () => {
     testContainer.value = "";
 };
 
+let resultsChart = null;
+
 // Update results display
 const updateResults = () => {
     if (!startTime) {
         results.textContent = `Time left: ${timeLeft}s`;
+        if (resultsChart) {
+            resultsChart.destroy();
+            resultsChart = null;
+        }
         return;
     }
+
     const { wpm, accuracy } = getCurrentStats();
     results.innerHTML = `WPM: ${wpm} | Accuracy: ${accuracy}% | Time left: ${timeLeft}s`;
+
+    // Update or create pie chart
+    const correctPercentage = accuracy;
+    const incorrectPercentage = 100 - accuracy;
+
+    if (resultsChart) {
+        resultsChart.data.datasets[0].data = [correctPercentage, incorrectPercentage];
+        resultsChart.update();
+    } else {
+        const ctx = document.getElementById('resultsChart').getContext('2d');
+        resultsChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Correct', 'Incorrect'],
+                datasets: [{
+                    data: [correctPercentage, incorrectPercentage],
+                    backgroundColor: [
+                        'rgb(255, 191, 36)',
+                        'rgb(239, 68, 68)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: 'rgb(156, 163, 175)' // gray-400
+                        }
+                    }
+                }
+            }
+        });
+    }
 };
 
 // Event listeners
@@ -235,6 +332,17 @@ testContainer.addEventListener("keydown", (event) => {
 testContainer.addEventListener("keyup", updateLetter);
 modeSelect.addEventListener("change", () => startTest());
 timerSelect.addEventListener("change", () => startTest());
+
+// Add language change listener
+const languageSelect = document.getElementById('language');
+languageSelect.addEventListener("change", () => startTest());
+
+// Restart button handler
+const restartButton = document.getElementById('restart-button');
+restartButton.addEventListener('click', () => {
+    startTest();
+    testContainer.focus();
+});
 
 // Start the test
 startTest();
