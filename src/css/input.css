@@ -35,6 +35,7 @@
   --color-text: var(--color-midnight-900);
   --color-primary: var(--color-midnight-500);
   --color-third: var(--color-midnight-600);
+  --color-secondary: #8a2be2; /* Ajout d'une couleur secondaire */
 
   --color-input: var(--color-midnight-800);
 
@@ -49,6 +50,7 @@
   --color-text: #cac2df; /* Violet clair pour le texte principal */
   --color-primary: #6c5b8a; /* Une couleur intermédiaire pour les éléments principaux */
   --color-third: #c6a1e0; /* Un accent violet doux */
+  --color-secondary: #8a2be2; /* Violet clair pour le secondaire */
   --color-input: white; /* Fond blanc pour les champs de saisie */
   --color-text-secondary: #6c4f8c; /* Un rose-violet doux pour le texte secondaire */
 
@@ -62,6 +64,7 @@
   --color-text: #f0e6f7; /* Texte clair pour contraster avec le fond sombre */
   --color-primary: #6c5b8a; /* Un violet moyen pour les éléments principaux */
   --color-third: #240c42; /* Un violet sombre pour les accents */
+  --color-secondary: #8a2be2; /* Violet clair pour le secondaire */
   --color-input: #1a1a2e; /* Fond sombre pour les champs de saisie */
   --color-text-secondary: #b385e7; /* Un violet clair pour le texte secondaire */
 
@@ -77,6 +80,7 @@
     --color-text: #f0e6f7; /* Texte clair */
     --color-primary: #6c5b8a; /* Violet moyen */
     --color-third: #240c42; /* Violet sombre pour les accents */
+    --color-secondary: #8a2be2; /* Violet clair pour le secondaire */
     --color-input: #1a1a2e; /* Fond sombre pour les champs de saisie */
     --color-text-secondary: #b385e7; /* Violet clair pour le texte secondaire */
 
