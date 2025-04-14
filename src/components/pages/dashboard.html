@@ -1,51 +1,106 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TajoType - Dashboard</title>
-    <link href="/src/css/output.css" rel="stylesheet">
+    <link
+      rel="shortcut icon"
+      href="/src/assets/noBgColor.png"
+      type="image/x-icon"
+    />
+    <link href="/src/css/output.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
+      integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      defer
+    ></script>
+    <script src="https://unpkg.com/i18next@22.4.15/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@2.2.0/i18nextHttpBackend.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   </head>
   <body class="bg-[var(--color-primary)] text-[var(--color-text)]">
-    <div class="container mx-auto px-4 py-8">
-      <header class="flex justify-between items-center mb-8">
-        <div id="logo"></div>
-        <nav>
-          <button
-            id="logoutBtn"
-            class="bg-active-500 text-white px-4 py-2 rounded-tl-md rounded-br-md hover:bg-active-600 transition-colors"
-          >
-            Logout
-          </button>
-        </nav>
-      </header>
-
-      <main>
-        <h1 class="text-3xl font-bold mb-6">Welcome to TajoType</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div
-            class="bg-[var(--color-secondary)] p-6 rounded-tl-lg rounded-br-lg shadow-md"
-          >
-            <h2 class="text-xl font-semibold mb-4">Your Statistics</h2>
-            <div id="userStats" class="space-y-4"></div>
-          </div>
-          <div
-            class="bg-[var(--color-secondary)] p-6 rounded-tl-lg rounded-br-lg shadow-md"
-          >
-            <h2 class="text-xl font-semibold mb-4">Quick Actions</h2>
-            <div class="space-y-4">
-              <a
-                href="../pages/game.html"
-                class="block w-full bg-active-500 text-white text-center px-4 py-3 rounded-tl-md rounded-br-md hover:bg-active-600 transition-colors"
-              >
-                Start New Game
-              </a>
-            </div>
-          </div>
+    <header class="sticky top-0 backdrop-blur-md">
+      <div class="container mx-auto 2">
+        <div
+          class="container flex h-16 items-center justify-between px-4 md:px-6"
+        >
+          <a href="/" class="flex items-center gap-2 font-bold text-xl">
+            <img
+              src="/src/assets/noBgColor.png"
+              alt="Tajo Logo"
+              class="h-12 w-12 object-cover"
+            />
+            <h1
+              class="text-3xl font-bold text-[var(--color-active-600)]"
+            >
+              TajoType
+            </h1>
+          </a>
+          <!-- avatar -->
+          <div class="relative" id="user-menu-container"></div>
         </div>
-      </main>
+      </div>
+    </header>
+    <!-- main -->
+    <main class="flex-1 container px-4 py-8 md:px-6">
+      <div class="max-w-4xl mx-auto">
+        <label for="mode">Select Mode:</label>
+        <select id="mode">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <div
+          class="mb-6 text-justify text-xl leading-relaxed whitespace-pre-wrap"
+          id="test-container"
+        >
+        <div class="relative flex group" tabindex="0">
+          <p id="word-display" class="line-clamp-3 font-fira-code text-3xl blur-xs group-focus:blur-none"></p>
+          <p class="test-focus absolute t-0 w-full h-full flex justify-center items-center cursor-default text-[var[--color-text]] text-2xl group-focus:hidden" >Click here to focus</p>
+        </div>
+          <input
+            id="input-field"
+            class="w-full p-4 border rounded-lg font-poppins text-lg focus:outline-none focus:ring-2 focus:ring-active-500"
+            type="text"
+            autofocus
+          />
+          <p id="results">Results :</p>
+        </div>
+        <div class="mb-6"></div>
+        <div class="mt-8 p-4 border rounded-lg bg-[var(--color-bg)]">
+          <h3 class="font-medium mb-2">Tips:</h3>
+          <ul class="text-sm text-[var(--color-text)]/80 space-y-1">
+            <li>• Focus on accuracy first, then speed will follow</li>
+            <li>• Keep your fingers on the home row (ASDF JKL;)</li>
+            <li>• Look at the screen, not your keyboard</li>
+            <li>• Practice regularly to build muscle memory</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <!-- navigation bar -->
+    <div>
+      <nav
+        id="navbar"
+        class="fixed z-50 w-full h-11 max-w-sm -translate-x-1/2 bg-white border border-[var(--color-text)] rounded-full bottom-4 left-1/2"
+      ></nav>
     </div>
 
     <script type="module" src="../js/pages/dashboard.js"></script>
+    <script type="module" src="../js/script.js"></script>
   </body>
 </html>

@@ -2,7 +2,10 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
+import { OAuth2Client } from 'google-auth-library';
 import User from '../models/user.js';
+
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -62,12 +65,12 @@ export const login = async (req, res) => {
     const user = await User.findByEmail(email);
 
 if (!user) {
-  return res.status(401).json({ message: 'Password or Email incorrect' });
+  return res.status(401).json({ message: 'Email or password incorrect!' });
 }
 
 const isValidPassword = await bcrypt.compare(password, user.password);
 if (!isValidPassword) {
-  return res.status(401).json({ message: 'Password or Email incorrect' });
+  return res.status(401).json({ message: 'Email or password incorrect!' });
 }
 
     // Generate JWT token
@@ -145,6 +148,50 @@ export const resetPassword = async (req, res) => {
     res.json({ message: 'Password reset successful' });
   } catch (error) {
     console.error('Reset password error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+export const googleSignIn = async (req, res) => {
+  try {
+    const { credential } = req.body;
+
+    // Verify Google token
+    const ticket = await googleClient.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID
+    });
+
+    const payload = ticket.getPayload();
+    const { email, sub: googleId } = payload;
+
+    // Check if user exists
+    let user = await User.findByEmail(email);
+
+    if (!user) {
+      // Create new user if doesn't exist
+      const randomPassword = crypto.randomBytes(32).toString('hex');
+      user = await User.create({
+        email,
+        password: randomPassword,
+        googleId
+      });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { userId: user.id },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN }
+    );
+
+    res.json({
+      message: 'Google sign-in successful',
+      token,
+      user: { id: user.id, email: user.email }
+    });
+  } catch (error) {
+    console.error('Google sign-in error:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };

@@ -1,22 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="auto">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="shortcut icon"
       href="../../assets/noBgColor.png"
       type="image/x-icon"
-    >
+    />
     <title>TajoType - Login</title>
-    <link href="/src/css/output.css" rel="stylesheet">
+    <link href="/src/css/output.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    >
+    />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
       integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
@@ -26,22 +30,60 @@
     ></script>
   </head>
   <body
-    class="flex min-h-screen items-center justify-center bg-[var(--color-bg)] relative"
+    class="flex min-h-screen items-center justify-center bg-[var(--color-bg)] relative animate__animated animate__rotateInDownLeft"
   >
-  <div class="hidden md:block">
-    <img src="../../assets/bg-clipboard.png" alt="illustration" class="rounded-lg absolute bottom-1/2 translate-y-1/2 md:translate-0 md:relative  w-full md:max-w-lg z-[-2]">
-    <p class="text-[var(--color-text)] text-2xl font-bold text-center"> Welcome to TajoType! </p>
-  </div>
-    <div class="w-96 rounded-lg p-8 shadow-lg bg-[var(--color-bg)]/50 backdrop-blur-sm">
+    <div class="hidden md:block">
+      <img
+        src="../../assets/bg-clipboard.png"
+        alt="background"
+        class="rounded-lg absolute bottom-1/2 translate-y-1/2 md:translate-0 md:relative w-full md:max-w-lg z-[-2]"
+      />
+      <p class="text-[var(--color-text)] text-2xl font-bold text-center">
+        Welcome to TajoType!
+      </p>
+    </div>
+    <div
+      class="w-96 rounded-lg p-8 shadow-lg bg-[var(--color-bg)]/50 backdrop-blur-sm"
+    >
       <div class="mb-6 text-center">
         <div id="logo"></div>
-        <h1
-          class="text-2xl font-bold text-[var(--color-text)]"
-        >
+        <h1 class="text-2xl font-bold text-[var(--color-text)]">
           Sign in to your account
         </h1>
       </div>
       <form id="loginForm" class="space-y-4"></form>
+      <div class="mt-4">
+        <div class="relative">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-[var(--color-bg)] text-[var(--color-text)]/80"
+              >Or</span
+            >
+          </div>
+        </div>
+        <div class="mt-4">
+          <div
+            id="g_id_onload"
+            data-client_id="794752247490-dspn67dppujlm4gupbidvpqah08runh2.apps.googleusercontent.com"
+            data-context="signin"
+            data-ux_mode="popup"
+            data-login_uri="http://localhost:5500/src/components/pages/login.html"
+            data-callback="handleGoogleSignIn"
+            data-auto_prompt="false"
+          ></div>
+          <div
+            class="g_id_signin w-full"
+            data-type="standard"
+            data-shape="rectangular"
+            data-theme="outline"
+            data-text="signin_with"
+            data-size="large"
+            data-logo_alignment="center"
+          ></div>
+        </div>
+      </div>
       <p class="mt-4 text-center text-sm text-[var(--color-text)]/50">
         Not a member?
         <a href="register.html" class="text-active-500 hover:text-active-600"
@@ -53,6 +95,7 @@
         class="mt-4 hidden text-center text-sm text-red-700 p-2 rounded-md bg-red-300 border border-red-700"
       ></div>
     </div>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script type="module" src="../js/pages/login.js"></script>
   </body>
 </html>
