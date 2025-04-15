@@ -49,18 +49,18 @@
 /* Thème clair */
 :root,
 [data-theme='light'] {
-  --color-bg: #c7a1ff;
-  --color-bg-secondary: #ba89ff;
-  --color-text: #29125e;
-  --color-text-secondary: #ffffff;
-  --color-primary: #7e3af2;
-  --color-primary-hover: #6c2bd9;
-  --color-secondary: #6366f1;
+  --color-bg: #9caedf;
+  --color-bg-secondary: #648bb8fb;
+  --color-text: #ffffff;
+  --color-text-secondary: #080033;
+  --color-primary: #1648d3;
+  --color-primary-hover: #a593b9;
+  --color-secondary: #4d4137;
   --color-accent: #f472b6;
-  --color-border: #e2e8f0;
+  --color-border: #93b4f1;
   --color-input: #faf5ff;
-  --color-input-border: #d8c4fc;
-  --color-card: #ffffff;
+  --color-input-border: #a79cbb;
+  --color-card: #7d59ff6b;
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
@@ -75,7 +75,6 @@
 
 /* Thème sombre */
 [data-theme='dark'] {
-
   --color-bg: #150a35;
   --color-bg-secondary: #29125e73;
   --color-text: #f0e7fe;
@@ -98,7 +97,6 @@
   --text-gradient-start: #faa178;
   --text-gradient-middle: #a089df;
   --text-gradient-end: #807be4;
-
 }
 
 /* Auto - basés sur les préférences du système */
