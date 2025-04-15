@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,17 +28,8 @@
           <img
             src="/src/assets/noBg.png"
             alt="Logo"
-            class="h-28 w-30 object-cover"
+            class="h-full w-28 object-cover rounded-full"
           >
-          <h2
-            class="text-2xl font-architects bg-gradient-to-r from-[var(--color-active-400)] to-[var(--color-primary)] bg-clip-text text-transparent flex items-center"
-          >
-            Driftype
-            <span
-              class="inline-block h-6 w-0.5 bg-[var(--color-primary)]"
-              id="blinker"
-            ></span>
-          </h2>
         </div>
 
         <!-- Menu principal (desktop) -->
@@ -84,7 +75,7 @@
         <!-- Boutons (desktop) -->
         <div class="hidden md:flex gap-3">
           <button
-            class="bg-gradient-to-tr from-[var(--color-bg)] to-[var(--color-primary)] text-white px-4 py-2 rounded-lg text-sm hover:brightness-110 transition-all duration-200 cursor-pointer"
+            class="bg-gradient-to-tr from-[var(--color-secondary)] to-[var(--color-input-border)] text-white px-4 py-2 rounded-lg text-sm hover:brightness-110 transition-all duration-200 cursor-pointer"
             aria-label="Login"
           >
             Login
@@ -207,16 +198,19 @@
         <div
           class="absolute inset-0 z-10 opacity-[0.5] bg-gradient-to-tr from-[var(--gradient-start)] to-[var(--gradient-end)]"
         ></div>
+
         <div id="vanta-bg" class="absolute inset-0 z-0"></div>
 
         <div
           class="relative z-10 flex min-h-screen flex-col items-center justify-center gap-8 px-5"
         >
-          <img
-            src="/src/assets/noBg.png"
-            alt="Driftype Logo"
-            class="w-100 h-50 mb-[-40px] animate__animated animate__fadeIn"
-          >
+          <div class="relative inline-block -mb-10">
+            <img
+              src="/src/assets/noBg.png"
+              alt="Driftype Logo"
+              class="w-100 h-50 rounded-tl-[8px] rounded-full animate__animated animate__fadeIn"
+            >
+          </div>
 
           <h2
             class="text-center leading-tight text-[32px] sm:text-[42px] md:text-[54px] lg:text-[60px] font-raleway font-bold bg-gradient-to-r from-[var(--text-gradient-start)] via-[var(--text-gradient-middle)] to-[var(--text-gradient-end)] text-transparent bg-clip-text drop-shadow-[0_4px_16px_#800be4] animate__animated animate__fadeIn"
@@ -225,7 +219,7 @@
           </h2>
 
           <p
-            class="text-[16px] sm:text-[18px] md:text-[20px] lg:text-[20px] px-5 max-w-2xl text-center leading-7 animate__animated animate__fadeInUp text-text"
+            class="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] px-5 max-w-2xl text-center leading-7 animate__animated animate__fadeInUp text-text"
           >
             Improve your speed and accuracy with smart training and real-time
             stats.
@@ -234,7 +228,7 @@
           <div
             class="flex w-full max-w-md justify-center rounded-lg bg-[var(--color-bg)] px-6 py-2 animate__animated animate__fadeInUp"
           >
-            <h3 class="text-lg sm:text-xl md:text-2xl text-[var(--color-text)]">
+            <h3 class="text-md sm:text-xl md:text-2xl text-[var(--color-text)]">
               <span id="typed"></span>
             </h3>
           </div>
@@ -423,7 +417,7 @@
             <div>
               <label
                 for="name"
-                class="mb-1 block text-lg font-medium text-[var(--color-text-secondary)]"
+                class="mb-1 block text-sm font-medium text-[var(--color-text-secondary)]"
               >
                 Name
               </label>
@@ -438,7 +432,7 @@
             <div>
               <label
                 for="email"
-                class="mb-1 block text-lg font-medium text-[var(--color-text-secondary)]"
+                class="mb-1 block text-sm font-medium text-[var(--color-text-secondary)]"
               >
                 Email *
               </label>
@@ -456,7 +450,7 @@
           <div>
             <label
               for="subject"
-              class="mb-1 block text-lg font-medium text-[var(--color-text-secondary)]"
+              class="mb-1 block text-sm font-medium text-[var(--color-text-secondary)]"
             >
               Subject
             </label>
@@ -472,7 +466,7 @@
           <div>
             <label
               for="message"
-              class="mb-1 block text-lg font-medium text-[var(--color-text-secondary)]"
+              class="mb-1 block text-sm font-medium text-[var(--color-text-secondary)]"
             >
               Message *
             </label>
