@@ -1,16 +1,21 @@
-import { inputStyle, logoStyle } from "../formStyle.js";
-import { API_URL, showError, storeAuthData, redirectToDashboard } from "./login.js";
-import { Logger } from "../../../utils/Logger.js";
+import { inputStyle, logoStyle } from '../formStyle.js';
+import {
+  API_URL,
+  showError,
+  storeAuthData,
+  redirectToDashboard,
+} from './login.js';
+import { Logger } from '../../../utils/Logger.js';
 
 const logger = Logger.getLogger('Registration');
-const DEFAULT_ERROR_MSG = "An error occurred. Please try again.";
+const DEFAULT_ERROR_MSG = 'An error occurred. Please try again.';
 
 document.addEventListener('DOMContentLoaded', () => {
   initRegister();
 });
 
 const initRegister = () => {
-  const registerForm = document.getElementById("registerForm");
+  const registerForm = document.getElementById('registerForm');
   if (!registerForm) {
     logger.error('Register form not found', { component: 'RegisterForm' });
     return;
@@ -19,14 +24,14 @@ const initRegister = () => {
   registerForm.innerHTML = `
         <div class="text-[var(--color-text)]">
           <label for="email" class="block text-sm font-medium">Email</label>
-          <div class="relative flex items-center justify-center">
+          <div class="relative flex items-center justify-center gap-3">
             <i class="fa-solid fa-envelope icon-form"></i>
             <input
               type="email"
               id="email"
               name="email"
               required
-              class="input-form"
+              class="input-form bg-gray-100 text-black outline-none focus:ring-2 text-sm rounded-sm"
             />
           </div>
         </div>
@@ -34,14 +39,14 @@ const initRegister = () => {
           <label for="password" class="block text-sm font-medium"
             >Password</label
           >
-          <div class="relative flex items-center justify-center">
+          <div class="relative flex items-center justify-center gap-3">
             <i class="fa-solid fa-lock icon-form"></i>
             <input
               type="password"
               id="password"
               name="password"
               required
-              class="input-form"
+              class="input-form bg-gray-100 text-black outline-none focus:ring-2 text-sm rounded-sm"
             />
           </div>
         </div>
@@ -49,14 +54,14 @@ const initRegister = () => {
           <label for="confirmPassword" class="block text-sm font-medium"
             >Confirm Password</label
           >
-          <div class="relative flex items-center justify-center">
+          <div class="relative flex items-center justify-center gap-3">
             <i class="fa-solid fa-lock icon-form"></i>
             <input
               type="password"
               id="confirmPassword"
               name="confirmPassword"
               required
-              class="input-form"
+              class="input-form bg-gray-100 text-black outline-none focus:ring-2 text-sm rounded-sm"
             />
           </div>
         </div>
@@ -66,15 +71,15 @@ const initRegister = () => {
         >
           Sign up
         </button>
-  `
+  `;
   inputStyle();
   logoStyle();
-  registerForm.addEventListener("submit", handleRegister);
+  registerForm.addEventListener('submit', handleRegister);
 };
 
 const handleRegister = async (e) => {
   e.preventDefault();
-  
+
   const email = document.getElementById('email')?.value.trim();
   const password = document.getElementById('password')?.value;
   const confirmPassword = document.getElementById('confirmPassword')?.value;
@@ -92,12 +97,16 @@ const handleRegister = async (e) => {
   }
 
   const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return passwordRegex.test(password);
   };
 
   if (!validatePassword(password)) {
-    showError(errorMessage, 'Password must be at least 8 characters and contain uppercase, lowercase, number and special character');
+    showError(
+      errorMessage,
+      'Password must be at least 8 characters and contain uppercase, lowercase, number and special character',
+    );
     return;
   }
 
@@ -115,18 +124,21 @@ const handleRegister = async (e) => {
 
     const response = await fetch(`${API_URL}/auth/register`, {
       method: 'POST',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        Accept: 'application/json',
       },
       body: JSON.stringify({ email, password }),
       credentials: 'include',
-      mode: 'cors'
+      mode: 'cors',
     });
 
     if (!response.ok) {
       const errorData = await response.json();
-      logger.warn('Registration failed', { status: response.status, message: errorData.message });
+      logger.warn('Registration failed', {
+        status: response.status,
+        message: errorData.message,
+      });
       throw new Error(errorData.message || 'Registration failed');
     }
 
@@ -140,6 +152,6 @@ const handleRegister = async (e) => {
     showError(errorMessage, error.message || DEFAULT_ERROR_MSG);
   } finally {
     submitButton.disabled = false;
-    submitButton.innerHTML = "Register";
+    submitButton.innerHTML = 'Register';
   }
 };

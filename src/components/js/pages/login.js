@@ -1,30 +1,29 @@
-import { inputStyle, logoStyle, showPassword } from "../formStyle.js";
-import { Logger } from "../../../utils/Logger.js";
+import { inputStyle, logoStyle, showPassword } from '../formStyle.js';
+import { Logger } from '../../../utils/Logger.js';
 
-const logger = Logger.getLogger("Authentication");
-export const TOKEN_KEY = "typing_game_token";
-export const USER_KEY = "typing_game_user";
-const DEFAULT_ERROR_MSG = "An error occurred. Please try again.";
-export const API_URL = "http://localhost:3000/api";
+const logger = Logger.getLogger('Authentication');
+export const TOKEN_KEY = 'typing_game_token';
+export const USER_KEY = 'typing_game_user';
+const DEFAULT_ERROR_MSG = 'An error occurred. Please try again.';
+export const API_URL = 'http://localhost:3000/api';
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   initLogin();
 });
 
-
 window.handleGoogleSignIn = async (response) => {
-  const errorElement = document.getElementById("errorMessage");
+  const errorElement = document.getElementById('errorMessage');
 
   try {
     const { credential } = response;
 
     const googleResponse = await fetch(`${API_URL}/auth/google`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ credential }),
-      credentials: "include",
+      credentials: 'include',
     });
 
     if (!googleResponse.ok) {
@@ -37,29 +36,29 @@ window.handleGoogleSignIn = async (response) => {
     storeAuthData(data.token, data.user);
     redirectToDashboard();
   } catch (error) {
-    console.error("Google Sign-In Error:", error);
+    console.error('Google Sign-In Error:', error);
     showError(errorElement, error.message || DEFAULT_ERROR_MSG);
   }
 };
 
 const initLogin = () => {
-  const loginForm = document.getElementById("loginForm");
+  const loginForm = document.getElementById('loginForm');
   if (!loginForm) {
-    logger.error("Login form not found", { component: "LoginForm" });
+    logger.error('Login form not found', { component: 'LoginForm' });
     return;
   }
 
   loginForm.innerHTML = `
         <div class="text-[var(--color-text)]">
           <label for="email" class="text-bases block font-medium">Email</label>
-          <div class="flex items-center justify-center">
+          <div class="flex items-center justify-center gap-3">
             <i class="fa-solid fa-envelope icon-form"></i>
             <input
               type="email"
               id="email"
               name="email"
               required
-              class="input-form"
+              class="input-form bg-gray-100 text-black outline-none focus:ring-2 text-sm rounded-sm"
             />
           </div>
         </div>
@@ -67,14 +66,14 @@ const initLogin = () => {
           <label for="password" class="text-bases block font-medium"
             >Password</label
           >
-          <div class="relative flex items-center justify-center">
+          <div class="relative flex items-center justify-center gap-3">
             <i class="fa-solid fa-lock icon-form"></i>
             <input
               type="password"
               id="password"
               name="password"
               required
-              class="input-form"
+              class="input-form bg-gray-100 text-black outline-none focus:ring-2 text-sm rounded-sm"
             />
           </div>
         </div>
@@ -87,7 +86,7 @@ const initLogin = () => {
           </div>
           <a
             href="forgot-password.html"
-            class="text-active-500 hover:text-active-600 text-sm"
+            class="text-[var(--color-text-secondary)] hover:text-active-600 text-sm"
             >Forgot Password?</a
           >
         </div>
@@ -100,15 +99,15 @@ const initLogin = () => {
   inputStyle();
   logoStyle();
   showPassword();
-  loginForm.addEventListener("submit", handleLogin);
+  loginForm.addEventListener('submit', handleLogin);
 };
 
 const handleLogin = async (e) => {
   e.preventDefault();
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-  const errorElement = document.getElementById("errorMessage");
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const errorElement = document.getElementById('errorMessage');
   const submitButton = e.target.querySelector("button[type='submit']");
 
   if (!validateInputs(email, password, errorElement)) return;
@@ -117,12 +116,12 @@ const handleLogin = async (e) => {
     setLoadingState(submitButton, true);
 
     const response = await fetch(`${API_URL}/auth/login`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, password }),
-      credentials: "include",
+      credentials: 'include',
     });
 
     if (!response.ok) {
@@ -144,7 +143,7 @@ const handleLogin = async (e) => {
 // Validate inputs
 const validateInputs = (email, password, errorElement) => {
   if (!email || !password) {
-    showError(errorElement, "Please fill in all fields");
+    showError(errorElement, 'Please fill in all fields');
     return false;
   }
   return true;
@@ -164,17 +163,17 @@ const setLoadingState = (button, isLoading) => {
     </svg>
     Loading...
 `
-    : "Login";
+    : 'Login';
 };
 
 // Store auth data
 export const storeAuthData = (token, user) => {
   if (!token || !user) {
-    logger.error("Invalid authentication data received", {
+    logger.error('Invalid authentication data received', {
       token: !!token,
       user: !!user,
     });
-    throw new Error("Invalid auth data");
+    throw new Error('Invalid auth data');
   }
 
   try {
@@ -186,30 +185,30 @@ export const storeAuthData = (token, user) => {
 
     localStorage.setItem(TOKEN_KEY, token);
     localStorage.setItem(USER_KEY, JSON.stringify(userData));
-    logger.info("Authentication data stored successfully", { userId: user.id });
+    logger.info('Authentication data stored successfully', { userId: user.id });
   } catch (e) {
-    logger.error("Failed to store authentication data", { error: e.message });
-    throw new Error("Storage error: " + e.message);
+    logger.error('Failed to store authentication data', { error: e.message });
+    throw new Error('Storage error: ' + e.message);
   }
 };
 
 export const redirectToDashboard = () => {
   try {
     const redirectUrl = new URL(
-      "src/components/pages/dashboard.html",
-      window.location.origin
+      'src/components/pages/dashboard.html',
+      window.location.origin,
     );
-    logger.debug("Redirecting to dashboard", { url: redirectUrl.toString() });
+    logger.debug('Redirecting to dashboard', { url: redirectUrl.toString() });
     window.location.replace(redirectUrl.toString());
   } catch (e) {
-    logger.error("Failed to redirect to dashboard", { error: e.message });
-    console.error("Redirection error:", e);
+    logger.error('Failed to redirect to dashboard', { error: e.message });
+    console.error('Redirection error:', e);
   }
 };
 
 export const showError = (element, message) => {
   if (!element) return;
   element.textContent = message;
-  element.classList.remove("hidden");
-  setTimeout(() => element.classList.add("hidden"), 5000);
+  element.classList.remove('hidden');
+  setTimeout(() => element.classList.add('hidden'), 5000);
 };
