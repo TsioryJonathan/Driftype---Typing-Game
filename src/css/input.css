@@ -2,90 +2,124 @@
 @import 'tailwindcss';
 
 @theme {
+  /* Improved Font Definitions */
   --font-poppins: 'Poppins';
   --font-fira-code: 'Fira Code';
   --font-playfair-display: 'Playfair Display';
   --font-architects: 'Architects Daughter';
   --font-raleway: 'Raleway';
 
-  --color-midnight-50: #f8fafc;
-  --color-midnight-100: #f1f5f9;
-  --color-midnight-200: #e2e8f0;
-  --color-midnight-300: #cbd5e1;
-  --color-midnight-400: #94a3b8;
-  --color-midnight-500: #1f2937;
-  --color-midnight-600: #334155;
-  --color-midnight-700: #475569;
-  --color-midnight-800: #64748b;
-  --color-midnight-900: #0f172a;
-  --color-midnight-950: #020617;
+  /* Enhanced Color System */
+  --color-midnight-50: #f9f5ff;
+  --color-midnight-100: #f0e7fe;
+  --color-midnight-200: #d8c4fc;
+  --color-midnight-300: #b794f6;
+  --color-midnight-400: #9c64f0;
+  --color-midnight-500: #7e3af2;
+  --color-midnight-600: #6c2bd9;
+  --color-midnight-700: #5522b0;
+  --color-midnight-800: #3e1a87;
+  --color-midnight-900: #29125e;
+  --color-midnight-950: #150a35;
 
-  --color-active-50: #eff6ff;
-  --color-active-100: #dbeafe;
-  --color-active-200: #bfdbfe;
-  --color-active-300: #93c5fd;
-  --color-active-400: #60a5fa;
-  --color-active-500: #2563eb;
-  --color-active-600: #1d4ed8;
-  --color-active-700: #1e40af;
-  --color-active-800: #1e3a8a;
-  --color-active-900: #172554;
+  --color-active-50: #eef2ff;
+  --color-active-100: #e0e7ff;
+  --color-active-200: #c7d2fe;
+  --color-active-300: #a5b4fc;
+  --color-active-400: #818cf8;
+  --color-active-500: #6366f1;
+  --color-active-600: #4f46e5;
+  --color-active-700: #4338ca;
+  --color-active-800: #3730a3;
+  --color-active-900: #312e81;
 
-  --color-bg: var(--color-midnight-50);
-  --color-text: var(--color-midnight-900);
-  --color-primary: var(--color-midnight-500);
-  --color-third: var(--color-midnight-600);
-  --color-secondary: #8a2be2; /* Ajout d'une couleur secondaire */
-
-  --color-input: var(--color-midnight-800);
-
-  --gradient-start: #0a001d;
-  --gradient-end: #8a2be2;
+  /* Neutral Colors */
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
 }
 
 /* Thème clair */
 :root,
 [data-theme='light'] {
-  --color-bg: #bca0f3; /* Un fond clair avec une touche de violet */
-  --color-text: #cac2df; /* Violet clair pour le texte principal */
-  --color-primary: #6c5b8a; /* Une couleur intermédiaire pour les éléments principaux */
-  --color-third: #c6a1e0; /* Un accent violet doux */
-  --color-secondary: #8a2be2; /* Violet clair pour le secondaire */
-  --color-input: white; /* Fond blanc pour les champs de saisie */
-  --color-text-secondary: #6c4f8c; /* Un rose-violet doux pour le texte secondaire */
+  --color-bg: #f9f5ff;
+  --color-bg-secondary: #caa8fa;
+  --color-text: #29125e;
+  --color-text-secondary: #6c2bd9;
+  --color-primary: #7e3af2;
+  --color-primary-hover: #6c2bd9;
+  --color-secondary: #6366f1;
+  --color-accent: #f472b6;
+  --color-border: #e2e8f0;
+  --color-input: #ffffff;
+  --color-input-border: #d8c4fc;
+  --color-card: #ffffff;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
 
-  --gradient-start: #edb8ff; /* Gradient clair vers un violet doux */
-  --gradient-end: #b972ff; /* Un rose pâle avec un ton violet */
+  --gradient-start: #e0e7ff;
+  --gradient-end: #a5b4fc;
+
+  --text-gradient-start: #ff9e7d; /* Orange pastel plus doux */
+  --text-gradient-middle: #b8a8f0; /* Violet léger */
+  --text-gradient-end: #9d99f7; /* Violet bleuté clair */
+
+  --text-shadow : 
 }
 
 /* Thème sombre */
 [data-theme='dark'] {
-  --color-bg: #0a0427; /* Fond très sombre, presque noir avec une touche de violet */
-  --color-text: #f0e6f7; /* Texte clair pour contraster avec le fond sombre */
-  --color-primary: #6c5b8a; /* Un violet moyen pour les éléments principaux */
-  --color-third: #240c42; /* Un violet sombre pour les accents */
-  --color-secondary: #8a2be2; /* Violet clair pour le secondaire */
-  --color-input: #1a1a2e; /* Fond sombre pour les champs de saisie */
-  --color-text-secondary: #b385e7; /* Un violet clair pour le texte secondaire */
+  --color-bg: #150a35;
+  --color-bg-secondary: #29125e73;
+  --color-text: #f0e7fe;
+  --color-text-secondary: #b794f6;
+  --color-primary: #9c64f0;
+  --color-primary-hover: #7e3af2;
+  --color-secondary: #818cf8;
+  --color-accent: #f472b6;
+  --color-border: #bba1f028;
+  --color-input: #29125e;
+  --color-input-border: #5522b0;
+  --color-card: #1e0d4a;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
 
-  --gradient-start: #240c42; /* Violet très sombre */
-  --gradient-end: #8a2be2; /* Violet néon pour un bel effet lumineux */
+  --gradient-start: #380f4a;
+  --gradient-end: #9e67ffad;
+
+  --text-gradient-start: #faa178;
+  --text-gradient-middle: #a089df;
+  --text-gradient-end: #807be4;
 }
 
 /* Auto - basés sur les préférences du système */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]),
   [data-theme='auto'] {
-    --color-bg: #0a0427; /* Fond très sombre */
-    --color-text: #f0e6f7; /* Texte clair */
-    --color-primary: #6c5b8a; /* Violet moyen */
-    --color-third: #240c42; /* Violet sombre pour les accents */
-    --color-secondary: #8a2be2; /* Violet clair pour le secondaire */
-    --color-input: #1a1a2e; /* Fond sombre pour les champs de saisie */
-    --color-text-secondary: #b385e7; /* Violet clair pour le texte secondaire */
+    --color-bg: #150a35;
+    --color-bg-secondary: #29125e;
+    --color-text: #f0e7fe;
+    --color-text-secondary: #b794f6;
+    --color-primary: #9c64f0;
+    --color-primary-hover: #7e3af2;
+    --color-secondary: #818cf8;
+    --color-accent: #f472b6;
+    --color-border: #3e1a87;
+    --color-input: #29125e;
+    --color-input-border: #5522b0;
+    --color-card: #1e0d4a;
 
-    --gradient-start: #240c42; /* Violet très sombre */
-    --gradient-end: #8a2be2; /* Violet néon lumineux */
+    --gradient-start: #4f46e5;
+    --gradient-end: #7e3af2;
   }
 }
 
