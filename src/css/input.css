@@ -49,16 +49,16 @@
 /* Thème clair */
 :root,
 [data-theme='light'] {
-  --color-bg: #f9f5ff;
-  --color-bg-secondary: #caa8fa;
+  --color-bg: #c7a1ff;
+  --color-bg-secondary: #ba89ff;
   --color-text: #29125e;
-  --color-text-secondary: #6c2bd9;
+  --color-text-secondary: #ffffff;
   --color-primary: #7e3af2;
   --color-primary-hover: #6c2bd9;
   --color-secondary: #6366f1;
   --color-accent: #f472b6;
   --color-border: #e2e8f0;
-  --color-input: #ffffff;
+  --color-input: #faf5ff;
   --color-input-border: #d8c4fc;
   --color-card: #ffffff;
   --color-success: #10b981;
@@ -72,33 +72,34 @@
   --text-gradient-middle: #b8a8f0; /* Violet léger */
   --text-gradient-end: #9d99f7; /* Violet bleuté clair */
 
-  --text-shadow : 
+  --text-shadow:        
+;
 }
 
 /* Thème sombre */
 [data-theme='dark'] {
-  --color-bg: #150a35;
-  --color-bg-secondary: #29125e73;
-  --color-text: #f0e7fe;
-  --color-text-secondary: #b794f6;
-  --color-primary: #9c64f0;
-  --color-primary-hover: #7e3af2;
-  --color-secondary: #818cf8;
-  --color-accent: #f472b6;
-  --color-border: #bba1f028;
-  --color-input: #29125e;
-  --color-input-border: #5522b0;
-  --color-card: #1e0d4a;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
+  --color-bg: #fdfbff;
+  --color-bg-secondary: #f3efff;
+  --color-text: #2a103d;
+  --color-text-secondary: #5b3b80;
+  --color-primary: #7e3af2;
+  --color-primary-hover: #682cd3;
+  --color-secondary: #4f46e5;
+  --color-accent: #db2777;
+  --color-border: #d5c4f3;
+  --color-input: #ffffff;
+  --color-input-border: #c9b3ec;
+  --color-card: #f7f4ff;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
 
-  --gradient-start: #380f4a;
-  --gradient-end: #9e67ffad;
+  --gradient-start: #d8b4fe;
+  --gradient-end: #c084fc;
 
-  --text-gradient-start: #faa178;
-  --text-gradient-middle: #a089df;
-  --text-gradient-end: #807be4;
+  --text-gradient-start: #e879f9;
+  --text-gradient-middle: #7c3aed;
+  --text-gradient-end: #6366f1;
 }
 
 /* Auto - basés sur les préférences du système */
