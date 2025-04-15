@@ -48,13 +48,13 @@
               Driftype
             </h1>
           </a>
-              <!-- navigation bar -->
-          
-            <nav
-              id="navbar"
-              class="w-full h-11 max-w-sm -translate-x-1/2 bg-white border border-[var(--color-text)] rounded-full bottom-4 left-1/2"
-            ></nav>
-          
+          <!-- navigation bar -->
+
+          <nav
+            id="navbar"
+            class="w-full h-11 max-w-sm -translate-x-1/2 bg-white border border-[var(--color-text)] rounded-full bottom-4 left-1/2"
+          ></nav>
+
           <!-- avatar -->
           <div class="relative" id="user-menu-container"></div>
         </div>
@@ -68,11 +68,13 @@
           <div class="relative inline-block" id="mode-container">
             <button
               id="mode-button"
-              class="flex items-center bg-active-500 rounded-md p-2"
+              class="flex items-center group p-2 cursor-pointer"
             >
               <i class="fa-solid fa-hexagon-nodes text-amber-500 mr-2"></i>
               <span id="mode-text">Easy</span>
-              <i class="fa-solid fa-caret-down ml-2"></i>
+              <i
+                class="fa-solid fa-caret-down ml-2 group-hover:translate-0.5"
+              ></i>
             </button>
             <select id="mode" class="hidden">
               <option value="easy">Easy</option>
@@ -110,11 +112,13 @@
           <div class="relative inline-block ml-4" id="language-container">
             <button
               id="language-button"
-              class="flex items-center bg-active-500 rounded-md p-2"
+              class="flex items-center group p-2 cursor-pointer"
             >
               <i class="fa-solid fa-language text-amber-500 mr-2"></i>
               <span id="language-text">English</span>
-              <i class="fa-solid fa-caret-down ml-2"></i>
+              <i
+                class="fa-solid fa-caret-down ml-2 group-hover:translate-0.5"
+              ></i>
             </button>
             <select id="language" class="hidden">
               <option value="en">English</option>
@@ -173,11 +177,13 @@
           <div class="relative inline-block ml-4" id="timer-container">
             <button
               id="timer-button"
-              class="flex items-center bg-active-500 rounded-md p-2"
+              class="flex items-center group p-2 cursor-pointer"
             >
               <i class="fa-solid fa-clock text-amber-500 mr-2"></i>
               <span id="timer-text">30 s</span>
-              <i class="fa-solid fa-caret-down ml-2"></i>
+              <i
+                class="fa-solid fa-caret-down ml-2 group-hover:translate-0.5"
+              ></i>
             </button>
             <select id="timer" class="hidden">
               <option value="30">30 s</option>
@@ -231,24 +237,28 @@
             <p
               class="test-focus absolute t-0 w-full h-full flex justify-center items-center cursor-default text-[var(--color-text)] text-2xl group-focus:hidden"
             >
-              Click here or press <span class="inline-block bg-[var(--color-input)] text-[var(--color-text)] rounded-md px-2 py-1 text-xs">Ctrl + Enter</span> to focus
+              Click here or press
+              <span
+                class="inline-block bg-[var(--color-input)] text-[var(--color-text)] rounded-md px-2 py-1 text-xs"
+                >Ctrl + Enter</span
+              >
+              to focus
             </p>
           </div>
           <div id="results-container" class="flex flex-col items-center gap-4">
             <div class="flex items-center gap-4">
               <p id="results">Results :</p>
-              <button
-                id="restart-button"
-                class="px-4 py-2 bg-amber-500 text-black rounded-md hover:bg-amber-400 transition-colors flex items-center gap-2"
-              >
-                <i class="fa-solid fa-rotate-right"></i>
-                Restart
-              </button>
             </div>
             <div class="w-64 h-64">
               <canvas id="resultsChart"></canvas>
             </div>
           </div>
+          <button
+            id="restart-button"
+            class="flex items-center justify-center w-12 h-12 bg-amber-500 text-black rounded-md hover:bg-amber-400 transition-colors mx-auto"
+          >
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
         </div>
         <div class="mb-6"></div>
         <div class="mt-8 p-4 border rounded-lg bg-[var(--color-bg)]">
@@ -261,9 +271,27 @@
           </ul>
         </div>
       </div>
+
+
+
+        <div id="results" class="mt-2"></div>
+        <canvas
+          id="resultsChart"
+          width="200"
+          height="200"
+          class="mx-auto mt-4"
+        ></canvas>
+      </div>
+
       <!-- Statistics Section -->
-      <div id="statistics-section" class="mt-8">
+      <div id="statistics-section" class="mt-8 hidden">
         <h2 class="text-2xl font-bold mb-4">Vos Statistiques</h2>
+        <button
+          id="restart-btn"
+          class="mb-4 px-4 py-2 bg-amber-500 text-white rounded hover:bg-amber-600 transition"
+        >
+          Rejouer
+        </button>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- WPM Progress -->
           <div class="bg-[var(--color-bg)] p-4 rounded-lg shadow">
@@ -300,7 +328,6 @@
         </div>
       </div>
     </main>
-
 
     <script type="module" src="../js/pages/dashboard.js"></script>
     <script type="module" src="../js/script.js"></script>

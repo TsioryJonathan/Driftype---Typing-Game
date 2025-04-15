@@ -21,11 +21,13 @@ const modeSelect = document.getElementById("mode");
 const timerSelect = document.getElementById("timer");
 const wordDisplay = document.getElementById("word-display");
 const testContainer = document.getElementById("test-container");
-const results = document.getElementById("results");
+const results = document.getElementById("results-container");
 
 
 // Initialize the typing test
 const startTest = (wordCount = 50) => {
+    testContainer.classList.remove('hidden');
+    results.classList.add('hidden');
     wordsToType.length = 0;
     wordDisplay.innerHTML = "";
     currentWordIndex = 0;
@@ -206,12 +208,42 @@ const updateLetter = (event) => {
 };
 
 // End the typing test
-const endTest = () => {
+const endTest = async () => {
+    testContainer.classList.add('hidden');
+    results.classList.remove('hidden');
     clearInterval(timerInterval);
     timeLeft = 0;
     const { wpm, accuracy } = getCurrentStats();
     results.textContent = `Test terminé ! WPM: ${wpm}, Précision: ${accuracy}%`;
     testContainer.value = "";
+
+    // Save the stats in the database
+    const token = localStorage.getItem('token');
+    const text_length = wordsToType.join(' ').length;
+    const time_taken = parseInt(timerSelect.value) - timeLeft;
+    if(token) {
+        try {
+            await fetch('http://localhost:3000/api/statistics', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({
+                    wpm: Number(wpm),
+                    accuracy: Number(accuracy),
+                    time_taken: Number(time_taken),
+                    text_length: Number(text_length)
+                })
+            });
+            // Refresh dashboard statistics if the function exists
+            if (typeof loadStatistics === 'function') {
+                loadStatistics();
+            }
+        } catch (err) {
+            console.error('Error while saving stats:', err);
+        }
+    }
 };
 
 let resultsChart = null;
