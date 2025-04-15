@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import sql from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
+import statisticsRoutes from './routes/statistics.js';
 import { backupData, restoreData } from './utils/backup/backupManager.js';
 import 'dotenv/config';
 
@@ -22,6 +23,7 @@ app.use(express.json({ limit: '10kb' }));
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/statistics', statisticsRoutes);
 
 // Healthcheck
 app.get('/api/status', (req, res) => {
