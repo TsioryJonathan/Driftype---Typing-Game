@@ -392,9 +392,6 @@
       max-width: 96rem;
     }
   }
-  .m-auto {
-    margin: auto;
-  }
   .mx-auto {
     margin-inline: auto;
   }
@@ -482,9 +479,6 @@
   .h-16 {
     height: calc(var(--spacing) * 16);
   }
-  .h-24 {
-    height: calc(var(--spacing) * 24);
-  }
   .h-64 {
     height: calc(var(--spacing) * 64);
   }
@@ -511,9 +505,6 @@
   }
   .w-8 {
     width: calc(var(--spacing) * 8);
-  }
-  .w-10 {
-    width: calc(var(--spacing) * 10);
   }
   .w-12 {
     width: calc(var(--spacing) * 12);
@@ -1339,11 +1330,6 @@
   .focus\:ring-active-500 {
     &:focus {
       --tw-ring-color: var(--color-active-500);
-    }
-  }
-  .focus\:ring-amber-500 {
-    &:focus {
-      --tw-ring-color: var(--color-amber-500);
     }
   }
   .focus\:ring-indigo-500 {
