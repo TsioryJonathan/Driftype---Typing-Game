@@ -21,16 +21,19 @@
   >
     <!-- NAVBAR -->
     <header
-      class="fixed top-0 left-0 right-0 z-50 h-14 w-full bg-[rgba(24,0,48,0.4)] backdrop-blur-md shadow-md shadow-black/10 text-[var(--color-text)]"
+      class="fixed top-0 left-0 right-0 z-50 h-14 w-full bg-[var(--color-bg-secondary)] backdrop-blur-md shadow-md shadow-black/10 text-[var(--color-text)] border-b border-[var(--color-border)]"
     >
       <nav class="flex h-full items-center justify-between px-6 md:px-10">
         <div class="flex items-center gap-2">
           <img src="/src/assets/noBg.png" alt="Logo" class="h-10 w-10">
           <h2
-            class="text-2xl font-architects bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent flex items-center"
+            class="text-2xl font-architects bg-gradient-to-r from-[var(--color-active-400)] to-[var(--color-primary)] bg-clip-text text-transparent flex items-center"
           >
             Driftype
-            <span class="inline-block h-6 w-0.5" id="blinker"></span>
+            <span
+              class="inline-block h-6 w-0.5 bg-[var(--color-primary)]"
+              id="blinker"
+            ></span>
           </h2>
         </div>
 
@@ -39,7 +42,7 @@
           <li>
             <a
               href="#"
-              class="hover:text-[var(--color-secondary)] transition"
+              class="hover:text-[var(--color-primary)] transition-colors duration-200"
               role="link"
             >
               Home
@@ -48,7 +51,7 @@
           <li>
             <a
               href="#features"
-              class="hover:text-[var(--color-secondary)] transition"
+              class="hover:text-[var(--color-primary)] transition-colors duration-200"
               role="link"
             >
               Features
@@ -57,7 +60,7 @@
           <li>
             <a
               href="#testimonials"
-              class="hover:text-[var(--color-secondary)] transition"
+              class="hover:text-[var(--color-primary)] transition-colors duration-200"
               role="link"
             >
               Testimonials
@@ -66,7 +69,7 @@
           <li>
             <a
               href="#contact"
-              class="hover:text-[var(--color-secondary)] transition"
+              class="hover:text-[var(--color-primary)] transition-colors duration-200"
               role="link"
             >
               Contact
@@ -77,14 +80,14 @@
         <!-- Boutons (desktop) -->
         <div class="hidden md:flex gap-3">
           <button
-            class="bg-gradient-to-r from-blue-600 to-violet-600 text-white px-4 py-2 rounded-lg text-sm hover:brightness-110 transition cursor-pointer"
+            class="bg-gradient-to-r from-[var(--color-active-500)] to-[var(--color-primary)] text-white px-4 py-2 rounded-lg text-sm hover:brightness-110 transition-all duration-200 cursor-pointer"
             aria-label="Login"
           >
             Login
             <i class="fa-solid fa-sign-in-alt ml-2"></i>
           </button>
           <button
-            class="border border-gray-500 px-4 py-2 rounded-lg text-sm hover:bg-gray-700 hover:text-white transition cursor-pointer"
+            class="border border-[var(--color-border)] px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-primary)] hover:text-white transition-all duration-200 cursor-pointer"
             aria-label="Sign up"
           >
             Sign up
@@ -94,7 +97,11 @@
 
         <!-- Burger (mobile) -->
         <div class="md:hidden flex items-center gap-4">
-          <button id="login-btn" aria-label="Login">
+          <button
+            id="login-btn"
+            aria-label="Login"
+            class="text-[var(--color-primary)]"
+          >
             <i class="fa-solid fa-user text-xl"></i>
           </button>
           <button
@@ -102,6 +109,7 @@
             aria-label="Open menu"
             aria-expanded="false"
             aria-controls="mobile-menu"
+            class="text-[var(--color-primary)]"
           >
             <i class="fa-solid fa-bars text-2xl"></i>
           </button>
@@ -111,7 +119,7 @@
       <!-- Menu mobile -->
       <div
         id="mobile-menu"
-        class="fixed right-0 top-0 flex h-screen w-[80vw] translate-x-[999px] flex-col gap-10 bg-[var(--color-primary)] px-10 py-4 text-center transition-all duration-500 ease-in md:hidden"
+        class="fixed right-0 top-0 flex h-screen w-[80vw] translate-x-[999px] flex-col gap-10 bg-[var(--color-bg-secondary)] px-10 py-4 text-center transition-all duration-500 ease-in md:hidden border-l border-[var(--color-border)]"
         role="dialog"
         aria-hidden="true"
       >
@@ -121,34 +129,34 @@
             alt="TajoType"
             class="h-14 w-14 object-cover"
           >
-          <h2 class="text-3xl font-bold text-[var(--color-secondary)]">
+          <h2 class="text-3xl font-bold text-[var(--color-primary)]">
             TajoType
           </h2>
         </div>
         <ul class="flex flex-col items-center gap-6" id="link-list">
           <li
-            class="text-2xl transition-colors duration-300 hover:text-[var(--color-secondary)]"
+            class="text-2xl transition-colors duration-300 hover:text-[var(--color-primary)]"
           >
             <a href="#">Home</a>
           </li>
           <li
-            class="text-2xl transition-colors duration-300 hover:text-[var(--color-secondary)]"
+            class="text-2xl transition-colors duration-300 hover:text-[var(--color-primary)]"
           >
             <a href="#features">Features</a>
           </li>
           <li
-            class="text-2xl transition-colors duration-300 hover:text-[var(--color-secondary)]"
+            class="text-2xl transition-colors duration-300 hover:text-[var(--color-primary)]"
           >
             <a href="#testimonials">Testimonials</a>
           </li>
           <li
-            class="text-2xl transition-colors duration-300 hover:text-[var(--color-secondary)]"
+            class="text-2xl transition-colors duration-300 hover:text-[var(--color-primary)]"
           >
             <a href="#contact">Contact Us</a>
           </li>
           <li>
             <button
-              class="bg-active-500 mt-10 flex w-fit cursor-pointer items-center gap-2 rounded-xl px-5 py-2 duration-300 hover:bg-blue-600"
+              class="bg-[var(--color-primary)] text-white mt-10 flex w-fit cursor-pointer items-center gap-2 rounded-xl px-5 py-2 duration-300 hover:bg-[var(--color-primary-hover)]"
               id="get-started-btn"
               aria-label="Begin Now"
             >
@@ -158,7 +166,7 @@
           </li>
           <li>
             <button
-              class="absolute right-5 top-5"
+              class="absolute right-5 top-5 text-[var(--color-text)]"
               id="close-button"
               aria-label="Close menu"
             >
@@ -172,11 +180,11 @@
     <!-- BODY -->
     <main>
       <!-- HERO -->
-      <section
-        id="home"
-        class="bg-gradient-to-br from-[var(--gradient-start)] to-[var(--gradient-end)] relative overflow-hidden"
-      >
-        <div class="absolute inset-0 bg-black/60"></div>
+      <section id="home" class="relative overflow-hidden">
+        <div
+          class="absolute inset-0 z-10 opacity-[0.5] bg-gradient-to-tr from-[var(--gradient-start)] to-[var(--gradient-end)]"
+        ></div>
+        <div id="vanta-bg" class="absolute inset-0 z-0"></div>
 
         <div
           class="relative z-10 flex min-h-screen flex-col items-center justify-center gap-8 px-5"
@@ -188,7 +196,7 @@
           >
 
           <h2
-            class="text-center leading-tight text-[32px] sm:text-[42px] md:text-[54px] lg:text-[60px] font-raleway font-bold bg-gradient-to-r from-[#faa178] via-[#a089df] to-[#807be4] text-transparent bg-clip-text drop-shadow-[0_4px_16px_#800be4] animate__animated animate__fadeIn"
+            class="text-center leading-tight text-[32px] sm:text-[42px] md:text-[54px] lg:text-[60px] font-raleway font-bold bg-gradient-to-r from-[var(--text-gradient-start)] via-[var(--text-gradient-middle)] to-[var(--text-gradient-end)] text-transparent bg-clip-text drop-shadow-[0_4px_16px_#800be4] animate__animated animate__fadeIn"
           >
             Level Up Your Typing Skills
           </h2>
@@ -201,11 +209,9 @@
           </p>
 
           <div
-            class="flex w-full max-w-md justify-center rounded-lg bg-[var(--color-third)] px-6 py-2 animate__animated animate__fadeInUp"
+            class="flex w-full max-w-md justify-center rounded-lg bg-[var(--color-bg)] px-6 py-2 animate__animated animate__fadeInUp"
           >
-            <h3
-              class="text-lg sm:text-xl md:text-2xl text-[var(--color-text-secondary)]"
-            >
+            <h3 class="text-lg sm:text-xl md:text-2xl text-[var(--color-text)]">
               <span id="typed"></span>
             </h3>
           </div>
@@ -518,7 +524,7 @@
       </section>
     </main>
     <!-- FOOTER -->
-    <footer class="bg-[var(--color-bg)] text-white px-6 py-10">
+    <footer class="bg-[var(--color-bg-secondary)] text-white px-6 py-10">
       <div
         class="max-w-6xl mx-auto grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
       >
@@ -622,5 +628,10 @@
         loop: true,
       });
     </script>
+
+    <!-- VANTA  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="/src/components/js/vantaStyle.js"></script>
   </body>
 </html>
