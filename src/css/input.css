@@ -71,13 +71,11 @@
   --text-gradient-start: #ff9e7d; /* Orange pastel plus doux */
   --text-gradient-middle: #b8a8f0; /* Violet léger */
   --text-gradient-end: #9d99f7; /* Violet bleuté clair */
-
-  --text-shadow:         
-;
 }
 
 /* Thème sombre */
 [data-theme='dark'] {
+
   --color-bg: #150a35;
   --color-bg-secondary: #29125e73;
   --color-text: #f0e7fe;
@@ -100,6 +98,7 @@
   --text-gradient-start: #faa178;
   --text-gradient-middle: #a089df;
   --text-gradient-end: #807be4;
+
 }
 
 /* Auto - basés sur les préférences du système */
