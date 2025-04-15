@@ -72,7 +72,7 @@
             >
               <i class="fa-solid fa-hexagon-nodes text-amber-500 mr-2"></i>
               <span id="mode-text">Easy</span>
-              <i class="fa-solid fa-ellipsis-vertical ml-2"></i>
+              <i class="fa-solid fa-caret-down ml-2"></i>
             </button>
             <select id="mode" class="hidden">
               <option value="easy">Easy</option>
@@ -114,7 +114,7 @@
             >
               <i class="fa-solid fa-language text-amber-500 mr-2"></i>
               <span id="language-text">English</span>
-              <i class="fa-solid fa-ellipsis-vertical ml-2"></i>
+              <i class="fa-solid fa-caret-down ml-2"></i>
             </button>
             <select id="language" class="hidden">
               <option value="en">English</option>
@@ -177,7 +177,7 @@
             >
               <i class="fa-solid fa-clock text-amber-500 mr-2"></i>
               <span id="timer-text">30 s</span>
-              <i class="fa-solid fa-ellipsis-vertical ml-2"></i>
+              <i class="fa-solid fa-caret-down ml-2"></i>
             </button>
             <select id="timer" class="hidden">
               <option value="30">30 s</option>
@@ -231,7 +231,7 @@
             <p
               class="test-focus absolute t-0 w-full h-full flex justify-center items-center cursor-default text-[var(--color-text)] text-2xl group-focus:hidden"
             >
-              Click here to focus
+              Click here or press <span class="inline-block bg-[var(--color-input)] text-[var(--color-text)] rounded-md px-2 py-1 text-xs">Ctrl + Enter</span> to focus
             </p>
           </div>
           <div id="results-container" class="flex flex-col items-center gap-4">
@@ -259,6 +259,44 @@
             <li>• Look at the screen, not your keyboard</li>
             <li>• Practice regularly to improve</li>
           </ul>
+        </div>
+      </div>
+      <!-- Statistics Section -->
+      <div id="statistics-section" class="mt-8">
+        <h2 class="text-2xl font-bold mb-4">Vos Statistiques</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- WPM Progress -->
+          <div class="bg-[var(--color-bg)] p-4 rounded-lg shadow">
+            <h3 class="text-xl font-semibold mb-2">Progression WPM</h3>
+            <canvas id="wpmChart"></canvas>
+          </div>
+          <!-- Accuracy Progress -->
+          <div class="bg-[var(--color-bg)] p-4 rounded-lg shadow">
+            <h3 class="text-xl font-semibold mb-2">Précision</h3>
+            <canvas id="accuracyChart"></canvas>
+          </div>
+          <!-- Recent Stats -->
+          <div class="bg-[var(--color-bg)] p-4 rounded-lg shadow md:col-span-2">
+            <h3 class="text-xl font-semibold mb-2">Statistiques Récentes</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div>
+                <p class="text-sm text-gray-500">WPM Moyen</p>
+                <p id="avgWpm" class="text-2xl font-bold">-</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Précision Moyenne</p>
+                <p id="avgAccuracy" class="text-2xl font-bold">-</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Meilleur WPM</p>
+                <p id="bestWpm" class="text-2xl font-bold">-</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Parties Jouées</p>
+                <p id="gamesPlayed" class="text-2xl font-bold">-</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
