@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driftype - User Stat</title>
+    <link
+      rel="shortcut icon"
+      href="/src/assets/noBgColor.png"
+      type="image/x-icon"
+    >
+    <link href="/src/css/output.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    >
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    >
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
+      integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      defer
+    ></script>
+    <script src="https://unpkg.com/i18next@22.4.15/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@2.2.0/i18nextHttpBackend.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  </head>
+  <body class="bg-[var(--color-bg)] text-[var(--color-text)]">
+    <header
+      class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px]"
+    >
+      <!-- Logo -->
+      <div class="h-full flex items-center">
+        <a href="/">
+          <img
+            src="/src/assets/noBg.png"
+            alt="Drifttype"
+            class="h-full w-40 object-cover"
+          >
+        </a>
+      </div>
+
+      <!-- Nav bar -->
+      <nav class="w-full max-w-md mx-auto h-[40px]">
+        <div
+          class="flex justify-between items-center bg-[var(--color-input)] rounded-full h-full"
+        >
+          <!-- Practice -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-practice"
+              type="button"
+              class="flex flex-col items-center justify-center rounded-s-full hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+            >
+              <i
+                class="fa-solid fa-keyboard text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Practice</span>
+            </button>
+            <div
+              id="tooltip-practice"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Practice
+            </div>
+          </div>
+
+          <!-- Statistics -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-statistics"
+              type="button"
+              class="flex flex-col items-center justify-center hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+            >
+              <i
+                class="fa-solid fa-chart-column text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Statistics</span>
+            </button>
+            <div
+              id="tooltip-statistics"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Statistics
+            </div>
+          </div>
+
+          <!-- Settings -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-settings"
+              type="button"
+              class="cursor-pointer flex flex-col items-center justify-center rounded-e-full hover:bg-[var(--color-bg)] transition w-full h-full"
+            >
+              <i
+                class="fa-solid fa-gear text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Settings</span>
+            </button>
+            <div
+              id="tooltip-settings"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Settings
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Avatar / User menu -->
+      <div class="relative h-full flex items-center" id="user-menu-container">
+        <button
+          id="user-menu-button"
+          class="flex items-center gap-5 px-2 py-1 bg-[var(--color-input)] rounded-full transition cursor-pointer -translate-y-0.5 group"
+        >
+          <img
+            id="avatar-img"
+            src="https://i.pravatar.cc/40"
+            alt="Avatar"
+            class="w-8 h-8 rounded-full"
+          >
+          <h2 class="text-sm">John Doe</h2>
+          <i
+            class="fa-solid fa-angle-down text-xs group-hover:translate-y-0.5"
+          ></i>
+        </button>
+        <div
+          id="dropdown"
+          class="absolute right-0 -bottom-16 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)]"
+        >
+          <a
+            href="/profile"
+            class="block px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+          >
+            Profile
+          </a>
+          <button
+            class="w-full text-left px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+          >
+            Sign out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+
+    <main>
+      <div
+        class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] p-6 space-y-8"
+      >
+        <!-- Titre + Filtres -->
+        <div
+          class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+        >
+          <h1 class="text-3xl font-bold">Mes statistiques</h1>
+          <div class="flex gap-2">
+            <button
+              class="px-4 py-2 rounded-xl border text-sm hover:bg-[var(--color-bg-secondary)] transition"
+            >
+              Aujourd'hui
+            </button>
+            <button
+              class="px-4 py-2 rounded-xl border text-sm hover:bg-[var(--color-bg-secondary)] transition"
+            >
+              7 jours
+            </button>
+            <button
+              class="px-4 py-2 rounded-xl border text-sm hover:bg-[var(--color-bg-secondary)] transition"
+            >
+              30 jours
+            </button>
+          </div>
+        </div>
+
+        <!-- Cartes de stats -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-[var(--color-card)] rounded-2xl p-4 shadow-md">
+            <p class="text-sm text-[var(--color-text-secondary)]">
+              Vitesse moyenne
+            </p>
+            <p class="text-2xl font-bold mt-1">84 WPM</p>
+          </div>
+          <div class="bg-[var(--color-card)] rounded-2xl p-4 shadow-md">
+            <p class="text-sm text-[var(--color-text-secondary)]">Précision</p>
+            <p class="text-2xl font-bold mt-1">96%</p>
+          </div>
+          <div class="bg-[var(--color-card)] rounded-2xl p-4 shadow-md">
+            <p class="text-sm text-[var(--color-text-secondary)]">Sessions</p>
+            <p class="text-2xl font-bold mt-1">38</p>
+          </div>
+          <div class="bg-[var(--color-card)] rounded-2xl p-4 shadow-md">
+            <p class="text-sm text-[var(--color-text-secondary)]">Temps tapé</p>
+            <p class="text-2xl font-bold mt-1">1h42</p>
+          </div>
+        </div>
+
+        <!-- Historique simple -->
+        <div class="bg-[var(--color-card)] rounded-2xl p-6 shadow-md">
+          <h2 class="text-xl font-semibold mb-4">Historique récent</h2>
+          <div class="space-y-3">
+            <div class="flex justify-between text-sm">
+              <span class="text-[var(--color-text-secondary)]">
+                14 avril 2025
+              </span>
+              <span>WPM: 89 · 97%</span>
+            </div>
+            <div class="flex justify-between text-sm">
+              <span class="text-[var(--color-text-secondary)]">
+                13 avril 2025
+              </span>
+              <span>WPM: 78 · 94%</span>
+            </div>
+            <div class="flex justify-between text-sm">
+              <span class="text-[var(--color-text-secondary)]">
+                12 avril 2025
+              </span>
+              <span>WPM: 82 · 96%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="../js/pages/dashboard.js"></script>
+  </body>
+</html>
