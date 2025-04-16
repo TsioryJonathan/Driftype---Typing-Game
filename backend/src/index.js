@@ -3,6 +3,7 @@ import cors from 'cors';
 import sql from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import statRoutes from './routes/statRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 import { backupData, restoreData } from './utils/backup/backupManager.js';
 import 'dotenv/config';
 
@@ -28,6 +29,7 @@ app.use('/api/auth', authRoutes);
 
 app.use('/api/stats', statRoutes);
 
+app.use('/api/user', userRoutes);
 
 // Healthcheck
 app.get('/api/status', (req, res) => {
