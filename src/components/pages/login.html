@@ -1,26 +1,22 @@
 <!doctype html>
-<html lang="en" data-theme="auto">
+<html lang="en" data-theme="light">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="../../assets/noBgColor.png"
-      type="image/x-icon"
-    />
-    <title>TajoType - Login</title>
-    <link href="/src/css/output.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../assets/noBg.png" type="image/x-icon">
+    <title>Driftype - Login</title>
+    <link href="/src/css/output.css" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    >
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    />
+    >
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
       integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
@@ -37,13 +33,13 @@
         src="../../assets/bg-clipboard.png"
         alt="background"
         class="rounded-lg absolute bottom-1/2 translate-y-1/2 md:translate-0 md:relative w-full md:max-w-lg z-[-2]"
-      />
+      >
       <p class="text-[var(--color-text)] text-2xl font-bold text-center">
-        Welcome to TajoType!
+        Welcome to Driftype!
       </p>
     </div>
     <div
-      class="w-96 rounded-lg p-8 shadow-lg bg-[var(--color-bg)]/50 backdrop-blur-sm"
+      class="w-96 rounded-lg p-8 shadow-lg bg-[var(--color-bg-secondary)] backdrop-blur-sm"
     >
       <div class="mb-6 text-center">
         <div id="logo"></div>
@@ -58,9 +54,11 @@
             <div class="w-full border-t border-gray-300"></div>
           </div>
           <div class="relative flex justify-center text-sm">
-            <span class="px-2 bg-[var(--color-bg)] text-[var(--color-text)]/80"
-              >Or</span
+            <span
+              class="px-2 bg-[var(--color-bg)] text-[var(--color-text)]/80 rounded-lg"
             >
+              Or
+            </span>
           </div>
         </div>
         <div class="mt-4">
@@ -86,9 +84,12 @@
       </div>
       <p class="mt-4 text-center text-sm text-[var(--color-text)]/50">
         Not a member?
-        <a href="register.html" class="text-active-500 hover:text-active-600"
-          >Sign up now</a
+        <a
+          href="register.html"
+          class="text-[var(--color-text-secondary)] hover:text-active-600"
         >
+          Sign up now
+        </a>
       </p>
       <div
         id="errorMessage"
