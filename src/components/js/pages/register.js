@@ -31,7 +31,7 @@ const initRegister = () => {
               id="email"
               name="email"
               required
-              class="input-form bg-gray-100 text-black outline-none focus:ring-2 text-sm rounded-sm"
+              class="input-form bg-white text-black outline-none focus:ring-2 text-sm rounded-sm"
             />
           </div>
         </div>
@@ -46,7 +46,7 @@ const initRegister = () => {
               id="password"
               name="password"
               required
-              class="input-form bg-gray-100 text-black outline-none focus:ring-2 text-sm rounded-sm"
+              class="input-form bg-white text-black outline-none focus:ring-2 text-sm rounded-sm"
             />
           </div>
         </div>
@@ -61,7 +61,7 @@ const initRegister = () => {
               id="confirmPassword"
               name="confirmPassword"
               required
-              class="input-form bg-gray-100 text-black outline-none focus:ring-2 text-sm rounded-sm"
+              class="input-form bg-white text-black outline-none focus:ring-2 text-sm rounded-sm"
             />
           </div>
         </div>
