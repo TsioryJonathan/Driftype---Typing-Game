@@ -21,7 +21,7 @@ signUpBtn.addEventListener('click', () => {
 getStarted.forEach((btn) =>
   btn.addEventListener('click', () => {
     setTimeout(
-      () => (window.location.href = '/src/components/pages/game.html'),
+      () => (window.location.href = '/src/components/pages/dashboard.html'),
       300,
     );
   }),
