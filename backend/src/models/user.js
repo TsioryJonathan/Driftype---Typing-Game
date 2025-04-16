@@ -55,7 +55,13 @@ class User {
   };
 
   static createPasswordResetToken = async (userId, token, expiresAt) => {
-    try { 
+    try {
+      await sql`
+        UPDATE password_reset_tokens
+        SET used = true
+        WHERE user_id = ${userId} AND used = false
+      `;
+
       await sql`
         INSERT INTO password_reset_tokens (user_id, token, expires_at)
         VALUES (${userId}, ${token}, ${expiresAt})
