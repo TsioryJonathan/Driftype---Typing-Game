@@ -33,7 +33,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   </head>
   <body class="bg-[var(--color-bg)] text-[var(--color-text)]">
-
     <!-- HEADER -->
     <header
       class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px]"
@@ -158,76 +157,178 @@
 
     <main>
       <div
-        class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] p-6 space-y-8"
+        class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] py-6 space-y-8 px-10"
       >
-        <!-- Titre + Filtres -->
+        <!-- Title and filters -->
         <div
           class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
         >
-          <h1 class="text-3xl font-bold">Mes statistiques</h1>
+          <h1 class="text-3xl font-bold">My Statistics</h1>
           <div class="flex gap-2">
             <button
               class="px-4 py-2 rounded-xl border text-sm hover:bg-[var(--color-bg-secondary)] transition"
             >
-              Aujourd'hui
+              Today
             </button>
             <button
               class="px-4 py-2 rounded-xl border text-sm hover:bg-[var(--color-bg-secondary)] transition"
             >
-              7 jours
+              7 Days
             </button>
             <button
               class="px-4 py-2 rounded-xl border text-sm hover:bg-[var(--color-bg-secondary)] transition"
             >
-              30 jours
+              30 Days
             </button>
           </div>
         </div>
 
-        <!-- Cartes de stats -->
+        <!-- Stat Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="bg-[var(--color-card)] rounded-2xl p-4 shadow-md">
-            <p class="text-sm text-[var(--color-text-secondary)]">
-              Vitesse moyenne
-            </p>
-            <p class="text-2xl font-bold mt-1">84 WPM</p>
+          <div
+            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
+          >
+            <div class="flex items-center gap-2">
+              <i
+                class="fa-solid fa-arrow-trend-up text-[var(--color-primary)]"
+              ></i>
+              <p class="text-sm text-[var(--color-text-secondary)]">
+                Average WPM
+              </p>
+            </div>
+            <h4 class="text-[var(--color-text)] text-3xl font-bold">63</h4>
           </div>
-          <div class="bg-[var(--color-card)] rounded-2xl p-4 shadow-md">
-            <p class="text-sm text-[var(--color-text-secondary)]">Précision</p>
-            <p class="text-2xl font-bold mt-1">96%</p>
+
+          <div
+            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
+          >
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-award text-[var(--color-accent)]"></i>
+              <p class="text-sm text-[var(--color-text-secondary)]">Max WPM</p>
+            </div>
+            <h4 class="text-[var(--color-text)] text-3xl font-bold">63</h4>
           </div>
-          <div class="bg-[var(--color-card)] rounded-2xl p-4 shadow-md">
-            <p class="text-sm text-[var(--color-text-secondary)]">Sessions</p>
-            <p class="text-2xl font-bold mt-1">38</p>
+
+          <div
+            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
+          >
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-bullseye text-[var(--color-success)]"></i>
+              <p class="text-sm text-[var(--color-text-secondary)]">
+                Avg. Accuracy
+              </p>
+            </div>
+            <h4 class="text-[var(--color-text)] text-3xl font-bold">97%</h4>
           </div>
-          <div class="bg-[var(--color-card)] rounded-2xl p-4 shadow-md">
-            <p class="text-sm text-[var(--color-text-secondary)]">Temps tapé</p>
-            <p class="text-2xl font-bold mt-1">1h42</p>
+
+          <div
+            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
+          >
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-clock text-[var(--color-warning)]"></i>
+              <p class="text-sm text-[var(--color-text-secondary)]">
+                Test Completed
+              </p>
+            </div>
+            <h4 class="text-[var(--color-text)] text-3xl font-bold">129</h4>
           </div>
         </div>
 
-        <!-- Historique simple -->
-        <div class="bg-[var(--color-card)] rounded-2xl p-6 shadow-md">
-          <h2 class="text-xl font-semibold mb-4">Historique récent</h2>
-          <div class="space-y-3">
-            <div class="flex justify-between text-sm">
-              <span class="text-[var(--color-text-secondary)]">
-                14 avril 2025
-              </span>
-              <span>WPM: 89 · 97%</span>
+        <!-- History and leaderboards -->
+        <div class="flex flex-col md:flex-row gap-5">
+          <!-- History -->
+          <div class="bg-[var(--color-card)] rounded-lg p-6 shadow-md flex-1">
+            <h2 class="text-xl font-semibold text-[var(--color-text)] mb-4">
+              Historique récent
+            </h2>
+            <div class="space-y-3">
+              <div class="flex justify-between text-sm">
+                <span class="text-[var(--color-text-secondary)]">
+                  14 avril 2025
+                </span>
+                <span>WPM: 89 · 97%</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span class="text-[var(--color-text-secondary)]">
+                  13 avril 2025
+                </span>
+                <span>WPM: 78 · 94%</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span class="text-[var(--color-text-secondary)]">
+                  12 avril 2025
+                </span>
+                <span>WPM: 82 · 96%</span>
+              </div>
             </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-[var(--color-text-secondary)]">
-                13 avril 2025
-              </span>
-              <span>WPM: 78 · 94%</span>
+          </div>
+          <!-- Leaderboard -->
+          <div
+            class="bg-[var(--color-card)] rounded-lg  shadow-md w-full md:w-100"
+          >
+            <div
+              class="flex items-center gap-3 mb-4 border-b py-4 border-b-[var(--color-border)]"
+            >
+              <br>
+              <i
+                class="fa-solid fa-trophy text-[var(--color-accent)] text-xl"
+              ></i>
+              <h2 class="text-xl font-semibold text-[var(--color-text)]">
+                Leaderboards
+              </h2>
             </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-[var(--color-text-secondary)]">
-                12 avril 2025
-              </span>
-              <span>WPM: 82 · 96%</span>
-            </div>
+            <ul class="space-y-4 text-sm p-4">
+              <li class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user.jpg"
+                    alt="Alice's photo"
+                    class="w-10 h-10 rounded-full object-cover"
+                  >
+                  <span class="text-[var(--color-text)] text-sm">#1 Alice</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="text-[var(--color-text)] font-bold">
+                    102 WPM
+                  </span>
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    99.8% acc
+                  </span>
+                </div>
+              </li>
+              <li class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user.jpg"
+                    alt="Bob's photo"
+                    class="w-10 h-10 rounded-full object-cover"
+                  >
+                  <span class="text-[var(--color-text)] text-sm">#2 Bob</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="text-[var(--color-text)] font-bold">98 WPM</span>
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    96.2% acc
+                  </span>
+                </div>
+              </li>
+              <li class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user.jpg"
+                    alt="John's photo"
+                    class="w-10 h-10 rounded-full object-cover"
+                  >
+                  <span class="text-[var(--color-text)] text-sm">#3 John</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="text-[var(--color-text)] font-bold">89 WPM</span>
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    95.8% acc
+                  </span>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
