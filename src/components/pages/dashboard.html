@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TajoType - Dashboard</title>
+    <title>Driftype - Game</title>
     <link
       rel="shortcut icon"
       href="/src/assets/noBgColor.png"
@@ -32,62 +32,124 @@
     <script src="https://unpkg.com/i18next-http-backend@2.2.0/i18nextHttpBackend.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   </head>
-  <body class="bg-[var(--color-primary)] text-[var(--color-text)]">
-    <header class="sticky top-0 backdrop-blur-md">
-      <div class="container mx-auto 2">
-        <div
-          class="container flex h-16 items-center justify-between px-4 md:px-6"
-        >
-          <a href="/" class="flex items-center gap-2 font-bold text-xl">
-            <img
-              src="/src/assets/noBgColor.png"
-              alt="Tajo Logo"
-              class="h-12 w-12 object-cover"
-            >
-            <h1 class="text-3xl font-bold text-[var(--color-active-600)]">
-              TajoType
-            </h1>
-          </a>
-          <!-- avatar -->
-          <div
-            class="relative h-full flex items-center"
-            id="user-menu-container"
+  <body class="bg-[var(--color-bg)] text-[var(--color-text)]">
+    <!-- HEADER -->
+    <header
+      class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px]"
+    >
+      <!-- Logo -->
+      <div class="h-full flex items-center">
+        <a href="/">
+          <img
+            src="/src/assets/noBg.png"
+            alt="Drifttype"
+            class="h-full w-40 object-cover"
           >
+        </a>
+      </div>
+
+      <!-- Nav bar -->
+      <nav class="w-full max-w-md mx-auto h-[40px]">
+        <div
+          class="flex justify-between items-center bg-[var(--color-input)] rounded-full h-full"
+        >
+          <!-- Practice -->
+          <div class="relative group w-full h-full">
             <button
-              id="user-menu-button"
-              class="flex items-center gap-5 px-2 py-1 bg-[var(--color-input)] rounded-full transition cursor-pointer -translate-y-0.5 group min-w-fit"
+              data-tooltip-target="tooltip-practice"
+              type="button"
+              class="flex flex-col items-center justify-center rounded-s-full hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
             >
-              <img
-                id="avatar-img"
-                src="https://i.pravatar.cc/40"
-                alt="Avatar"
-                class="w-8 h-8 rounded-full"
-              >
-              <h2 class="text-sm" id="username"></h2>
               <i
-                class="fa-solid fa-angle-down text-xs group-hover:translate-y-0.5"
+                class="fa-solid fa-keyboard text-[var(--color-text)] text-2xl group-hover:text-amber-500"
               ></i>
+              <span class="sr-only">Practice</span>
             </button>
             <div
-              id="dropdown"
-              class="absolute right-0 -bottom-16 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)] overflow-hidden"
+              id="tooltip-practice"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
             >
-              <a
-                href="/profile"
-                class="flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
-              >
-                Profile
-                <i class="fas fa-user"></i>
-              </a>
-              <button
-                class="w-full text-left flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
-                onclick="logout()"
-              >
-                Sign out
-                <i class="fas fa-right-from-bracket"></i>
-              </button>
+              Practice
             </div>
           </div>
+
+          <!-- Statistics -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-statistics"
+              type="button"
+              class="flex flex-col items-center justify-center hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+            >
+              <i
+                class="fa-solid fa-chart-column text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Statistics</span>
+            </button>
+            <div
+              id="tooltip-statistics"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Statistics
+            </div>
+          </div>
+
+          <!-- Settings -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-settings"
+              type="button"
+              class="cursor-pointer flex flex-col items-center justify-center rounded-e-full hover:bg-[var(--color-bg)] transition w-full h-full"
+            >
+              <i
+                class="fa-solid fa-gear text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Settings</span>
+            </button>
+            <div
+              id="tooltip-settings"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Settings
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Avatar / User menu -->
+      <div class="relative h-full flex items-center" id="user-menu-container">
+        <button
+          id="user-menu-button"
+          class="flex items-center gap-5 px-2 py-1 bg-[var(--color-input)] rounded-full transition cursor-pointer -translate-y-0.5 group min-w-fit"
+        >
+          <img
+            id="avatar-img"
+            src="https://i.pravatar.cc/40"
+            alt="Avatar"
+            class="w-8 h-8 rounded-full"
+          >
+          <h2 class="text-sm" id="username"></h2>
+          <i
+            class="fa-solid fa-angle-down text-xs group-hover:translate-y-0.5"
+          ></i>
+        </button>
+        <div
+          id="dropdown"
+          class="absolute right-0 -bottom-16 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)] overflow-hidden"
+        >
+          <a
+            href="/profile"
+            class="flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+          >
+            Profile
+            <i class="fas fa-user"></i>
+          </a>
+          <button
+            class="w-full text-left flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+            onclick="logout()"
+          >
+            Sign out
+            <i class="fas fa-right-from-bracket"></i>
+          </button>
         </div>
       </div>
     </header>
@@ -136,15 +198,10 @@
       </div>
     </main>
     <!-- navigation bar -->
-    <div>
-      <nav
-        id="navbar"
-        class="fixed z-50 w-full h-11 max-w-sm -translate-x-1/2 bg-white border border-[var(--color-text)] rounded-full bottom-4 left-1/2"
-      ></nav>
-    </div>
 
     <script type="module" src="../js/pages/dashboard.js"></script>
     <script type="module" src="../js/script.js"></script>
     <script src="../js/logoutFunc.js"></script>
+    <script src="../js/pages/ProfilePageScript/userInfofetch.js"></script>
   </body>
 </html>
