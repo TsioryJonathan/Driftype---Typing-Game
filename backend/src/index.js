@@ -25,7 +25,9 @@ app.use(express.json({ limit: '10kb' }));
 
 // Routes
 app.use('/api/auth', authRoutes);
+
 app.use('/api/stats', statRoutes);
+
 
 // Healthcheck
 app.get('/api/status', (req, res) => {

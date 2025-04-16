@@ -12,7 +12,7 @@
     "game",
     "speedtyping",
     "toja",
-    "tojatype"
+    "driftype"
   ],
   "author": "HEI Madagascar : Toky & Fiantso",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "@tailwindcss/cli": "^4.1.1",
     "animate.css": "^4.1.1",
     "tailwindcss": "^4.1.1",
+    "tinykeys": "^3.0.0",
     "typed.js": "^2.1.0"
   },
   "devDependencies": {
