@@ -1,9 +1,18 @@
 const usernameField = document.querySelectorAll('h2#username');
 const initial = document.querySelector('#initial');
 const getUsernameNdEmail = async () => {
-  const { id, email } = JSON.parse(localStorage.getItem('typing_game_user'));
+ 
+  if (localStorage.getItem('typing_game_user') == null) {
+    usernameField.forEach((field) => (field.innerText = 'Guest'));
+    initial.textContent = 'G';
+    return;
+  }
 
-  if (!id) return 'Guest';
+  const { id, email } = JSON.parse(localStorage.getItem('typing_game_user'));
+  console.log('lolo');
+
+  if (!id) {
+  }
   const response = await fetch(`http://localhost:3000/api/user/${id}`);
   if (!response.ok) throw new Error('User not found');
   const data = await response.json();

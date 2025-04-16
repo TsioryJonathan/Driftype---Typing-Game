@@ -700,6 +700,9 @@
   .min-w-\[px\] {
     min-width: px;
   }
+  .min-w-fit {
+    min-width: fit-content;
+  }
   .flex-1 {
     flex: 1;
   }
