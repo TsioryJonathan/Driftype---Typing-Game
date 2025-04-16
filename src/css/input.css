@@ -49,54 +49,54 @@
 /* Thème clair */
 :root,
 [data-theme='light'] {
-  --color-bg: #9caedf;
-  --color-bg-secondary: #648bb8fb;
-  --color-text: #ffffff;
-  --color-text-secondary: #080033;
-  --color-primary: #1648d3;
-  --color-primary-hover: #a593b9;
-  --color-secondary: #4d4137;
-  --color-accent: #f472b6;
-  --color-border: #93b4f1;
-  --color-input: #faf5ff;
-  --color-input-border: #a79cbb;
-  --color-card: #7d59ff6b;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
+  --color-bg: #ffffff; /* Blanc pur */
+  --color-bg-secondary: #f1f5f9; /* Gris très clair bleuté */
+  --color-text: #0f172a; /* Bleu-gris très foncé (presque noir) */
+  --color-text-secondary: #475569; /* Bleu-gris moyen */
+  --color-primary: #3b82f6; /* Bleu Tailwind */
+  --color-primary-hover: #2563eb; /* Bleu plus saturé */
+  --color-secondary: #64748b; /* Gris bleuté */
+  --color-accent: #ec4899; /* Rose framboise */
+  --color-border: #e2e8f0; /* Gris clair pour délimitation */
+  --color-input: #ffffff; /* Blanc pur pour champs */
+  --color-input-border: #cbd5e1; /* Bordure grise subtile */
+  --color-card: #f8fafc; /* Fond carte très clair */
+  --color-success: #10b981; /* Vert succès */
+  --color-warning: #f59e0b; /* Jaune/orangé */
+  --color-error: #ef4444; /* Rouge erreur */
 
-  --gradient-start: #e0e7ff;
-  --gradient-end: #a5b4fc;
+  --gradient-start: #e0f2fe; /* Bleu clair */
+  --gradient-end: #93c5fd; /* Bleu moyen */
 
-  --text-gradient-start: #ff9e7d; /* Orange pastel plus doux */
-  --text-gradient-middle: #b8a8f0; /* Violet léger */
-  --text-gradient-end: #9d99f7; /* Violet bleuté clair */
+  --text-gradient-start: #fca5a5; /* Rose pastel */
+  --text-gradient-middle: #c4b5fd; /* Violet pastel */
+  --text-gradient-end: #60a5fa; /* Bleu clair */
 }
 
 /* Thème sombre */
 [data-theme='dark'] {
-  --color-bg: #150a35;
-  --color-bg-secondary: #29125e73;
-  --color-text: #f0e7fe;
-  --color-text-secondary: #b794f6;
-  --color-primary: #9c64f0;
-  --color-primary-hover: #7e3af2;
-  --color-secondary: #818cf8;
-  --color-accent: #f472b6;
-  --color-border: #bba1f028;
-  --color-input: #29125e;
-  --color-input-border: #5522b0;
-  --color-card: #1e0d4a;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
+  --color-bg: #0b0f19;
+  --color-bg-secondary: #111827;
+  --color-text: #e5f0ff;
+  --color-text-secondary: #94a3b8;
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-secondary: #0ea5e9;
+  --color-accent: #38bdf8;
+  --color-border: #1e293b;
+  --color-input: #1f2937;
+  --color-input-border: #3b82f6;
+  --color-card: #111827;
+  --color-success: #22c55e;
+  --color-warning: #eab308;
   --color-error: #ef4444;
 
-  --gradient-start: #380f4a;
-  --gradient-end: #9e67ffad;
+  --gradient-start: #0f172a;
+  --gradient-end: #2563eb;
 
-  --text-gradient-start: #faa178;
-  --text-gradient-middle: #a089df;
-  --text-gradient-end: #807be4;
+  --text-gradient-start: #60a5fa;
+  --text-gradient-middle: #3b82f6;
+  --text-gradient-end: #0ea5e9;
 }
 
 /* Auto - basés sur les préférences du système */
@@ -138,7 +138,7 @@ body {
 
 #get-started {
   background:
-    linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
+    linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)),
     url('/public/typing.jpg');
   background-position: center;
   background-size: cover;
