@@ -37,7 +37,7 @@ export const getWordsByDifficulty = (mode, lang = 'en') => {
     const dictionary = wordDictionaries[lang] || wordDictionaries['en'];
     const wordList = dictionary[mode] || dictionary['medium'];
     const words = [];
-    const wordCount = 20;
+    const wordCount = 200;
 
     for (let i = 0; i < wordCount; i++) {
         const randomIndex = Math.floor(Math.random() * wordList.length);
