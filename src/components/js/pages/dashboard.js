@@ -1,56 +1,27 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   userAvatarOption();
+
   initializeDropdowns();
   navBar();
+
 });
 
 const userAvatarOption = () => {
-  const container = document.getElementById("user-menu-container");
-
-  container.innerHTML = `
-            <button
-              id="user-menu-button"
-              class="flex items-center gap-2 px-2 py-1 bg-[var(--color-input)] rounded-full transition cursor-pointer -translate-y-0.5 group"
-            >
-              <img
-                id="avatar-img"
-                src="https://i.pravatar.cc/40"
-                alt="Avatar"
-                class="w-8 h-8 rounded-full"
-              />
-              <i
-                class="fa-solid fa-angle-down text-xs group-hover:translate-y-0.5"
-              ></i>
-            </button>
-            <div
-              id="dropdown"
-              class="absolute right-0 mt-2 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)]"
-            >
-              <a
-                href="/profile"
-                class="block px-2 py-1 rounded-md hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-bases"
-                >Profile</a
-              >
-              <button
-                class="w-full text-left px-2 py-1 rounded-md hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-bases"
-              >
-                Sign out
-              </button></div>
-  `;
-
-  const button = document.getElementById("user-menu-button");
-  const dropdown = document.getElementById("dropdown");
-  button.addEventListener("click", (e) => {
+  const button = document.getElementById('user-menu-button');
+  const dropdown = document.getElementById('dropdown');
+  const container = document.getElementById('user-menu-container');
+  button.addEventListener('click', (e) => {
     e.stopPropagation();
-    dropdown.classList.toggle("hidden");
+    dropdown.classList.toggle('hidden');
   });
 
-  document.addEventListener("click", (e) => {
+  document.addEventListener('click', (e) => {
     if (!container.contains(e.target)) {
-      dropdown.classList.add("hidden");
+      dropdown.classList.add('hidden');
     }
   });
 };
+
 
 const initializeDropdowns = () => {
   const dropdowns = [
@@ -191,3 +162,4 @@ const navBar = () => {
           </div>
         </div>`;
 };
+
