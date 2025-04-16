@@ -1,26 +1,26 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TajoType - Dashboard</title>
     <link
       rel="shortcut icon"
       href="/src/assets/noBgColor.png"
       type="image/x-icon"
-    />
-    <link href="/src/css/output.css" rel="stylesheet" />
+    >
+    <link href="/src/css/output.css" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    >
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    />
+    >
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
       integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
@@ -43,10 +43,8 @@
               src="/src/assets/noBgColor.png"
               alt="Tajo Logo"
               class="h-12 w-12 object-cover"
-            />
-            <h1
-              class="text-3xl font-bold text-[var(--color-active-600)]"
             >
+            <h1 class="text-3xl font-bold text-[var(--color-active-600)]">
               TajoType
             </h1>
           </a>
@@ -68,16 +66,23 @@
           class="mb-6 text-justify text-xl leading-relaxed whitespace-pre-wrap"
           id="test-container"
         >
-        <div class="relative flex group" tabindex="0">
-          <p id="word-display" class="line-clamp-3 font-fira-code text-3xl blur-xs group-focus:blur-none"></p>
-          <p class="test-focus absolute t-0 w-full h-full flex justify-center items-center cursor-default text-[var[--color-text]] text-2xl group-focus:hidden" >Click here to focus</p>
-        </div>
+          <div class="relative flex group" tabindex="0">
+            <p
+              id="word-display"
+              class="line-clamp-3 font-fira-code text-3xl blur-xs group-focus:blur-none"
+            ></p>
+            <p
+              class="test-focus absolute t-0 w-full h-full flex justify-center items-center cursor-default text-[var[--color-text]] text-2xl group-focus:hidden"
+            >
+              Click here to focus
+            </p>
+          </div>
           <input
             id="input-field"
             class="w-full p-4 border rounded-lg font-poppins text-lg focus:outline-none focus:ring-2 focus:ring-active-500"
             type="text"
             autofocus
-          />
+          >
           <p id="results">Results :</p>
         </div>
         <div class="mb-6"></div>
