@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driftype - User Settings</title>
+    <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon">
+    <link href="/src/css/output.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    >
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    >
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
+      integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      defer
+    ></script>
+    <script src="https://unpkg.com/i18next@22.4.15/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@2.2.0/i18nextHttpBackend.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  </head>
+  <body class="bg-[var(--color-bg)] text-[var(--color-text)]">
+    <!-- HEADER -->
+    <header
+      class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px]"
+    >
+      <!-- Logo -->
+      <div class="h-full flex items-center">
+        <a href="/">
+          <img
+            src="/src/assets/noBg.png"
+            alt="Drifttype"
+            class="h-full w-40 object-cover"
+          >
+        </a>
+      </div>
+
+      <!-- Nav bar -->
+      <nav class="w-full max-w-md mx-auto h-[40px]">
+        <div
+          class="flex justify-between items-center bg-[var(--color-input)] rounded-full h-full"
+        >
+          <!-- Practice -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-practice"
+              type="button"
+              class="flex flex-col items-center justify-center rounded-s-full hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+            >
+              <i
+                class="fa-solid fa-keyboard text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Practice</span>
+            </button>
+            <div
+              id="tooltip-practice"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Practice
+            </div>
+          </div>
+
+          <!-- Statistics -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-statistics"
+              type="button"
+              class="flex flex-col items-center justify-center hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+            >
+              <i
+                class="fa-solid fa-chart-column text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Statistics</span>
+            </button>
+            <div
+              id="tooltip-statistics"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Statistics
+            </div>
+          </div>
+
+          <!-- Settings -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-settings"
+              type="button"
+              class="cursor-pointer flex flex-col items-center justify-center rounded-e-full hover:bg-[var(--color-bg)] transition w-full h-full"
+            >
+              <i
+                class="fa-solid fa-gear text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Settings</span>
+            </button>
+            <div
+              id="tooltip-settings"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Settings
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Avatar / User menu -->
+      <div class="relative h-full flex items-center" id="user-menu-container">
+        <button
+          id="user-menu-button"
+          class="flex items-center gap-5 px-2 py-1 bg-[var(--color-input)] rounded-full transition cursor-pointer -translate-y-0.5 group"
+        >
+          <img
+            id="avatar-img"
+            src="https://i.pravatar.cc/40"
+            alt="Avatar"
+            class="w-8 h-8 rounded-full"
+          >
+          <h2 class="text-sm" id="username"></h2>
+          <i
+            class="fa-solid fa-angle-down text-xs group-hover:translate-y-0.5"
+          ></i>
+        </button>
+        <div
+          id="dropdown"
+          class="absolute right-0 -bottom-16 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)] overflow-hidden"
+        >
+          <a
+            href="/profile"
+            class="flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+          >
+            Profile
+            <i class="fas fa-user"></i>
+          </a>
+          <button
+            class="w-full text-left flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+          >
+            Sign out
+            <i class="fas fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-3xl mx-auto py-8 px-4 space-y-6">
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center space-x-3">
+          <i class="fas fa-cogs text-[var(--color-primary)] text-3xl"></i>
+          <h1 class="text-2xl font-bold text-[var(--color-text)]">Settings</h1>
+        </div>
+        <button
+          onclick="handleReset()"
+          class="flex items-center space-x-2 px-4 py-2 text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-error)] transition-colors"
+        >
+          <i class="fas fa-redo-alt text-sm"></i>
+          <span>Reset All</span>
+        </button>
+      </div>
+
+      <!-- Profile Settings Section -->
+      <div
+        class="border border-[var(--color-border)] rounded-lg overflow-hidden bg-[var(--color-card)]"
+      >
+        <button
+          onclick="toggleSection('profile-settings')"
+          class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
+        >
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-user text-[var(--color-primary)]"></i>
+            <span class="font-medium">Profile</span>
+          </div>
+          <i
+            id="chevron-profile-settings"
+            class="fas fa-chevron-down transform transition-transform duration-300"
+          ></i>
+        </button>
+        <div
+          id="profile-settings"
+          class="border-t border-[var(--color-border)] max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+        >
+          <div class="space-y-4 p-6">
+            <div class="flex items-center space-x-4 mb-6">
+              <div
+                class="w-16 h-16 rounded-full bg-[var(--color-primary)] flex items-center justify-center text-white text-xl font-bold"
+              >
+                T
+              </div>
+              <div>
+                <h2
+                  class="text-lg font-medium text-[var(--color-text)]"
+                  id="username-label"
+                ></h2>
+                <p
+                  class="text-sm text-[var(--color-text-secondary)]"
+                  id="email-label"
+                ></p>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex flex-col space-y-2">
+                <label class="text-sm text-[var(--color-text-secondary)]">
+                  Username
+                </label>
+                <input
+                  type="text"
+                  id="username-input"
+                  class="px-3 py-2 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
+                >
+              </div>
+              <div class="flex flex-col space-y-2">
+                <label class="text-sm text-[var(--color-text-secondary)]">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  class="px-3 py-2 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
+                >
+              </div>
+              <button
+                class="w-full mt-4 px-4 py-2 bg-[var(--color-primary)] text-white rounded-md hover:bg-[var(--color-primary-hover)] transition-colors flex items-center justify-center space-x-2"
+              >
+                <i class="fas fa-save text-white"></i>
+                <span>Save Changes</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Preferences Section -->
+      <div
+        class="border border-[var(--color-border)] rounded-lg overflow-hidden bg-[var(--color-card)]"
+      >
+        <button
+          onclick="toggleSection('game-preferences')"
+          class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
+        >
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-keyboard text-[var(--color-accent)]"></i>
+            <span class="font-medium">Game Preferences</span>
+          </div>
+          <i
+            id="chevron-game-preferences"
+            class="fas fa-chevron-down transform transition-transform duration-300"
+          ></i>
+        </button>
+        <div
+          id="game-preferences"
+          class="border-t border-[var(--color-border)] max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+        >
+          <div class="space-y-4 p-6">
+            <div class="flex items-center justify-between">
+              <label class="text-sm text-[var(--color-text)]">Target WPM</label>
+              <select
+                class="ml-4 px-3 py-1.5 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
+              >
+                <option value="30">Beginner (30 WPM)</option>
+                <option value="60">Intermediate (60 WPM)</option>
+                <option value="90">Advanced (90 WPM)</option>
+                <option value="120">Expert (120 WPM)</option>
+              </select>
+            </div>
+            <div class="flex items-center justify-between">
+              <label class="text-sm text-[var(--color-text)]">
+                Text Length
+              </label>
+              <select
+                class="ml-4 px-3 py-1.5 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
+              >
+                <option value="short">Short (1-2 paragraphs)</option>
+                <option value="medium">Medium (3-4 paragraphs)</option>
+                <option value="long">Long (5+ paragraphs)</option>
+              </select>
+            </div>
+            <div class="flex items-center space-x-4">
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" class="sr-only">
+                <div
+                  class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
+                >
+                  <div
+                    class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transform translate-x-4"
+                  ></div>
+                </div>
+                <span class="ml-3 text-sm text-[var(--color-text)]">
+                  Show Real-time Errors
+                </span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" checked class="sr-only">
+                <div
+                  class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
+                >
+                  <div
+                    class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transform translate-x-4"
+                  ></div>
+                </div>
+                <span class="ml-3 text-sm text-[var(--color-text)]">
+                  Instant Feedback
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sound & Feedback Section -->
+      <div
+        class="border border-[var(--color-border)] rounded-lg overflow-hidden bg-[var(--color-card)]"
+      >
+        <button
+          onclick="toggleSection('sound-feedback')"
+          class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
+        >
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-volume-up text-[var(--color-secondary)]"></i>
+            <span class="font-medium">Sound & Feedback</span>
+          </div>
+          <i
+            id="chevron-sound-feedback"
+            class="fas fa-chevron-down transform transition-transform duration-300"
+          ></i>
+        </button>
+        <div
+          id="sound-feedback"
+          class="px-6 py-0 border-t border-[var(--color-border)] max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+        >
+          <div class="space-y-4 py-4">
+            <label class="flex items-center cursor-pointer">
+              <input type="checkbox" checked class="sr-only">
+              <div
+                class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
+              >
+                <div
+                  class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transform translate-x-4"
+                ></div>
+              </div>
+              <span class="ml-3 text-sm text-[var(--color-text)]">
+                Enable Sounds
+              </span>
+            </label>
+            <label class="flex items-center cursor-pointer">
+              <input type="checkbox" checked class="sr-only">
+              <div
+                class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
+              >
+                <div
+                  class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transform translate-x-4"
+                ></div>
+              </div>
+              <span class="ml-3 text-sm text-[var(--color-text)]">
+                Keyboard Sounds
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Appearance -->
+      <div
+        class="border border-[var(--color-border)] rounded-lg overflow-hidden bg-[var(--color-card)]"
+      >
+        <button
+          onclick="toggleSection('appearance-settings')"
+          class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
+        >
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-palette text-[var(--color-secondary)]"></i>
+            <span class="font-medium">Appearance</span>
+          </div>
+          <i
+            id="chevron-appearance-settings"
+            class="fas fa-chevron-down transform transition-transform duration-300"
+          ></i>
+        </button>
+        <div
+          id="appearance-settings"
+          class="px-6 py-0 border-t border-[var(--color-border)] max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+        >
+          <div class="space-y-4 py-4">
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-[var(--color-text)]">Theme</span>
+              <select
+                class="text-sm px-2 py-1 rounded bg-[var(--color-background)] border border-[var(--color-border)] text-[var(--color-text)]"
+              >
+                <option value="auto">Auto</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-[var(--color-text)]">Font Size</span>
+              <select
+                class="text-sm px-2 py-1 rounded bg-[var(--color-background)] border border-[var(--color-border)] text-[var(--color-text)]"
+              >
+                <option value="sm">Small</option>
+                <option value="md" selected>Medium</option>
+                <option value="lg">Large</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notification -->
+      <div
+        class="border border-[var(--color-border)] rounded-lg overflow-hidden bg-[var(--color-card)]"
+      >
+        <button
+          onclick="toggleSection('notification-settings')"
+          class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
+        >
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-bell text-[var(--color-secondary)]"></i>
+            <span class="font-medium">Notifications</span>
+          </div>
+          <i
+            id="chevron-notification-settings"
+            class="fas fa-chevron-down transform transition-transform duration-300"
+          ></i>
+        </button>
+        <div
+          id="notification-settings"
+          class="px-6 py-0 border-t border-[var(--color-border)] max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+        >
+          <div class="space-y-4 py-4">
+            <label class="flex items-center cursor-pointer">
+              <input type="checkbox" checked class="sr-only">
+              <div
+                class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
+              >
+                <div
+                  class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transform translate-x-4 transition-transform"
+                ></div>
+              </div>
+              <span class="ml-3 text-sm text-[var(--color-text)]">
+                Email Notifications
+              </span>
+            </label>
+            <label class="flex items-center cursor-pointer">
+              <input type="checkbox" class="sr-only">
+              <div
+                class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
+              >
+                <div
+                  class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transition-transform"
+                ></div>
+              </div>
+              <span class="ml-3 text-sm text-[var(--color-text)]">
+                Push Notifications
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Privacy -->
+      <div
+        class="border border-[var(--color-border)] rounded-lg overflow-hidden bg-[var(--color-card)]"
+      >
+        <button
+          onclick="toggleSection('privacy-settings')"
+          class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
+        >
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-user-shield text-[var(--color-secondary)]"></i>
+            <span class="font-medium">Privacy</span>
+          </div>
+          <i
+            id="chevron-privacy-settings"
+            class="fas fa-chevron-down transform transition-transform duration-300"
+          ></i>
+        </button>
+        <div
+          id="privacy-settings"
+          class="px-6 py-0 border-t border-[var(--color-border)] max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
+        >
+          <div class="space-y-4 py-4">
+            <label class="flex items-center cursor-pointer">
+              <input type="checkbox" checked class="sr-only">
+              <div
+                class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
+              >
+                <div
+                  class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transform translate-x-4 transition-transform"
+                ></div>
+              </div>
+              <span class="ml-3 text-sm text-[var(--color-text)]">
+                Profile Visible
+              </span>
+            </label>
+            <label class="flex items-center cursor-pointer">
+              <input type="checkbox" class="sr-only">
+              <div
+                class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
+              >
+                <div
+                  class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transition-transform"
+                ></div>
+              </div>
+              <span class="ml-3 text-sm text-[var(--color-text)]">
+                Activity Status
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toggle Section Script -->
+      <script>
+        function toggleSection(id) {
+          const section = document.getElementById(id);
+          const chevron = document.getElementById(`chevron-${id}`);
+          const isCollapsed = section.classList.contains('max-h-0');
+
+          if (isCollapsed) {
+            section.classList.remove('max-h-0', 'py-0');
+            section.classList.add('py-4', 'max-h-[1000px]');
+            chevron.classList.add('rotate-180');
+          } else {
+            section.classList.remove('max-h-[1000px]', 'py-4');
+            section.classList.add('max-h-0', 'py-0');
+            chevron.classList.remove('rotate-180');
+          }
+        }
+      </script>
+    </div>
+    <script src="../js/pages/dashboard.js"></script>
+    <script src="../js/pages/SettingPageScript/userInfofetch.js"></script>
+  </body>
+</html>
