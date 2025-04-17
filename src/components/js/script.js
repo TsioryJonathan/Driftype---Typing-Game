@@ -89,7 +89,6 @@ const startTest = (wordCount = 200) => {
   if (firstLetter) firstLetter.style.textDecoration = "underline";
 
   testContainer.value = "";
-  testContainer.focus();
   updateResults();
   updateProgressBar(timeLeft, timerSelect);
   showProgressBar();
