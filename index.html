@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="auto">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -275,7 +275,9 @@
             <div
               class="flex w-fit items-center justify-center rounded-md bg-[var(--color-bg-secondary)] p-3 transition-transform duration-150 group-hover:scale-105"
             >
-              <i class="fa-solid fa-keyboard text-[var(--color-text)] text-lg"></i>
+              <i
+                class="fa-solid fa-keyboard text-[var(--color-text)] text-lg"
+              ></i>
             </div>
             <h3 class="text-xl font-semibold text-[var(--color-text)]">
               Multiple levels
@@ -309,7 +311,9 @@
             <div
               class="flex w-fit items-center justify-center rounded-md bg-[var(--color-bg-secondary)] p-3 transition-transform duration-150 group-hover:scale-105"
             >
-              <i class="fa-solid fa-trophy text-[var(--color-text)] text-lg"></i>
+              <i
+                class="fa-solid fa-trophy text-[var(--color-text)] text-lg"
+              ></i>
             </div>
             <h3 class="text-xl font-semibold text-[var(--color-text)]">
               Achievements
@@ -323,6 +327,7 @@
       </section>
 
       <!-- TESTIMONIALS -->
+
       <section
         class="flex min-h-screen flex-col justify-center gap-10 bg-[var(--color-bg)] px-6 py-16"
         id="testimonials"
@@ -335,169 +340,157 @@
             See what people are saying about us
           </p>
         </div>
-
-        <div
-          class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-2 px-2 sm:px-16"
-        >
-          <!-- Card 1 -->
-          <div
-            class="group rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-6 shadow-lg backdrop-blur-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
-          >
-            <div class="mb-4 flex items-center gap-4">
-              <img
-                src="./public/user.jpg"
-                alt="John Doe"
-                class="h-12 w-12 rounded-full object-cover"
-              >
-              <div>
-                <h3 class="text-lg font-semibold text-[var(--color-text)]">
-                  John Doe
-                </h3>
-                <p class="text-sm text-[var(--color-text)] opacity-70">
-                  Computer Science Teacher
-                </p>
-              </div>
-            </div>
-            <p class="italic text-[var(--color-text-secondary)]">
-              <span class="text-xl font-bold text-[var(--color-text)]">“</span>
-              This typing game has completely transformed my ty. I went from 40
-              WPM to 80 WPM in just a few weeks!
-              <span class="text-xl font-bold text-[var(--color-text)]">”</span>
-            </p>
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="flex items-center justify-center">
+            <img
+              src="./public/feedback.png"
+              alt="User feedback illustration"
+              class="w-[80%] h-full animate-float"
+            >
           </div>
 
-          <!-- Card 2 -->
-          <div
-            class="group rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-6 shadow-lg backdrop-blur-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
-          >
-            <div class="mb-4 flex items-center gap-4">
+          <div class="flex flex-col gap-5 px-2 sm:px-16">
+            <!-- Card 1 -->
+            <div
+              class="bg-[var(--color-card)] rounded-2xl shadow-md p-6 border border-[var(--color-border)] flex flex-col items-center text-center"
+            >
               <img
-                src="./public/user.jpg"
-                alt="Claire Dubois"
-                class="h-12 w-12 rounded-full object-cover"
+                src="https://i.pravatar.cc/100?img=32"
+                class="w-16 h-16 rounded-full mb-4 border-2 border-[var(--color-primary)]"
+                alt="User Avatar"
               >
-              <div>
-                <h3 class="text-lg font-semibold text-[var(--color-text)]">
-                  Claire Dubois
-                </h3>
-                <p class="text-sm text-[var(--color-text)] opacity-70">
-                  Administrative Assistant
-                </p>
-              </div>
+              <p class="text-[var(--color-text-secondary)] italic mb-4">
+                "This app has completely changed how I type. The stats, the
+                design — everything is perfect!"
+              </p>
+              <h3 class="text-[var(--color-text)] font-semibold">Jane Doe</h3>
+              <span class="text-sm text-[var(--color-text-secondary)]">
+                Developer @TechCorp
+              </span>
             </div>
-            <p class="italic text-[var(--color-text-secondary)]">
-              <span class="text-xl font-bold text-[var(--color-text)]">“</span>
-              Thanks to this site, I doubled my typing speed in just a few
-              weeks. It’s a real time-saver in my daily work.
-              <span class="text-xl font-bold text-[var(--color-text)]">”</span>
-            </p>
+
+            <!-- Card 2 -->
+
+            <div
+              class="bg-[var(--color-card)] rounded-2xl shadow-md p-6 border border-[var(--color-border)] flex flex-col items-center text-center"
+            >
+              <img
+                src="https://i.pravatar.cc/100?img=47"
+                class="w-16 h-16 rounded-full mb-4 border-2 border-[var(--color-primary)]"
+                alt="User Avatar"
+              >
+              <p class="text-[var(--color-text-secondary)] italic mb-4">
+                "I improved my typing speed by 30% in just a week. Highly
+                recommended!"
+              </p>
+              <h3 class="text-[var(--color-text)] font-semibold">John Smith</h3>
+              <span class="text-sm text-[var(--color-text-secondary)]">
+                UI/UX Designer
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- CONTACT FORM -->
-      <section
-        class="flex min-h-screen flex-col gap-10 bg-[var(--color-bg-secondary)] p-6 py-16 md:px-40"
-        id="contact"
-      >
-        <div class="text-center space-y-3">
-          <h2 class="text-4xl font-bold text-[var(--color-text)]">
-            Get in Touch
-          </h2>
-          <p class="text-lg text-[var(--color-text-secondary)]">
-            Have questions or feedback? We'd love to hear from you.
-          </p>
-        </div>
-
-        <form
-          action="https://formspree.io/f/mblgpkgj"
-          id="contact-form"
-          method="POST"
-          class="flex flex-col gap-6 p-6 shadow-lg rounded-lg bg-[var(--color-input)] backdrop-blur-lg"
+      <!-- CONTACT  -->
+      <section class="bg-[var(--color-bg-secondary)] p-5">
+        <div
+          class="bg-[var(--color-card)] rounded-2xl shadow-lg p-10 max-w-6xl mx-auto my-16 border border-[var(--color-border)]"
         >
-          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <!-- LEFT SIDE - Message from the owner -->
             <div>
-              <label
-                for="name"
-                class="mb-1 block text-sm font-medium text-[var(--color-text-secondary)]"
+              <h2 class="text-2xl font-bold text-[var(--color-text)] mb-4">
+                Contact Us
+              </h2>
+              <p
+                class="text-[var(--color-text-secondary)] text-md leading-relaxed font-raleway"
               >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="w-full rounded-lg border border-gray-300 bg-[var(--color-input)] px-4 py-2 outline-none focus:border-[var(--color-border)] focus:ring-2 focus:ring-[var(--color-secondary)] transition-all"
-                placeholder="John Doe"
-              >
+                We're always happy to connect! Whether you have a question, a
+                project idea, or just want to say hello, feel free to reach out.
+                We'll get back to you as soon as possible.
+              </p>
+              <div class="mt-6 text-[var(--color-text-secondary)] space-y-2">
+                <p class="text-sm flex gap-2 items-center">
+                  <i class="fa-solid fa-envelope"></i>
+
+                  contact@example.com
+                </p>
+                <p class="text-sm flex gap-2 items-center">
+                  <i class="fa-solid fa-phone"></i>
+
+                  +261 34 12 345 67
+                </p>
+                <p class="text-sm flex gap-2 items-center">
+                  <i class="fa-solid fa-location-dot"></i>
+
+                  Antananarivo, Madagascar
+                </p>
+              </div>
             </div>
-            <div>
-              <label
-                for="email"
-                class="mb-1 block text-sm font-medium text-[var(--color-text-secondary)]"
-              >
-                Email *
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                class="w-full rounded-lg border border-gray-300 bg-[var(--color-input)] px-4 py-2 outline-none focus:border-[var(--color-border)] focus:ring-2 focus:ring-[var(--color-secondary)] transition-all"
-                placeholder="john@example.com"
-              >
-            </div>
-          </div>
 
-          <div>
-            <label
-              for="subject"
-              class="mb-1 block text-sm font-medium text-[var(--color-text-secondary)]"
+            <!-- RIGHT SIDE - Contact form -->
+            <form
+              class="space-y-2"
+              action="https://formspree.io/f/mblgpkgj"
+              id="contact-form"
+              method="POST"
             >
-              Subject
-            </label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              class="w-full rounded-lg border border-gray-300 bg-[var(--color-input)] px-4 py-2 outline-none focus:border-[var(--color-border)] focus:ring-2 focus:ring-[var(--color-secondary)] transition-all"
-              placeholder="How can we help you?"
-            >
+              <div>
+                <label
+                  class="block text-sm text-[var(--color-text-secondary)] mb-1"
+                >
+                  Name*
+                </label>
+                <input
+                  type="text"
+                  class="w-full px-3 py-2 rounded-lg bg-[var(--color-bg-secondary)] text-[var(--color-text)] border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+                  required
+                >
+              </div>
+              <div>
+                <label
+                  class="block text-sm text-[var(--color-text-secondary)] mb-1"
+                >
+                  Email*
+                </label>
+                <input
+                  type="email"
+                  class="w-full px-3 py-2 rounded-lg bg-[var(--color-bg-secondary)] text-[var(--color-text)] border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+                  required
+                >
+              </div>
+              <div>
+                <label
+                  class="block text-sm text-[var(--color-text-secondary)] mb-1"
+                >
+                  Message*
+                </label>
+                <textarea
+                  rows="3"
+                  class="w-full px-3 py-2 rounded-lg bg-[var(--color-bg-secondary)] text-[var(--color-text)] border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+                  required
+                ></textarea>
+              </div>
+              <div>
+                <button
+                  class="group flex w-full cursor-pointer items-center justify-center gap-5 rounded-lg bg-[var(--color-active-600)] px-10 py-3 font-medium text-white transition-all duration-200 hover:bg-[var(--color-active-700)]"
+                  type="submit"
+                >
+                  <i
+                    class="fa-solid fa-paper-plane transition-transform duration-300 ease-in group-hover:-translate-y-1 group-hover:translate-x-1"
+                  ></i>
+                  Send Message
+                </button>
+                <p
+                  class="text-center text-[var(--color-text-secondary)] text-xs mt-8"
+                >
+                  *Required Field. We will get back to you within 24-48 hours.
+                </p>
+              </div>
+            </form>
           </div>
-
-          <div>
-            <label
-              for="message"
-              class="mb-1 block text-sm font-medium text-[var(--color-text-secondary)]"
-            >
-              Message *
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows="6"
-              class="w-full rounded-lg border border-gray-300 bg-[var(--color-input)] px-4 py-2 outline-none focus:border-[var(--color-border)] focus:ring-2 focus:ring-[var(--color-secondary)] transition-all"
-              placeholder="Your message here..."
-            ></textarea>
-          </div>
-
-          <div class="flex items-center justify-center">
-            <button
-              class="group flex w-full cursor-pointer items-center justify-center gap-5 rounded-lg bg-[var(--color-active-600)] px-10 py-3 font-medium text-white transition-all duration-200 hover:bg-[var(--color-active-700)]"
-              form="contact-form"
-            >
-              <i
-                class="fa-solid fa-paper-plane transition-transform duration-300 ease-in group-hover:-translate-y-1 group-hover:translate-x-1"
-              ></i>
-              Send Message
-            </button>
-          </div>
-
-          <p class="text-center text-xs text-gray-500 mt-4">
-            * Required fields. We'll get back to you within 24-48 hours.
-          </p>
-        </form>
+        </div>
       </section>
 
       <!-- GET STARTED -->
