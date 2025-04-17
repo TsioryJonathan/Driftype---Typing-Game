@@ -1,6 +1,5 @@
 import sql from '../config/db.js';
-
-export const getStatistics = async (req, res) => {
+/* export const getStatistics = async (req, res) => {
   try {
     const userId = req.userId;
 
@@ -34,4 +33,4 @@ export const getStatistics = async (req, res) => {
   }
 };
 
-export default { getStatistics };
+export default { getStatistics }; */ ('depreceted');

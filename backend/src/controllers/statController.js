@@ -20,18 +20,27 @@ export const getUserStat = async (req, res) => {
 
 export const postUserStat = async (req, res) => {
   const userId = req.params.userId;
-  const { wpm, accuracy, time_taken, text_length } = req.body;
+  const { wpm, accuracy, language, difficulty, time_taken } = req.body;
 
   if (!userId) {
-    return res.status(404).json({ message: 'User not logged In' });
+    return res.status(401).json({ message: 'User not logged in' });
+  }
+
+  if (!wpm || !accuracy || !language || !difficulty || !time_taken) {
+    return res.status(400).json({ message: 'Missing required fields' });
   }
 
   try {
-    await sql`insert into game_statistics (user_id, wpm, accuracy, time_taken, text_length, created_at)
-          values (${userId}, ${wpm}, ${accuracy}, ${time_taken}, ${text_length}, now())`;
+    await sql`
+      INSERT INTO game_statistics (user_id, wpm, accuracy, language, difficulty, time_taken, created_at)
+      VALUES (${userId}, ${wpm}, ${accuracy}, ${language}, ${difficulty}, ${time_taken}, NOW())
+    `;
 
-    res.json({ Mess: 'Data insert succes' });
+    res.status(201).json({ message: 'Stat successfully recorded' });
   } catch (e) {
-    console.log(e.detail);
+    console.error('Insert error:', e);
+    res
+      .status(500)
+      .json({ message: 'Database error', error: e.detail || e.message });
   }
 };

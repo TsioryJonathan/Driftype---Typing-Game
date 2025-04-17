@@ -26,8 +26,9 @@ CREATE TABLE IF NOT EXISTS game_statistics (
   user_id INTEGER REFERENCES users(id),
   wpm INTEGER NOT NULL,
   accuracy DECIMAL(5,2) NOT NULL,
+  language VARCHAR(100) not null,
+  difficulty VARCHAR(30) not null,
   time_taken INTEGER NOT NULL,
-  text_length INTEGER NOT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
