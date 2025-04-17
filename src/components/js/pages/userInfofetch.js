@@ -5,19 +5,22 @@ const usernameLabel = document.querySelector('#username-label');
 const emailLabel = document.querySelector('#email-label');
 
 const getUsernameNdEmail = async () => {
-  const { id, email } = JSON.parse(localStorage.getItem('typing_game_user'));
-
-  if (!id) {
+  if (localStorage.getItem('typing_game_user') === null) {
     navUsername.textContent = 'Guest';
     usernameInput.value = 'Guest';
     emailInput.value = 'Guest';
     emailLabel.textContent = 'Guest';
     usernameLabel.textContent = 'Guest';
 
-    return;
+    return 0;
   }
+
+  const { id, email } = JSON.parse(localStorage.getItem('typing_game_user'));
+
   const response = await fetch(`http://localhost:3000/api/user/${id}`);
+
   if (!response.ok) throw new Error('User not found');
+
   const data = await response.json();
   const username = data[0].username;
   console.log(username);
