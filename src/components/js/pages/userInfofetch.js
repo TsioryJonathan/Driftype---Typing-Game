@@ -1,4 +1,4 @@
-const navUsername = document.querySelector('h2#username');
+const usernameField = document.querySelectorAll('h2#username');
 const usernameInput = document.querySelector('#username-input');
 const emailInput = document.querySelectorAll('#email');
 const usernameLabel = document.querySelector('#username-label');
@@ -6,7 +6,7 @@ const emailLabel = document.querySelector('#email-label');
 
 const getUsernameNdEmail = async () => {
   if (localStorage.getItem('typing_game_user') === null) {
-    navUsername.textContent = 'Guest';
+    usernameField.forEach((field) => (field.textContent = 'Guest'));
     usernameInput.value = 'Guest';
     emailInput.value = 'Guest';
     emailLabel.textContent = 'Guest';
@@ -23,8 +23,8 @@ const getUsernameNdEmail = async () => {
 
   const data = await response.json();
   const username = data[0].username;
-  console.log(username);
-  navUsername.innerText = username;
+
+  usernameField.forEach((field) => (field.textContent = username));
 
   usernameInput.value = username;
   emailInput.forEach((input) => (input.value = email));
