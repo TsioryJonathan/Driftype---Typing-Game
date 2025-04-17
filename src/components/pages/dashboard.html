@@ -7,7 +7,7 @@
     <script src="../js/toggleTheme.js"></script>
     <link
       rel="shortcut icon"
-      href="/src/assets/noBgColor.png"
+      href="/src/assets/noBg.png"
       type="image/x-icon"
     >
     <link href="/src/css/output.css" rel="stylesheet">
@@ -359,7 +359,7 @@
               ></p>
             </div>
             <p
-              class="test-focus absolute t-0 w-full h-full flex justify-center items-center cursor-default text-[var(--color-text)] text-2xl group-focus:hidden"
+              class="text-base test-focus absolute t-0 w-full h-full flex justify-center items-center cursor-default text-[var(--color-text)] group-focus:hidden"
             >
               Click here or press
               <span
@@ -392,6 +392,11 @@
             </p>
           </div>
         </div>
+      </div>
+      <!-- Badges section -->
+      <div class="mb-8 max-w-6xl mx-auto">
+        <h2 class="text-2xl font-bold mb-4">My Badges</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="badges-container"></div>
       </div>
     </main>
 
@@ -437,8 +442,10 @@
       </div>
     </div>
 
-    <script type="module" src="../js/pages/dashboard.js"></script>
-    <script type="module" src="../js/script.js"></script>
+    <script src="../js/badges.js" type="module"></script>
+    <script src="../js/pages/badges-display.js" type="module"></script>
+    <script src="../js/pages/dashboard.js" type="module"></script>
+    <script src="../js/script.js" type="module"></script>
     <script src="../js/pages/userInfofetch.js"></script>
     <script src="../js/logoutFunc.js"></script>
     <script src="../js/fireworks.js"></script>
