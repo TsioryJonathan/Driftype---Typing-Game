@@ -394,6 +394,48 @@
       </div>
     </main>
 
+    <div
+      id="stat-popup"
+      class="fixed top-5 right-5 z-50 items-center justify-center hidden"
+    >
+      <div
+        class="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-xl flex flex-col items-center gap-4 text-center"
+      >
+        <div
+          class="w-8 h-8 border-4 border-[var(--color-primary)] border-t-transparent rounded-full animate-spin"
+        ></div>
+
+        <p class="text-[var(--color-text)] font-medium">
+          Saving your stats ...
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="not-logged-popup"
+      class="fixed top-5 right-5 z-50 items-center justify-center hidden"
+    >
+      <div
+        class="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-xl flex flex-col items-center gap-4 text-center max-w-sm"
+      >
+        <i
+          class="fa-solid fa-circle-exclamation text-amber-500 text-4xl animate-pulse"
+        ></i>
+        <h2 class="text-xl font-semibold text-[var(--color-text)]">
+          not logged in
+        </h2>
+        <p class="text-sm text-[var(--color-text-secondary)]">
+          You should be logged in to save your stat
+        </p>
+        <button
+          onclick="window.location.href = '/src/components/pages/login.html'"
+          class="mt-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-xl hover:scale-105 transition-transform"
+        >
+          Login
+        </button>
+      </div>
+    </div>
+
     <script type="module" src="../js/pages/dashboard.js"></script>
     <script type="module" src="../js/script.js"></script>
     <script src="../js/pages/userInfofetch.js"></script>

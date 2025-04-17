@@ -261,7 +261,7 @@ const endTest = async () => {
   const modeValue =
     modeSelect.value || modeSelect.textContent?.toLowerCase() || 'medium';
   let langLabel = langValue;
-  const { id } = JSON.parse(localStorage.getItem('typing_game_user'));
+
   if (langValue === 'en') langLabel = 'English';
   else if (langValue === 'fr') langLabel = 'French';
   else if (langValue === 'es') langLabel = 'Spanish';
@@ -322,10 +322,24 @@ const endTest = async () => {
   testContainer.value = '';
   updateResults();
   launchFireworks();
-  console.log(id);
+  const userInfo = localStorage.getItem('typing_game_user');
+  if (!userInfo) {
+    document
+      .getElementById('not-logged-popup')
+      .classList.replace('hidden', 'flex');
+    return;
+  }
+  const { id } = JSON.parse(userInfo);
 
-  if (!id) return;
-  statPost(id, wpm, accuracy, langValue, modeValue, timerValue);
+  document.getElementById('stat-popup').classList.replace('hidden', 'flex');
+
+  setTimeout(() => {
+    document.getElementById('stat-popup').classList.replace('flex', 'hidden');
+  }, 3000);
+
+  statPost(id, wpm, accuracy, langValue, modeValue, timerValue).then(() => {
+    document.getElementById('stat-popup').classList.add('hidden');
+  });
 };
 
 // Stat Posting Function
