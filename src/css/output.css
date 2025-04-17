@@ -522,9 +522,6 @@
   .h-\[6\.5em\] {
     height: 6.5em;
   }
-  .h-\[8rem\] {
-    height: 8rem;
-  }
   .h-\[40px\] {
     height: 40px;
   }
@@ -899,9 +896,6 @@
   }
   .border-red-700 {
     border-color: var(--color-red-700);
-  }
-  .bg-\[var\(--color\)\] {
-    background-color: var(--color);
   }
   .bg-\[var\(--color-active-600\)\] {
     background-color: var(--color-active-600);
