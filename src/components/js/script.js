@@ -302,15 +302,15 @@ const endTest = async () => {
         </div>
         <div class="flex flex-row justify-between w-full mt-8 text-gray-300 text-center font-mono text-xl gap-4">
           <div class="flex-1">
-            <div class="text-base text-[var(--color-text)]">raw</div>
+            <div class="text-base text-[var(--color-text-secondary)]">raw</div>
             <div id="rawWpm">${raw ?? '-'}</div>
           </div>
           <div class="flex-1">
-            <div class="text-base text-[var(--color-text)]">correct/incorrect/extra</div>
+            <div class="text-base text-[var(--color-text-secondary)]">Characters</div>
             <div id="breakdown">${[correct, incorrect, extra].map((x) => x ?? '-').join('/')}</div>
           </div>
           <div class="flex-1">
-            <div class="text-base text-[var(--color-text)]">consistency</div>
+            <div class="text-base text-[var(--color-text-secondary)]">consistency</div>
             <div id="consistency">${consistency ?? '-'}</div>
           </div>
         </div>
