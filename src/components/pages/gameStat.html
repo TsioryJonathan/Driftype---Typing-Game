@@ -126,7 +126,14 @@
             alt="Avatar"
             class="w-8 h-8 rounded-full"
           >
-          <h2 class="text-sm" id="username"></h2>
+
+          <h2 class="text-sm" id="username">
+            <div class="flex justify-center items-center">
+              <div
+                class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+              ></div>
+            </div>
+          </h2>
           <i
             class="fa-solid fa-angle-down text-xs absolute right-5 group-hover:translate-y-0.5"
           ></i>
@@ -377,12 +384,12 @@
                     alt="Guest's photo"
                     class="w-10 h-10 rounded-full object-cover"
                   >
-                  <span
+                  <h2
                     class="text-[var(--color-text)] text-sm"
-                    id="rank"
-                  ></span>
+                    id="username"
+                  ></h2>
                 </div>
-                <div class="flex flex-col gap-1">
+                <div class="flex flex-col gap-1 items-center">
                   <span
                     class="text-[var(--color-text)] font-bold"
                     id="avg-wpm"
@@ -399,60 +406,6 @@
 
         <!-- History -->
         <!-- Barre de filtres -->
-        <div
-          class="flex flex-col sm:flex-row justify-between items-center gap-4 p-6 border-b border-[var(--color-border)]"
-        >
-          <div class="flex items-center gap-4">
-            <!-- Langue -->
-            <div class="flex flex-col">
-              <label
-                for="filter-lang"
-                class="text-sm text-[var(--color-text-secondary)] font-medium"
-              >
-                Language
-              </label>
-              <select
-                id="filter-lang"
-                class="mt-1 px-3 py-2 rounded-md bg-[var(--color-bg-secondary)] text-[var(--color-text)] border border-[var(--color-border)] text-sm"
-              >
-                <option value="all">All</option>
-                <option value="en">English</option>
-                <option value="fr">French</option>
-                <option value="es">Espagnol</option>
-                <option value="de">Deutch</option>
-                <option value="it">Italiano</option>
-              </select>
-            </div>
-
-            <!-- Difficulté -->
-            <div class="flex flex-col">
-              <label
-                for="filter-difficulty"
-                class="text-sm text-[var(--color-text-secondary)] font-medium"
-              >
-                Difficulty
-              </label>
-              <select
-                id="filter-difficulty"
-                class="mt-1 px-3 py-2 rounded-md bg-[var(--color-bg-secondary)] text-[var(--color-text)] border border-[var(--color-border)] text-sm"
-              >
-                <option value="">All</option>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-                <option value="numbers">Numbers</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Bouton -->
-          <button
-            id="apply-recent-filter"
-            class="mt-4 sm:mt-0 px-4 py-2 bg-[var(--color-primary)] text-white rounded-md text-sm hover:bg-[var(--color-primary-hover)] transition"
-          >
-            Apply
-          </button>
-        </div>
 
         <div
           class="bg-[var(--color-card)] rounded-2xl shadow-md border border-[var(--color-border)] overflow-hidden flex-1"

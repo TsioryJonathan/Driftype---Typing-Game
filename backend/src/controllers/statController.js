@@ -10,7 +10,7 @@ export const getRecentUserStat = async (req, res) => {
 
   try {
     const data =
-      await sql`SELECT game_statistics.created_at , accuracy , wpm , time_taken FROM game_statistics inner join users on game_statistics.user_id = "users".id where "users".id = ${userId} limit 10`;
+      await sql`SELECT game_statistics.created_at , accuracy , wpm , time_taken FROM game_statistics inner join users on game_statistics.user_id = "users".id where "users".id = ${userId} order by created_at desc limit 10 `;
 
     res.json(data);
   } catch (e) {

@@ -16,12 +16,13 @@ const fetchRecentStat = async () => {
     const res = await fetch(`${API_URL}/stats/recent/${id}`);
     const data = await res.json();
 
-    
     tbody.innerHTML = '';
 
-    
     data.forEach((stat) => {
       const tableRow = document.createElement('tr');
+      const date = new Date(stat.created_at).toLocaleString('en-GB', {
+        timeZone: 'Africa/Nairobi',
+      });
       tableRow.classList.add(
         'transition-colors',
         'duration-150',
@@ -30,7 +31,7 @@ const fetchRecentStat = async () => {
 
       tableRow.innerHTML = `
           <td class="px-6 py-4 text-[var(--color-text)]">
-            ${stat.created_at.slice(0, 10)} ${stat.created_at.slice(11, 19)}
+            ${date}
           </td>
           <td class="px-6 py-4 font-medium text-[var(--color-text)]">
             ${stat.wpm} wpm

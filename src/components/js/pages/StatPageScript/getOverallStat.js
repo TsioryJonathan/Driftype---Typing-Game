@@ -24,7 +24,7 @@ const renderOverallStat = async () => {
 
     if (avgWpm && avgAcc && maxWpm && totalTest) {
       avgAcc.forEach((field) => {
-        field.textContent = `${Number(avg_accuracy).toFixed(1)}% acc`;
+        field.textContent = `${Number(avg_accuracy).toFixed(1)}%`;
       });
       avgWpm.forEach((field) => {
         field.textContent = `${Number(avg_wpm).toFixed(1)} wpm`;
