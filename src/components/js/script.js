@@ -323,12 +323,15 @@ const endTest = async () => {
   updateResults();
   launchFireworks();
   const userInfo = localStorage.getItem('typing_game_user');
+
   if (!userInfo) {
     document
       .getElementById('not-logged-popup')
       .classList.replace('hidden', 'flex');
     return;
   }
+
+  
   const { id } = JSON.parse(userInfo);
 
   document.getElementById('stat-popup').classList.replace('hidden', 'flex');
