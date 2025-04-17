@@ -6,23 +6,32 @@ const maxWpm = document.querySelector('#max-wpm');
 const totalTest = document.querySelector('#complete-test');
 
 const renderOverallStat = async () => {
-  const { id } = JSON.parse(localStorage.getItem('typing_game_user'));
+  const user = JSON.parse(localStorage.getItem('typing_game_user'));
+
+  if (!user?.id) {
+    console.warn('No user ID found in localStorage.');
+    return;
+  }
 
   try {
-    const res = await fetch(`${API_URL}/stats/global/${id}`);
+    const res = await fetch(`${API_URL}/stats/global/${user.id}`);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
     const data = await res.json();
+    console.log('Global Stats:', data);
 
-    console.log(data);
+    const { total_test, max_wpm, avg_wpm, avg_accuracy } = data[0] || {};
 
-    const { total_test, max_wpm, avg_wpm, avg_accuracy } = data[0];
-
-    avgWpm.textContent = Number(avg_wpm).toFixed(2) + ' wpm';
-    avgAcc.textContent = Number(avg_accuracy).toFixed(2) + '%';
-    maxWpm.textContent = max_wpm;
-    totalTest.textContent = total_test;
+    if (avgWpm && avgAcc && maxWpm && totalTest) {
+      avgWpm.textContent = `${Number(avg_wpm).toFixed(2)} wpm`;
+      avgAcc.textContent = `${Number(avg_accuracy).toFixed(2)}%`;
+      maxWpm.textContent = max_wpm;
+      totalTest.textContent = total_test;
+    } else {
+      console.warn('Some DOM elements are missing');
+    }
   } catch (err) {
-    console.log(err);
+    console.error('Failed to fetch global stats:', err);
   }
 };
 
