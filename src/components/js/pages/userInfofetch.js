@@ -1,4 +1,4 @@
-const navUsername = document.querySelector('h2#username');
+const usernameField = document.querySelectorAll('#username');
 const usernameInput = document.querySelector('#username-input');
 const emailInput = document.querySelectorAll('#email');
 const usernameLabel = document.querySelector('#username-label');
@@ -50,6 +50,7 @@ const getUsernameNdEmail = async () => {
     console.error('Error fetching user data:', error);
     return null;
   }
+
 };
 
 // Only run if we're on a page that needs user info

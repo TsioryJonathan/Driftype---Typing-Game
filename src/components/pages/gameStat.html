@@ -127,7 +127,14 @@
             alt="Avatar"
             class="w-8 h-8 rounded-full"
           >
-          <h2 class="text-sm" id="username"></h2>
+
+          <h2 class="text-sm" id="username">
+            <div class="flex justify-center items-center">
+              <div
+                class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+              ></div>
+            </div>
+          </h2>
           <i
             class="fa-solid fa-angle-down text-xs absolute right-5 group-hover:translate-y-0.5"
           ></i>
@@ -165,23 +172,6 @@
           class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
         >
           <h1 class="text-3xl font-bold">My Statistics</h1>
-          <div class="flex gap-2">
-            <button
-              class="px-4 py-2 rounded-xl border text-sm hover:bg-[var(--color-bg-secondary)] transition"
-            >
-              Today
-            </button>
-            <button
-              class="px-4 py-2 rounded-xl border text-sm hover:bg-[var(--color-bg-secondary)] transition"
-            >
-              7 Days
-            </button>
-            <button
-              class="px-4 py-2 rounded-xl border text-sm hover:bg-[var(--color-bg-secondary)] transition"
-            >
-              30 Days
-            </button>
-          </div>
         </div>
 
         <!-- Stat Cards -->
@@ -197,7 +187,16 @@
                 Average WPM
               </p>
             </div>
-            <h4 class="text-[var(--color-text)] text-3xl font-bold">63</h4>
+            <h4
+              class="text-[var(--color-text)] text-3xl font-bold"
+              id="avg-wpm"
+            >
+              <div class="flex justify-center items-center">
+                <div
+                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                ></div>
+              </div>
+            </h4>
           </div>
 
           <div
@@ -207,7 +206,16 @@
               <i class="fa-solid fa-award text-[var(--color-accent)]"></i>
               <p class="text-sm text-[var(--color-text-secondary)]">Max WPM</p>
             </div>
-            <h4 class="text-[var(--color-text)] text-3xl font-bold">63</h4>
+            <h4
+              class="text-[var(--color-text)] text-3xl font-bold"
+              id="max-wpm"
+            >
+              <div class="flex justify-center items-center">
+                <div
+                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                ></div>
+              </div>
+            </h4>
           </div>
 
           <div
@@ -219,7 +227,16 @@
                 Avg. Accuracy
               </p>
             </div>
-            <h4 class="text-[var(--color-text)] text-3xl font-bold">97%</h4>
+            <h4
+              class="text-[var(--color-text)] text-3xl font-bold"
+              id="avg-accuracy"
+            >
+              <div class="flex justify-center items-center">
+                <div
+                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                ></div>
+              </div>
+            </h4>
           </div>
 
           <div
@@ -231,14 +248,28 @@
                 Test Completed
               </p>
             </div>
-            <h4 class="text-[var(--color-text)] text-3xl font-bold">129</h4>
+            <h4
+              class="text-[var(--color-text)] text-3xl font-bold"
+              id="complete-test"
+            >
+              <div class="flex justify-center items-center">
+                <div
+                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                ></div>
+              </div>
+            </h4>
           </div>
         </div>
 
         <!-- Graph and leaderboards -->
         <div class="flex flex-col md:flex-row gap-5">
           <!-- Graph -->
-          <div class="flex-1" id="chart"></div>
+          <div class="flex flex-col gap-3 flex-1">
+            <h1 class="text-2xl text-[var(--color-text)] font-semibold">
+              Stat Of Your Recent Game
+            </h1>
+            <div class="flex-1" id="chart"></div>
+          </div>
 
           <!-- Leaderboard -->
           <div
@@ -359,15 +390,20 @@
                     alt="Guest's photo"
                     class="w-10 h-10 rounded-full object-cover"
                   >
-                  <span class="text-[var(--color-text)] text-sm">
-                    #Not.Ranked Guest12234589
-                  </span>
+                  <h2
+                    class="text-[var(--color-text)] text-sm"
+                    id="username"
+                  ></h2>
                 </div>
-                <div class="flex flex-col gap-1">
-                  <span class="text-[var(--color-text)] font-bold">42 WPM</span>
-                  <span class="text-[var(--color-text-secondary)] text-xs">
-                    68.0% acc
-                  </span>
+                <div class="flex flex-col gap-1 items-center">
+                  <span
+                    class="text-[var(--color-text)] font-bold"
+                    id="avg-wpm"
+                  ></span>
+                  <span
+                    class="text-[var(--color-text-secondary)] text-xs"
+                    id="avg-accuracy"
+                  ></span>
                 </div>
               </li>
             </ul>
@@ -375,208 +411,108 @@
         </div>
 
         <!-- History -->
+        <!-- Barre de filtres -->
 
         <div
-          class="bg-[var(--color-card)] rounded-xl h-fit shadow-sm border border-[var(--color-border)] overflow-hidden flex-1"
+          class="bg-[var(--color-card)] rounded-2xl shadow-md border border-[var(--color-border)] overflow-hidden flex-1"
         >
+          <!-- Header -->
           <div class="p-6 border-b border-[var(--color-border)]">
             <div class="flex items-center justify-between">
               <div class="flex items-center">
                 <i
-                  class="fa-solid fa-clock text-[var(--color-active-500)] text-xl"
+                  class="fa-solid fa-clock text-[var(--color-active-500)] text-2xl"
                 ></i>
-
-                <h2 class="ml-2 text-xl font-bold text-[var(--color-text)]">
+                <h2
+                  class="ml-3 text-2xl font-semibold text-[var(--color-text)]"
+                >
                   Recent Tests
                 </h2>
               </div>
               <button
-                class="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] font-medium"
+                class="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] font-medium transition"
               >
                 View All
               </button>
             </div>
           </div>
+
+          <!-- Table -->
           <div class="overflow-x-auto">
-            <table class="w-full">
+            <table class="w-full text-sm text-center">
               <thead>
                 <tr class="bg-[var(--color-bg-secondary)]">
                   <th
-                    class="px-6 py-3 text-left text-xs font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
                   >
                     Date
                   </th>
                   <th
-                    class="px-6 py-3 text-left text-xs font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
                   >
                     WPM
                   </th>
                   <th
-                    class="px-6 py-3 text-left text-xs font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
                   >
                     Accuracy
                   </th>
                   <th
-                    class="px-6 py-3 text-left text-xs font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
                   >
                     Duration
                   </th>
                   <th
-                    class="px-6 py-3 text-right text-xs font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
                   >
-                    Details
+                    Mode
                   </th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-[var(--color-border)]">
-                <tr
-                  class="hover:bg-[var(--color-bg-secondary)] transition-colors"
-                >
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]"
-                  >
-                    Apr 14, 2025
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="text-sm font-medium text-[var(--color-text)]">
-                      89
-                    </span>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
+              <tbody class="divide-y divide-[var(--color-border)]" id="tbody">
+                <!-- Row  -->
+                <tr>
+                  <td class="px-6 py-4 text-[var(--color-text)]" id="date">
+                    <div class="flex justify-center items-center">
                       <div
-                        class="w-16 bg-[var(--color-bg-secondary)] rounded-full h-2"
-                      >
-                        <div
-                          class="bg-[var(--color-success)] h-2 rounded-full"
-                          style="width: 97%"
-                        ></div>
-                      </div>
-                      <span class="ml-2 text-sm text-[var(--color-text)]">
-                        97%
-                      </span>
+                        class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                      ></div>
                     </div>
                   </td>
                   <td
-                    class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]"
+                    class="px-6 py-4 font-medium text-[var(--color-text)]"
+                    id="wpm"
                   >
-                    2:30
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-right">
-                    <button
-                      class="text-[var(--color-primary)] hover:text-[var(--color-primary-hover)]"
-                    >
-                      <svg
-                        class="text-[var(--color-primary)]"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M13 10l-4 4-4-4" />
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
-                <tr
-                  class="hover:bg-[var(--color-bg-secondary)] transition-colors"
-                >
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]"
-                  >
-                    Apr 13, 2025
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="text-sm font-medium text-[var(--color-text)]">
-                      78
-                    </span>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
+                    <div class="flex justify-center items-center">
                       <div
-                        class="w-16 bg-[var(--color-bg-secondary)] rounded-full h-2"
-                      >
-                        <div
-                          class="bg-[var(--color-success)] h-2 rounded-full"
-                          style="width: 94%"
-                        ></div>
-                      </div>
-                      <span class="ml-2 text-sm text-[var(--color-text)]">
-                        94%
+                        class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                      ></div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center justify-center gap-2">
+                      <span class="text-[var(--color-text)]" id="acc">
+                        <div class="flex justify-center items-center">
+                          <div
+                            class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                          ></div>
+                        </div>
                       </span>
                     </div>
                   </td>
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]"
-                  >
-                    2:15
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-right">
-                    <button
-                      class="text-[var(--color-primary)] hover:text-[var(--color-primary-hover)]"
-                    >
-                      <svg
-                        class="text-[var(--color-primary)]"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M13 10l-4 4-4-4" />
-                      </svg>
-                    </button>
-                  </td>
-                </tr>
-                <tr
-                  class="hover:bg-[var(--color-bg-secondary)] transition-colors"
-                >
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]"
-                  >
-                    Apr 12, 2025
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="text-sm font-medium text-[var(--color-text)]">
-                      82
-                    </span>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
+                  <td class="px-6 py-4 text-[var(--color-text)]" id="time">
+                    <div class="flex justify-center items-center">
                       <div
-                        class="w-16 bg-[var(--color-bg-secondary)] rounded-full h-2"
-                      >
-                        <div
-                          class="bg-[var(--color-success)] h-2 rounded-full"
-                          style="width: 96%"
-                        ></div>
-                      </div>
-                      <span class="ml-2 text-sm text-[var(--color-text)]">
-                        96%
-                      </span>
+                        class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                      ></div>
                     </div>
                   </td>
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]"
-                  >
-                    2:10
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-right">
-                    <button
-                      class="text-[var(--color-primary)] hover:text-[var(--color-primary-hover)]"
-                    >
-                      <svg
-                        class="text-[var(--color-primary)]"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M13 10l-4 4-4-4" />
-                      </svg>
-                    </button>
+                  <td class="px-6 py-4 text-[var(--color-text)]" id="time">
+                    <div class="flex justify-center items-center">
+                      <div
+                        class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                      ></div>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -587,10 +523,7 @@
     </main>
 
     <script type="module" src="../js/pages/dashboard.js" type="module"></script>
-    <script
-      src="../js/pages/StatPageScript/userDetailsFetch.js"
-      type="module"
-    ></script>
+
     <script src="../js/pages/userInfofetch.js" type="module"></script>
     <script src="../js/logoutFunc.js" type="module"></script>
     <script src="../js/navBarRedirection.js" type="module"></script>
@@ -598,6 +531,15 @@
       src="../js/pages/StatPageScript/statGraph.js"
       type="module"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>    
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script
+      src="../js/pages/StatPageScript/getOverallStat.js"
+      type="module"
+    ></script>
+    <script
+      src="../js/pages/StatPageScript/getRecentStat.js"
+      type="module"
+    ></script>
   </body>
 </html>
