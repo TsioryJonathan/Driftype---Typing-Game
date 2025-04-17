@@ -43,7 +43,7 @@ const toggleTheme = () => {
     });
   }
 
-  document.addEventListener('DOMContentLoaded', initTheme);
+  initTheme();
 };
 
 toggleTheme();
