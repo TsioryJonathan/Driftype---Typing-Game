@@ -1,5 +1,6 @@
 import { getRandomWord } from "./dictionaries.js";
 import { tinykeys } from "./tinykeys.js";
+import { updateProgressBar, showProgressBar, hideProgressBar } from "./progressBar.js";
 
 /**
  * Point culture (en Français car je suis un peu obligé):
@@ -16,6 +17,8 @@ let currentLetterIndex = 0;
 let correctLetters = 0;
 let totalLetters = 0;
 let totalKeystrokes = 0;
+let incorrectLetters = 0;
+let extraLetters = 0;
 const wordsToType = [];
 
 const modeSelect = document.getElementById("mode");
@@ -35,6 +38,8 @@ const startTest = (wordCount = 200) => {
   correctLetters = 0;
   totalLetters = 0;
   totalKeystrokes = 0;
+  incorrectLetters = 0;
+  extraLetters = 0;
   startTime = null;
   clearInterval(timerInterval);
   timeLeft = parseInt(timerSelect.value);
@@ -84,8 +89,10 @@ const startTest = (wordCount = 200) => {
   if (firstLetter) firstLetter.style.textDecoration = "underline";
 
   testContainer.value = "";
-  testContainer.focus();
   updateResults();
+  updateProgressBar(timeLeft, timerSelect);
+  showProgressBar();
+  startTimelineTracking();
 };
 
 // Start the timer
@@ -104,18 +111,21 @@ const startTimer = () => {
     }, 1000);
   }
 };
+
 // Calculate and return WPM & accuracy
 const getCurrentStats = () => {
-  const elapsedTime = (Date.now() - startTime) / 1000; // Seconds
-  const wpm = (correctLetters / 5 / (elapsedTime / 60)).toFixed(2); // 5 chars = 1 word
-  const accuracy = Math.min(
-    100,
-    totalKeystrokes > 0
-      ? ((correctLetters / totalKeystrokes) * 100).toFixed(2)
-      : 100
-  );
+  // Calculate WPM, accuracy, raw, correct, incorrect, extra, consistency
+  const elapsed = Math.max((Date.now() - startTime) / 1000, 1);
+  const wordsTyped = correctLetters / 5;
+  const wpm = Math.round((wordsTyped / elapsed) * 60);
+  const raw = Math.round((totalKeystrokes / 5) / elapsed * 60);
+  const accuracy = totalKeystrokes > 0 ? Math.round((correctLetters / totalKeystrokes) * 10000) / 100 : 0;
 
-  return { wpm, accuracy };
+  const correct = correctLetters;
+  const incorrect = incorrectLetters;
+  const extra = extraLetters;
+  const consistency = calcConsistency ? calcConsistency() : '-';
+  return { wpm, accuracy, raw, correct, incorrect, extra, consistency };
 };
 
 // Update display of current letter and stats
@@ -159,6 +169,7 @@ const updateLetter = (event) => {
       }
 
       updateResults();
+      updateProgressBar(timeLeft, timerSelect);
     }
     return;
   }
@@ -186,6 +197,7 @@ const updateLetter = (event) => {
       ? (currentLetter.textContent = "_")
       : (currentLetter.textContent = currentLetter.textContent);
     currentLetter.classList.add("text-red-500");
+    incorrectLetters++;
   }
 
   // Remove underline from current letter
@@ -220,139 +232,296 @@ const updateLetter = (event) => {
 
   // Update stats
   updateResults();
+  updateProgressBar(timeLeft, timerSelect);
 };
 
 // End the typing test
 const endTest = () => {
+  hideProgressBar();
   testContainer.classList.add("hidden");
   results.classList.remove("hidden");
   clearInterval(timerInterval);
+  stopTimelineTracking();
   timeLeft = 0;
-  const { wpm, accuracy } = getCurrentStats();
+  const { wpm, accuracy, raw, correct, incorrect, extra, consistency } = getCurrentStats();
+  const langSelect = document.getElementById('language');
+  const modeSelect = document.getElementById('mode') || document.getElementById('mode-button') || { value: 'medium' };
+  const timerValue = timerSelect.value;
+  const langValue = langSelect ? langSelect.value : 'en';
+  const modeValue = modeSelect.value || modeSelect.textContent?.toLowerCase() || 'medium';
+  let langLabel = langValue;
+  if (langValue === 'en') langLabel = 'English';
+  else if (langValue === 'fr') langLabel = 'French';
+  else if (langValue === 'es') langLabel = 'Spanish';
+  else if (langValue === 'de') langLabel = 'German';
+  else if (langValue === 'it') langLabel = 'Italian';
+  else if (langValue === 'pt') langLabel = 'Portuguese';
+  else if (langValue === 'numbers') langLabel = 'Numbers';
+  else langLabel = langValue.charAt(0).toUpperCase() + langValue.slice(1);
+  let modeLabel = modeValue.charAt(0).toUpperCase() + modeValue.slice(1);
+  if (modeValue === 'numbers') modeLabel = 'Numbers';
+  // Special icon for numbers mode
+  const modeIcon = modeValue === 'numbers' ? '<i class="fa-solid fa-hashtag text-[var(--color-warning)]"></i>' : '';
   results.innerHTML = `
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-          <!-- WPM Progress -->
-          <div class="bg-[var(--color-bg)] p-4 rounded-lg shadow">
-            <h3 class="text-xl font-semibold mb-2">Progression WPM</h3>
-            <canvas id="wpmChart"></canvas>
+    <div class=" min-h-[300px] flex flex-col md:flex-row gap-4 p-6 rounded-2xl shadow-2xl border-2 border-amber-500/60 mx-auto max-w-7xl relative">
+      <!-- Left block: WPM, ACC, Info -->
+      <div class="flex flex-col gap-4 min-w-[280px] justify-between items-start">
+        <div>
+          <div class="text-[1.3rem] text-[var(--color-warning)] font-mono mb-2 uppercase tracking-widest">wpm <i class="fa-solid fa-crown text-[var(--color-warning)]"></i></div>
+          <div class="text-8xl font-black text-[var(--color-warning)] drop-shadow-xl">${wpm}</div>
+        </div>
+        <div>
+          <div class="text-[1.3rem] text-[var(--color-accent)] font-mono mb-2 uppercase tracking-widest">acc</div>
+          <div class="text-7xl font-black text-[var(--color-accent)] drop-shadow-xl leading-tight">${accuracy}%</div>
+        </div>
+        <div class="mt-6 p-6 bg-[var(--color-color-bg-secondary)] text-[var(--color-text-secondary)] text-sm font-mono lowercase flex flex-col gap-2">
+          <div>language: <span class="text-[var(--color-secondary)] font-bold">${langLabel}</span></div>
+          <div>mode: <span class="text-[var(--color-secondary)] font-bold">${modeLabel} ${modeIcon}</span></div>
+          <div>time: <span class="text-[var(--color-secondary)] font-bold">${timerValue}s</span></div>
+        </div>
+      </div>
+      <!-- Center: Timeline Chart -->
+      <div class="flex-1 flex flex-col justify-center items-center">
+        <div class="w-full h-[350px] relative">
+          <canvas id="timelineChart" height="380" width="800"></canvas>
+        </div>
+        <div class="flex flex-row justify-between w-full mt-8 text-gray-300 text-center font-mono text-xl gap-4">
+          <div class="flex-1">
+            <div class="text-base text-[var(--color-text)]">raw</div>
+            <div id="rawWpm">${raw ?? '-'}</div>
           </div>
-          <!-- Accuracy Progress -->
-          <div class="bg-[var(--color-bg)] p-4 rounded-lg shadow">
-            <h3 class="text-xl font-semibold mb-2">Précision</h3>
-            <div class="w-64 h-64">
-              <canvas id="resultsChart"></canvas>
-            </div>
+          <div class="flex-1">
+            <div class="text-base text-[var(--color-text)]">correct/incorrect/extra</div>
+            <div id="breakdown">${[correct, incorrect, extra].map(x => x ?? '-').join('/')}</div>
           </div>
-          <!-- Recent Stats -->
-          <div class="bg-[var(--color-bg)] p-4 rounded-lg shadow md:col-span-2">
-            <h3 class="text-xl font-semibold mb-2">Statistiques Récentes</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-              <div>
-                <p class="text-sm text-gray-500">WPM Moyen</p>
-                <p id="avgWpm" class="text-2xl font-bold">${wpm}</p>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500">Précision Moyenne</p>
-                <p id="avgAccuracy" class="text-2xl font-bold">${accuracy}%</p>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500">Meilleur WPM</p>
-                <p id="bestWpm" class="text-2xl font-bold">-</p>
-              </div>
-              <div>
-                <p class="text-sm text-gray-500">Parties Jouées</p>
-                <p id="gamesPlayed" class="text-2xl font-bold">-</p>
-              </div>
-            </div>
+          <div class="flex-1">
+            <div class="text-base text-[var(--color-text)]">consistency</div>
+            <div id="consistency">${consistency ?? '-'}</div>
           </div>
-        </div>`;
+        </div>
+      </div>
+      <!-- Fireworks canvas overlay -->
+      <canvas id="fireworks" class="pointer-events-none absolute inset-0 w-full h-full"></canvas>
+    </div>
+  `;
   testContainer.value = "";
-
-  // // Save the stats in the database
-  // const token = localStorage.getItem("token");
-  // const text_length = wordsToType.join(" ").length;
-  // const time_taken = parseInt(timerSelect.value) - timeLeft;
-  // if (token) {
-  //   try {
-  //     await fetch("http://localhost:3000/api/statistics", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: "Bearer " + token,
-  //       },
-  //       body: JSON.stringify({
-  //         wpm: Number(wpm),
-  //         accuracy: Number(accuracy),
-  //         time_taken: Number(time_taken),
-  //         text_length: Number(text_length),
-  //       }),
-  //     });
-  //     // Refresh dashboard statistics if the function exists
-  //     if (typeof loadStatistics === "function") {
-  //       loadStatistics();
-  //     }
-  //   } catch (err) {
-  //     console.error("Error while saving stats:", err);
-  //   }
-  // }
+  updateResults();
+  launchFireworks();
 };
 
-let resultsChart = null;
+// Fireworks/confetti animation using canvas-confetti CDN
+function launchFireworks() {
+  if (window.confetti) {
+    window.confetti({
+      particleCount: 120,
+      spread: 90,
+      origin: { y: 0.7 },
+      colors: ['#f59e42', '#ef4444', '#fffde4', '#fff', '#fde68a'],
+    });
+    setTimeout(() => {
+      window.confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.5 },
+        colors: ['#f59e42', '#ef4444', '#fffde4', '#fff', '#fde68a'],
+      });
+    }, 600);
+  }
+}
 
-// Update results display
+// Timeline chart: dark theme, yellow (amber-500) for WPM, red-500 for errors
 const updateResults = () => {
   if (!startTime) {
     results.textContent = `Time left: ${timeLeft}s`;
-    if (resultsChart) {
-      resultsChart.destroy();
-      resultsChart = null;
-    }
+    if (timelineChart) { timelineChart.destroy(); timelineChart = null; }
     return;
   }
-
+  updateProgressBar(timeLeft, timerSelect);
   const { wpm, accuracy } = getCurrentStats();
-  results.textContent = `Time left: ${timeLeft}s`;
-
-  // Update or create pie chart
-  const correctPercentage = accuracy;
-  const incorrectPercentage = 100 - accuracy;
-
-  if (resultsChart) {
-    resultsChart.data.datasets[0].data = [
-      correctPercentage,
-      incorrectPercentage,
-    ];
-    resultsChart.update();
-  } else {
-    const ctx = document.getElementById("resultsChart").getContext("2d");
-    resultsChart = new Chart(ctx, {
-      type: "pie",
+  const timelineCtx = document.getElementById("timelineChart")?.getContext("2d");
+  if (timelineCtx) {
+    if (timelineChart) timelineChart.destroy();
+    timelineChart = new Chart(timelineCtx, {
+      type: "line",
       data: {
-        labels: ["Correct", "Incorrect"],
+        labels: timelineLabels.map((_, i) => (i + 1).toString()), // X axis: seconds (1, 2, ...)
         datasets: [
           {
-            data: [correctPercentage, incorrectPercentage],
-            backgroundColor: ["rgb(255, 191, 36)", "rgb(239, 68, 68)"],
-            borderWidth: 0,
+            label: "WPM",
+            data: timelineWpm,
+            borderColor: '#facc15', // amber-400
+            backgroundColor: 'transparent',
+            borderWidth: 3,
+            fill: false,
+            tension: 0.25,
+            pointRadius: 2,
+            pointBackgroundColor: '#facc15',
+            pointBorderColor: '#facc15',
+            yAxisID: 'y',
+            order: 1,
+          },
+          {
+            label: "Errors",
+            data: timelineErrors,
+            borderColor: '#a3a3a3', // gray-400
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            fill: false,
+            tension: 0.25,
+            pointRadius: 3,
+            pointBackgroundColor: timelineErrors.map(e => e > 0 ? '#ef4444' : '#a3a3a3'),
+            pointBorderColor: timelineErrors.map(e => e > 0 ? '#ef4444' : '#a3a3a3'),
+            yAxisID: 'y1',
+            order: 2,
           },
         ],
       },
       options: {
         responsive: true,
-        maintainAspectRatio: true,
         plugins: {
           legend: {
-            position: "bottom",
+            display: true,
+            position: 'top',
+            align: 'center',
             labels: {
-              color: "rgb(156, 163, 175)", // gray-400
+              color: '#e5e5e5',
+              font: {size: 15, weight: 'bold'},
+              usePointStyle: true,
+              padding: 12,
+              boxWidth: 18,
+              boxHeight: 8,
+              boxPadding: 2,
+            }
+          },
+          title: { display: false },
+          tooltip: {
+            backgroundColor: '#23232a',
+            titleColor: '#fde68a',
+            bodyColor: '#fff',
+            borderColor: '#fde68a',
+            borderWidth: 1,
+            callbacks: {
+              label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}`
+            }
+          },
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Seconds',
+              color: '#bcbcbc',
+              font: {size: 16, weight: 'bold'}
             },
+            ticks: {
+              color: '#bcbcbc',
+              font: {size: 13},
+              callback: function(val, idx) {
+                const total = this.getLabels().length;
+                if (total > 30) {
+                  return idx % 2 === 0 ? this.getLabelForValue(val) : '';
+                }
+                return this.getLabelForValue(val);
+              }
+            },
+            grid: {
+              color: 'rgba(255,255,255,0.08)',
+              drawOnChartArea: true,
+              drawTicks: false,
+              drawBorder: false,
+            }
+          },
+          y: {
+            type: 'linear',
+            position: 'left',
+            title: {
+              display: true,
+              text: 'Words per Minute',
+              color: '#facc15',
+              font: {size: 16, weight: 'bold'}
+            },
+            beginAtZero: true,
+            ticks: {
+              color: '#facc15',
+              font: {size: 14},
+              stepSize: 20,
+              callback: function(val) {
+                return val % 20 === 0 ? val : '';
+              }
+            },
+            grid: {
+              color: 'rgba(255,255,255,0.08)',
+              drawOnChartArea: true,
+              drawTicks: false,
+              drawBorder: false,
+            }
+          },
+          y1: {
+            type: 'linear',
+            position: 'right',
+            title: {
+              display: true,
+              text: 'Errors',
+              color: '#ef4444',
+              font: {size: 16, weight: 'bold'}
+            },
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(255,255,255,0.08)',
+              drawOnChartArea: false,
+              drawTicks: false,
+              drawBorder: false,
+            },
+            ticks: { color: '#ef4444', font: {size: 14} },
           },
         },
       },
     });
   }
 };
+
+// --- Calculate typing consistency (standard deviation of WPM, expressed as % of mean WPM, subtracted from 100) ---
+const calcConsistency = () => {
+  if (!timelineWpm || timelineWpm.length < 2) return '-';
+  const mean = timelineWpm.reduce((a, b) => a + b, 0) / timelineWpm.length;
+  const variance = timelineWpm.reduce((sum, w) => sum + Math.pow(w - mean, 2), 0) / timelineWpm.length;
+  const stddev = Math.sqrt(variance);
+  const percent = mean > 0 ? Math.max(0, 100 - (stddev / mean) * 100) : 0;
+  return Math.round(percent) + '%';
+}
+
+// --- Chart.js chart instances ---
+let resultsChart = null;
+let wpmChart = null;
+let timelineChart = null;
+
+// --- Arrays to track stats over time during the test ---
+let timelineWpm = [];
+let timelineErrors = [];
+let timelineLabels = [];
+let timelineInterval = null;
+
+// --- Start tracking stats over time when the test starts ---
+function startTimelineTracking() {
+  timelineWpm = [];
+  timelineErrors = [];
+  timelineLabels = [];
+  if (timelineInterval) clearInterval(timelineInterval);
+  let seconds = 0;
+  timelineInterval = setInterval(() => {
+    const { wpm } = getCurrentStats();
+    timelineWpm.push(Number(wpm));
+    timelineErrors.push(totalKeystrokes - correctLetters);
+    timelineLabels.push(seconds + 's');
+    seconds++;
+  }, 1000);
+}
+
+// --- Stop tracking ---
+function stopTimelineTracking() {
+  if (timelineInterval) clearInterval(timelineInterval);
+  timelineInterval = null;
+}
 
 // Add language change listener
 const languageSelect = document.getElementById("language");

@@ -1,9 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   userAvatarOption();
-
   initializeDropdowns();
-  navBar();
-
 });
 
 const userAvatarOption = () => {
