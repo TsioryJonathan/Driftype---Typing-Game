@@ -171,10 +171,16 @@
                     class="text-3xl font-bold text-[var(--color-text)] relative flex items-center"
                     id="username"
                   >
-                    <div
-                      id="loader"
-                      class="flex justify-center items-center min-w-48 animate-pulse bg-gray-200 rounded-lg z-20 min-h-8"
-                    ></div>
+                    <div role="status" class="max-w-sm animate-pulse">
+                      <div
+                        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
+                      ></div>
+                      <div
+                        class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[120px] mb-2.5"
+                      ></div>
+
+                      <span class="sr-only">Loading...</span>
+                    </div>
                   </h2>
                   <button
                     class="p-2 rounded-full hover:bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] cursor-pointer flex items-center justify-center"
