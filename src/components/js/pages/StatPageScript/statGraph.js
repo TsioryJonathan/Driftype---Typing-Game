@@ -15,18 +15,18 @@ const option = {
     trigger: 'axis',
   },
   legend: {
-    data: ['WPM', 'Exactitude'],
+    data: ['WPM', 'Accuracy'],
   },
   xAxis: {
     type: 'category',
-    data: statistiques.labels, // Jours de la semaine
+    data: statistiques.labels,
   },
   yAxis: {
     type: 'value',
     name: 'WPM / Exactitude (%)',
     axisLine: {
       lineStyle: {
-        color: '#1f77b4', // Couleur pour l'axe
+        color: '#1f77b4', 
       },
     },
   },
@@ -36,10 +36,10 @@ const option = {
       type: 'line',
       data: statistiques.wpm,
       lineStyle: {
-        color: '#1f77b4', // Couleur pour la ligne WPM
+        color: '#1f77b4', 
       },
-      symbol: 'circle', // Utilisation de cercles pour les points de la ligne
-      smooth: true, // Lignes lissées
+      symbol: 'circle',
+      smooth: true,
     },
     {
       name: 'Exactitude',
