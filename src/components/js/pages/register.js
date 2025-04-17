@@ -22,6 +22,20 @@ const initRegister = () => {
   }
 
   registerForm.innerHTML = `
+          <div class="text-[var(--color-text)]">
+          <label for="username" class="block text-sm font-medium">Username</label>
+          <div class="relative flex items-center justify-center gap-3">
+            <i class="fa-solid fa-user icon-form"></i>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              class="input-form bg-white text-black outline-none focus:ring-2 text-sm rounded-sm"
+            />
+          </div>
+        </div>
+
         <div class="text-[var(--color-text)]">
           <label for="email" class="block text-sm font-medium">Email</label>
           <div class="relative flex items-center justify-center gap-3">
@@ -80,13 +94,16 @@ const initRegister = () => {
 const handleRegister = async (e) => {
   e.preventDefault();
 
+  const username = document.getElementById('username')?.value.trim();
   const email = document.getElementById('email')?.value.trim();
   const password = document.getElementById('password')?.value;
   const confirmPassword = document.getElementById('confirmPassword')?.value;
   const errorMessage = document.getElementById('errorMessage');
   const submitButton = e.target.querySelector('button[type="submit"]');
 
-  if (!email || !password || !confirmPassword) {
+  console.log(username);
+
+  if (!username || !email || !password || !confirmPassword) {
     showError(errorMessage, 'Please fill all fields');
     return;
   }
@@ -128,7 +145,7 @@ const handleRegister = async (e) => {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ username, email, password }),
       credentials: 'include',
       mode: 'cors',
     });
