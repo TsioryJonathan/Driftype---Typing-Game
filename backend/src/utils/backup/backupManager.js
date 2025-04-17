@@ -72,8 +72,8 @@ export async function restoreData() {
 
     for (const stat of backup.data.gameStats) {
       await sql`
-                INSERT INTO game_statistics (id, user_id, wpm, accuracy, time_taken, text_length, created_at)
-                VALUES (${stat.id}, ${stat.user_id}, ${stat.wpm}, ${stat.accuracy}, ${stat.time_taken}, ${stat.text_length}, ${stat.created_at})
+                INSERT INTO game_statistics (id, user_id, wpm, accuracy, language, difficulty, time_taken,  created_at)
+                VALUES (${stat.id}, ${stat.user_id}, ${stat.wpm}, ${stat.accuracy},${stat.language} , ${stat.difficulty} ${stat.time_taken}, ${stat.created_at})
                 ON CONFLICT (id) DO NOTHING
             `;
     }
