@@ -20,6 +20,14 @@ const fetchRecentStat = async () => {
 
     data.forEach((stat) => {
       const tableRow = document.createElement('tr');
+      let language;
+      if (stat.language === 'en') language = 'English';
+      if (stat.language === 'fr') language = 'French';
+      if (stat.language === 'es') language = 'Espanol';
+      if (stat.language === 'de') language = 'Deutch';
+      if (stat.language === 'it') language = 'Italiano';
+      if (stat.language === 'pt') language = 'Protugues';
+
       const date = new Date(stat.created_at).toLocaleString('en-GB', {
         timeZone: 'Africa/Nairobi',
       });
@@ -51,6 +59,9 @@ const fetchRecentStat = async () => {
           </td>
           <td class="px-6 py-4 text-[var(--color-text)]">
             ${stat.time_taken} sec
+          </td>
+          <td class="px-6 py-4 text-[var(--color-text)]">
+          ${language} , ${stat.difficulty}
           </td>
         `;
 
