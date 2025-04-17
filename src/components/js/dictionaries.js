@@ -28,22 +28,36 @@ const wordDictionaries = {
         easy: ['o', 'a', 'de', 'que', 'em', 'um', 'com', 'não', 'uma', 'bem', 'luz', 'vida', 'coisa', 'certo', 'tempo', 'hoje', 'falar', 'porta', 'festa', 'gente'],
         medium: ['trabalho', 'sempre', 'depois', 'durante', 'primeiro', 'pessoa', 'família', 'momento', 'obrigado', 'escrever', 'pensando'],
         hard: ['desenvolvimento', 'diferente', 'tecnologia', 'universidade', 'importante', 'restaurante', 'experiência', 'comunicação']
+    },
+    numbers: {
+        easy: Array.from({length: 100}, () => String(Math.floor(Math.random() * 1000))),
+        medium: Array.from({length: 100}, () => String(Math.floor(Math.random() * 10000))),
+        hard: Array.from({length: 100}, () => String(Math.floor(Math.random() * 100000)))
     }
 };
 
 
 // Function to get words based on difficulty and language
 export const getWordsByDifficulty = (mode, lang = 'en') => {
+    if (lang === 'numbers') {
+        const dictionary = wordDictionaries.numbers;
+        const wordList = dictionary[mode];
+        const words = [];
+        const wordCount = 200;
+        for (let i = 0; i < wordCount; i++) {
+            const randomIndex = Math.floor(Math.random() * wordList.length);
+            words.push(wordList[randomIndex]);
+        }
+        return words;
+    }
     const dictionary = wordDictionaries[lang] || wordDictionaries['en'];
     const wordList = dictionary[mode] || dictionary['medium'];
     const words = [];
     const wordCount = 200;
-
     for (let i = 0; i < wordCount; i++) {
         const randomIndex = Math.floor(Math.random() * wordList.length);
         words.push(wordList[randomIndex]);
     }
-    
     return words;
 };
 
@@ -52,4 +66,3 @@ export const getRandomWord = (mode) => {
     const wordList = getWordsByDifficulty(mode, lang);
     return wordList[Math.floor(Math.random() * wordList.length)];
 };
-
