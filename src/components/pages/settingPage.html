@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@
   <body class="bg-[var(--color-bg)] text-[var(--color-text)]">
     <!-- HEADER -->
     <header
-      class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px]"
+      class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px] z-50"
     >
       <!-- Logo -->
       <div class="h-full flex items-center">
@@ -55,6 +55,7 @@
               data-tooltip-target="tooltip-practice"
               type="button"
               class="flex flex-col items-center justify-center rounded-s-full hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+              id="practice-btn"
             >
               <i
                 class="fa-solid fa-keyboard text-[var(--color-text)] text-2xl group-hover:text-amber-500"
@@ -75,6 +76,7 @@
               data-tooltip-target="tooltip-statistics"
               type="button"
               class="flex flex-col items-center justify-center hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+              id="stat-btn"
             >
               <i
                 class="fa-solid fa-chart-column text-[var(--color-text)] text-2xl group-hover:text-amber-500"
@@ -95,6 +97,7 @@
               data-tooltip-target="tooltip-settings"
               type="button"
               class="cursor-pointer flex flex-col items-center justify-center rounded-e-full hover:bg-[var(--color-bg)] transition w-full h-full"
+              id="setting-btn"
             >
               <i
                 class="fa-solid fa-gear text-[var(--color-text)] text-2xl group-hover:text-amber-500"
@@ -115,7 +118,7 @@
       <div class="relative h-full flex items-center" id="user-menu-container">
         <button
           id="user-menu-button"
-          class="flex items-center gap-5 px-2 py-1 bg-[var(--color-input)] rounded-full transition cursor-pointer -translate-y-0.5 group"
+          class="flex items-center gap-5 px-2 py-1 bg-[var(--color-input)] rounded-full transition cursor-pointer -translate-y-0.5 group min-w-fit"
         >
           <img
             id="avatar-img"
@@ -141,6 +144,7 @@
           </a>
           <button
             class="w-full text-left flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+            onclick="logout()"
           >
             Sign out
             <i class="fas fa-right-from-bracket"></i>
@@ -227,6 +231,7 @@
               </div>
               <button
                 class="w-full mt-4 px-4 py-2 bg-[var(--color-primary)] text-white rounded-md hover:bg-[var(--color-primary-hover)] transition-colors flex items-center justify-center space-x-2"
+                id="user-info-update-btn"
               >
                 <i class="fas fa-save text-white"></i>
                 <span>Save Changes</span>
@@ -514,27 +519,24 @@
           </div>
         </div>
       </div>
-
-      <!-- Toggle Section Script -->
-      <script>
-        function toggleSection(id) {
-          const section = document.getElementById(id);
-          const chevron = document.getElementById(`chevron-${id}`);
-          const isCollapsed = section.classList.contains('max-h-0');
-
-          if (isCollapsed) {
-            section.classList.remove('max-h-0', 'py-0');
-            section.classList.add('py-4', 'max-h-[1000px]');
-            chevron.classList.add('rotate-180');
-          } else {
-            section.classList.remove('max-h-[1000px]', 'py-4');
-            section.classList.add('max-h-0', 'py-0');
-            chevron.classList.remove('rotate-180');
-          }
-        }
-      </script>
     </div>
-    <script src="../js/pages/dashboard.js"></script>
-    <script src="../js/pages/SettingPageScript/userInfofetch.js"></script>
+    <div
+      id="toast-success"
+      class="hidden fixed bottom-4 right-4 bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg transition-opacity duration-300 z-50"
+    >
+      ✅ Modifications enregistrées !
+    </div>
+
+    <script
+      src="../js/pages/SettingPageScript/userInfoUpdate.js"
+      type="module"
+    ></script>
+    <script
+      src="../js/pages/SettingPageScript/sectionToggle.js"
+      type="module"
+    ></script>
+    <script src="../js/pages/dashboard.js" type="module"></script>
+    <script src="../js/pages/userInfofetch.js" type="module"></script>
+    <script src="../js/navBarRedirection.js" type="module"></script>
   </body>
 </html>
