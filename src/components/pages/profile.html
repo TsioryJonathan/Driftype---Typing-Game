@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@
   <body class="bg-[var(--color-bg)] text-[var(--color-text)]">
     <!-- HEADER -->
     <header
-      class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px]"
+      class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px] z-50"
     >
       <!-- Logo -->
       <div class="h-full flex items-center">
@@ -55,6 +55,7 @@
               data-tooltip-target="tooltip-practice"
               type="button"
               class="flex flex-col items-center justify-center rounded-s-full hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+              id="practice-btn"
             >
               <i
                 class="fa-solid fa-keyboard text-[var(--color-text)] text-2xl group-hover:text-amber-500"
@@ -75,6 +76,7 @@
               data-tooltip-target="tooltip-statistics"
               type="button"
               class="flex flex-col items-center justify-center hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+              id="stat-btn"
             >
               <i
                 class="fa-solid fa-chart-column text-[var(--color-text)] text-2xl group-hover:text-amber-500"
@@ -95,6 +97,7 @@
               data-tooltip-target="tooltip-settings"
               type="button"
               class="cursor-pointer flex flex-col items-center justify-center rounded-e-full hover:bg-[var(--color-bg)] transition w-full h-full"
+              id="setting-btn"
             >
               <i
                 class="fa-solid fa-gear text-[var(--color-text)] text-2xl group-hover:text-amber-500"
@@ -359,5 +362,6 @@
     <script src="../js/pages/dashboard.js"></script>
     <script src="../js/pages/ProfilePageScript/userInfofetch.js"></script>
     <script src="../js/logoutFunc.js"></script>
+    <script src="../js/navBarRedirection.js"></script>
   </body>
 </html>

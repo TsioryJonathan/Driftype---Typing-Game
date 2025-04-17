@@ -12,44 +12,42 @@ const transporter = nodemailer.createTransport({
   port: process.env.SMTP_PORT,
   auth: {
     user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS
-  }
+    pass: process.env.SMTP_PASS,
+  },
 });
 
 export const register = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username, email, password } = req.body;
 
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  if (!passwordRegex.test(password)) {
-    return res.status(400).json({ 
-      message: 'Password must be at least 8 characters and contain uppercase, lowercase, number and special character' 
-    });
-  }
-
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      return res.status(400).json({
+        message:
+          'Password must be at least 8 characters and contain uppercase, lowercase, number and special character',
+      });
+    }
 
     const existingUser = await User.findByEmail(email);
     if (existingUser) {
       return res.status(400).json({ message: 'Email already registered' });
     }
 
-    const user = await User.create({ email, password });
-    
+    const user = await User.create({ username, email, password });
+
     // Generate JWT token
-    const token = jwt.sign(
-      { userId: user.id },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN || '1h'}
-    );
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN || '1h',
+    });
 
+    console.log(`User registered: ${email}`);
 
-       console.log(`User registered: ${email}`);
-
-// response
+    // response
     res.status(201).json({
       message: 'Registration successful',
       token,
-      user: { id: user.id, email: user.email }
+      user: { username: user.username, id: user.id, email: user.email },
     });
   } catch (error) {
     console.error('Registration error:', error);
@@ -64,26 +62,24 @@ export const login = async (req, res) => {
     // Find user
     const user = await User.findByEmail(email);
 
-if (!user) {
-  return res.status(401).json({ message: 'Email or password incorrect!' });
-}
+    if (!user) {
+      return res.status(401).json({ message: 'Email or password incorrect!' });
+    }
 
-const isValidPassword = await bcrypt.compare(password, user.password);
-if (!isValidPassword) {
-  return res.status(401).json({ message: 'Email or password incorrect!' });
-}
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      return res.status(401).json({ message: 'Email or password incorrect!' });
+    }
 
     // Generate JWT token
-    const token = jwt.sign(
-      { userId: user.id },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN }
-    );
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN,
+    });
 
     res.json({
       message: 'Login successful',
       token,
-      user: { id: user.id, email: user.email }
+      user: { id: user.id, email: user.email },
     });
   } catch (error) {
     console.error('Login error:', error);
@@ -120,7 +116,7 @@ export const forgotPassword = async (req, res) => {
         <p>Click this <a href="${resetUrl}">link</a> to reset your password</p>
         <p>If you didn't request this, please ignore this email</p>
       </div>
-      `
+      `,
     });
 
     res.json({ message: 'Password reset email sent' });
@@ -137,7 +133,9 @@ export const resetPassword = async (req, res) => {
     // Verify token
     const resetToken = await User.verifyPasswordResetToken(token);
     if (!resetToken) {
-      return res.status(400).json({ message: 'Invalid or expired reset token' });
+      return res
+        .status(400)
+        .json({ message: 'Invalid or expired reset token' });
     }
 
     // Update password
@@ -160,7 +158,7 @@ export const googleSignIn = async (req, res) => {
     // Verify Google token
     const ticket = await googleClient.verifyIdToken({
       idToken: credential,
-      audience: process.env.GOOGLE_CLIENT_ID
+      audience: process.env.GOOGLE_CLIENT_ID,
     });
 
     const payload = ticket.getPayload();
@@ -175,21 +173,19 @@ export const googleSignIn = async (req, res) => {
       user = await User.create({
         email,
         password: randomPassword,
-        googleId
+        googleId,
       });
     }
 
     // Generate JWT token
-    const token = jwt.sign(
-      { userId: user.id },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN }
-    );
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN,
+    });
 
     res.json({
       message: 'Google sign-in successful',
       token,
-      user: { id: user.id, email: user.email }
+      user: { id: user.id, email: user.email },
     });
   } catch (error) {
     console.error('Google sign-in error:', error);

@@ -2,7 +2,7 @@ import sql from '../config/db.js';
 import bcrypt from 'bcryptjs';
 
 class User {
-  static create = async ({ email, password }) => {
+  static create = async ({ username, email, password }) => {
     if (!email || !password) {
       throw new Error('Email and password are required');
     }
@@ -10,13 +10,13 @@ class User {
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
       const [user] = await sql`
-        INSERT INTO users (email, password)
-        VALUES (${email}, ${hashedPassword})
-        RETURNING id, email
+        INSERT INTO users (username , email, password)
+        VALUES (${username},${email}, ${hashedPassword})
+        RETURNING username,id, email
       `;
       return user;
     } catch (error) {
-      if (error.code === '23505') { 
+      if (error.code === '23505') {
         throw new Error('Email already exists');
       }
       throw error;
@@ -74,14 +74,14 @@ class User {
 
   static verifyPasswordResetToken = async (token) => {
     try {
-      const [result] = await sql `
+      const [result] = await sql`
       SELECT user_id FROM password_reset_tokens WHERE token = ${token} AND expires_at > NOW() AND used = false`;
       return result;
     } catch (error) {
       console.error('Password reset token verification error:', error);
       throw new Error('Failed to verify password reset token');
     }
-  }
+  };
 
   static markPasswordResetTokenAsUsed = async (token) => {
     try {
@@ -94,7 +94,6 @@ class User {
       throw new Error('Failed to mark password reset token as used');
     }
   };
-  
 }
 
 export default User;

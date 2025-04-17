@@ -4,11 +4,22 @@
     "users": [
       {
         "id": 1,
+        "username": "Tafita",
         "email": "hei.tafita.2@gmail.com",
         "password": "$2a$10$T7jmzKM4BBIesQ07jE6C4eulVRYfVPsFj5jGi/Dd6S2vuBCjB2CM6",
         "google_id": null,
-        "created_at": "2025-04-16T03:04:38.844Z",
-        "updated_at": "2025-04-16T18:56:41.912Z"
+
+        "created_at": "2025-04-08T17:56:02.916Z",
+        "updated_at": "2025-04-08T17:56:02.916Z"
+      },
+      {
+        "id": 2,
+        "username": "Tafita2",
+        "email": "tafita@mail.hei.school",
+        "password": "$2a$10$Z94t9.aY49zuTDfhGRNVBOIw1oyMzqnmfVREnzvdnpXhh4uTpTAMy",
+        "google_id": null,
+        "created_at": "2025-04-09T20:58:44.640Z",
+        "updated_at": "2025-04-09T20:58:44.640Z"
       }
     ],
     "gameStats": [],
