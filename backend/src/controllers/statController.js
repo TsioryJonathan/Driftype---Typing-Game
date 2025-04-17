@@ -1,7 +1,7 @@
 import sql from '../config/db.js';
 import User from '../models/user.js';
 
-export const getUserStat = async (req, res) => {
+export const getRecentUserStat = async (req, res) => {
   const userId = req.params.userId;
 
   if (!userId) {
@@ -10,7 +10,7 @@ export const getUserStat = async (req, res) => {
 
   try {
     const stat =
-      await sql`SELECT * FROM game_statistics inner join users on game_statistics.user_id = user.id where user.id = ${userId} limit 10`;
+      await sql`SELECT * FROM game_statistics inner join users on game_statistics.user_id = "users".id where "users".id = ${userId} limit 10`;
 
     res.json(stat);
   } catch (e) {
@@ -42,5 +42,66 @@ export const postUserStat = async (req, res) => {
     res
       .status(500)
       .json({ message: 'Database error', error: e.detail || e.message });
+  }
+};
+
+export const getSpecificStat = async (req, res) => {
+  const userId = req.params.userId;
+  const { language, difficulty, time_taken } = req.query;
+
+  try {
+    const whereParts = [];
+    const values = [];
+
+    // Ajout dynamique des filtres
+    if (userId) {
+      whereParts.push(`user_id = $${values.length + 1}`);
+      values.push(userId);
+    }
+
+    if (language) {
+      whereParts.push(`language = $${values.length + 1}`);
+      values.push(language);
+    }
+
+    if (difficulty) {
+      whereParts.push(`difficulty = $${values.length + 1}`);
+      values.push(difficulty);
+    }
+
+    if (time_taken) {
+      whereParts.push(`time_taken = $${values.length + 1}`);
+      values.push(time_taken);
+    }
+
+    const whereClause =
+      whereParts.length > 0 ? `WHERE ${whereParts.join(' AND ')}` : '';
+
+    const query = `
+      SELECT * FROM game_statistics
+      ${whereClause}
+      ORDER BY created_at DESC
+      LIMIT 10
+    `;
+
+    const data = await sql.unsafe(query, values);
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching stats:', error);
+    res.status(500).json({ message: 'fetch error' });
+  }
+};
+
+export const getOverallStat = async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const data =
+      await sql`select count(*) as total_test , max(wpm) as max_wpm , avg(wpm) as avg_wpm ,
+    avg(accuracy) as avg_accuracy from game_statistics where user_id = ${userId}`;
+
+    res.json(data);
+  } catch (err) {
+    res.status(404).send({ Mess: err });
   }
 };
