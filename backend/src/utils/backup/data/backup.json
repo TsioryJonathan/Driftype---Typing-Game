@@ -4,6 +4,7 @@
     "users": [
       {
         "id": 1,
+        "username": "Tafita",
         "email": "hei.tafita.2@gmail.com",
         "password": "$2a$10$iqiXsmB2pqk2eni6o0s4iOToSefTBKuXgDm9qWhI3s7rt1loYRcDO",
         "google_id": null,
@@ -12,6 +13,7 @@
       },
       {
         "id": 2,
+        "username": "Tafita2",
         "email": "tafita@mail.hei.school",
         "password": "$2a$10$Z94t9.aY49zuTDfhGRNVBOIw1oyMzqnmfVREnzvdnpXhh4uTpTAMy",
         "google_id": null,
