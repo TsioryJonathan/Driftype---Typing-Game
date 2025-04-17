@@ -1,7 +1,7 @@
 import { API_URL } from '../login.js';
 
-const avgWpm = document.querySelector('#avg-wpm');
-const avgAcc = document.querySelector('#avg-accuracy');
+const avgWpm = document.querySelectorAll('#avg-wpm');
+const avgAcc = document.querySelectorAll('#avg-accuracy');
 const maxWpm = document.querySelector('#max-wpm');
 const totalTest = document.querySelector('#complete-test');
 
@@ -23,8 +23,12 @@ const renderOverallStat = async () => {
     const { total_test, max_wpm, avg_wpm, avg_accuracy } = data[0] || {};
 
     if (avgWpm && avgAcc && maxWpm && totalTest) {
-      avgWpm.textContent = `${Number(avg_wpm).toFixed(2)} wpm`;
-      avgAcc.textContent = `${Number(avg_accuracy).toFixed(2)}%`;
+      avgAcc.forEach((field) => {
+        field.textContent = `${Number(avg_accuracy).toFixed(1)}% acc`;
+      });
+      avgWpm.forEach((field) => {
+        field.textContent = `${Number(avg_wpm).toFixed(1)} wpm`;
+      });
       maxWpm.textContent = max_wpm;
       totalTest.textContent = total_test;
     } else {

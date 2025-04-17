@@ -183,7 +183,11 @@
               class="text-[var(--color-text)] text-3xl font-bold"
               id="avg-wpm"
             >
-              -
+              <div class="flex justify-center items-center">
+                <div
+                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                ></div>
+              </div>
             </h4>
           </div>
 
@@ -198,7 +202,11 @@
               class="text-[var(--color-text)] text-3xl font-bold"
               id="max-wpm"
             >
-              -
+              <div class="flex justify-center items-center">
+                <div
+                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                ></div>
+              </div>
             </h4>
           </div>
 
@@ -215,7 +223,11 @@
               class="text-[var(--color-text)] text-3xl font-bold"
               id="avg-accuracy"
             >
-              -
+              <div class="flex justify-center items-center">
+                <div
+                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                ></div>
+              </div>
             </h4>
           </div>
 
@@ -232,7 +244,11 @@
               class="text-[var(--color-text)] text-3xl font-bold"
               id="complete-test"
             >
-              -
+              <div class="flex justify-center items-center">
+                <div
+                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                ></div>
+              </div>
             </h4>
           </div>
         </div>
@@ -361,15 +377,20 @@
                     alt="Guest's photo"
                     class="w-10 h-10 rounded-full object-cover"
                   >
-                  <span class="text-[var(--color-text)] text-sm">
-                    #Not.Ranked Guest12234589
-                  </span>
+                  <span
+                    class="text-[var(--color-text)] text-sm"
+                    id="rank"
+                  ></span>
                 </div>
                 <div class="flex flex-col gap-1">
-                  <span class="text-[var(--color-text)] font-bold">42 WPM</span>
-                  <span class="text-[var(--color-text-secondary)] text-xs">
-                    68.0% acc
-                  </span>
+                  <span
+                    class="text-[var(--color-text)] font-bold"
+                    id="avg-wpm"
+                  ></span>
+                  <span
+                    class="text-[var(--color-text-secondary)] text-xs"
+                    id="avg-accuracy"
+                  ></span>
                 </div>
               </li>
             </ul>
@@ -484,83 +505,44 @@
                   </th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-[var(--color-border)]">
-                <!-- Row 1 -->
-                <tr
-                  class="hover:bg-[var(--color-bg-secondary)] transition-colors duration-150"
-                >
-                  <td class="px-6 py-4 text-[var(--color-text)]">
-                    Apr 14, 2025
-                  </td>
-                  <td class="px-6 py-4 font-medium text-[var(--color-text)]">
-                    89
-                  </td>
-                  <td class="px-6 py-4">
-                    <div class="flex justify-center items-center gap-2">
+              <tbody class="divide-y divide-[var(--color-border)]" id="tbody">
+                <!-- Row  -->
+                <tr>
+                  <td class="px-6 py-4 text-[var(--color-text)]" id="date">
+                    <div class="flex justify-center items-center">
                       <div
-                        class="w-20 h-2 rounded-full bg-[var(--color-bg-secondary)]"
-                      >
-                        <div
-                          class="h-2 rounded-full bg-[var(--color-success)]"
-                          style="width: 97%"
-                        ></div>
-                      </div>
-                      <span class="text-[var(--color-text)]">97%</span>
+                        class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                      ></div>
                     </div>
                   </td>
-                  <td class="px-6 py-4 text-[var(--color-text)]">2:30</td>
-                </tr>
-
-                <!-- Row 2 -->
-                <tr
-                  class="hover:bg-[var(--color-bg-secondary)] transition-colors duration-150"
-                >
-                  <td class="px-6 py-4 text-[var(--color-text)]">
-                    Apr 13, 2025
-                  </td>
-                  <td class="px-6 py-4 font-medium text-[var(--color-text)]">
-                    78
-                  </td>
-                  <td class="px-6 py-4">
-                    <div class="flex justify-center items-center gap-2">
+                  <td
+                    class="px-6 py-4 font-medium text-[var(--color-text)]"
+                    id="wpm"
+                  >
+                    <div class="flex justify-center items-center">
                       <div
-                        class="w-20 h-2 rounded-full bg-[var(--color-bg-secondary)]"
-                      >
-                        <div
-                          class="h-2 rounded-full bg-[var(--color-success)]"
-                          style="width: 94%"
-                        ></div>
-                      </div>
-                      <span class="text-[var(--color-text)]">94%</span>
+                        class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                      ></div>
                     </div>
                   </td>
-                  <td class="px-6 py-4 text-[var(--color-text)]">2:15</td>
-                </tr>
-
-                <!-- Row 3 -->
-                <tr
-                  class="hover:bg-[var(--color-bg-secondary)] transition-colors duration-150"
-                >
-                  <td class="px-6 py-4 text-[var(--color-text)]">
-                    Apr 12, 2025
-                  </td>
-                  <td class="px-6 py-4 font-medium text-[var(--color-text)]">
-                    82
-                  </td>
                   <td class="px-6 py-4">
-                    <div class="flex justify-center items-center gap-2">
-                      <div
-                        class="w-20 h-2 rounded-full bg-[var(--color-bg-secondary)]"
-                      >
-                        <div
-                          class="h-2 rounded-full bg-[var(--color-success)]"
-                          style="width: 96%"
-                        ></div>
-                      </div>
-                      <span class="text-[var(--color-text)]">96%</span>
+                    <div class="flex items-center justify-center gap-2">
+                      <span class="text-[var(--color-text)]" id="acc">
+                        <div class="flex justify-center items-center">
+                          <div
+                            class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                          ></div>
+                        </div>
+                      </span>
                     </div>
                   </td>
-                  <td class="px-6 py-4 text-[var(--color-text)]">2:10</td>
+                  <td class="px-6 py-4 text-[var(--color-text)]" id="time">
+                    <div class="flex justify-center items-center">
+                      <div
+                        class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                      ></div>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -581,6 +563,10 @@
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
     <script
       src="../js/pages/StatPageScript/getOverallStat.js"
+      type="module"
+    ></script>
+    <script
+      src="../js/pages/StatPageScript/getRecentStat.js"
       type="module"
     ></script>
   </body>
