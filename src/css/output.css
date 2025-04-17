@@ -347,6 +347,9 @@
   .top-5 {
     top: calc(var(--spacing) * 5);
   }
+  .top-full {
+    top: 100%;
+  }
   .right-0 {
     right: calc(var(--spacing) * 0);
   }
@@ -590,9 +593,6 @@
   .w-40 {
     width: calc(var(--spacing) * 40);
   }
-  .w-48 {
-    width: calc(var(--spacing) * 48);
-  }
   .w-96 {
     width: calc(var(--spacing) * 96);
   }
@@ -641,6 +641,10 @@
   .flex-1 {
     flex: 1;
   }
+  .-translate-x-1\/2 {
+    --tw-translate-x: calc(calc(1/2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
   .translate-x-0 {
     --tw-translate-x: calc(var(--spacing) * 0);
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -684,6 +688,9 @@
   }
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1392,6 +1399,9 @@
     --tw-drop-shadow: drop-shadow(var(--drop-shadow-xl));
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
+  .filter {
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
   .backdrop-blur-3xl {
     --tw-backdrop-blur: blur(var(--blur-3xl));
     -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
@@ -1628,6 +1638,13 @@
       }
     }
   }
+  .hover\:bg-amber-500 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-amber-500);
+      }
+    }
+  }
   .hover\:text-\[var\(--color-error\)\] {
     &:hover {
       @media (hover: hover) {
@@ -1660,6 +1677,20 @@
     &:hover {
       @media (hover: hover) {
         color: var(--color-active-600);
+      }
+    }
+  }
+  .hover\:text-amber-500 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-amber-500);
+      }
+    }
+  }
+  .hover\:text-black {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-black);
       }
     }
   }
@@ -1798,6 +1829,11 @@
   .md\:grid-cols-2 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .md\:grid-cols-4 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
   .md\:flex-row {
