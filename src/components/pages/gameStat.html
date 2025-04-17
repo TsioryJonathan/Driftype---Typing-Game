@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driftype - User Stat</title>
+    <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon">
+    <link href="/src/css/output.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    >
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    >
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
+      integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      defer
+    ></script>
+    <script src="https://unpkg.com/i18next@22.4.15/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@2.2.0/i18nextHttpBackend.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  </head>
+  <body class="bg-[var(--color-bg)] text-[var(--color-text)]">
+    <!-- HEADER -->
+    <header
+      class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px]"
+    >
+      <!-- Logo -->
+      <div class="h-full flex items-center">
+        <a href="/">
+          <img
+            src="/src/assets/noBg.png"
+            alt="Drifttype"
+            class="h-full w-40 object-cover"
+          >
+        </a>
+      </div>
+
+      <!-- Nav bar -->
+      <nav class="w-full max-w-md mx-auto h-[40px]">
+        <div
+          class="flex justify-between items-center bg-[var(--color-input)] rounded-full h-full"
+        >
+          <!-- Practice -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-practice"
+              type="button"
+              class="flex flex-col items-center justify-center rounded-s-full hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+            >
+              <i
+                class="fa-solid fa-keyboard text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Practice</span>
+            </button>
+            <div
+              id="tooltip-practice"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Practice
+            </div>
+          </div>
+
+          <!-- Statistics -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-statistics"
+              type="button"
+              class="flex flex-col items-center justify-center hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+            >
+              <i
+                class="fa-solid fa-chart-column text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Statistics</span>
+            </button>
+            <div
+              id="tooltip-statistics"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Statistics
+            </div>
+          </div>
+
+          <!-- Settings -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-settings"
+              type="button"
+              class="cursor-pointer flex flex-col items-center justify-center rounded-e-full hover:bg-[var(--color-bg)] transition w-full h-full"
+            >
+              <i
+                class="fa-solid fa-gear text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Settings</span>
+            </button>
+            <div
+              id="tooltip-settings"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Settings
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Avatar / User menu -->
+      <div class="relative h-full flex items-center" id="user-menu-container">
+        <button
+          id="user-menu-button"
+          class="flex items-center gap-5 px-2 py-1 bg-[var(--color-input)] rounded-full transition cursor-pointer -translate-y-0.5 group min-w-fit"
+        >
+          <img
+            id="avatar-img"
+            src="https://i.pravatar.cc/40"
+            alt="Avatar"
+            class="w-8 h-8 rounded-full"
+          >
+          <h2 class="text-sm" id="username"></h2>
+          <i
+            class="fa-solid fa-angle-down text-xs group-hover:translate-y-0.5"
+          ></i>
+        </button>
+        <div
+          id="dropdown"
+          class="absolute right-0 -bottom-16 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)] overflow-hidden"
+        >
+          <a
+            href="./profile.html"
+            class="flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+          >
+            Profile
+            <i class="fas fa-user"></i>
+          </a>
+          <button
+            class="w-full text-left flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+            onclick="logout()"
+          >
+            Sign out
+            <i class="fas fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+
+    <main>
+      <div
+        class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] py-6 space-y-8 px-10"
+      >
+        <!-- Title and filters -->
+        <div
+          class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+        >
+          <h1 class="text-3xl font-bold">My Statistics</h1>
+          <div class="flex gap-2">
+            <button
+              class="px-4 py-2 rounded-xl border text-sm hover:bg-[var(--color-bg-secondary)] transition"
+            >
+              Today
+            </button>
+            <button
+              class="px-4 py-2 rounded-xl border text-sm hover:bg-[var(--color-bg-secondary)] transition"
+            >
+              7 Days
+            </button>
+            <button
+              class="px-4 py-2 rounded-xl border text-sm hover:bg-[var(--color-bg-secondary)] transition"
+            >
+              30 Days
+            </button>
+          </div>
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div
+            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
+          >
+            <div class="flex items-center gap-2">
+              <i
+                class="fa-solid fa-arrow-trend-up text-[var(--color-primary)]"
+              ></i>
+              <p class="text-sm text-[var(--color-text-secondary)]">
+                Average WPM
+              </p>
+            </div>
+            <h4 class="text-[var(--color-text)] text-3xl font-bold">63</h4>
+          </div>
+
+          <div
+            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
+          >
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-award text-[var(--color-accent)]"></i>
+              <p class="text-sm text-[var(--color-text-secondary)]">Max WPM</p>
+            </div>
+            <h4 class="text-[var(--color-text)] text-3xl font-bold">63</h4>
+          </div>
+
+          <div
+            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
+          >
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-bullseye text-[var(--color-success)]"></i>
+              <p class="text-sm text-[var(--color-text-secondary)]">
+                Avg. Accuracy
+              </p>
+            </div>
+            <h4 class="text-[var(--color-text)] text-3xl font-bold">97%</h4>
+          </div>
+
+          <div
+            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
+          >
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-clock text-[var(--color-warning)]"></i>
+              <p class="text-sm text-[var(--color-text-secondary)]">
+                Test Completed
+              </p>
+            </div>
+            <h4 class="text-[var(--color-text)] text-3xl font-bold">129</h4>
+          </div>
+        </div>
+
+        <!-- History and leaderboards -->
+        <div class="flex flex-col md:flex-row gap-5">
+          <!-- History -->
+          <div
+            class="bg-[var(--color-card)] rounded-xl h-fit shadow-sm border border-[var(--color-border)] overflow-hidden flex-1"
+          >
+            <div class="p-6 border-b border-[var(--color-border)]">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <i
+                    class="fa-solid fa-clock text-[var(--color-active-500)] text-xl"
+                  ></i>
+
+                  <h2 class="ml-2 text-xl font-bold text-[var(--color-text)]">
+                    Recent Tests
+                  </h2>
+                </div>
+                <button
+                  class="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] font-medium"
+                >
+                  View All
+                </button>
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="bg-[var(--color-bg-secondary)]">
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                    >
+                      Date
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                    >
+                      WPM
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                    >
+                      Accuracy
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                    >
+                      Duration
+                    </th>
+                    <th
+                      class="px-6 py-3 text-right text-xs font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                    >
+                      Details
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[var(--color-border)]">
+                  <tr
+                    class="hover:bg-[var(--color-bg-secondary)] transition-colors"
+                  >
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]"
+                    >
+                      Apr 14, 2025
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span
+                        class="text-sm font-medium text-[var(--color-text)]"
+                      >
+                        89
+                      </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center">
+                        <div
+                          class="w-16 bg-[var(--color-bg-secondary)] rounded-full h-2"
+                        >
+                          <div
+                            class="bg-[var(--color-success)] h-2 rounded-full"
+                            style="width: 97%"
+                          ></div>
+                        </div>
+                        <span class="ml-2 text-sm text-[var(--color-text)]">
+                          97%
+                        </span>
+                      </div>
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]"
+                    >
+                      2:30
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                      <button
+                        class="text-[var(--color-primary)] hover:text-[var(--color-primary-hover)]"
+                      >
+                        <svg
+                          class="text-[var(--color-primary)]"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M13 10l-4 4-4-4" />
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    class="hover:bg-[var(--color-bg-secondary)] transition-colors"
+                  >
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]"
+                    >
+                      Apr 13, 2025
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span
+                        class="text-sm font-medium text-[var(--color-text)]"
+                      >
+                        78
+                      </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center">
+                        <div
+                          class="w-16 bg-[var(--color-bg-secondary)] rounded-full h-2"
+                        >
+                          <div
+                            class="bg-[var(--color-success)] h-2 rounded-full"
+                            style="width: 94%"
+                          ></div>
+                        </div>
+                        <span class="ml-2 text-sm text-[var(--color-text)]">
+                          94%
+                        </span>
+                      </div>
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]"
+                    >
+                      2:15
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                      <button
+                        class="text-[var(--color-primary)] hover:text-[var(--color-primary-hover)]"
+                      >
+                        <svg
+                          class="text-[var(--color-primary)]"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M13 10l-4 4-4-4" />
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    class="hover:bg-[var(--color-bg-secondary)] transition-colors"
+                  >
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]"
+                    >
+                      Apr 12, 2025
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span
+                        class="text-sm font-medium text-[var(--color-text)]"
+                      >
+                        82
+                      </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center">
+                        <div
+                          class="w-16 bg-[var(--color-bg-secondary)] rounded-full h-2"
+                        >
+                          <div
+                            class="bg-[var(--color-success)] h-2 rounded-full"
+                            style="width: 96%"
+                          ></div>
+                        </div>
+                        <span class="ml-2 text-sm text-[var(--color-text)]">
+                          96%
+                        </span>
+                      </div>
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-[var(--color-text)]"
+                    >
+                      2:10
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                      <button
+                        class="text-[var(--color-primary)] hover:text-[var(--color-primary-hover)]"
+                      >
+                        <svg
+                          class="text-[var(--color-primary)]"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M13 10l-4 4-4-4" />
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Leaderboard -->
+          <div
+            class="bg-[var(--color-card)] rounded-lg shadow-md w-full md:w-100 border border-[var(--color-border)]"
+          >
+            <div class="p-6 border-b border-[var(--color-border)]">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <i
+                    class="fa-solid fa-trophy text-[var(--color-active-500)] text-xl"
+                  ></i>
+
+                  <h2 class="ml-2 text-xl font-bold text-[var(--color-text)]">
+                    Leaderboard
+                  </h2>
+                </div>
+                <button
+                  class="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] font-medium"
+                >
+                  View All
+                </button>
+              </div>
+            </div>
+            <ul class="space-y-4 text-sm p-4">
+              <li class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user.jpg"
+                    alt="Alice's photo"
+                    class="w-10 h-10 rounded-full object-cover"
+                  >
+                  <span class="text-[var(--color-text)] text-sm">#1 Alice</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="text-[var(--color-text)] font-bold">
+                    102 WPM
+                  </span>
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    99.8% acc
+                  </span>
+                </div>
+              </li>
+              <li class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user.jpg"
+                    alt="Bob's photo"
+                    class="w-10 h-10 rounded-full object-cover"
+                  >
+                  <span class="text-[var(--color-text)] text-sm">#2 Bob</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="text-[var(--color-text)] font-bold">98 WPM</span>
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    96.2% acc
+                  </span>
+                </div>
+              </li>
+              <li class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user.jpg"
+                    alt="John's photo"
+                    class="w-10 h-10 rounded-full object-cover"
+                  >
+                  <span class="text-[var(--color-text)] text-sm">#3 John</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="text-[var(--color-text)] font-bold">89 WPM</span>
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    95.8% acc
+                  </span>
+                </div>
+              </li>
+              <li class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user.jpg"
+                    alt="Mary's photo"
+                    class="w-10 h-10 rounded-full object-cover"
+                  >
+                  <span class="text-[var(--color-text)] text-sm">#4 Mary</span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="text-[var(--color-text)] font-bold">87 WPM</span>
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    94.7% acc
+                  </span>
+                </div>
+              </li>
+              <li
+                class="flex justify-between items-center border-b border-[var(--color-border)] pb-2"
+              >
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user.jpg"
+                    alt="Sophia's photo"
+                    class="w-10 h-10 rounded-full object-cover"
+                  >
+                  <span class="text-[var(--color-text)] text-sm">
+                    #5 Sophia
+                  </span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="text-[var(--color-text)] font-bold">85 WPM</span>
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    94.0% acc
+                  </span>
+                </div>
+              </li>
+
+              <li
+                class="flex justify-between items-center bg-active-600 p-1 rounded-lg"
+              >
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user.jpg"
+                    alt="Guest's photo"
+                    class="w-10 h-10 rounded-full object-cover"
+                  >
+                  <span class="text-[var(--color-text)] text-sm">
+                    #Not.Ranked Guest12234589
+                  </span>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <span class="text-[var(--color-text)] font-bold">42 WPM</span>
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    68.0% acc
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="../js/pages/dashboard.js"></script>
+    <script src="../js/pages/StatPageScript/userDetailsFetch.js"></script>
+    <script src="../js/logoutFunc.js"></script>
+  </body>
+</html>

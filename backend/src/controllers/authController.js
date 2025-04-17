@@ -109,12 +109,13 @@ export const forgotPassword = async (req, res) => {
     await User.createPasswordResetToken(user.id, resetToken, expiresAt);
 
     // Send reset email
-    const resetUrl = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
+    const resetUrl = `${process.env.FRONTEND_URL}/src/components/pages/reset-password.html?token=${resetToken}`;
     await transporter.sendMail({
       to: email,
-      subject: '[TajoType] Password Reset Request',
+      subject: '[Driftype] Password Reset Request',
       html: `
       <div style="color: #333; width: 100%;margin: 0 auto;text-align: center">
+        <div><img src="http://127.0.0.1:5500/src/assets/noBg.png" alt="" /></div>
         <p style="margin: 10px 0;font-size: 16px;">You requested a password reset</p>
         <p>Click this <a href="${resetUrl}">link</a> to reset your password</p>
         <p>If you didn't request this, please ignore this email</p>

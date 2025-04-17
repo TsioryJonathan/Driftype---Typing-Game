@@ -1,7 +1,3 @@
--- Delete table if exists
-DROP TABLE IF EXISTS game_statistics;
-DROP TABLE IF EXISTS password_reset_tokens;
-DROP TABLE IF EXISTS users;
 
 -- Create users table
 CREATE TABLE users (

@@ -8,12 +8,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const sql = postgres({
-  host: process.env.DB_HOST,       
-  port: process.env.DB_PORT,       
-  database: process.env.DB_NAME,   
-  username: process.env.DB_USER,   
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  ssl: { rejectUnauthorized: false }, 
+  ssl: { rejectUnauthorized: false },
   max_connections: 10,
   idle_timeout: 30,
   connect_timeout: 10,
@@ -23,7 +23,7 @@ const sql = postgres({
   },
   types: {
     date: true,
-    timestamp: true
+    timestamp: true,
   },
   debug: process.env.NODE_ENV === 'development',
 });
