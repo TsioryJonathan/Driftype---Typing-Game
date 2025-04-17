@@ -259,7 +259,7 @@
   }
   @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
     ::placeholder {
-      color: color-mix(in oklab, currentcolor 50%, transparent);
+      color: color-mix(in oklab, currentColor 50%, transparent);
     }
   }
   textarea {
@@ -576,6 +576,12 @@
   .w-\[80vw\] {
     width: 80vw;
   }
+  .w-\[100\%\] {
+    width: 100%;
+  }
+  .w-auto {
+    width: auto;
+  }
   .w-fit {
     width: fit-content;
   }
@@ -643,6 +649,9 @@
   }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .resize {
+    resize: both;
   }
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
