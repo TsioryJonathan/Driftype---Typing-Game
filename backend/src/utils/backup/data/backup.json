@@ -1,20 +1,17 @@
 {
-  "timestamp": "2025-04-17T08:37:53.392Z",
+  "timestamp": "2025-04-17T10:15:33.255Z",
   "data": {
     "users": [
       {
         "id": 1,
-        "username": "Tafita",
         "email": "hei.tafita.2@gmail.com",
-        "password": "$2a$10$T7jmzKM4BBIesQ07jE6C4eulVRYfVPsFj5jGi/Dd6S2vuBCjB2CM6",
+        "password": "$2a$10$iqiXsmB2pqk2eni6o0s4iOToSefTBKuXgDm9qWhI3s7rt1loYRcDO",
         "google_id": null,
-
         "created_at": "2025-04-08T17:56:02.916Z",
         "updated_at": "2025-04-08T17:56:02.916Z"
       },
       {
         "id": 2,
-        "username": "Tafita2",
         "email": "tafita@mail.hei.school",
         "password": "$2a$10$Z94t9.aY49zuTDfhGRNVBOIw1oyMzqnmfVREnzvdnpXhh4uTpTAMy",
         "google_id": null,
@@ -26,11 +23,51 @@
     "resetTokens": [
       {
         "id": 1,
-        "user_id": 1,
-        "token": "4a3f6b742e39fa8dc3768d0fa32a0f6ca69bfa2a7adc05d71958636a5436c32a",
-        "expires_at": "2025-04-16T19:55:29.531Z",
-        "used": true,
-        "created_at": "2025-04-16T18:55:30.570Z"
+        "user_id": 2,
+        "token": "26e685b18b82b85a2238b56815ac41188ef0e97164b56d003a6765e0275f1cc3",
+        "expires_at": "2025-04-09T22:01:19.650Z",
+        "used": false,
+        "created_at": "2025-04-09T21:01:19.651Z"
+      },
+      {
+        "id": 2,
+        "user_id": 2,
+        "token": "3384870f1180c930bca53c2245d338a78db751e0a7eddc9e681c2088110ad657",
+        "expires_at": "2025-04-09T22:01:23.733Z",
+        "used": false,
+        "created_at": "2025-04-09T21:01:23.734Z"
+      },
+      {
+        "id": 3,
+        "user_id": 2,
+        "token": "56e57e931f22ba017760ed7de7a898e9508f698e108822969400b469b93ea7c6",
+        "expires_at": "2025-04-09T22:01:24.672Z",
+        "used": false,
+        "created_at": "2025-04-09T21:01:24.672Z"
+      },
+      {
+        "id": 4,
+        "user_id": 2,
+        "token": "8671a4b494662450e097f7d7036dfa5e08cad5be7857004a4f25a032d2dce21c",
+        "expires_at": "2025-04-09T22:01:25.473Z",
+        "used": false,
+        "created_at": "2025-04-09T21:01:25.474Z"
+      },
+      {
+        "id": 5,
+        "user_id": 2,
+        "token": "ddc2bf6384fdf9ed8ce9abe9c3935549f0f82627983bc35672199a89c2bc0580",
+        "expires_at": "2025-04-09T22:01:31.181Z",
+        "used": false,
+        "created_at": "2025-04-09T21:01:31.182Z"
+      },
+      {
+        "id": 6,
+        "user_id": 2,
+        "token": "9753ad1671f940f7450d320bd975f0f958a9988eee0fa469f9a2b1b7ddcbfaf1",
+        "expires_at": "2025-04-09T22:01:39.806Z",
+        "used": false,
+        "created_at": "2025-04-09T21:01:39.806Z"
       }
     ]
   }
