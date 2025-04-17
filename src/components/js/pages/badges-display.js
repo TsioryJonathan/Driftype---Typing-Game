@@ -67,7 +67,7 @@ export const displayUserBadges = (userId, language = 'en') => {
   }
 };
 
-function createCategorySection(category, badges, language) {
+const createCategorySection = (category, badges, language) => {
   const section = document.createElement('div');
   section.className = 'badge-category';
   section.innerHTML = `
@@ -105,7 +105,7 @@ function createCategorySection(category, badges, language) {
   return section;
 }
 
-function createBadgeCard(badge, language) {
+const createBadgeCard = (badge, language) => {
   const card = document.createElement('div');
   card.className = `badge-card ${badge.unlocked ? 'unlocked' : 'locked'}`;
   card.style.cssText = `
@@ -171,7 +171,7 @@ function createBadgeCard(badge, language) {
   return card;
 }
 
-function shineEffect() {
+const shineEffect = () => {
   return `
     <div class="shine-effect" style="
       position: absolute;
@@ -192,7 +192,7 @@ function shineEffect() {
   `;
 }
 
-function unlockedBadgeUI(badge) {
+const unlockedBadgeUI = (badge) => {
   return `
     <div style="
       display: flex;
@@ -221,7 +221,7 @@ function unlockedBadgeUI(badge) {
   `;
 }
 
-function lockedBadgeUI(badge) {
+const lockedBadgeUI = (badge) => {
   const progress = badge.progress || 0;
   return `
     <div style="margin-top: 12px;">
@@ -249,7 +249,7 @@ function lockedBadgeUI(badge) {
   `;
 }
 
-function setupBadgeInteractions(container, language) {
+const setupBadgeInteractions = (container, language) => {
   container.addEventListener('click', async (e) => {
     const shareBtn = e.target.closest('.share-btn');
     const badgeCard = e.target.closest('.badge-card.unlocked');
@@ -270,7 +270,7 @@ function setupBadgeInteractions(container, language) {
   });
 }
 
-function injectBadgeStyles() {
+const injectBadgeStyles = () => {
   if (!document.getElementById('badge-styles')) {
     const style = document.createElement('style');
     style.id = 'badge-styles';
@@ -298,7 +298,7 @@ function injectBadgeStyles() {
   }
 }
 
-function getBadgeColor(badge) {
+const getBadgeColor = (badge) => {
   const colors = {
     bronze: '#cd7f32',
     silver: '#c0c0c0',
@@ -310,11 +310,11 @@ function getBadgeColor(badge) {
   return colors[badge.color] || 'var(--color-primary)';
 }
 
-function getCategoryColor(category) {
+const getCategoryColor = (category) => {
   return category.color ? getBadgeColor(category) : 'var(--color-primary)';
 }
 
-function calculateProgress(badge) {
+const calculateProgress = (badge) => {
   // Implement your progress logic here
   return 0;
 }
