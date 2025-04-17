@@ -150,7 +150,7 @@ const validateInputs = (email, password, errorElement) => {
 };
 
 // loading state
-const setLoadingState = (button, isLoading) => {
+export const setLoadingState = (button, isLoading) => {
   if (!button) return;
 
   button.disabled = isLoading;

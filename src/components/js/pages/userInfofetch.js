@@ -1,6 +1,6 @@
 const navUsername = document.querySelector('h2#username');
 const usernameInput = document.querySelector('#username-input');
-const emailInput = document.querySelector('#email');
+const emailInput = document.querySelectorAll('#email');
 const usernameLabel = document.querySelector('#username-label');
 const emailLabel = document.querySelector('#email-label');
 
@@ -27,7 +27,7 @@ const getUsernameNdEmail = async () => {
   navUsername.innerText = username;
 
   usernameInput.value = username;
-  emailInput.value = email;
+  emailInput.forEach((input) => (input.value = email));
   emailLabel.innerText = email;
   usernameLabel.innerText = username;
 };
