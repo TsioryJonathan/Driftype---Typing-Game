@@ -1,26 +1,26 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driftype - Dashboard</title>
     <link
       rel="shortcut icon"
       href="/src/assets/noBgColor.png"
       type="image/x-icon"
-    />
-    <link href="/src/css/output.css" rel="stylesheet" />
+    >
+    <link href="/src/css/output.css" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    >
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    />
+    >
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
       integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
@@ -32,35 +32,128 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body class="bg-[var(--color-primary)] text-[var(--color-text)]">
-    <header class="sticky top-0 backdrop-blur-md z-50">
-      <div class="container mx-auto 2">
+    <!-- HEADER -->
+    <header
+      class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px] z-50"
+    >
+      <!-- Logo -->
+      <div class="h-full flex items-center">
+        <a href="/">
+          <img
+            src="/src/assets/noBg.png"
+            alt="Drifttype"
+            class="h-full w-40 object-cover"
+          >
+        </a>
+      </div>
+
+      <!-- Nav bar -->
+      <nav class="w-full max-w-md mx-auto h-[40px]">
         <div
-          class="container flex h-16 items-center justify-between px-4 md:px-6"
+          class="flex justify-between items-center bg-[var(--color-input)] rounded-full h-full"
         >
-          <a href="/" class="flex items-center gap-2 font-bold text-xl">
-            <img
-              src="/src/assets/noBgColor.png"
-              alt="Tajo Logo"
-              class="h-12 w-12 object-cover"
-            />
-            <h1 class="text-3xl font-bold text-[var(--color-active-600)]">
-              Driftype
-            </h1>
+          <!-- Practice -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-practice"
+              type="button"
+              class="flex flex-col items-center justify-center rounded-s-full hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+            >
+              <i
+                class="fa-solid fa-keyboard text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Practice</span>
+            </button>
+            <div
+              id="tooltip-practice"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Practice
+            </div>
+          </div>
+
+          <!-- Statistics -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-statistics"
+              type="button"
+              class="flex flex-col items-center justify-center hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+            >
+              <i
+                class="fa-solid fa-chart-column text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Statistics</span>
+            </button>
+            <div
+              id="tooltip-statistics"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Statistics
+            </div>
+          </div>
+
+          <!-- Settings -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-settings"
+              type="button"
+              class="cursor-pointer flex flex-col items-center justify-center rounded-e-full hover:bg-[var(--color-bg)] transition w-full h-full"
+            >
+              <i
+                class="fa-solid fa-gear text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Settings</span>
+            </button>
+            <div
+              id="tooltip-settings"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Settings
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Avatar / User menu -->
+      <div class="relative h-full flex items-center" id="user-menu-container">
+        <button
+          id="user-menu-button"
+          class="flex items-center gap-5 px-2 py-1 bg-[var(--color-input)] rounded-full transition cursor-pointer -translate-y-0.5 group min-w-fit"
+        >
+          <img
+            id="avatar-img"
+            src="https://i.pravatar.cc/40"
+            alt="Avatar"
+            class="w-8 h-8 rounded-full"
+          >
+          <h2 class="text-sm" id="username"></h2>
+          <i
+            class="fa-solid fa-angle-down text-xs group-hover:translate-y-0.5"
+          ></i>
+        </button>
+        <div
+          id="dropdown"
+          class="absolute right-0 -bottom-16 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)] overflow-hidden"
+        >
+          <a
+            href="./profile.html"
+            class="flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+          >
+            Profile
+            <i class="fas fa-user"></i>
           </a>
-          <!-- navigation bar -->
-
-          <nav
-            id="navbar"
-            class="w-full h-11 max-w-sm -translate-x-1/2 bg-white border border-[var(--color-text)] rounded-full bottom-4 left-1/2"
-          ></nav>
-
-          <!-- avatar -->
-          <div class="relative" id="user-menu-container"></div>
+          <button
+            class="w-full text-left flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+            onclick="logout()"
+          >
+            Sign out
+            <i class="fas fa-right-from-bracket"></i>
+          </button>
         </div>
       </div>
     </header>
     <!-- main -->
-    <main class="flex-1 px-4 py-8 md:px-6">
+    <main class="flex-1 px-4 py-8 md:px-6 bg-[var(--color-bg)]">
       <div class="max-w-6xl mx-auto">
         <div id="select-buttons" class="flex items-center gap-4">
           <!-- Mode Selection -->
@@ -79,6 +172,7 @@
               <option value="easy">Easy</option>
               <option value="medium">Medium</option>
               <option value="hard">Hard</option>
+              <option value="numbers">Numbers</option>
             </select>
             <div
               id="mode-dropdown"
@@ -102,6 +196,12 @@
                   data-value="hard"
                 >
                   Hard
+                </button>
+                <button
+                  class="w-full text-left px-4 py-2 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)]"
+                  data-value="numbers"
+                >
+                  Numbers
                 </button>
               </div>
             </div>
@@ -216,11 +316,17 @@
             </div>
           </div>
         </div>
-        <div
-          class="mb-6 mt-4 flex flex-col gap-10 text-xl leading-relaxed"
-        >
+        <div class="mb-6 mt-4 flex flex-col gap-10 text-xl leading-relaxed">
+          <!-- Progression bar -->
+          <div id="progress-bar-container" class="flex items-center gap-4 mb-4">
+            <div class="relative flex-1 h-4 bg-[var(--color-input)] rounded-full overflow-hidden">
+              <div id="progress-bar" class="absolute left-0 top-0 h-full bg-amber-500 transition-all duration-1000" style="width: 100%"></div>
+            </div>
+            <span id="countdown-timer" class="font-extrabold text-3xl w-12 text-right text-[var(--color-text)]">30s</span>
+          </div>
+          <!-- Test container -->
           <div
-            class="relative flex group inset-0 outline-0 border-0"
+            class="relative flex group inset-0 outline-0 border-0 transition-discrete"
             tabindex="0"
             id="test-container"
           >
@@ -230,35 +336,51 @@
             >
               <p
                 id="word-display"
-                class="font-fira-code text-3xl blur-xs group-focus:blur-none text-[var(--color-text)]/60 absolute top-0 transition-transform duration-200 leading-[1.5em]"
+                class="font-fira-code text-justify text-3xl blur-xs group-focus:blur-none text-[var(--color-text)]/60 absolute top-0 transition-transform duration-200 leading-[1.5em]"
               ></p>
             </div>
             <p
               class="test-focus absolute t-0 w-full h-full flex justify-center items-center cursor-default text-[var(--color-text)] text-2xl group-focus:hidden"
             >
-              Click here or press 
+              Click here or press
               <span
                 class="inline-block bg-[var(--color-input)] text-[var(--color-text)] rounded-md px-2 py-1 text-xs"
-                >Ctrl + Enter</span
-              > to focus
+              >
+                Ctrl + Enter
+              </span>
+              to focus
             </p>
           </div>
-          <div id="results-container" class="flex flex-col items-center gap-4">
-          </div>
+          <!-- Result container -->
+          <div
+            id="results-container"
+            class="flex flex-col items-center gap-4"
+          ></div>
           <div class="flex flex-col items-center gap-4">
-          <button
-            id="restart-button"
-            class="flex items-center justify-center w-12 h-12 bg-amber-500 text-black rounded-md hover:bg-amber-400 transition-colors mx-auto"
-          >
-            <i class="fa-solid fa-rotate-right"></i>
-          </button>
-            <p>Or press <span class="inline-block bg-[var(--color-input)] text-[var(--color-text)] rounded-md px-2 py-1 text-xs">Ctrl + Enter</span></p>
+            <button
+              id="restart-button"
+              class="flex items-center justify-center w-12 h-12 bg-amber-500 text-black rounded-md hover:bg-amber-400 transition-colors mx-auto cursor-pointer"
+            >
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+            <p class="text-bases">
+              Or press
+              <span
+                class="inline-block bg-[var(--color-input)] text-[var(--color-text)] rounded-md px-2 py-1 text-xs"
+              >
+                Ctrl + Enter
+              </span>
+            </p>
+          </div>
         </div>
-        </div>       
       </div>
+    </main>
 
     <script type="module" src="../js/pages/dashboard.js"></script>
     <script type="module" src="../js/script.js"></script>
     <script type="module" src="../js/pages/statistics.js"></script>
+    <script src="../js/pages/StatPageScript/userDetailsFetch.js"></script>
+    <script src="../js/logoutFunc.js"></script>
+    <script src="../js/fireworks.js"></script>
   </body>
 </html>
