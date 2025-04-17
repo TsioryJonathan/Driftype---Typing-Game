@@ -1,4 +1,4 @@
-function toggleSection(id) {
+window.toggleSection = function (id) {
   const section = document.getElementById(id);
   const chevron = document.getElementById(`chevron-${id}`);
   const isCollapsed = section.classList.contains('max-h-0');
@@ -12,4 +12,4 @@ function toggleSection(id) {
     section.classList.add('max-h-0', 'py-0');
     chevron.classList.remove('rotate-180');
   }
-}
+};

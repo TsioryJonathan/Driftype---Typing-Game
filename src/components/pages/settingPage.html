@@ -231,6 +231,7 @@
               </div>
               <button
                 class="w-full mt-4 px-4 py-2 bg-[var(--color-primary)] text-white rounded-md hover:bg-[var(--color-primary-hover)] transition-colors flex items-center justify-center space-x-2"
+                id="user-info-update-btn"
               >
                 <i class="fas fa-save text-white"></i>
                 <span>Save Changes</span>
@@ -518,12 +519,24 @@
           </div>
         </div>
       </div>
-
-      <!-- Toggle Section Script -->
-      <script src="../js/pages/SettingPageScript/sectionToggle.js"></script>
     </div>
-    <script src="../js/pages/dashboard.js"></script>
-    <script src="../js/pages/userInfofetch.js"></script>
-    <script src="../js/navBarRedirection.js"></script>
+    <div
+      id="toast-success"
+      class="hidden fixed bottom-4 right-4 bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg transition-opacity duration-300 z-50"
+    >
+      ✅ Modifications enregistrées !
+    </div>
+
+    <script
+      src="../js/pages/SettingPageScript/userInfoUpdate.js"
+      type="module"
+    ></script>
+    <script
+      src="../js/pages/SettingPageScript/sectionToggle.js"
+      type="module"
+    ></script>
+    <script src="../js/pages/dashboard.js" type="module"></script>
+    <script src="../js/pages/userInfofetch.js" type="module"></script>
+    <script src="../js/navBarRedirection.js" type="module"></script>
   </body>
 </html>

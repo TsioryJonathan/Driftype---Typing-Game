@@ -168,3 +168,12 @@ body {
     opacity: 0;
   }
 }
+
+#toast-success.show {
+  opacity: 1;
+  display: block;
+}
+#toast-success {
+  opacity: 0;
+  display: none;
+}
