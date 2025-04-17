@@ -1368,6 +1368,9 @@
   .text-\[var\(--color-active-500\)\] {
     color: var(--color-active-500);
   }
+  .text-\[var\(--color-danger\)\] {
+    color: var(--color-danger);
+  }
   .text-\[var\(--color-primary\)\] {
     color: var(--color-primary);
   }

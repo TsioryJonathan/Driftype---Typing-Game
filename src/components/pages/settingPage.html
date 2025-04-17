@@ -127,13 +127,13 @@
             class="w-8 h-8 rounded-full"
           >
 
-          <h2 class="text-sm" id="username">
+          <div class="text-sm" id="username">
             <div class="flex justify-center items-center">
               <div
                 class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
               ></div>
             </div>
-          </h2>
+          </div>
           <i
             class="fa-solid fa-angle-down text-xs absolute right-5 group-hover:translate-y-0.5"
           ></i>
@@ -205,10 +205,10 @@
                 T
               </div>
               <div>
-                <h2
+                <p
                   class="text-lg font-medium text-[var(--color-text)]"
                   id="username-label"
-                ></h2>
+                ></p>
                 <p
                   class="text-sm text-[var(--color-text-secondary)]"
                   id="email-label"
@@ -296,26 +296,14 @@
             <div class="flex items-center space-x-4">
               <label class="flex items-center cursor-pointer">
                 <input type="checkbox" class="sr-only">
-                <div
-                  class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
-                >
-                  <div
-                    class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transform translate-x-4"
-                  ></div>
-                </div>
+
                 <span class="ml-3 text-sm text-[var(--color-text)]">
                   Show Real-time Errors
                 </span>
               </label>
               <label class="flex items-center cursor-pointer">
                 <input type="checkbox" checked class="sr-only">
-                <div
-                  class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
-                >
-                  <div
-                    class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transform translate-x-4"
-                  ></div>
-                </div>
+
                 <span class="ml-3 text-sm text-[var(--color-text)]">
                   Instant Feedback
                 </span>
@@ -349,26 +337,14 @@
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer">
               <input type="checkbox" checked class="sr-only">
-              <div
-                class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
-              >
-                <div
-                  class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transform translate-x-4"
-                ></div>
-              </div>
+
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Enable Sounds
               </span>
             </label>
             <label class="flex items-center cursor-pointer">
               <input type="checkbox" checked class="sr-only">
-              <div
-                class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
-              >
-                <div
-                  class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transform translate-x-4"
-                ></div>
-              </div>
+
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Keyboard Sounds
               </span>
@@ -403,7 +379,8 @@
               <span class="text-sm text-[var(--color-text)]">Theme</span>
               <select
                 class="text-sm px-2 py-1 rounded bg-[var(--color-background)] border border-[var(--color-border)] text-[var(--color-text)]"
-              id="theme-select">
+                id="theme-select"
+              >
                 <option value="auto">Auto</option>
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>
@@ -447,13 +424,7 @@
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer">
               <input type="checkbox" checked class="sr-only">
-              <div
-                class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
-              >
-                <div
-                  class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transform translate-x-4 transition-transform"
-                ></div>
-              </div>
+
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Email Notifications
               </span>
@@ -499,13 +470,7 @@
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer">
               <input type="checkbox" checked class="sr-only">
-              <div
-                class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
-              >
-                <div
-                  class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transform translate-x-4 transition-transform"
-                ></div>
-              </div>
+
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Profile Visible
               </span>

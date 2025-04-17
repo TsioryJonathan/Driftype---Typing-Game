@@ -1,10 +1,31 @@
-// Exemple de données, tu peux récupérer ces informations depuis ton serveur ou une API
-const statistiques = {
-  labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'],
-  wpm: [58, 72, 65, 80, 92], // Exemple de mots par minute
-  accuracy: [98.5, 97.2, 99.1, 96.8, 99.5], // Exactitude en pourcentage
-  times: [150, 120, 135, 100, 110], // Temps en secondes
+import { API_URL } from '../login.js';
+
+const getStat = async () => {
+  if (!localStorage.getItem('typing_game_user')) {
+    throw new Error('User not logged in');
+  }
+  const { id } = JSON.parse(localStorage.getItem('typing_game_user'));
+
+  try {
+    const response = await fetch(`${API_URL}/stats/recent/${id}`);
+    const data = await response.json();
+    const wpm = [];
+    const accuracy = [];
+    for (const stat of data) {
+      wpm.push(stat.wpm);
+      accuracy.push(parseInt(stat.accuracy));
+    }
+    return {
+      wpm: wpm.reverse(),
+      accuracy: accuracy.reverse(),
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
 };
+
+const { wpm, accuracy } = await getStat();
+const labels = '1 2 3 4 5 6 7 8 9 10'.split(' ');
 
 // Initialisation du graphique
 const chartDom = document.getElementById('chart');
@@ -19,14 +40,14 @@ const option = {
   },
   xAxis: {
     type: 'category',
-    data: statistiques.labels,
+    data: labels,
   },
   yAxis: {
     type: 'value',
-    name: 'WPM / Exactitude (%)',
+    name: 'WPM / Accuracy (%)',
     axisLine: {
       lineStyle: {
-        color: '#1f77b4', 
+        color: '#1f77b4',
       },
     },
   },
@@ -34,17 +55,17 @@ const option = {
     {
       name: 'WPM',
       type: 'line',
-      data: statistiques.wpm,
+      data: wpm,
       lineStyle: {
-        color: '#1f77b4', 
+        color: '#1f77b4',
       },
       symbol: 'circle',
       smooth: true,
     },
     {
-      name: 'Exactitude',
+      name: 'Accuracy',
       type: 'line',
-      data: statistiques.accuracy,
+      data: accuracy,
       lineStyle: {
         color: '#ff7f0e', // Couleur pour la ligne Exactitude
       },

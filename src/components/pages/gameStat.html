@@ -264,7 +264,12 @@
         <!-- Graph and leaderboards -->
         <div class="flex flex-col md:flex-row gap-5">
           <!-- Graph -->
-          <div class="flex-1" id="chart"></div>
+          <div class="flex flex-col gap-3 flex-1">
+            <h1 class="text-2xl text-[var(--color-text)] font-semibold">
+              Stat Of Your Recent Game
+            </h1>
+            <div class="flex-1" id="chart"></div>
+          </div>
 
           <!-- Leaderboard -->
           <div
@@ -457,6 +462,11 @@
                   >
                     Duration
                   </th>
+                  <th
+                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                  >
+                    Mode
+                  </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-[var(--color-border)]" id="tbody">
@@ -497,6 +507,13 @@
                       ></div>
                     </div>
                   </td>
+                  <td class="px-6 py-4 text-[var(--color-text)]" id="time">
+                    <div class="flex justify-center items-center">
+                      <div
+                        class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                      ></div>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -524,6 +541,5 @@
       src="../js/pages/StatPageScript/getRecentStat.js"
       type="module"
     ></script>
-
   </body>
 </html>

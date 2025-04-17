@@ -1,4 +1,4 @@
-const usernameField = document.querySelectorAll('h2#username');
+const usernameField = document.querySelectorAll('#username');
 const usernameInput = document.querySelector('#username-input');
 const emailInput = document.querySelectorAll('#email');
 const usernameLabel = document.querySelector('#username-label');
