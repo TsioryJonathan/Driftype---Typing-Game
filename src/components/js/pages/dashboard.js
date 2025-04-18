@@ -8,22 +8,22 @@ const DROPDOWNS_CONFIG = [
     buttonId: 'mode-button',
     dropdownId: 'mode-dropdown',
     selectId: 'mode',
-    textId: 'mode-text'
+    textId: 'mode-text',
   },
   {
     containerId: 'language-container',
     buttonId: 'language-button',
     dropdownId: 'language-dropdown',
     selectId: 'language',
-    textId: 'language-text'
+    textId: 'language-text',
   },
   {
     containerId: 'timer-container',
     buttonId: 'timer-button',
     dropdownId: 'timer-dropdown',
     selectId: 'timer',
-    textId: 'timer-text'
-  }
+    textId: 'timer-text',
+  },
 ];
 
 // Initialisation principale
@@ -32,7 +32,7 @@ const initDashboard = () => {
     const userData = localStorage.getItem('typing_game_user');
     if (!userData) {
       console.debug('Redirection vers la page de connexion...');
-      window.location.href = '/src/components/pages/login.html';
+
       return;
     }
 
@@ -40,12 +40,12 @@ const initDashboard = () => {
     if (!userId) {
       console.error('ID utilisateur invalide');
       localStorage.removeItem('typing_game_user');
-      window.location.href = '/src/components/pages/login.html';
+
       return;
     }
 
     console.debug('Chargement du dashboard pour:', userId);
-    
+
     // Initialize badges if they don't exist
     const userBadges = badgeManager.getUserBadges(userId);
     if (!userBadges?.badges) {
@@ -56,11 +56,8 @@ const initDashboard = () => {
     displayUserBadges(userId);
     initUserMenu();
     initDropdowns();
-    
   } catch (error) {
     console.error('Erreur initialisation dashboard:', error);
-    localStorage.removeItem('typing_game_user');
-    window.location.href = '/src/components/pages/login.html';
   }
 };
 
@@ -86,9 +83,9 @@ const initUserMenu = () => {
 
 // Gestion des dropdowns
 const initDropdowns = () => {
-  DROPDOWNS_CONFIG.forEach(config => {
+  DROPDOWNS_CONFIG.forEach((config) => {
     const { containerId, buttonId, dropdownId, selectId, textId } = config;
-    
+
     const container = document.getElementById(containerId);
     const button = document.getElementById(buttonId);
     const dropdown = document.getElementById(dropdownId);
@@ -125,7 +122,7 @@ const handleDropdownToggle = (config) => (e) => {
   e.stopPropagation();
   const dropdown = document.getElementById(config.dropdownId);
   dropdown?.classList.toggle('hidden');
-  
+
   // Fermer les autres dropdowns
   DROPDOWNS_CONFIG.forEach(({ dropdownId }) => {
     if (dropdownId !== config.dropdownId) {
@@ -135,7 +132,7 @@ const handleDropdownToggle = (config) => (e) => {
 };
 
 const initDropdownOptions = (dropdown, select, textElement) => {
-  dropdown.querySelectorAll('button').forEach(option => {
+  dropdown.querySelectorAll('button').forEach((option) => {
     option.addEventListener('click', () => {
       select.value = option.dataset.value;
       textElement.textContent = option.textContent;
