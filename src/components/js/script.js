@@ -657,3 +657,4 @@ restartButton.addEventListener('click', () => {
 
 // Start the test
 startTest();
+fix
