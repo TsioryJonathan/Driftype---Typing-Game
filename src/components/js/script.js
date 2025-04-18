@@ -389,15 +389,12 @@ const statPost = async (
 
     console.log('Stat sent successfully:', data);
 
-    Toastify({
-      text: 'Stats sent succesfully 🎉',
-      duration: 3000,
-      gravity: 'top',
-      position: 'right',
-      style: {
-        background: 'linear-gradient(to right, #00b09b, #96c93d)',
-      },
-    }).showToast();
+    const statSentSuccesToast = document.getElementById('toast-simple');
+    statSentSuccesToast.classList.replace('hidden', 'flex');
+
+    setTimeout(() => {
+      statSentSuccesToast.classList.replace('flex', 'hidden');
+    }, 2000);
 
     return data;
   } catch (error) {

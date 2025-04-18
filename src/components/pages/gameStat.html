@@ -411,8 +411,6 @@
         </div>
 
         <!-- History -->
-        <!-- Barre de filtres -->
-
         <div
           class="bg-[var(--color-card)] rounded-2xl shadow-md border border-[var(--color-border)] overflow-hidden flex-1"
         >
@@ -518,6 +516,23 @@
               </tbody>
             </table>
           </div>
+        </div>
+
+        <!-- Login Popup -->
+
+        <div
+          id="login-warning-toast"
+          class="hidden fixed top-6 right-6 z-50 bg-yellow-100 border border-yellow-400 text-yellow-800 px-6 py-4 rounded-xl shadow-lg items-center space-x-3 transition-opacity duration-300 ease-in-out"
+        >
+          <i
+            class="fa-solid fa-triangle-exclamation text-yellow-500 text-xl"
+          ></i>
+          <span class="text-sm font-medium">
+            Please Login To Continue 🔐
+          </span>
+          <button class="bg-[var(--color-bg-secondary)] rounded-md p-3">
+            Login
+          </button>
         </div>
       </div>
     </main>

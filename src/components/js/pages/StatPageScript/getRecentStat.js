@@ -1,20 +1,49 @@
 import { API_URL } from '../login.js';
 
+const displayDefaultState = (tbody) => {
+  const tableRow = document.createElement('tr');
+  tableRow.classList.add(
+    'transition-colors',
+    'duration-150',
+    'hover:bg-[var(--color-bg-secondary)]',
+  );
+  tableRow.innerHTML = `
+    <td colspan="5" class="px-6 py-4 text-center text-[var(--color-text)]">
+      No data available
+    </td>
+  `;
+  tbody.innerHTML = '';
+  tbody.appendChild(tableRow);
+};
+
 const fetchRecentStat = async () => {
   const userData = localStorage.getItem('typing_game_user');
+  const tbody = document.getElementById('tbody');
 
   // Si aucun utilisateur n'est trouvé, on arrête l'exécution de la fonction
   if (!userData) {
     console.log('No data');
+    displayDefaultState(tbody);
     return;
   }
 
   const { id } = JSON.parse(userData);
-  const tbody = document.getElementById('tbody');
 
   try {
-    const res = await fetch(`${API_URL}/stats/recent/${id}`);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+    const res = await fetch(`${API_URL}/stats/recent/${id}`, {
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+
     const data = await res.json();
+
+    if (!data || data.length === 0) {
+      displayDefaultState(tbody);
+      return;
+    }
 
     tbody.innerHTML = '';
 
@@ -69,9 +98,8 @@ const fetchRecentStat = async () => {
     });
   } catch (err) {
     console.warn('Error fetching recent stats:', err);
+    displayDefaultState(tbody);
   }
 };
-
-fetchRecentStat(); // Appel de la fonction pour charger les stats
 
 fetchRecentStat();
