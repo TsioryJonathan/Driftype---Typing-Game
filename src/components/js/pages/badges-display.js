@@ -55,12 +55,8 @@ export const displayUserBadges = (userId, language = 'en') => {
   } catch (error) {
     console.error('Error displaying badges:', error);
     container.innerHTML = `
-      <div style="
-        text-align: center;
-        padding: 2rem;
-        color: var(--color-error);
-      ">
-        <i class="fas fa-exclamation-triangle" style="font-size: 2rem;"></i>
+      <div class="text-center p-8 text-[var(--color-error)]">
+        <i class="fas fa-exclamation-triangle  text-8"></i>
         <p>Failed to load badges</p>
       </div>
     `;
@@ -71,30 +67,11 @@ const createCategorySection = (category, badges, language) => {
   const section = document.createElement('div');
   section.className = 'badge-category';
   section.innerHTML = `
-    <div class="category-header" style="
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 0 0 16px 0;
-      padding: 8px 0;
-      border-bottom: 2px solid ${getCategoryColor(category)};
-    ">
-      <i class="${category.icon}" style="
-        color: ${getCategoryColor(category)};
-        font-size: 1.25rem;
-      "></i>
-      <h3 style="
-        margin: 0;
-        font-size: 1.25rem;
-        color: var(--color-text);
-      ">${category.name[language]}</h3>
+    <div class="category-header flex items-center gap-3 mb-4 pb-2 border-b-2" style="border-color: ${getCategoryColor(category)}">
+      <i class="${category.icon} text-gray-4xl" style="color: ${getCategoryColor(category)};"></i>
+      <h3 class="text-xl text-[var(--color-text)] m-0">${category.name[language]}</h3>
     </div>
-    <div class="badge-grid" style="
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 16px;
-      padding: 16px;
-    "></div>
+    <div class="badge-grid grid gap-4 p-4" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));"></div>
   `;
 
   const grid = section.querySelector('.badge-grid');
@@ -105,65 +82,26 @@ const createCategorySection = (category, badges, language) => {
   return section;
 }
 
+
+
 const createBadgeCard = (badge, language) => {
   const card = document.createElement('div');
-  card.className = `badge-card ${badge.unlocked ? 'unlocked' : 'locked'}`;
-  card.style.cssText = `
-    background: var(--color-bg-secondary);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: all 0.2s ease;
-    position: relative;
-    overflow: hidden;
-    ${badge.unlocked ? `border: 1px solid ${getBadgeColor(badge)}` : ''};
-    ${!badge.unlocked ? 'opacity: 0.7; filter: grayscale(60%)' : ''};
-    cursor: pointer;
+  card.className = `
+    badge-card relative overflow-hidden rounded-2xl p-5 shadow-md transition-all duration-200 cursor-pointer 
+    ${badge.unlocked ? 'border' : 'opacity-70 grayscale'}
   `;
+  card.style.borderColor = badge.unlocked ? getBadgeColor(badge) : '';
 
   card.innerHTML = `
-    <div class="badge-icon" style="
-      position: relative;
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    ">
-      <div style="
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: ${badge.unlocked ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'};
-      ">
-        <i class="${badge.icon} ${badge.animated ? 'fa-beat-fade' : ''}" style="
-          font-size: 2rem;
-          color: ${getBadgeColor(badge)};
-          position: relative;
-          z-index: 2;
-        "></i>
+    <div class="badge-icon relative w-16 h-16 mx-auto mb-2 flex items-center justify-center">
+      <div class="w-full h-full rounded-full flex items-center justify-center" style="background: ${badge.unlocked ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}">
+        <i class="${badge.icon} ${badge.animated ? 'fa-beat-fade' : ''} z-10 text-4xl" style="color: ${getBadgeColor(badge)};"></i>
       </div>
       ${badge.unlocked ? shineEffect() : ''}
     </div>
-    <div class="badge-info" style="
-      text-align: center;
-      min-height: 80px;
-    ">
-      <h4 style="
-        margin: 8px 0;
-        font-size: 1rem;
-        color: var(--color-text);
-        font-weight: 600;
-      ">${badge.name[language]}</h4>
-      <p style="
-        margin: 4px 0;
-        font-size: 0.8rem;
-        color: var(--color-text-secondary);
-      ">${badge.description[language]}</p>
+    <div class="badge-info text-center min-h-[80px]">
+      <h4 class="text-base font-semibold text-[var(--color-text)] my-2">${badge.name[language]}</h4>
+      <p class="text-sm text-[var(--color-text-secondary)] mb-1">${badge.description[language]}</p>
       ${badge.unlocked ? unlockedBadgeUI(badge) : lockedBadgeUI(badge)}
     </div>
   `;
@@ -173,12 +111,7 @@ const createBadgeCard = (badge, language) => {
 
 const shineEffect = () => {
   return `
-    <div class="shine-effect" style="
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+    <div class="shine-effect absolute inset-0 pointer-events-none opacity-50" style="
       background: linear-gradient(
         to right,
         transparent 0%,
@@ -186,35 +119,14 @@ const shineEffect = () => {
         transparent 100%
       );
       animation: shine 3s infinite;
-      opacity: 0.5;
-      pointer-events: none;
     "></div>
   `;
 }
-
 const unlockedBadgeUI = (badge) => {
   return `
-    <div style="
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 12px;
-    ">
-      <span style="
-        color: ${getBadgeColor(badge)};
-        font-size: 0.75rem;
-        font-weight: bold;
-      ">
-        ✓ ${badge.unlockedAt ? new Date(badge.unlockedAt).toLocaleDateString() : 'Unlocked'}
-      </span>
-      <button class="share-btn" style="
-        background: none;
-        border: none;
-        color: ${getBadgeColor(badge)};
-        cursor: pointer;
-        font-size: 0.75rem;
-        transition: transform 0.2s;
-      " aria-label="Share badge">
+    <div class="flex justify-center gap-2 mt-3 text-xs font-bold" style="color: ${getBadgeColor(badge)}">
+      <span>✓ ${badge.unlockedAt ? new Date(badge.unlockedAt).toLocaleDateString() : 'Unlocked'}</span>
+      <button class="share-btn border-none bg-transparent transition-transform text-xs" style="color: ${getBadgeColor(badge)}" aria-label="Share badge">
         <i class="fa-solid fa-share-nodes"></i>
       </button>
     </div>
@@ -224,30 +136,15 @@ const unlockedBadgeUI = (badge) => {
 const lockedBadgeUI = (badge) => {
   const progress = badge.progress || 0;
   return `
-    <div style="margin-top: 12px;">
-      <div style="
-        width: 100%;
-        height: 4px;
-        background: rgba(0,0,0,0.1);
-        border-radius: 2px;
-        overflow: hidden;
-      ">
-        <div style="
-          width: ${progress}%;
-          height: 100%;
-          background: ${getBadgeColor(badge)};
-          transition: width 0.5s ease;
-        "></div>
+    <div class="mt-3">
+      <div class="w-full h-1 bg-black/10 rounded overflow-hidden">
+        <div class="h-full transition-all duration-500" style="width: ${progress}%; background: ${getBadgeColor(badge)}"></div>
       </div>
-      <p style="
-        margin: 4px 0 0;
-        font-size: 0.7rem;
-        color: var(--color-text-secondary);
-        text-align: center;
-      ">${progress}% complete</p>
+      <p class="text-[0.7rem] text-[var(--color-text-secondary)] text-center mt-1">${progress}% complete</p>
     </div>
   `;
 }
+
 
 const setupBadgeInteractions = (container, language) => {
   container.addEventListener('click', async (e) => {
