@@ -9,9 +9,13 @@ const getUsernameNdEmail = async () => {
     const userData = localStorage.getItem('typing_game_user');
     if (!userData) {
       console.debug('No user data found, setting as Guest');
-      if (navUsername) navUsername.textContent = 'Guest';
+      if (usernameField)
+        usernameField.forEach((field) => (field.textContent = 'Guest'));
       if (usernameInput) usernameInput.value = 'Guest';
-      if (emailInput) emailInput.forEach(input => { if (input) input.value = 'Guest'; });
+      if (emailInput)
+        emailInput.forEach((input) => {
+          if (input) input.value = 'Guest';
+        });
       if (emailLabel) emailLabel.textContent = 'Guest';
       if (usernameLabel) usernameLabel.textContent = 'Guest';
       return null;
@@ -39,9 +43,13 @@ const getUsernameNdEmail = async () => {
     console.debug('User data fetched successfully:', username);
 
     // Update UI elements if they exist
-    if (navUsername) navUsername.textContent = username;
+    if (usernameField)
+      usernameField.forEach((field) => (field.textContent = username));
     if (usernameInput) usernameInput.value = username;
-    if (emailInput) emailInput.forEach(input => { if (input) input.value = email; });
+    if (emailInput)
+      emailInput.forEach((input) => {
+        if (input) input.value = email;
+      });
     if (emailLabel) emailLabel.textContent = email;
     if (usernameLabel) usernameLabel.textContent = username;
 
@@ -50,10 +58,12 @@ const getUsernameNdEmail = async () => {
     console.error('Error fetching user data:', error);
     return null;
   }
-
 };
 
 // Only run if we're on a page that needs user info
-if (document.querySelector('h2#username') || document.querySelector('#username-input')) {
+if (
+  document.querySelector('h2#username') ||
+  document.querySelector('#username-input')
+) {
   getUsernameNdEmail();
 }
