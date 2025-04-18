@@ -1,3 +1,4 @@
+// Suppression des doublons d'import et de déclaration de variables
 import { getRandomWord } from './dictionaries.js';
 import { checkBadges, badgeManager } from './badges.js';
 import { tinykeys } from './tinykeys.js';
@@ -129,7 +130,6 @@ const getCurrentStats = () => {
     totalKeystrokes > 0
       ? Math.round((correctLetters / totalKeystrokes) * 10000) / 100
       : 0;
-
   const correct = correctLetters;
   const incorrect = incorrectLetters;
   const extra = extraLetters;
@@ -184,7 +184,6 @@ const updateLetter = (event) => {
   }
 
   if (key.length !== 1 && key !== ' ') return; // Ignore special keys except space
-
   startTimer();
 
   const currentWord = wordsToType[currentWordIndex];
@@ -422,7 +421,7 @@ const launchFireworks = () => {
       });
     }, 600);
   }
-}
+};
 
 // Timeline chart: dark theme, yellow (amber-500) for WPM, red-500 for errors
 const updateResults = () => {
@@ -520,12 +519,13 @@ const updateResults = () => {
             ticks: {
               color: '#bcbcbc',
               font: { size: 13 },
-              callback: (val, idx) => {
-                const total = this.getLabels().length;
+              callback: function(val, idx, ticks) {
+                const labels = this.chart.data.labels;
+                const total = labels.length;
                 if (total > 30) {
-                  return idx % 2 === 0 ? this.getLabelForValue(val) : '';
+                  return idx % 2 === 0 ? labels[idx] : '';
                 }
-                return this.getLabelForValue(val);
+                return labels[idx];
               },
             },
             grid: {
@@ -549,7 +549,7 @@ const updateResults = () => {
               color: '#facc15',
               font: { size: 14 },
               stepSize: 20,
-              callback: (val) => {
+              callback: function(val) {
                 return val % 20 === 0 ? val : '';
               },
             },
@@ -621,18 +621,17 @@ const startTimelineTracking = () => {
     timelineLabels.push(seconds + 's');
     seconds++;
   }, 1000);
-}
+};
 
 // --- Stop tracking ---
 const stopTimelineTracking = () => {
   if (timelineInterval) clearInterval(timelineInterval);
   timelineInterval = null;
-}
+};
 
 // Add language change listener
 const languageSelect = document.getElementById('language');
 languageSelect.addEventListener('change', () => startTest());
-
 tinykeys(window, {
   'Control+Enter': () => {
     startTest();
@@ -647,7 +646,6 @@ testContainer.addEventListener('keydown', (event) => {
     event.preventDefault(); // Prevent scrolling
   }
 });
-
 const restartButton = document.getElementById('restart-button');
 restartButton.addEventListener('click', () => {
   startTest();
@@ -656,3 +654,4 @@ restartButton.addEventListener('click', () => {
 
 // Start the test
 startTest();
+fix
