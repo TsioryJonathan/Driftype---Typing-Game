@@ -1,4 +1,5 @@
 import { getRandomWord } from './dictionaries.js';
+import { checkBadges, badgeManager } from './badges.js';
 import { tinykeys } from './tinykeys.js';
 import {
   updateProgressBar,
@@ -302,15 +303,15 @@ const endTest = async () => {
         </div>
         <div class="flex flex-row justify-between w-full mt-8 text-gray-300 text-center font-mono text-xl gap-4">
           <div class="flex-1">
-            <div class="text-base text-[var(--color-text)]">raw</div>
+            <div class="text-base text-[var(--color-text-secondary)]">raw</div>
             <div id="rawWpm">${raw ?? '-'}</div>
           </div>
           <div class="flex-1">
-            <div class="text-base text-[var(--color-text)]">correct/incorrect/extra</div>
+            <div class="text-base text-[var(--color-text-secondary)]">Characters</div>
             <div id="breakdown">${[correct, incorrect, extra].map((x) => x ?? '-').join('/')}</div>
           </div>
           <div class="flex-1">
-            <div class="text-base text-[var(--color-text)]">consistency</div>
+            <div class="text-base text-[var(--color-text-secondary)]">consistency</div>
             <div id="consistency">${consistency ?? '-'}</div>
           </div>
         </div>
@@ -339,9 +340,20 @@ const endTest = async () => {
     document.getElementById('stat-popup').classList.replace('flex', 'hidden');
   }, 3000);
 
-  statPost(id, wpm, accuracy, langValue, modeValue, timerValue).then(() => {
+  // Get current stats
+  const stats = getCurrentStats();
+  const language = document.getElementById('language').value;
+
+  // Post stats to server
+  statPost(id, stats.wpm, stats.accuracy, language, modeSelect.value, timerSelect.value);
+
+  // Check for new badges
+  checkBadges(id, stats);
+
+  // Hide stat popup after delay
+  setTimeout(() => {
     document.getElementById('stat-popup').classList.add('hidden');
-  });
+  }, 3000);
 };
 
 // Stat Posting Function
@@ -393,7 +405,7 @@ const statPost = async (
 };
 
 // Fireworks/confetti animation using canvas-confetti CDN
-function launchFireworks() {
+const launchFireworks = () => {
   if (window.confetti) {
     window.confetti({
       particleCount: 120,
@@ -508,7 +520,7 @@ const updateResults = () => {
             ticks: {
               color: '#bcbcbc',
               font: { size: 13 },
-              callback: function (val, idx) {
+              callback: (val, idx) => {
                 const total = this.getLabels().length;
                 if (total > 30) {
                   return idx % 2 === 0 ? this.getLabelForValue(val) : '';
@@ -537,7 +549,7 @@ const updateResults = () => {
               color: '#facc15',
               font: { size: 14 },
               stepSize: 20,
-              callback: function (val) {
+              callback: (val) => {
                 return val % 20 === 0 ? val : '';
               },
             },
@@ -596,7 +608,7 @@ let timelineLabels = [];
 let timelineInterval = null;
 
 // --- Start tracking stats over time when the test starts ---
-function startTimelineTracking() {
+const startTimelineTracking = () => {
   timelineWpm = [];
   timelineErrors = [];
   timelineLabels = [];
@@ -612,7 +624,7 @@ function startTimelineTracking() {
 }
 
 // --- Stop tracking ---
-function stopTimelineTracking() {
+const stopTimelineTracking = () => {
   if (timelineInterval) clearInterval(timelineInterval);
   timelineInterval = null;
 }
