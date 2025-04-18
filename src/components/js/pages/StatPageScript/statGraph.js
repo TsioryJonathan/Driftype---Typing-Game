@@ -1,13 +1,32 @@
 import { API_URL } from '../login.js';
 
+function showLoginWarningToast() {
+  const toast = document.getElementById('login-warning-toast');
+  toast.classList.remove('hidden', 'opacity-0');
+  toast.classList.add('opacity-100');
+
+  setTimeout(() => {
+    toast.classList.add('opacity-0');
+    setTimeout(() => toast.classList.add('hidden'), 300);
+  }, 4000); // Affiché pendant 4 secondes
+}
+
 const getStat = async () => {
   if (!localStorage.getItem('typing_game_user')) {
-    throw new Error('User not logged in');
+    showLoginWarningToast();
+    return { wpm: [0], accuracy: [0] };
   }
   const { id } = JSON.parse(localStorage.getItem('typing_game_user'));
 
   try {
-    const response = await fetch(`${API_URL}/stats/recent/${id}`);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+    const response = await fetch(`${API_URL}/stats/recent/${id}`, {
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+
     const data = await response.json();
     const wpm = [];
     const accuracy = [];
@@ -20,7 +39,8 @@ const getStat = async () => {
       accuracy: accuracy.reverse(),
     };
   } catch (error) {
-    throw new Error(error);
+    console.log('Error fetching stats:', error);
+    return { wpm: [0], accuracy: [0] };
   }
 };
 

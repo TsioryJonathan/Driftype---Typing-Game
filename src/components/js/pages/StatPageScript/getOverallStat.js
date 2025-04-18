@@ -5,16 +5,35 @@ const avgAcc = document.querySelectorAll('#avg-accuracy');
 const maxWpm = document.querySelector('#max-wpm');
 const totalTest = document.querySelector('#complete-test');
 
+const displayDefaultValues = () => {
+  avgAcc.forEach((field) => {
+    field.textContent = '-';
+  });
+  avgWpm.forEach((field) => {
+    field.textContent = '-';
+  });
+  maxWpm.textContent = '-';
+  totalTest.textContent = '-';
+};
+
 const renderOverallStat = async () => {
   const user = JSON.parse(localStorage.getItem('typing_game_user'));
 
   if (!user?.id) {
     console.warn('No user ID found in localStorage.');
+    displayDefaultValues();
     return;
   }
 
   try {
-    const res = await fetch(`${API_URL}/stats/global/${user.id}`);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+    const res = await fetch(`${API_URL}/stats/global/${user.id}`, {
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
     const data = await res.json();
@@ -33,9 +52,11 @@ const renderOverallStat = async () => {
       totalTest.textContent = total_test;
     } else {
       console.warn('Some DOM elements are missing');
+      displayDefaultValues();
     }
   } catch (err) {
     console.error('Failed to fetch global stats:', err);
+    displayDefaultValues();
   }
 };
 
