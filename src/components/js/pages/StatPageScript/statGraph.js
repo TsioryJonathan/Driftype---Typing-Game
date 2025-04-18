@@ -2,12 +2,12 @@ import { API_URL } from '../login.js';
 
 function showLoginWarningToast() {
   const toast = document.getElementById('login-warning-toast');
-  toast.classList.remove('hidden', 'opacity-0');
+  toast.classList.replace('hidden', 'flex');
   toast.classList.add('opacity-100');
 
   setTimeout(() => {
     toast.classList.add('opacity-0');
-    setTimeout(() => toast.classList.add('hidden'), 300);
+    setTimeout(() => toast.classList.replace('flex', 'hidden'), 300);
   }, 4000); // Affiché pendant 4 secondes
 }
 
