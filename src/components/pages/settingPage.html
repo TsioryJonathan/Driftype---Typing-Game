@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Driftype - User Settings</title>
-    <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon">
-    <link href="/src/css/output.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon" />
+    <link href="/src/css/output.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    >
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    >
+    />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
       integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
@@ -40,7 +40,7 @@
             src="/src/assets/noBg.png"
             alt="Drifttype"
             class="h-full w-40 object-cover"
-          >
+          />
         </a>
       </div>
 
@@ -125,7 +125,7 @@
             src="https://i.pravatar.cc/40"
             alt="Avatar"
             class="w-8 h-8 rounded-full"
-          >
+          />
 
           <span class="text-sm" id="nav_username">
             <span class="flex justify-center items-center">
@@ -151,7 +151,7 @@
           </a>
           <button
             class="w-full text-left flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
-            onclick="logout()"
+            id="logout-btn"
           >
             Sign out
             <i class="fas fa-right-from-bracket"></i>
@@ -228,7 +228,7 @@
                   type="text"
                   id="username-input"
                   class="px-3 py-2 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
-                >
+                />
               </div>
               <div class="flex flex-col space-y-2">
                 <label
@@ -241,7 +241,7 @@
                   type="email"
                   id="email"
                   class="px-3 py-2 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
-                >
+                />
               </div>
               <button
                 class="w-full mt-4 px-4 py-2 bg-[var(--color-primary)] text-white rounded-md hover:bg-[var(--color-primary-hover)] transition-colors flex items-center justify-center space-x-2"
@@ -306,7 +306,7 @@
             </div>
             <div class="flex items-center space-x-4">
               <label class="flex items-center cursor-pointer">
-                <input type="checkbox" id="real-time-errors" class="sr-only">
+                <input type="checkbox" id="real-time-errors" class="sr-only" />
                 <span class="ml-3 text-sm text-[var(--color-text)]">
                   Show Real-time Errors
                 </span>
@@ -317,7 +317,7 @@
                   id="instant-feedback"
                   checked
                   class="sr-only"
-                >
+                />
                 <span class="ml-3 text-sm text-[var(--color-text)]">
                   Instant Feedback
                 </span>
@@ -350,7 +350,12 @@
         >
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer" for="enable-sounds">
-              <input type="checkbox" id="enable-sounds" checked class="sr-only">
+              <input
+                type="checkbox"
+                id="enable-sounds"
+                checked
+                class="sr-only"
+              />
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Enable Sounds
               </span>
@@ -364,7 +369,7 @@
                 id="keyboard-sounds"
                 checked
                 class="sr-only"
-              >
+              />
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Keyboard Sounds
               </span>
@@ -444,13 +449,13 @@
         >
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer">
-              <input type="checkbox" checked class="sr-only">
+              <input type="checkbox" checked class="sr-only" />
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Email Notifications
               </span>
             </label>
             <label class="flex items-center cursor-pointer">
-              <input type="checkbox" class="sr-only">
+              <input type="checkbox" class="sr-only" />
               <span
                 class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
               >
@@ -489,13 +494,13 @@
         >
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer">
-              <input type="checkbox" checked class="sr-only">
+              <input type="checkbox" checked class="sr-only" />
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Profile Visible
               </span>
             </label>
             <label class="flex items-center cursor-pointer">
-              <input type="checkbox" class="sr-only">
+              <input type="checkbox" class="sr-only" />
               <span
                 class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
               >
