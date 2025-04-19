@@ -1,7 +1,6 @@
 import { displayUserBadges } from '../pages/badges-display.js';
 import { badgeManager } from '../badges.js';
 
-// Configuration centralisée pour les dropdowns
 const DROPDOWNS_CONFIG = [
   {
     containerId: 'mode-container',
@@ -26,7 +25,6 @@ const DROPDOWNS_CONFIG = [
   },
 ];
 
-// Initialisation principale
 const initDashboard = () => {
   try {
     const userData = localStorage.getItem('typing_game_user');
@@ -44,7 +42,7 @@ const initDashboard = () => {
 
     console.debug('Chargement du dashboard pour:', userId);
 
-    // Initialisation des badges utilisateur
+    
     const userBadges = badgeManager.getUserBadges(userId);
     if (!userBadges?.badges) {
       badgeManager.saveBadges(userId, []);
@@ -52,13 +50,13 @@ const initDashboard = () => {
 
     displayUserBadges(userId);
 
-    // Initialisation des menus et dropdowns
+    
   } catch (error) {
     console.error('Erreur initialisation dashboard:', error);
   }
 };
 
-// Gestion du menu utilisateur
+
 const initUserMenu = () => {
   const menuContainer = document.getElementById('user-menu-container');
   if (!menuContainer) return;
@@ -81,7 +79,7 @@ const initUserMenu = () => {
   
 };
 
-// Gestion des dropdowns
+
 const initDropdowns = () => {
   DROPDOWNS_CONFIG.forEach((config) => {
     const { containerId, buttonId, dropdownId, selectId, textId } = config;

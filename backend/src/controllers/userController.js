@@ -16,7 +16,7 @@ export const updateUserDetails = async (req, res) => {
   const userId = req.params.userId;
   const { username, email } = req.body;
 
-  // Validation des paramètres
+  
   if (!userId) {
     return res.status(400).json({ message: "User ID is required" });
   }
@@ -25,14 +25,14 @@ export const updateUserDetails = async (req, res) => {
     return res.status(400).json({ message: "Username and email are required" });
   }
 
-  // Vérification de l'email avec une expression régulière
+  
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ message: "Invalid email format" });
   }
 
   try {
-    // Vérifier si l'email est déjà pris par un autre utilisateur
+    
     const emailExists =
       await sql`SELECT 1 FROM users WHERE email = ${email} AND id != ${userId}`;
     if (emailExists.length > 0) {
@@ -41,14 +41,14 @@ export const updateUserDetails = async (req, res) => {
         .json({ message: "Email is already in use by another account" });
     }
 
-    // Vérifier si l'username est déjà pris
+    
     const usernameExists =
       await sql`SELECT 1 FROM users WHERE username = ${username} AND id != ${userId}`;
     if (usernameExists.length > 0) {
       return res.status(400).json({ message: "Username is already taken" });
     }
 
-    // Mettre à jour l'utilisateur avec les nouveaux détails
+    
     const result = await sql`
       UPDATE users
       SET username = ${username}, email = ${email}, updated_at = NOW()
@@ -56,12 +56,12 @@ export const updateUserDetails = async (req, res) => {
       RETURNING id, username, email
     `;
 
-    // Vérification si l'utilisateur a bien été mis à jour
+    
     if (result.length === 0) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Retourner les nouvelles informations de l'utilisateur
+    
     const updatedUser = result[0];
     res.json({
       message: "User details updated successfully",

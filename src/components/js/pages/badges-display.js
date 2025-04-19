@@ -23,7 +23,6 @@ export const displayUserBadges = (userId, language = "en") => {
       const categoryBadges = category.levels.map((level) => ({
         ...level,
         unlocked: unlockedIds.includes(level.id),
-        progress: calculateProgress(level),
       }));
 
       if (categoryBadges.length > 0) {
@@ -148,7 +147,6 @@ const setupBadgeInteractions = (container, language) => {
       });
     } else if (badgeCard) {
       badgeNotifier.playSound("unlock");
-      // Implement detailed view if needed
     }
   });
 };
@@ -194,9 +192,4 @@ const getBadgeColor = (badge) => {
 
 const getCategoryColor = (category) => {
   return category.color ? getBadgeColor(category) : "var(--color-primary)";
-};
-
-const calculateProgress = (badge) => {
-  // Implement your progress logic here
-  return 0;
 };

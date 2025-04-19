@@ -87,4 +87,4 @@ export {
   a as parseKeybinding,
   f as tinykeys,
 };
-//# sourceMappingURL=tinykeys.module.js.map
+

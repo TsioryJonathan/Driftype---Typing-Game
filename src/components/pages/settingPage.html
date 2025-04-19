@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -202,9 +202,7 @@
             <div class="flex items-center space-x-4 mb-6">
               <div
                 class="w-16 h-16 rounded-full bg-[var(--color-primary)] flex items-center justify-center text-white text-xl font-bold"
-              >
-                T
-              </div>
+              ></div>
               <div>
                 <p
                   class="text-lg font-medium text-[var(--color-text)]"
@@ -546,9 +544,11 @@
       if (typeof saveAppearanceSettings === 'undefined') console.error('saveAppearanceSettings missing');
       if (typeof saveNotificationAndPrivacySettings === 'undefined') console.error('saveNotificationAndPrivacySettings missing');
     </script>
+
     <script>loadAppearanceSettings();</script>
     <script>loadSoundAndFeedbackSettings();</script>
     <script>loadGamePreferences();</script>
     <script>loadNotificationAndPrivacySettings();</script>
+
   </body>
 </html>
