@@ -56,12 +56,31 @@ const fetchRecentStat = async () => {
     data.forEach((stat) => {
       const tableRow = document.createElement("tr");
       let language;
-      if (stat.language === "en") language = "English";
-      if (stat.language === "fr") language = "French";
-      if (stat.language === "es") language = "Espanol";
-      if (stat.language === "de") language = "Deutch";
-      if (stat.language === "it") language = "Italiano";
-      if (stat.language === "pt") language = "Protugues";
+      let icon;
+      if (stat.language === "en") {
+        language = "English";
+        icon = '<span class="flag-icon flag-icon-gb"></span>';
+      }
+      if (stat.language === "fr") {
+        language = "French";
+        icon = '<span class="flag-icon flag-icon-fr"></span>';
+      }
+      if (stat.language === "es") {
+        language = "Espanol";
+        icon = '<span class="flag-icon flag-icon-es"></span>';
+      }
+      if (stat.language === "de") {
+        language = "Deutch";
+        icon = '<span class="flag-icon flag-icon-de"></span>';
+      }
+      if (stat.language === "it") {
+        language = "Italiano";
+        icon = '<span class="flag-icon flag-icon-it"></span>';
+      }
+      if (stat.language === "pt") {
+        language = "Portugues";
+        icon = '<span class="flag-icon flag-icon-pt"></span>';
+      }
 
       const date = new Date(stat.created_at).toLocaleString("en-GB", {
         timeZone: "Africa/Nairobi",
@@ -96,7 +115,10 @@ const fetchRecentStat = async () => {
             ${stat.time_taken} sec
           </td>
           <td class="px-6 py-4 text-[var(--color-text)]">
-          ${language} , ${stat.difficulty}
+          ${stat.difficulty}
+          </td>
+          <td class="px-6 py-4 text-[var(--color-text)]">
+          ${language}   ${icon}
           </td>
         `;
 
