@@ -20,7 +20,7 @@ const sql = postgres({
   idle_timeout: 30,
   connect_timeout: 10,
   connection: {
-    application_name: "tajotype",
+    application_name: "driftype",
     statement_timeout: 60000,
   },
   types: {

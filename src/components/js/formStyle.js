@@ -6,7 +6,7 @@ export const logoStyle = () => {
     auto: '../../assets/noBg.png',
   };
   const theme = localStorage.getItem('theme') || 'light';
-  logo.innerHTML = `<img src="${logoSrc[theme]}" alt="TajoType Logo" class="w-26 mx-auto">`;
+  logo.innerHTML = `<img src="${logoSrc[theme]}" alt="Driftype Logo" class="w-26 mx-auto">`;
 };
 
 export const inputStyle = () => {
