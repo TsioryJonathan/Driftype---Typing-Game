@@ -4,7 +4,6 @@ const usernameField = document.querySelectorAll("#username");
 const navUsername = document.querySelector("#nav_username");
 const initial = document.querySelector("#initial");
 
-console.log(navUsername);
 
 const getUsernameNdEmail = async () => {
   if (!localStorage.getItem("typing_game_user")) {

@@ -19,35 +19,37 @@ const setLoadingState = (button, isLoading) => {
 };
 
 const showSuccessToast = () => {
-  const toast = document.getElementById('toast-success');
-  toast.classList.add('show');
+  const toast = document.getElementById("toast-success");
+  toast.classList.add("show");
 
   setTimeout(() => {
-    toast.classList.remove('show');
+    toast.classList.remove("show");
     setTimeout(() => {
       window.location.reload();
-    }, 300); // on laisse le temps au toast de disparaître
-  }, 1500); // affiché 1.5s
+    }, 300);
+  }, 1500);
 };
 
-const { id } = JSON.parse(localStorage.getItem('typing_game_user'));
-const updateBtn = document.getElementById('user-info-update-btn');
+const { id } = JSON.parse(localStorage.getItem("typing_game_user"));
+const updateBtn = document.getElementById("user-info-update-btn");
 
 const updateUserInfo = async (e) => {
   e.preventDefault();
-  const username = document.querySelector('#username-input').value.trim();
-  const email = document.querySelector('#email').value.trim();
-  const savedData = JSON.parse(localStorage.getItem('typing_game_user'));
+  const username = document.querySelector("#username-input").value.trim();
+  const email = document.querySelector("#email").value.trim();
+  const savedData = JSON.parse(localStorage.getItem("typing_game_user"));
+  const token = localStorage.getItem("typing_game_token");
 
   setLoadingState(updateBtn, true);
   try {
     const response = await fetch(`${API_URL}/user/${id}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ username, email }),
-      credentials: 'include',
+      credentials: "include",
     });
 
     if (!response.ok) {
@@ -60,7 +62,7 @@ const updateUserInfo = async (e) => {
 
     savedData.username = data.user.username;
     savedData.email = data.user.email;
-    localStorage.setItem('typing_game_user', JSON.stringify(savedData));
+    localStorage.setItem("typing_game_user", JSON.stringify(savedData));
 
     setLoadingState(updateBtn, false);
     showSuccessToast();
@@ -69,4 +71,4 @@ const updateUserInfo = async (e) => {
   }
 };
 
-updateBtn.addEventListener('click', updateUserInfo);
+updateBtn.addEventListener("click", updateUserInfo);

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -202,9 +202,7 @@
             <div class="flex items-center space-x-4 mb-6">
               <div
                 class="w-16 h-16 rounded-full bg-[var(--color-primary)] flex items-center justify-center text-white text-xl font-bold"
-              >
-                T
-              </div>
+              ></div>
               <div>
                 <p
                   class="text-lg font-medium text-[var(--color-text)]"
@@ -536,14 +534,16 @@
     <script src="../js/pages/dashboard.js" type="module"></script>
     <script src="../js/pages/userInfofetch.js" type="module"></script>
     <script src="../js/navBarRedirection.js" type="module"></script>
-    <script src="../js/toggleTheme.js"></script>
-    <script src="../js/soundAndFeedback.js"></script>
-    <script src="../js/appearance.js"></script>
-    <script src="../js/gamePreferences.js"></script>
-    <script src="../js/notificationAndPrivacy.js"></script>
+
+    <script src="../js/toggleTheme.js" type="module"></script>
+    <script src="../js/soundAndFeedback.js"  type="module"></script>
+    <script src="../js/appearance.js"  type="module"></script>
+    <script src="../js/gamePreferences.js"  type="module"></script>
+    <script src="../js/notificationAndPrivacy.js"  type="module"></script>
     <script>loadAppearanceSettings();</script>
     <script>loadSoundAndFeedbackSettings();</script>
     <script>loadGamePreferences();</script>
     <script>loadNotificationAndPrivacySettings();</script>
+
   </body>
 </html>

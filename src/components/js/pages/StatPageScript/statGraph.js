@@ -8,7 +8,7 @@ function showLoginWarningToast() {
   setTimeout(() => {
     toast.classList.add("opacity-0");
     setTimeout(() => toast.classList.replace("flex", "hidden"), 300);
-  }, 4000); // Affiché pendant 4 secondes
+  }, 4000); 
 }
 
 const getStat = async () => {
@@ -93,10 +93,10 @@ const option = {
       type: "line",
       data: accuracy,
       lineStyle: {
-        color: "#ff7f0e", // Couleur pour la ligne Exactitude
+        color: "#ff7f0e", 
       },
-      symbol: "circle", // Utilisation de cercles pour les points de la ligne
-      smooth: true, // Lignes lissées
+      symbol: "circle", 
+      smooth: true, 
     },
   ],
 };
