@@ -933,6 +933,9 @@
   .rounded-br-md {
     border-bottom-right-radius: var(--radius-md);
   }
+  .rounded-bl-2xl {
+    border-bottom-left-radius: var(--radius-2xl);
+  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;

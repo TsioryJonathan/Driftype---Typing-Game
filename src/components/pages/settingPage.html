@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driftype - User Settings</title>
-    <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon" />
-    <link href="/src/css/output.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon">
+    <link href="/src/css/output.css" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    />
+>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
       integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
@@ -40,7 +40,7 @@
             src="/src/assets/noBg.png"
             alt="Drifttype"
             class="h-full w-40 object-cover"
-          />
+>
         </a>
       </div>
 
@@ -125,7 +125,7 @@
             src="https://i.pravatar.cc/40"
             alt="Avatar"
             class="w-8 h-8 rounded-full"
-          />
+>
 
           <span class="text-sm" id="nav_username">
             <span class="flex justify-center items-center">
@@ -226,7 +226,7 @@
                   type="text"
                   id="username-input"
                   class="px-3 py-2 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
-                />
+>
               </div>
               <div class="flex flex-col space-y-2">
                 <label
@@ -239,7 +239,7 @@
                   type="email"
                   id="email"
                   class="px-3 py-2 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
-                />
+>
               </div>
               <button
                 class="w-full mt-4 px-4 py-2 bg-[var(--color-primary)] text-white rounded-md hover:bg-[var(--color-primary-hover)] transition-colors flex items-center justify-center space-x-2"
@@ -305,9 +305,18 @@
             <div class="flex items-center space-x-4">
               <label class="flex items-center cursor-pointer">
                 <div class="relative">
-                  <input id="realTimeToggle" type="checkbox" class="sr-only peer" onchange="saveGamePreferences()">
-                  <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
-                  <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+                  <input
+                    id="realTimeToggle"
+                    type="checkbox"
+                    class="sr-only peer"
+                    onchange="saveGamePreferences()"
+>
+                  <div
+                    class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"
+                  ></div>
+                  <div
+                    class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"
+                  ></div>
                 </div>
                 <span class="ml-3 text-sm text-[var(--color-text)]">
                   Show Real-time Errors
@@ -315,9 +324,19 @@
               </label>
               <label class="flex items-center cursor-pointer">
                 <div class="relative">
-                  <input id="instantFeedbackToggle" type="checkbox" class="sr-only peer" checked onchange="saveGamePreferences()">
-                  <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
-                  <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+                  <input
+                    id="instantFeedbackToggle"
+                    type="checkbox"
+                    class="sr-only peer"
+                    checked
+                    onchange="saveGamePreferences()"
+>
+                  <div
+                    class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"
+                  ></div>
+                  <div
+                    class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"
+                  ></div>
                 </div>
                 <span class="ml-3 text-sm text-[var(--color-text)]">
                   Instant Feedback
@@ -352,9 +371,19 @@
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer">
               <div class="relative">
-                <input id="enableSoundsToggle" type="checkbox" class="sr-only peer" checked onchange="saveSoundAndFeedbackSettings()">
-                <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
-                <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+                <input
+                  id="enableSoundsToggle"
+                  type="checkbox"
+                  class="sr-only peer"
+                  checked
+                  onchange="saveSoundAndFeedbackSettings()"
+>
+                <div
+                  class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"
+                ></div>
+                <div
+                  class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"
+                ></div>
               </div>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Enable Sounds
@@ -362,9 +391,19 @@
             </label>
             <label class="flex items-center cursor-pointer">
               <div class="relative">
-                <input id="keyboardSoundsToggle" type="checkbox" class="sr-only peer" checked onchange="saveSoundAndFeedbackSettings()">
-                <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
-                <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+                <input
+                  id="keyboardSoundsToggle"
+                  type="checkbox"
+                  class="sr-only peer"
+                  checked
+                  onchange="saveSoundAndFeedbackSettings()"
+>
+                <div
+                  class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"
+                ></div>
+                <div
+                  class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"
+                ></div>
               </div>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Keyboard Sounds
@@ -448,9 +487,19 @@
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer">
               <div class="relative">
-                <input id="emailNotificationsToggle" type="checkbox" class="sr-only peer" checked onchange="saveNotificationAndPrivacySettings()">
-                <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
-                <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+                <input
+                  id="emailNotificationsToggle"
+                  type="checkbox"
+                  class="sr-only peer"
+                  checked
+                  onchange="saveNotificationAndPrivacySettings()"
+>
+                <div
+                  class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"
+                ></div>
+                <div
+                  class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"
+                ></div>
               </div>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Email Notifications
@@ -458,9 +507,18 @@
             </label>
             <label class="flex items-center cursor-pointer">
               <div class="relative">
-                <input id="pushNotificationsToggle" type="checkbox" class="sr-only peer" onchange="saveNotificationAndPrivacySettings()">
-                <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
-                <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+                <input
+                  id="pushNotificationsToggle"
+                  type="checkbox"
+                  class="sr-only peer"
+                  onchange="saveNotificationAndPrivacySettings()"
+>
+                <div
+                  class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"
+                ></div>
+                <div
+                  class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"
+                ></div>
               </div>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Push Notifications
@@ -494,9 +552,19 @@
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer">
               <div class="relative">
-                <input id="profileVisibleToggle" type="checkbox" class="sr-only peer" checked onchange="saveNotificationAndPrivacySettings()">
-                <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
-                <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+                <input
+                  id="profileVisibleToggle"
+                  type="checkbox"
+                  class="sr-only peer"
+                  checked
+                  onchange="saveNotificationAndPrivacySettings()"
+>
+                <div
+                  class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"
+                ></div>
+                <div
+                  class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"
+                ></div>
               </div>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Profile Visible
@@ -504,9 +572,18 @@
             </label>
             <label class="flex items-center cursor-pointer">
               <div class="relative">
-                <input id="activityStatusToggle" type="checkbox" class="sr-only peer" onchange="saveNotificationAndPrivacySettings()">
-                <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
-                <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+                <input
+                  id="activityStatusToggle"
+                  type="checkbox"
+                  class="sr-only peer"
+                  onchange="saveNotificationAndPrivacySettings()"
+>
+                <div
+                  class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"
+                ></div>
+                <div
+                  class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"
+                ></div>
               </div>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Activity Status
@@ -536,14 +613,21 @@
     <script src="../js/navBarRedirection.js" type="module"></script>
 
     <script src="../js/toggleTheme.js" type="module"></script>
-    <script src="../js/soundAndFeedback.js"  type="module"></script>
-    <script src="../js/appearance.js"  type="module"></script>
-    <script src="../js/gamePreferences.js"  type="module"></script>
-    <script src="../js/notificationAndPrivacy.js"  type="module"></script>
-    <script>loadAppearanceSettings();</script>
-    <script>loadSoundAndFeedbackSettings();</script>
-    <script>loadGamePreferences();</script>
-    <script>loadNotificationAndPrivacySettings();</script>
-
+    <script src="../js/soundAndFeedback.js" type="module"></script>
+    <script src="../js/appearance.js" type="module"></script>
+    <script src="../js/gamePreferences.js" type="module"></script>
+    <script src="../js/notificationAndPrivacy.js" type="module"></script>
+    <script>
+      loadAppearanceSettings();
+    </script>
+    <script>
+      loadSoundAndFeedbackSettings();
+    </script>
+    <script>
+      loadGamePreferences();
+    </script>
+    <script>
+      
+    </script>
   </body>
 </html>
