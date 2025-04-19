@@ -306,18 +306,21 @@
             </div>
             <div class="flex items-center space-x-4">
               <label class="flex items-center cursor-pointer">
-                <input type="checkbox" id="real-time-errors" class="sr-only" />
+                <div class="relative">
+                  <input id="realTimeToggle" type="checkbox" class="sr-only peer" onchange="saveGamePreferences()">
+                  <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
+                  <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+                </div>
                 <span class="ml-3 text-sm text-[var(--color-text)]">
                   Show Real-time Errors
                 </span>
               </label>
               <label class="flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  id="instant-feedback"
-                  checked
-                  class="sr-only"
-                />
+                <div class="relative">
+                  <input id="instantFeedbackToggle" type="checkbox" class="sr-only peer" checked onchange="saveGamePreferences()">
+                  <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
+                  <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+                </div>
                 <span class="ml-3 text-sm text-[var(--color-text)]">
                   Instant Feedback
                 </span>
@@ -349,27 +352,22 @@
           class="px-6 py-0 border-t border-[var(--color-border)] max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
         >
           <div class="space-y-4 py-4">
-            <label class="flex items-center cursor-pointer" for="enable-sounds">
-              <input
-                type="checkbox"
-                id="enable-sounds"
-                checked
-                class="sr-only"
-              />
+            <label class="flex items-center cursor-pointer">
+              <div class="relative">
+                <input id="enableSoundsToggle" type="checkbox" class="sr-only peer" checked onchange="saveSoundAndFeedbackSettings()">
+                <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
+                <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+              </div>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Enable Sounds
               </span>
             </label>
-            <label
-              class="flex items-center cursor-pointer"
-              for="keyboard-sounds"
-            >
-              <input
-                type="checkbox"
-                id="keyboard-sounds"
-                checked
-                class="sr-only"
-              />
+            <label class="flex items-center cursor-pointer">
+              <div class="relative">
+                <input id="keyboardSoundsToggle" type="checkbox" class="sr-only peer" checked onchange="saveSoundAndFeedbackSettings()">
+                <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
+                <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+              </div>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Keyboard Sounds
               </span>
@@ -403,8 +401,9 @@
             <div class="flex items-center justify-between">
               <span class="text-sm text-[var(--color-text)]">Theme</span>
               <select
-                class="text-sm px-2 py-1 rounded bg-[var(--color-background)] border border-[var(--color-border)] text-[var(--color-text)]"
+                class="text-sm px-2 py-1 rounded bg-[var(--color-background-secondary)] border border-[var(--color-border)] text-[var(--color-text-secondary)]"
                 id="theme-select"
+                onchange="saveAppearanceSettings()"
               >
                 <option value="auto">Auto</option>
                 <option value="light">Light</option>
@@ -414,8 +413,9 @@
             <div class="flex items-center justify-between">
               <span class="text-sm text-[var(--color-text)]">Font Size</span>
               <select
-                class="text-sm px-2 py-1 rounded bg-[var(--color-background)] border border-[var(--color-border)] text-[var(--color-text)]"
+                class="text-sm px-2 py-1 rounded bg-[var(--color-background-secondary)] border border-[var(--color-border)] text-[var(--color-text-secondary)]"
                 id="font-size-select"
+                onchange="saveAppearanceSettings()"
               >
                 <option value="sm">Small</option>
                 <option value="md" selected>Medium</option>
@@ -449,20 +449,21 @@
         >
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer">
-              <input type="checkbox" checked class="sr-only" />
+              <div class="relative">
+                <input id="emailNotificationsToggle" type="checkbox" class="sr-only peer" checked onchange="saveNotificationAndPrivacySettings()">
+                <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
+                <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+              </div>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Email Notifications
               </span>
             </label>
             <label class="flex items-center cursor-pointer">
-              <input type="checkbox" class="sr-only" />
-              <span
-                class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
-              >
-                <span
-                  class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transition-transform"
-                ></span>
-              </span>
+              <div class="relative">
+                <input id="pushNotificationsToggle" type="checkbox" class="sr-only peer" onchange="saveNotificationAndPrivacySettings()">
+                <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
+                <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+              </div>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Push Notifications
               </span>
@@ -494,20 +495,21 @@
         >
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer">
-              <input type="checkbox" checked class="sr-only" />
+              <div class="relative">
+                <input id="profileVisibleToggle" type="checkbox" class="sr-only peer" checked onchange="saveNotificationAndPrivacySettings()">
+                <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
+                <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+              </div>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Profile Visible
               </span>
             </label>
             <label class="flex items-center cursor-pointer">
-              <input type="checkbox" class="sr-only" />
-              <span
-                class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
-              >
-                <span
-                  class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transition-transform"
-                ></span>
-              </span>
+              <div class="relative">
+                <input id="activityStatusToggle" type="checkbox" class="sr-only peer" onchange="saveNotificationAndPrivacySettings()">
+                <div class="w-10 h-5 bg-[var(--color-border)] rounded-full peer-checked:bg-[var(--color-primary)] transition-colors"></div>
+                <div class="absolute top-0 left-0 w-5 h-5 bg-white rounded-full peer-checked:translate-x-full transition-transform shadow"></div>
+              </div>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Activity Status
               </span>
@@ -535,5 +537,13 @@
     <script src="../js/pages/userInfofetch.js" type="module"></script>
     <script src="../js/navBarRedirection.js" type="module"></script>
     <script src="../js/toggleTheme.js"></script>
+    <script src="../js/soundAndFeedback.js"></script>
+    <script src="../js/appearance.js"></script>
+    <script src="../js/gamePreferences.js"></script>
+    <script src="../js/notificationAndPrivacy.js"></script>
+    <script>loadAppearanceSettings();</script>
+    <script>loadSoundAndFeedbackSettings();</script>
+    <script>loadGamePreferences();</script>
+    <script>loadNotificationAndPrivacySettings();</script>
   </body>
 </html>
