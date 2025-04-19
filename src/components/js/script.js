@@ -268,7 +268,6 @@ const endTest = async () => {
   else if (langValue === 'de') langLabel = 'German';
   else if (langValue === 'it') langLabel = 'Italian';
   else if (langValue === 'pt') langLabel = 'Portuguese';
-  else if (langValue === 'numbers') langLabel = 'Numbers';
   else langLabel = langValue.charAt(0).toUpperCase() + langValue.slice(1);
   let modeLabel = modeValue.charAt(0).toUpperCase() + modeValue.slice(1);
   if (modeValue === 'numbers') modeLabel = 'Numbers';
@@ -654,4 +653,3 @@ restartButton.addEventListener('click', () => {
 
 // Start the test
 startTest();
-fix
