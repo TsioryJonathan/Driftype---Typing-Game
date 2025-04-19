@@ -1,4 +1,3 @@
-// Suppression des doublons d'import et de déclaration de variables
 import { getRandomWord } from './dictionaries.js';
 import { checkBadges, badgeManager } from './badges.js';
 import { tinykeys } from './tinykeys.js';
@@ -33,13 +32,75 @@ const timerSelect = document.getElementById('timer');
 const wordDisplay = document.getElementById('word-display');
 const testContainer = document.getElementById('test-container');
 const results = document.getElementById('results-container');
+const progressBar = document.getElementById('progress-bar');
+const countdownTimer = document.getElementById('countdown-timer');
+
+let survivalStats = {
+  streak: 0,
+  totalTypedChars: 0,
+  startTime: null,
+  timerInterval: null
+};
+
+const startSurvivalMode = () => {
+  // Initialisation
+  survivalStats.streak = 0;
+  survivalStats.totalTypedChars = 0;
+  survivalStats.startTime = Date.now();
+  
+  // UI
+  testContainer.classList.remove('hidden');
+  results.classList.add('hidden');
+  wordDisplay.innerHTML = '';
+  progressBar.style.width = '100%';
+  
+  // Start chrono
+  survivalStats.timerInterval = setInterval(updateSurvivalStats, 1000);
+  
+  // First word
+  displaySurvivalWord();
+  testContainer.focus();
+};
+
+const displaySurvivalWord = () => {
+  const word = getRandomWord(modeSelect.value);
+  wordDisplay.textContent = word;
+};
+
+const updateSurvivalStats = () => {
+  const elapsedSeconds = Math.floor((Date.now() - survivalStats.startTime) / 1000);
+  const wpm = Math.round((survivalStats.totalTypedChars / 5) / (elapsedSeconds / 60));
+  
+  countdownTimer.textContent = `${elapsedSeconds}s`;
+  document.getElementById('live-wpm').textContent = isFinite(wpm) ? wpm : 0;
+};
+
+const endSurvivalMode = () => {
+  clearInterval(survivalStats.timerInterval);
+  
+  const finalStats = {
+    wpm: Math.round((survivalStats.totalTypedChars / 5) / ((Date.now() - survivalStats.startTime) / 60000)),
+    streak: survivalStats.streak,
+    time: Math.floor((Date.now() - survivalStats.startTime) / 1000),
+    accuracy: 100 
+  };
+  
+  showResults(finalStats);
+};
+
 
 // Initialize the typing test
 const startTest = (wordCount = 200) => {
+
+  if (modeSelect.value === 'survival') {
+    return startSurvivalMode();
+  }
+
   testContainer.classList.remove('hidden');
   results.classList.add('hidden');
   wordsToType.length = 0;
   wordDisplay.innerHTML = '';
+
   currentWordIndex = 0;
   currentLetterIndex = 0;
   correctLetters = 0;
@@ -48,17 +109,18 @@ const startTest = (wordCount = 200) => {
   incorrectLetters = 0;
   extraLetters = 0;
   startTime = null;
+
   clearInterval(timerInterval);
   timeLeft = parseInt(timerSelect.value);
   wordDisplay.style.transform = 'translateY(0)';
+  progressBar.style.width = '100%';
+  countdownTimer.textContent = `${timeLeft}s`;
 
-  // Reset chart
   if (resultsChart) {
     resultsChart.destroy();
     resultsChart = null;
   }
 
-  // Generate words
   for (let i = 0; i < wordCount; i++) {
     wordsToType.push(getRandomWord(modeSelect.value));
   }
@@ -97,18 +159,19 @@ const startTest = (wordCount = 200) => {
 
   testContainer.value = '';
   updateResults();
-  updateProgressBar(timeLeft, timerSelect);
   showProgressBar();
   startTimelineTracking();
 };
 
-// Start the timer
+
 const startTimer = () => {
   if (!startTime) {
     startTime = Date.now();
     timerInterval = setInterval(() => {
       if (timeLeft > 0) {
         timeLeft--;
+        updateProgressBar(timeLeft, timerSelect.value);
+        countdownTimer.textContent = `${timeLeft}s`;
         updateResults();
       }
 
@@ -119,26 +182,32 @@ const startTimer = () => {
   }
 };
 
-// Calculate and return WPM & accuracy
 const getCurrentStats = () => {
-  // Calculate WPM, accuracy, raw, correct, incorrect, extra, consistency
   const elapsed = Math.max((Date.now() - startTime) / 1000, 1);
   const wordsTyped = correctLetters / 5;
   const wpm = Math.round((wordsTyped / elapsed) * 60);
   const raw = Math.round((totalKeystrokes / 5 / elapsed) * 60);
-  const accuracy =
-    totalKeystrokes > 0
-      ? Math.round((correctLetters / totalKeystrokes) * 10000) / 100
-      : 0;
-  const correct = correctLetters;
-  const incorrect = incorrectLetters;
-  const extra = extraLetters;
-  const consistency = calcConsistency ? calcConsistency() : '-';
-  return { wpm, accuracy, raw, correct, incorrect, extra, consistency };
+  const accuracy = totalKeystrokes > 0
+    ? Math.round((correctLetters / totalKeystrokes) * 10000) / 100
+    : 0;
+  
+  return {
+    wpm,
+    accuracy,
+    raw,
+    correct: correctLetters,
+    incorrect: incorrectLetters,
+    extra: extraLetters,
+    consistency: calcConsistency()
+  };
 };
 
 // Update display of current letter and stats
 const updateLetter = (event) => {
+  if (modeSelect.value === 'survival') {
+    handleSurvivalInput(event);
+    return;
+  }
   if (!timeLeft) return;
 
   const key = event.key;
@@ -355,7 +424,6 @@ const endTest = async () => {
 };
 
 // Stat Posting Function
-
 const statPost = async (
   userId,
   wpm,
@@ -628,28 +696,69 @@ const stopTimelineTracking = () => {
   timelineInterval = null;
 };
 
-// Add language change listener
-const languageSelect = document.getElementById('language');
-languageSelect.addEventListener('change', () => startTest());
+
+const handleSurvivalInput = (event) => {
+  const key = event.key;
+  const targetWord = wordDisplay.textContent;
+  const userInput = event.target.value;
+
+  // calculate WPN (count char)
+  survivalStats.totalTypedChars = userInput.length;
+
+  // real time verification
+  if (!targetWord.startsWith(userInput)) {
+    endSurvivalMode();
+    return;
+  }
+
+  // completed word
+  if (userInput === targetWord) {
+    survivalStats.streak++;
+    event.target.value = "";
+    displaySurvivalWord();
+  }
+};
+
+
+
+document.getElementById('language').addEventListener('change', () => startTest());
+
+document.addEventListener('DOMContentLoaded', () => {
+  //add survival option
+  const survivalOption = document.createElement('option');
+  survivalOption.value = 'survival';
+  survivalOption.textContent = 'Survival';
+  modeSelect.appendChild(survivalOption);
+
+  // update ui
+  const modeDropdown = document.getElementById('mode-dropdown');
+  const survivalButton = document.createElement('button');
+  survivalButton.className = 'w-full text-left px-4 py-2 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)]';
+  survivalButton.dataset.value = 'survival';
+  survivalButton.textContent = 'Survival';
+  modeDropdown.querySelector('.py-1').appendChild(survivalButton);
+
+  startTest();
+});
+
 tinykeys(window, {
   'Control+Enter': () => {
     startTest();
     testContainer.focus();
   },
 });
+
 testContainer.addEventListener('keyup', updateLetter);
 modeSelect.addEventListener('change', () => startTest());
 timerSelect.addEventListener('change', () => startTest());
+
 testContainer.addEventListener('keydown', (event) => {
   if (event.key === ' ') {
-    event.preventDefault(); // Prevent scrolling
+    event.preventDefault();
   }
 });
-const restartButton = document.getElementById('restart-button');
-restartButton.addEventListener('click', () => {
+
+document.getElementById('restart-button').addEventListener('click', () => {
   startTest();
   testContainer.focus();
 });
-
-// Start the test
-startTest();

@@ -223,7 +223,7 @@ export const badgeNotifier = {
       gravity: 'top',
       position: 'right',
       style: {
-        borderRadius: '20px',
+        borderRadius: '2rem',
         background: 'linear-gradient(to right, #f59e0b, #d97706)',
       }
     }).showToast();
