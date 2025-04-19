@@ -63,8 +63,10 @@ const renderOverallStat = async () => {
 
     totalTest.forEach((field) => (field.textContent = total_test));
 
-    leaderboardAvgAccuracy.textContent = `${Number(avg_accuracy).toFixed(1)}%`;
-    leaderboardAvgWpm.textContent = `${Number(avg_wpm).toFixed(1)} wpm`;
+    if (leaderboardAvgAccuracy)
+      leaderboardAvgAccuracy.textContent = `${Number(avg_accuracy).toFixed(1)}%`;
+    if (leaderboardAvgWpm)
+      leaderboardAvgWpm.textContent = `${Number(avg_wpm).toFixed(1)} wpm`;
   } catch (err) {
     console.error("Failed to fetch global stats:", err);
     displayDefaultValues();
