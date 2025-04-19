@@ -2149,6 +2149,29 @@ body {
 .animate-float {
   animation: float 2s ease-in-out infinite;
 }
+#survival-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.stat-item {
+  background: var(--color-input);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+.stat-label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+.stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-warning);
+}
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;
