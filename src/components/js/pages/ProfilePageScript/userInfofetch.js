@@ -1,11 +1,15 @@
-const usernameField = document.querySelectorAll('h2#username');
+const usernameField = document.querySelectorAll('#username');
+const navUsername = document.querySelector('#nav_username');
 const initial = document.querySelector('#initial');
 
+console.log(navUsername);
+
 const getUsernameNdEmail = async () => {
-  if (localStorage.getItem('typing_game_user') == null) {
+  if (!localStorage.getItem('typing_game_user')) {
     usernameField.forEach((field) => (field.innerText = 'Guest'));
     initial.textContent = 'G';
-    return;
+    navUsername.textContent = 'Guest';
+    return null;
   }
 
   const { id } = JSON.parse(localStorage.getItem('typing_game_user'));

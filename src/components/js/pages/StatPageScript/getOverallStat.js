@@ -4,6 +4,10 @@ const avgWpm = document.querySelectorAll('#avg-wpm');
 const avgAcc = document.querySelectorAll('#avg-accuracy');
 const maxWpm = document.querySelector('#max-wpm');
 const totalTest = document.querySelector('#complete-test');
+const leaderboardAvgWpm = document.querySelector('#leaderboard-avg-wpm');
+const leaderboardAvgAccuracy = document.querySelector(
+  '#leaderboard-avg-accuracy',
+);
 
 const displayDefaultValues = () => {
   avgAcc.forEach((field) => {
@@ -14,6 +18,8 @@ const displayDefaultValues = () => {
   });
   maxWpm.textContent = '-';
   totalTest.textContent = '-';
+  leaderboardAvgWpm.textContent = '-';
+  leaderboardAvgAccuracy.textContent = '-';
 };
 
 const renderOverallStat = async () => {
@@ -30,7 +36,7 @@ const renderOverallStat = async () => {
     const timeoutId = setTimeout(() => controller.abort(), 5000);
 
     const res = await fetch(`${API_URL}/stats/global/${user.id}`, {
-      signal: controller.signal
+      signal: controller.signal,
     });
     clearTimeout(timeoutId);
 

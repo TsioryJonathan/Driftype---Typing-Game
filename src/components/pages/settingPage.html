@@ -127,13 +127,13 @@
             class="w-8 h-8 rounded-full"
           >
 
-          <div class="text-sm" id="username">
-            <div class="flex justify-center items-center">
-              <div
+          <span class="text-sm" id="nav_username">
+            <span class="flex justify-center items-center">
+              <span
                 class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
-              ></div>
-            </div>
-          </div>
+              ></span>
+            </span>
+          </span>
           <i
             class="fa-solid fa-angle-down text-xs absolute right-5 group-hover:translate-y-0.5"
           ></i>
@@ -162,6 +162,7 @@
 
     <div class="max-w-3xl mx-auto py-8 px-4 space-y-6">
       <!-- Header -->
+      <!-- Settings Header -->
       <div class="flex items-center justify-between mb-8">
         <div class="flex items-center space-x-3">
           <i class="fas fa-cogs text-[var(--color-primary)] text-3xl"></i>
@@ -184,10 +185,10 @@
           onclick="toggleSection('profile-settings')"
           class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
         >
-          <div class="flex items-center space-x-3">
+          <span class="flex items-center space-x-3">
             <i class="fas fa-user text-[var(--color-primary)]"></i>
             <span class="font-medium">Profile</span>
-          </div>
+          </span>
           <i
             id="chevron-profile-settings"
             class="fas fa-chevron-down transform transition-transform duration-300"
@@ -217,7 +218,10 @@
             </div>
             <div class="space-y-4">
               <div class="flex flex-col space-y-2">
-                <label class="text-sm text-[var(--color-text-secondary)]">
+                <label
+                  class="text-sm text-[var(--color-text-secondary)]"
+                  for="username-input"
+                >
                   Username
                 </label>
                 <input
@@ -227,7 +231,10 @@
                 >
               </div>
               <div class="flex flex-col space-y-2">
-                <label class="text-sm text-[var(--color-text-secondary)]">
+                <label
+                  class="text-sm text-[var(--color-text-secondary)]"
+                  for="email"
+                >
                   Email
                 </label>
                 <input
@@ -256,10 +263,10 @@
           onclick="toggleSection('game-preferences')"
           class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
         >
-          <div class="flex items-center space-x-3">
+          <span class="flex items-center space-x-3">
             <i class="fas fa-keyboard text-[var(--color-accent)]"></i>
             <span class="font-medium">Game Preferences</span>
-          </div>
+          </span>
           <i
             id="chevron-game-preferences"
             class="fas fa-chevron-down transform transition-transform duration-300"
@@ -271,8 +278,11 @@
         >
           <div class="space-y-4 p-6">
             <div class="flex items-center justify-between">
-              <label class="text-sm text-[var(--color-text)]">Target WPM</label>
+              <label class="text-sm text-[var(--color-text)]" for="target-wpm">
+                Target WPM
+              </label>
               <select
+                id="target-wpm"
                 class="ml-4 px-3 py-1.5 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
               >
                 <option value="30">Beginner (30 WPM)</option>
@@ -282,10 +292,11 @@
               </select>
             </div>
             <div class="flex items-center justify-between">
-              <label class="text-sm text-[var(--color-text)]">
+              <label class="text-sm text-[var(--color-text)]" for="text-length">
                 Text Length
               </label>
               <select
+                id="text-length"
                 class="ml-4 px-3 py-1.5 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
               >
                 <option value="short">Short (1-2 paragraphs)</option>
@@ -295,15 +306,18 @@
             </div>
             <div class="flex items-center space-x-4">
               <label class="flex items-center cursor-pointer">
-                <input type="checkbox" class="sr-only">
-
+                <input type="checkbox" id="real-time-errors" class="sr-only">
                 <span class="ml-3 text-sm text-[var(--color-text)]">
                   Show Real-time Errors
                 </span>
               </label>
               <label class="flex items-center cursor-pointer">
-                <input type="checkbox" checked class="sr-only">
-
+                <input
+                  type="checkbox"
+                  id="instant-feedback"
+                  checked
+                  class="sr-only"
+                >
                 <span class="ml-3 text-sm text-[var(--color-text)]">
                   Instant Feedback
                 </span>
@@ -321,10 +335,10 @@
           onclick="toggleSection('sound-feedback')"
           class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
         >
-          <div class="flex items-center space-x-3">
+          <span class="flex items-center space-x-3">
             <i class="fas fa-volume-up text-[var(--color-secondary)]"></i>
             <span class="font-medium">Sound & Feedback</span>
-          </div>
+          </span>
           <i
             id="chevron-sound-feedback"
             class="fas fa-chevron-down transform transition-transform duration-300"
@@ -335,16 +349,22 @@
           class="px-6 py-0 border-t border-[var(--color-border)] max-h-0 overflow-hidden transition-all duration-500 ease-in-out"
         >
           <div class="space-y-4 py-4">
-            <label class="flex items-center cursor-pointer">
-              <input type="checkbox" checked class="sr-only">
-
+            <label class="flex items-center cursor-pointer" for="enable-sounds">
+              <input type="checkbox" id="enable-sounds" checked class="sr-only">
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Enable Sounds
               </span>
             </label>
-            <label class="flex items-center cursor-pointer">
-              <input type="checkbox" checked class="sr-only">
-
+            <label
+              class="flex items-center cursor-pointer"
+              for="keyboard-sounds"
+            >
+              <input
+                type="checkbox"
+                id="keyboard-sounds"
+                checked
+                class="sr-only"
+              >
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Keyboard Sounds
               </span>
@@ -361,10 +381,10 @@
           onclick="toggleSection('appearance-settings')"
           class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
         >
-          <div class="flex items-center space-x-3">
+          <span class="flex items-center space-x-3">
             <i class="fas fa-palette text-[var(--color-secondary)]"></i>
             <span class="font-medium">Appearance</span>
-          </div>
+          </span>
           <i
             id="chevron-appearance-settings"
             class="fas fa-chevron-down transform transition-transform duration-300"
@@ -390,6 +410,7 @@
               <span class="text-sm text-[var(--color-text)]">Font Size</span>
               <select
                 class="text-sm px-2 py-1 rounded bg-[var(--color-background)] border border-[var(--color-border)] text-[var(--color-text)]"
+                id="font-size-select"
               >
                 <option value="sm">Small</option>
                 <option value="md" selected>Medium</option>
@@ -408,10 +429,10 @@
           onclick="toggleSection('notification-settings')"
           class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
         >
-          <div class="flex items-center space-x-3">
+          <span class="flex items-center space-x-3">
             <i class="fas fa-bell text-[var(--color-secondary)]"></i>
             <span class="font-medium">Notifications</span>
-          </div>
+          </span>
           <i
             id="chevron-notification-settings"
             class="fas fa-chevron-down transform transition-transform duration-300"
@@ -424,20 +445,19 @@
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer">
               <input type="checkbox" checked class="sr-only">
-
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Email Notifications
               </span>
             </label>
             <label class="flex items-center cursor-pointer">
               <input type="checkbox" class="sr-only">
-              <div
+              <span
                 class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
               >
-                <div
+                <span
                   class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transition-transform"
-                ></div>
-              </div>
+                ></span>
+              </span>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Push Notifications
               </span>
@@ -454,10 +474,10 @@
           onclick="toggleSection('privacy-settings')"
           class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
         >
-          <div class="flex items-center space-x-3">
+          <span class="flex items-center space-x-3">
             <i class="fas fa-user-shield text-[var(--color-secondary)]"></i>
             <span class="font-medium">Privacy</span>
-          </div>
+          </span>
           <i
             id="chevron-privacy-settings"
             class="fas fa-chevron-down transform transition-transform duration-300"
@@ -470,20 +490,19 @@
           <div class="space-y-4 py-4">
             <label class="flex items-center cursor-pointer">
               <input type="checkbox" checked class="sr-only">
-
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Profile Visible
               </span>
             </label>
             <label class="flex items-center cursor-pointer">
               <input type="checkbox" class="sr-only">
-              <div
+              <span
                 class="w-10 h-6 rounded-full bg-[var(--color-primary)] relative"
               >
-                <div
+                <span
                   class="absolute w-4 h-4 rounded-full bg-white top-1 left-1 transition-transform"
-                ></div>
-              </div>
+                ></span>
+              </span>
               <span class="ml-3 text-sm text-[var(--color-text)]">
                 Activity Status
               </span>

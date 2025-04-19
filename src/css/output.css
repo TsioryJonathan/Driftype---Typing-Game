@@ -750,6 +750,9 @@
   .items-center {
     align-items: center;
   }
+  .items-end {
+    align-items: flex-end;
+  }
   .items-start {
     align-items: flex-start;
   }
@@ -1127,9 +1130,6 @@
   }
   .object-cover {
     object-fit: cover;
-  }
-  .p-1 {
-    padding: calc(var(--spacing) * 1);
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
@@ -2109,6 +2109,16 @@ body {
   font-family: var(--font-poppins);
   color: --color-text;
   transition: background-color 0.3s, color 0.3s;
+}
+.loader {
+  height: calc(var(--spacing) * 6);
+  width: calc(var(--spacing) * 6);
+  animation: var(--animate-spin);
+  border-radius: calc(infinity * 1px);
+  border-style: var(--tw-border-style);
+  border-width: 4px;
+  border-color: var(--color-border);
+  border-top-color: var(--color-primary);
 }
 #get-started {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url('/public/typing.jpg');

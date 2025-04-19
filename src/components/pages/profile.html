@@ -127,7 +127,14 @@
             alt="Avatar"
             class="w-8 h-8 rounded-full"
           >
-          <h2 class="text-sm" id="username"></h2>
+
+          <span class="text-sm" id="nav_username">
+            <span class="flex justify-center items-center">
+              <span
+                class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+              ></span>
+            </span>
+          </span>
           <i
             class="fa-solid fa-angle-down text-xs absolute right-5 group-hover:translate-y-0.5"
           ></i>
@@ -168,7 +175,7 @@
               ></div>
               <div>
                 <div class="flex items-center space-x-3">
-                  <h2
+                  <div
                     class="text-3xl font-bold text-[var(--color-text)] relative flex items-center"
                     id="username"
                   >
@@ -182,7 +189,7 @@
 
                       <span class="sr-only">Loading...</span>
                     </div>
-                  </h2>
+                  </div>
                   <button
                     class="p-2 rounded-full hover:bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] cursor-pointer flex items-center justify-center"
                   >
@@ -366,9 +373,12 @@
         </div>
       </div>
     </main>
-    <script src="../js/pages/dashboard.js"></script>
-    <script src="../js/pages/ProfilePageScript/userInfofetch.js"></script>
-    <script src="../js/logoutFunc.js"></script>
-    <script src="../js/navBarRedirection.js"></script>
+    <script src="../js/pages/dashboard.js" type="module"></script>
+    <script
+      src="../js/pages/ProfilePageScript/userInfofetch.js"
+      type="module"
+    ></script>
+    <script src="../js/logoutFunc.js" type="module"></script>
+    <script src="../js/navBarRedirection.js" type="module"></script>
   </body>
 </html>
