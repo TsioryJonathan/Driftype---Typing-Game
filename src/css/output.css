@@ -995,11 +995,17 @@
   .bg-\[var\(--color-background\)\] {
     background-color: var(--color-background);
   }
+  .bg-\[var\(--color-background-secondary\)\] {
+    background-color: var(--color-background-secondary);
+  }
   .bg-\[var\(--color-bg\)\] {
     background-color: var(--color-bg);
   }
   .bg-\[var\(--color-bg-secondary\)\] {
     background-color: var(--color-bg-secondary);
+  }
+  .bg-\[var\(--color-border\)\] {
+    background-color: var(--color-border);
   }
   .bg-\[var\(--color-card\)\] {
     background-color: var(--color-card);
@@ -1654,6 +1660,17 @@
     &:is(:where(.group):focus *) {
       --tw-blur:  ;
       filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+    }
+  }
+  .peer-checked\:translate-x-full {
+    &:is(:where(.peer):checked ~ *) {
+      --tw-translate-x: 100%;
+      translate: var(--tw-translate-x) var(--tw-translate-y);
+    }
+  }
+  .peer-checked\:bg-\[var\(--color-primary\)\] {
+    &:is(:where(.peer):checked ~ *) {
+      background-color: var(--color-primary);
     }
   }
   .hover\:-translate-y-1 {
