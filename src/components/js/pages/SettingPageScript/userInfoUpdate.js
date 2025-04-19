@@ -1,4 +1,4 @@
-import { API_URL } from '../login.js';
+import { API_URL } from "../../../../utils/url.js";
 
 const setLoadingState = (button, isLoading) => {
   if (!button) return;

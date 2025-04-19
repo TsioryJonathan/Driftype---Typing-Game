@@ -1,7 +1,7 @@
 import { displayUserBadges } from '../pages/badges-display.js';
 import { badgeManager } from '../badges.js';
 
-// Configuration centralisée
+// Configuration centralisée pour les dropdowns
 const DROPDOWNS_CONFIG = [
   {
     containerId: 'mode-container',
@@ -32,7 +32,6 @@ const initDashboard = () => {
     const userData = localStorage.getItem('typing_game_user');
     if (!userData) {
       console.debug('Redirection vers la page de connexion...');
-
       return;
     }
 
@@ -40,22 +39,20 @@ const initDashboard = () => {
     if (!userId) {
       console.error('ID utilisateur invalide');
       localStorage.removeItem('typing_game_user');
-
       return;
     }
 
     console.debug('Chargement du dashboard pour:', userId);
 
-    // Initialize badges if they don't exist
+    // Initialisation des badges utilisateur
     const userBadges = badgeManager.getUserBadges(userId);
     if (!userBadges?.badges) {
       badgeManager.saveBadges(userId, []);
     }
 
-    // Initialize UI components
     displayUserBadges(userId);
-    initUserMenu();
-    initDropdowns();
+
+    // Initialisation des menus et dropdowns
   } catch (error) {
     console.error('Erreur initialisation dashboard:', error);
   }
@@ -79,6 +76,9 @@ const initUserMenu = () => {
       dropdown?.classList.add('hidden');
     }
   });
+
+  console.log('Helloo');
+  
 };
 
 // Gestion des dropdowns
@@ -97,15 +97,15 @@ const initDropdowns = () => {
       return;
     }
 
-    // Initialisation
-    text.textContent = select.selectedOptions[0].textContent;
+    // Initialisation du texte du dropdown
+    text.textContent = select.selectedOptions[0]?.textContent || 'Sélectionner';
 
-    // Événements
+    // Gestion des événements pour l'ouverture et fermeture du dropdown
     button.addEventListener('click', handleDropdownToggle(config));
     initDropdownOptions(dropdown, select, text);
   });
 
-  // Fermeture au clic externe
+  // Fermeture des dropdowns au clic externe
   document.addEventListener('click', (e) => {
     DROPDOWNS_CONFIG.forEach(({ containerId, dropdownId }) => {
       const container = document.getElementById(containerId);
@@ -117,7 +117,7 @@ const initDropdowns = () => {
   });
 };
 
-// Helpers
+// Fonction pour gérer l'affichage du dropdown
 const handleDropdownToggle = (config) => (e) => {
   e.stopPropagation();
   const dropdown = document.getElementById(config.dropdownId);
@@ -131,6 +131,7 @@ const handleDropdownToggle = (config) => (e) => {
   });
 };
 
+// Initialisation des options dans chaque dropdown
 const initDropdownOptions = (dropdown, select, textElement) => {
   dropdown.querySelectorAll('button').forEach((option) => {
     option.addEventListener('click', () => {
@@ -142,5 +143,7 @@ const initDropdownOptions = (dropdown, select, textElement) => {
   });
 };
 
-// Lancement
-document.addEventListener('DOMContentLoaded', initDashboard);
+// Lancement de l'initialisation
+initDashboard();
+initUserMenu();
+initDropdowns();

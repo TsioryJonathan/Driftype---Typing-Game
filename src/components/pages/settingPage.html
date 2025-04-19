@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Driftype - User Settings</title>
-    <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon">
-    <link href="/src/css/output.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon" />
+    <link href="/src/css/output.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    >
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    >
+    />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
       integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
@@ -40,7 +40,7 @@
             src="/src/assets/noBg.png"
             alt="Drifttype"
             class="h-full w-40 object-cover"
-          >
+          />
         </a>
       </div>
 
@@ -125,15 +125,15 @@
             src="https://i.pravatar.cc/40"
             alt="Avatar"
             class="w-8 h-8 rounded-full"
-          >
+          />
 
-          <div class="text-sm" id="username">
-            <div class="flex justify-center items-center">
-              <div
+          <span class="text-sm" id="nav_username">
+            <span class="flex justify-center items-center">
+              <span
                 class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
-              ></div>
-            </div>
-          </div>
+              ></span>
+            </span>
+          </span>
           <i
             class="fa-solid fa-angle-down text-xs absolute right-5 group-hover:translate-y-0.5"
           ></i>
@@ -151,7 +151,7 @@
           </a>
           <button
             class="w-full text-left flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
-            onclick="logout()"
+            id="logout-btn"
           >
             Sign out
             <i class="fas fa-right-from-bracket"></i>
@@ -162,6 +162,7 @@
 
     <div class="max-w-3xl mx-auto py-8 px-4 space-y-6">
       <!-- Header -->
+      <!-- Settings Header -->
       <div class="flex items-center justify-between mb-8">
         <div class="flex items-center space-x-3">
           <i class="fas fa-cogs text-[var(--color-primary)] text-3xl"></i>
@@ -184,10 +185,10 @@
           onclick="toggleSection('profile-settings')"
           class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
         >
-          <div class="flex items-center space-x-3">
+          <span class="flex items-center space-x-3">
             <i class="fas fa-user text-[var(--color-primary)]"></i>
             <span class="font-medium">Profile</span>
-          </div>
+          </span>
           <i
             id="chevron-profile-settings"
             class="fas fa-chevron-down transform transition-transform duration-300"
@@ -217,24 +218,30 @@
             </div>
             <div class="space-y-4">
               <div class="flex flex-col space-y-2">
-                <label class="text-sm text-[var(--color-text-secondary)]">
+                <label
+                  class="text-sm text-[var(--color-text-secondary)]"
+                  for="username-input"
+                >
                   Username
                 </label>
                 <input
                   type="text"
                   id="username-input"
                   class="px-3 py-2 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
-                >
+                />
               </div>
               <div class="flex flex-col space-y-2">
-                <label class="text-sm text-[var(--color-text-secondary)]">
+                <label
+                  class="text-sm text-[var(--color-text-secondary)]"
+                  for="email"
+                >
                   Email
                 </label>
                 <input
                   type="email"
                   id="email"
                   class="px-3 py-2 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
-                >
+                />
               </div>
               <button
                 class="w-full mt-4 px-4 py-2 bg-[var(--color-primary)] text-white rounded-md hover:bg-[var(--color-primary-hover)] transition-colors flex items-center justify-center space-x-2"
@@ -256,10 +263,10 @@
           onclick="toggleSection('game-preferences')"
           class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
         >
-          <div class="flex items-center space-x-3">
+          <span class="flex items-center space-x-3">
             <i class="fas fa-keyboard text-[var(--color-accent)]"></i>
             <span class="font-medium">Game Preferences</span>
-          </div>
+          </span>
           <i
             id="chevron-game-preferences"
             class="fas fa-chevron-down transform transition-transform duration-300"
@@ -271,8 +278,11 @@
         >
           <div class="space-y-4 p-6">
             <div class="flex items-center justify-between">
-              <label class="text-sm text-[var(--color-text)]">Target WPM</label>
+              <label class="text-sm text-[var(--color-text)]" for="target-wpm">
+                Target WPM
+              </label>
               <select
+                id="target-wpm"
                 class="ml-4 px-3 py-1.5 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
               >
                 <option value="30">Beginner (30 WPM)</option>
@@ -282,10 +292,11 @@
               </select>
             </div>
             <div class="flex items-center justify-between">
-              <label class="text-sm text-[var(--color-text)]">
+              <label class="text-sm text-[var(--color-text)]" for="text-length">
                 Text Length
               </label>
               <select
+                id="text-length"
                 class="ml-4 px-3 py-1.5 rounded-md border border-[var(--color-border)] bg-[var(--color-bg-secondary)] text-[var(--color-text)]"
               >
                 <option value="short">Short (1-2 paragraphs)</option>
@@ -327,10 +338,10 @@
           onclick="toggleSection('sound-feedback')"
           class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
         >
-          <div class="flex items-center space-x-3">
+          <span class="flex items-center space-x-3">
             <i class="fas fa-volume-up text-[var(--color-secondary)]"></i>
             <span class="font-medium">Sound & Feedback</span>
-          </div>
+          </span>
           <i
             id="chevron-sound-feedback"
             class="fas fa-chevron-down transform transition-transform duration-300"
@@ -373,10 +384,10 @@
           onclick="toggleSection('appearance-settings')"
           class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
         >
-          <div class="flex items-center space-x-3">
+          <span class="flex items-center space-x-3">
             <i class="fas fa-palette text-[var(--color-secondary)]"></i>
             <span class="font-medium">Appearance</span>
-          </div>
+          </span>
           <i
             id="chevron-appearance-settings"
             class="fas fa-chevron-down transform transition-transform duration-300"
@@ -423,10 +434,10 @@
           onclick="toggleSection('notification-settings')"
           class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
         >
-          <div class="flex items-center space-x-3">
+          <span class="flex items-center space-x-3">
             <i class="fas fa-bell text-[var(--color-secondary)]"></i>
             <span class="font-medium">Notifications</span>
-          </div>
+          </span>
           <i
             id="chevron-notification-settings"
             class="fas fa-chevron-down transform transition-transform duration-300"
@@ -469,10 +480,10 @@
           onclick="toggleSection('privacy-settings')"
           class="w-full px-6 py-4 flex items-center justify-between text-[var(--color-text)] hover:bg-[var(--color-primary)]/20 transition-colors cursor-pointer"
         >
-          <div class="flex items-center space-x-3">
+          <span class="flex items-center space-x-3">
             <i class="fas fa-user-shield text-[var(--color-secondary)]"></i>
             <span class="font-medium">Privacy</span>
-          </div>
+          </span>
           <i
             id="chevron-privacy-settings"
             class="fas fa-chevron-down transform transition-transform duration-300"

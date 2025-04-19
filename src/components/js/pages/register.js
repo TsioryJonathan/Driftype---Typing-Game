@@ -1,23 +1,20 @@
-import { inputStyle, logoStyle } from '../formStyle.js';
-import {
-  API_URL,
-  showError,
-  storeAuthData,
-  redirectToDashboard,
-} from './login.js';
-import { Logger } from '../../../utils/Logger.js';
+import { inputStyle, logoStyle } from "../formStyle.js";
+import { showError, storeAuthData, redirectToDashboard } from "./login.js";
 
-const logger = Logger.getLogger('Registration');
-const DEFAULT_ERROR_MSG = 'An error occurred. Please try again.';
+import { API_URL } from "../../../utils/url.js";
+import { Logger } from "../../../utils/Logger.js";
 
-document.addEventListener('DOMContentLoaded', () => {
+const logger = Logger.getLogger("Registration");
+const DEFAULT_ERROR_MSG = "An error occurred. Please try again.";
+
+document.addEventListener("DOMContentLoaded", () => {
   initRegister();
 });
 
 const initRegister = () => {
-  const registerForm = document.getElementById('registerForm');
+  const registerForm = document.getElementById("registerForm");
   if (!registerForm) {
-    logger.error('Register form not found', { component: 'RegisterForm' });
+    logger.error("Register form not found", { component: "RegisterForm" });
     return;
   }
 
@@ -88,28 +85,28 @@ const initRegister = () => {
   `;
   inputStyle();
   logoStyle();
-  registerForm.addEventListener('submit', handleRegister);
+  registerForm.addEventListener("submit", handleRegister);
 };
 
 const handleRegister = async (e) => {
   e.preventDefault();
 
-  const username = document.getElementById('username')?.value.trim();
-  const email = document.getElementById('email')?.value.trim();
-  const password = document.getElementById('password')?.value;
-  const confirmPassword = document.getElementById('confirmPassword')?.value;
-  const errorMessage = document.getElementById('errorMessage');
+  const username = document.getElementById("username")?.value.trim();
+  const email = document.getElementById("email")?.value.trim();
+  const password = document.getElementById("password")?.value;
+  const confirmPassword = document.getElementById("confirmPassword")?.value;
+  const errorMessage = document.getElementById("errorMessage");
   const submitButton = e.target.querySelector('button[type="submit"]');
 
   console.log(username);
 
   if (!username || !email || !password || !confirmPassword) {
-    showError(errorMessage, 'Please fill all fields');
+    showError(errorMessage, "Please fill all fields");
     return;
   }
 
   if (password !== confirmPassword) {
-    showError(errorMessage, 'Passwords do not match');
+    showError(errorMessage, "Passwords do not match");
     return;
   }
 
@@ -122,7 +119,7 @@ const handleRegister = async (e) => {
   if (!validatePassword(password)) {
     showError(
       errorMessage,
-      'Password must be at least 8 characters and contain uppercase, lowercase, number and special character',
+      "Password must be at least 8 characters and contain uppercase, lowercase, number and special character"
     );
     return;
   }
@@ -137,38 +134,38 @@ const handleRegister = async (e) => {
     Register...
     `;
 
-    logger.info('Initiating registration request', { email });
+    logger.info("Initiating registration request", { email });
 
     const response = await fetch(`${API_URL}/auth/register`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify({ username, email, password }),
-      credentials: 'include',
-      mode: 'cors',
+      credentials: "include",
+      mode: "cors",
     });
 
     if (!response.ok) {
       const errorData = await response.json();
-      logger.warn('Registration failed', {
+      logger.warn("Registration failed", {
         status: response.status,
         message: errorData.message,
       });
-      throw new Error(errorData.message || 'Registration failed');
+      throw new Error(errorData.message || "Registration failed");
     }
 
     const data = await response.json();
-    logger.info('Registration successful', { email });
+    logger.info("Registration successful", { email });
     storeAuthData(data.token, data.user);
     redirectToDashboard();
   } catch (error) {
-    logger.error('Registration error', { error: error.message });
-    console.error('Registration error:', error);
+    logger.error("Registration error", { error: error.message });
+    console.error("Registration error:", error);
     showError(errorMessage, error.message || DEFAULT_ERROR_MSG);
   } finally {
     submitButton.disabled = false;
-    submitButton.innerHTML = 'Register';
+    submitButton.innerHTML = "Register";
   }
 };
