@@ -41,7 +41,7 @@ const renderOverallStat = async () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization:   `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     clearTimeout(timeoutId);
@@ -62,6 +62,9 @@ const renderOverallStat = async () => {
     maxWpm ? (maxWpm.textContent = max_wpm) : null;
 
     totalTest.forEach((field) => (field.textContent = total_test));
+
+    leaderboardAvgAccuracy.textContent = `${Number(avg_accuracy).toFixed(1)}%`;
+    leaderboardAvgWpm.textContent = `${Number(avg_wpm).toFixed(1)} wpm`;
   } catch (err) {
     console.error("Failed to fetch global stats:", err);
     displayDefaultValues();
