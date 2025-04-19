@@ -76,6 +76,9 @@ const initUserMenu = () => {
       dropdown?.classList.add('hidden');
     }
   });
+
+  console.log('Helloo');
+  
 };
 
 // Gestion des dropdowns

@@ -1,4 +1,4 @@
-import { API_URL } from '../login.js';
+import { API_URL } from "../../../../utils/url.js";
 
 const avgWpm = document.querySelectorAll('#avg-wpm');
 const avgAcc = document.querySelectorAll('#avg-accuracy');

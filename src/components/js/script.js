@@ -1,13 +1,13 @@
 // Suppression des doublons d'import et de déclaration de variables
-import { getRandomWord } from './dictionaries.js';
-import { checkBadges, badgeManager } from './badges.js';
-import { tinykeys } from './tinykeys.js';
+import { getRandomWord } from "./dictionaries.js";
+import { checkBadges, badgeManager } from "./badges.js";
+import { tinykeys } from "./tinykeys.js";
 import {
   updateProgressBar,
   showProgressBar,
   hideProgressBar,
-} from './progressBar.js';
-import { API_URL } from './pages/login.js';
+} from "./progressBar.js";
+import { API_URL } from "../../utils/url.js";
 
 /**
  * Point culture (en Français car je suis un peu obligé):
@@ -28,18 +28,18 @@ let incorrectLetters = 0;
 let extraLetters = 0;
 const wordsToType = [];
 
-const modeSelect = document.getElementById('mode');
-const timerSelect = document.getElementById('timer');
-const wordDisplay = document.getElementById('word-display');
-const testContainer = document.getElementById('test-container');
-const results = document.getElementById('results-container');
+const modeSelect = document.getElementById("mode");
+const timerSelect = document.getElementById("timer");
+const wordDisplay = document.getElementById("word-display");
+const testContainer = document.getElementById("test-container");
+const results = document.getElementById("results-container");
 
 // Initialize the typing test
 const startTest = (wordCount = 200) => {
-  testContainer.classList.remove('hidden');
-  results.classList.add('hidden');
+  testContainer.classList.remove("hidden");
+  results.classList.add("hidden");
   wordsToType.length = 0;
-  wordDisplay.innerHTML = '';
+  wordDisplay.innerHTML = "";
   currentWordIndex = 0;
   currentLetterIndex = 0;
   correctLetters = 0;
@@ -50,7 +50,7 @@ const startTest = (wordCount = 200) => {
   startTime = null;
   clearInterval(timerInterval);
   timeLeft = parseInt(timerSelect.value);
-  wordDisplay.style.transform = 'translateY(0)';
+  wordDisplay.style.transform = "translateY(0)";
 
   // Reset chart
   if (resultsChart) {
@@ -65,14 +65,14 @@ const startTest = (wordCount = 200) => {
 
   // Create spans for each letter of each word
   wordsToType.forEach((word, wordIndex) => {
-    const wordSpan = document.createElement('span');
-    wordSpan.className = 'word';
+    const wordSpan = document.createElement("span");
+    wordSpan.className = "word";
 
     // Add letters
-    word.split('').forEach((letter, letterIndex) => {
-      const letterSpan = document.createElement('span');
+    word.split("").forEach((letter, letterIndex) => {
+      const letterSpan = document.createElement("span");
       letterSpan.textContent = letter;
-      letterSpan.className = 'letter';
+      letterSpan.className = "letter";
       letterSpan.dataset.wordIndex = wordIndex;
       letterSpan.dataset.letterIndex = letterIndex;
       wordSpan.appendChild(letterSpan);
@@ -80,9 +80,9 @@ const startTest = (wordCount = 200) => {
 
     // Add space after word
     if (wordIndex < wordsToType.length - 1) {
-      const spaceSpan = document.createElement('span');
-      spaceSpan.textContent = ' ';
-      spaceSpan.className = 'letter';
+      const spaceSpan = document.createElement("span");
+      spaceSpan.textContent = " ";
+      spaceSpan.className = "letter";
       spaceSpan.dataset.wordIndex = wordIndex;
       spaceSpan.dataset.letterIndex = word.length;
       wordSpan.appendChild(spaceSpan);
@@ -92,10 +92,10 @@ const startTest = (wordCount = 200) => {
   });
 
   // Highlight first letter
-  const firstLetter = wordDisplay.querySelector('.letter');
-  if (firstLetter) firstLetter.style.textDecoration = 'underline';
+  const firstLetter = wordDisplay.querySelector(".letter");
+  if (firstLetter) firstLetter.style.textDecoration = "underline";
 
-  testContainer.value = '';
+  testContainer.value = "";
   updateResults();
   updateProgressBar(timeLeft, timerSelect);
   showProgressBar();
@@ -133,7 +133,7 @@ const getCurrentStats = () => {
   const correct = correctLetters;
   const incorrect = incorrectLetters;
   const extra = extraLetters;
-  const consistency = calcConsistency ? calcConsistency() : '-';
+  const consistency = calcConsistency ? calcConsistency() : "-";
   return { wpm, accuracy, raw, correct, incorrect, extra, consistency };
 };
 
@@ -144,27 +144,27 @@ const updateLetter = (event) => {
   const key = event.key;
 
   // Handle backspace
-  if (key === 'Backspace') {
+  if (key === "Backspace") {
     if (totalLetters > 0) {
-      const letters = wordDisplay.querySelectorAll('.letter');
+      const letters = wordDisplay.querySelectorAll(".letter");
       const prevLetter = letters[totalLetters - 1];
 
       // Remove styling from previous letter
-      prevLetter.textContent == '_'
-        ? (prevLetter.textContent = ' ')
+      prevLetter.textContent == "_"
+        ? (prevLetter.textContent = " ")
         : (prevLetter.textContent = prevLetter.textContent);
-      prevLetter.classList.remove('text-amber-500', 'text-red-500');
-      prevLetter.style.textDecoration = 'underline';
+      prevLetter.classList.remove("text-amber-500", "text-red-500");
+      prevLetter.style.textDecoration = "underline";
 
       // Remove styling from current letter if it exists
       const currentLetter = letters[totalLetters];
       if (currentLetter) {
-        currentLetter.style.textDecoration = 'none';
+        currentLetter.style.textDecoration = "none";
       }
 
       // Update counters
       totalLetters--;
-      if (prevLetter.classList.contains('text-amber-500')) {
+      if (prevLetter.classList.contains("text-amber-500")) {
         correctLetters--;
       }
 
@@ -183,11 +183,11 @@ const updateLetter = (event) => {
     return;
   }
 
-  if (key.length !== 1 && key !== ' ') return; // Ignore special keys except space
+  if (key.length !== 1 && key !== " ") return; // Ignore special keys except space
   startTimer();
 
   const currentWord = wordsToType[currentWordIndex];
-  const letters = wordDisplay.querySelectorAll('.letter');
+  const letters = wordDisplay.querySelectorAll(".letter");
   const currentLetter = letters[totalLetters];
 
   if (!currentLetter) return;
@@ -198,18 +198,18 @@ const updateLetter = (event) => {
   // Check if the typed letter matches the current letter
   const isCorrect = key === currentLetter.textContent;
   if (isCorrect) {
-    currentLetter.classList.add('text-amber-500');
+    currentLetter.classList.add("text-amber-500");
     correctLetters++;
   } else {
-    currentLetter.textContent == ' '
-      ? (currentLetter.textContent = '_')
+    currentLetter.textContent == " "
+      ? (currentLetter.textContent = "_")
       : (currentLetter.textContent = currentLetter.textContent);
-    currentLetter.classList.add('text-red-500');
+    currentLetter.classList.add("text-red-500");
     incorrectLetters++;
   }
 
   // Remove underline from current letter
-  currentLetter.style.textDecoration = 'none';
+  currentLetter.style.textDecoration = "none";
 
   // Update word/letter indices
   currentLetterIndex++;
@@ -222,12 +222,12 @@ const updateLetter = (event) => {
   // Underline next letter if available
   const nextLetter = letters[totalLetters];
   if (nextLetter) {
-    nextLetter.style.textDecoration = 'underline';
+    nextLetter.style.textDecoration = "underline";
   }
 
   // Check if we need to scroll the text
   const lineHeight = parseInt(
-    window.getComputedStyle(wordDisplay).getPropertyValue('line-height'),
+    window.getComputedStyle(wordDisplay).getPropertyValue("line-height")
   );
   const currentLine = Math.floor(currentLetter.offsetTop / lineHeight);
 
@@ -235,7 +235,7 @@ const updateLetter = (event) => {
     const scrollAmount = (currentLine - 1) * lineHeight; // Garde toujours 2 lignes visibles au-dessus
     wordDisplay.style.transform = `translateY(-${scrollAmount}px)`;
   } else {
-    wordDisplay.style.transform = 'translateY(0)';
+    wordDisplay.style.transform = "translateY(0)";
   }
 
   // Update stats
@@ -246,37 +246,37 @@ const updateLetter = (event) => {
 // End the typing test
 const endTest = async () => {
   hideProgressBar();
-  testContainer.classList.add('hidden');
-  results.classList.remove('hidden');
+  testContainer.classList.add("hidden");
+  results.classList.remove("hidden");
   clearInterval(timerInterval);
   stopTimelineTracking();
   timeLeft = 0;
   const { wpm, accuracy, raw, correct, incorrect, extra, consistency } =
     getCurrentStats();
-  const langSelect = document.getElementById('language');
-  const modeSelect = document.getElementById('mode') ||
-    document.getElementById('mode-button') || { value: 'medium' };
+  const langSelect = document.getElementById("language");
+  const modeSelect = document.getElementById("mode") ||
+    document.getElementById("mode-button") || { value: "medium" };
   const timerValue = parseInt(timerSelect.value);
-  const langValue = langSelect ? langSelect.value : 'en';
+  const langValue = langSelect ? langSelect.value : "en";
   const modeValue =
-    modeSelect.value || modeSelect.textContent?.toLowerCase() || 'medium';
+    modeSelect.value || modeSelect.textContent?.toLowerCase() || "medium";
   let langLabel = langValue;
 
-  if (langValue === 'en') langLabel = 'English';
-  else if (langValue === 'fr') langLabel = 'French';
-  else if (langValue === 'es') langLabel = 'Spanish';
-  else if (langValue === 'de') langLabel = 'German';
-  else if (langValue === 'it') langLabel = 'Italian';
-  else if (langValue === 'pt') langLabel = 'Portuguese';
-  else if (langValue === 'numbers') langLabel = 'Numbers';
+  if (langValue === "en") langLabel = "English";
+  else if (langValue === "fr") langLabel = "French";
+  else if (langValue === "es") langLabel = "Spanish";
+  else if (langValue === "de") langLabel = "German";
+  else if (langValue === "it") langLabel = "Italian";
+  else if (langValue === "pt") langLabel = "Portuguese";
+  else if (langValue === "numbers") langLabel = "Numbers";
   else langLabel = langValue.charAt(0).toUpperCase() + langValue.slice(1);
   let modeLabel = modeValue.charAt(0).toUpperCase() + modeValue.slice(1);
-  if (modeValue === 'numbers') modeLabel = 'Numbers';
+  if (modeValue === "numbers") modeLabel = "Numbers";
   // Special icon for numbers mode
   const modeIcon =
-    modeValue === 'numbers'
+    modeValue === "numbers"
       ? '<i class="fa-solid fa-hashtag text-[var(--color-warning)]"></i>'
-      : '';
+      : "";
   results.innerHTML = `
     <div class=" min-h-[300px] flex flex-col md:flex-row gap-4 p-6 rounded-2xl shadow-2xl border-2 border-amber-500/60 mx-auto max-w-7xl relative">
       <!-- Left block: WPM, ACC, Info -->
@@ -303,15 +303,15 @@ const endTest = async () => {
         <div class="flex flex-row justify-between w-full mt-8 text-gray-300 text-center font-mono text-xl gap-4">
           <div class="flex-1">
             <div class="text-base text-[var(--color-text-secondary)]">raw</div>
-            <div id="rawWpm" class="text-[var(--color-secondary)]">${raw ?? '-'}</div>
+            <div id="rawWpm" class="text-[var(--color-secondary)]">${raw ?? "-"}</div>
           </div>
           <div class="flex-1">
             <div class="text-base text-[var(--color-text-secondary)]">Characters</div>
-            <div id="breakdown" class="text-[var(--color-secondary)]">${[correct, incorrect, extra].map((x) => x ?? '-').join('/')}</div>
+            <div id="breakdown" class="text-[var(--color-secondary)]">${[correct, incorrect, extra].map((x) => x ?? "-").join("/")}</div>
           </div>
           <div class="flex-1">
             <div class="text-base text-[var(--color-text-secondary)]">consistency</div>
-            <div id="consistency" class="text-[var(--color-secondary)]">${consistency ?? '-'}</div>
+            <div id="consistency" class="text-[var(--color-secondary)]">${consistency ?? "-"}</div>
           </div>
         </div>
       </div>
@@ -319,39 +319,46 @@ const endTest = async () => {
       <canvas id="fireworks" class="pointer-events-none absolute inset-0 w-full h-full"></canvas>
     </div>
   `;
-  testContainer.value = '';
+  testContainer.value = "";
   updateResults();
   launchFireworks();
-  const userInfo = localStorage.getItem('typing_game_user');
+  const userInfo = localStorage.getItem("typing_game_user");
 
   if (!userInfo) {
     document
-      .getElementById('not-logged-popup')
-      .classList.replace('hidden', 'flex');
+      .getElementById("not-logged-popup")
+      .classList.replace("hidden", "flex");
     return;
   }
 
   const { id } = JSON.parse(userInfo);
 
-  document.getElementById('stat-popup').classList.replace('hidden', 'flex');
+  document.getElementById("stat-popup").classList.replace("hidden", "flex");
 
   setTimeout(() => {
-    document.getElementById('stat-popup').classList.replace('flex', 'hidden');
+    document.getElementById("stat-popup").classList.replace("flex", "hidden");
   }, 3000);
 
   // Get current stats
   const stats = getCurrentStats();
-  const language = document.getElementById('language').value;
+  const language = document.getElementById("language").value;
 
   // Post stats to server
-  statPost(id, stats.wpm, stats.accuracy, language, modeSelect.value, timerSelect.value);
+  statPost(
+    id,
+    stats.wpm,
+    stats.accuracy,
+    language,
+    modeSelect.value,
+    timerSelect.value
+  );
 
   // Check for new badges
   checkBadges(id, stats);
 
   // Hide stat popup after delay
   setTimeout(() => {
-    document.getElementById('stat-popup').classList.add('hidden');
+    document.getElementById("stat-popup").classList.add("hidden");
   }, 3000);
 };
 
@@ -363,13 +370,13 @@ const statPost = async (
   accuracy,
   language,
   difficulty,
-  time_taken,
+  time_taken
 ) => {
   try {
     const response = await fetch(`${API_URL}/stats/${userId}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         wpm,
@@ -383,22 +390,22 @@ const statPost = async (
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('Erreur when sending data :', data.message);
+      console.error("Erreur when sending data :", data.message);
       return null;
     }
 
-    console.log('Stat sent successfully:', data);
+    console.log("Stat sent successfully:", data);
 
-    const statSentSuccesToast = document.getElementById('toast-simple');
-    statSentSuccesToast.classList.replace('hidden', 'flex');
+    const statSentSuccesToast = document.getElementById("toast-simple");
+    statSentSuccesToast.classList.replace("hidden", "flex");
 
     setTimeout(() => {
-      statSentSuccesToast.classList.replace('flex', 'hidden');
+      statSentSuccesToast.classList.replace("flex", "hidden");
     }, 2000);
 
     return data;
   } catch (error) {
-    console.error('Network Error :', error);
+    console.error("Network Error :", error);
     return null;
   }
 };
@@ -410,14 +417,14 @@ const launchFireworks = () => {
       particleCount: 120,
       spread: 90,
       origin: { y: 0.7 },
-      colors: ['#f59e42', '#ef4444', '#fffde4', '#fff', '#fde68a'],
+      colors: ["#f59e42", "#ef4444", "#fffde4", "#fff", "#fde68a"],
     });
     setTimeout(() => {
       window.confetti({
         particleCount: 80,
         spread: 70,
         origin: { y: 0.5 },
-        colors: ['#f59e42', '#ef4444', '#fffde4', '#fff', '#fde68a'],
+        colors: ["#f59e42", "#ef4444", "#fffde4", "#fff", "#fde68a"],
       });
     }, 600);
   }
@@ -436,45 +443,45 @@ const updateResults = () => {
   updateProgressBar(timeLeft, timerSelect);
   const { wpm, accuracy } = getCurrentStats();
   const timelineCtx = document
-    .getElementById('timelineChart')
-    ?.getContext('2d');
+    .getElementById("timelineChart")
+    ?.getContext("2d");
   if (timelineCtx) {
     if (timelineChart) timelineChart.destroy();
     timelineChart = new Chart(timelineCtx, {
-      type: 'line',
+      type: "line",
       data: {
         labels: timelineLabels.map((_, i) => (i + 1).toString()), // X axis: seconds (1, 2, ...)
         datasets: [
           {
-            label: 'WPM',
+            label: "WPM",
             data: timelineWpm,
-            borderColor: '#facc15', // amber-400
-            backgroundColor: 'transparent',
+            borderColor: "#facc15", // amber-400
+            backgroundColor: "transparent",
             borderWidth: 3,
             fill: false,
             tension: 0.25,
             pointRadius: 2,
-            pointBackgroundColor: '#facc15',
-            pointBorderColor: '#facc15',
-            yAxisID: 'y',
+            pointBackgroundColor: "#facc15",
+            pointBorderColor: "#facc15",
+            yAxisID: "y",
             order: 1,
           },
           {
-            label: 'Errors',
+            label: "Errors",
             data: timelineErrors,
-            borderColor: '#a3a3a3', // gray-400
-            backgroundColor: 'transparent',
+            borderColor: "#a3a3a3", // gray-400
+            backgroundColor: "transparent",
             borderWidth: 2,
             fill: false,
             tension: 0.25,
             pointRadius: 3,
             pointBackgroundColor: timelineErrors.map((e) =>
-              e > 0 ? '#ef4444' : '#a3a3a3',
+              e > 0 ? "#ef4444" : "#a3a3a3"
             ),
             pointBorderColor: timelineErrors.map((e) =>
-              e > 0 ? '#ef4444' : '#a3a3a3',
+              e > 0 ? "#ef4444" : "#a3a3a3"
             ),
-            yAxisID: 'y1',
+            yAxisID: "y1",
             order: 2,
           },
         ],
@@ -484,11 +491,11 @@ const updateResults = () => {
         plugins: {
           legend: {
             display: true,
-            position: 'top',
-            align: 'center',
+            position: "top",
+            align: "center",
             labels: {
-              color: '#e5e5e5',
-              font: { size: 15, weight: 'bold' },
+              color: "#e5e5e5",
+              font: { size: 15, weight: "bold" },
               usePointStyle: true,
               padding: 12,
               boxWidth: 18,
@@ -498,10 +505,10 @@ const updateResults = () => {
           },
           title: { display: false },
           tooltip: {
-            backgroundColor: '#23232a',
-            titleColor: '#fde68a',
-            bodyColor: '#fff',
-            borderColor: '#fde68a',
+            backgroundColor: "#23232a",
+            titleColor: "#fde68a",
+            bodyColor: "#fff",
+            borderColor: "#fde68a",
             borderWidth: 1,
             callbacks: {
               label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}`,
@@ -512,71 +519,71 @@ const updateResults = () => {
           x: {
             title: {
               display: true,
-              text: 'Seconds',
-              color: '#bcbcbc',
-              font: { size: 16, weight: 'bold' },
+              text: "Seconds",
+              color: "#bcbcbc",
+              font: { size: 16, weight: "bold" },
             },
             ticks: {
-              color: '#bcbcbc',
+              color: "#bcbcbc",
               font: { size: 13 },
-              callback: function(val, idx, ticks) {
+              callback: function (val, idx, ticks) {
                 const labels = this.chart.data.labels;
                 const total = labels.length;
                 if (total > 30) {
-                  return idx % 2 === 0 ? labels[idx] : '';
+                  return idx % 2 === 0 ? labels[idx] : "";
                 }
                 return labels[idx];
               },
             },
             grid: {
-              color: 'rgba(255,255,255,0.08)',
+              color: "rgba(255,255,255,0.08)",
               drawOnChartArea: true,
               drawTicks: false,
               drawBorder: false,
             },
           },
           y: {
-            type: 'linear',
-            position: 'left',
+            type: "linear",
+            position: "left",
             title: {
               display: true,
-              text: 'Words per Minute',
-              color: '#facc15',
-              font: { size: 16, weight: 'bold' },
+              text: "Words per Minute",
+              color: "#facc15",
+              font: { size: 16, weight: "bold" },
             },
             beginAtZero: true,
             ticks: {
-              color: '#facc15',
+              color: "#facc15",
               font: { size: 14 },
               stepSize: 20,
-              callback: function(val) {
-                return val % 20 === 0 ? val : '';
+              callback: function (val) {
+                return val % 20 === 0 ? val : "";
               },
             },
             grid: {
-              color: 'rgba(255,255,255,0.08)',
+              color: "rgba(255,255,255,0.08)",
               drawOnChartArea: true,
               drawTicks: false,
               drawBorder: false,
             },
           },
           y1: {
-            type: 'linear',
-            position: 'right',
+            type: "linear",
+            position: "right",
             title: {
               display: true,
-              text: 'Errors',
-              color: '#ef4444',
-              font: { size: 16, weight: 'bold' },
+              text: "Errors",
+              color: "#ef4444",
+              font: { size: 16, weight: "bold" },
             },
             beginAtZero: true,
             grid: {
-              color: 'rgba(255,255,255,0.08)',
+              color: "rgba(255,255,255,0.08)",
               drawOnChartArea: false,
               drawTicks: false,
               drawBorder: false,
             },
-            ticks: { color: '#ef4444', font: { size: 14 } },
+            ticks: { color: "#ef4444", font: { size: 14 } },
           },
         },
       },
@@ -586,14 +593,14 @@ const updateResults = () => {
 
 // --- Calculate typing consistency (standard deviation of WPM, expressed as % of mean WPM, subtracted from 100) ---
 const calcConsistency = () => {
-  if (!timelineWpm || timelineWpm.length < 2) return '-';
+  if (!timelineWpm || timelineWpm.length < 2) return "-";
   const mean = timelineWpm.reduce((a, b) => a + b, 0) / timelineWpm.length;
   const variance =
     timelineWpm.reduce((sum, w) => sum + Math.pow(w - mean, 2), 0) /
     timelineWpm.length;
   const stddev = Math.sqrt(variance);
   const percent = mean > 0 ? Math.max(0, 100 - (stddev / mean) * 100) : 0;
-  return Math.round(percent) + '%';
+  return Math.round(percent) + "%";
 };
 
 // --- Chart.js chart instances ---
@@ -618,7 +625,7 @@ const startTimelineTracking = () => {
     const { wpm } = getCurrentStats();
     timelineWpm.push(Number(wpm));
     timelineErrors.push(totalKeystrokes - correctLetters);
-    timelineLabels.push(seconds + 's');
+    timelineLabels.push(seconds + "s");
     seconds++;
   }, 1000);
 };
@@ -630,28 +637,27 @@ const stopTimelineTracking = () => {
 };
 
 // Add language change listener
-const languageSelect = document.getElementById('language');
-languageSelect.addEventListener('change', () => startTest());
+const languageSelect = document.getElementById("language");
+languageSelect.addEventListener("change", () => startTest());
 tinykeys(window, {
-  'Control+Enter': () => {
+  "Control+Enter": () => {
     startTest();
     testContainer.focus();
   },
 });
-testContainer.addEventListener('keyup', updateLetter);
-modeSelect.addEventListener('change', () => startTest());
-timerSelect.addEventListener('change', () => startTest());
-testContainer.addEventListener('keydown', (event) => {
-  if (event.key === ' ') {
+testContainer.addEventListener("keyup", updateLetter);
+modeSelect.addEventListener("change", () => startTest());
+timerSelect.addEventListener("change", () => startTest());
+testContainer.addEventListener("keydown", (event) => {
+  if (event.key === " ") {
     event.preventDefault(); // Prevent scrolling
   }
 });
-const restartButton = document.getElementById('restart-button');
-restartButton.addEventListener('click', () => {
+const restartButton = document.getElementById("restart-button");
+restartButton.addEventListener("click", () => {
   startTest();
   testContainer.focus();
 });
 
 // Start the test
 startTest();
-fix

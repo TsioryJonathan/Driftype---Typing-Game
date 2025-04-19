@@ -1,30 +1,30 @@
-import { inputStyle, logoStyle, showPassword } from '../formStyle.js';
-import { API_URL } from './login.js';
-import { Logger } from '../../../utils/Logger.js';
+import { inputStyle, logoStyle, showPassword } from "../formStyle.js";
+import { API_URL } from "../../../utils/url.js";
+import { Logger } from "../../../utils/Logger.js";
 
-const logger = Logger.getLogger('PasswordReset');
+const logger = Logger.getLogger("PasswordReset");
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   initResetPassword();
 });
 
 const initResetPassword = () => {
-  const form = document.getElementById('resetPasswordForm');
+  const form = document.getElementById("resetPasswordForm");
   if (!form) {
-    logger.error('Reset password form not found', {
-      component: 'ResetPasswordForm',
+    logger.error("Reset password form not found", {
+      component: "ResetPasswordForm",
     });
     return;
   }
 
   // Get token from URL
   const urlParams = new URLSearchParams(window.location.search);
-  const token = urlParams.get('token');
+  const token = urlParams.get("token");
 
   if (!token) {
     showError(
-      document.getElementById('errorMessage'),
-      'Invalid reset link. Please request a new password reset.',
+      document.getElementById("errorMessage"),
+      "Invalid reset link. Please request a new password reset."
     );
     return;
   }
@@ -74,20 +74,20 @@ const initResetPassword = () => {
   inputStyle();
   logoStyle();
   showPassword();
-  form.addEventListener('submit', (e) => handleResetPassword(e, token));
+  form.addEventListener("submit", (e) => handleResetPassword(e, token));
 };
 
 const handleResetPassword = async (e, token) => {
   e.preventDefault();
 
-  const password = document.getElementById('password').value;
-  const confirmPassword = document.getElementById('confirmPassword').value;
-  const errorMessage = document.getElementById('errorMessage');
-  const successMessage = document.getElementById('successMessage');
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const errorMessage = document.getElementById("errorMessage");
+  const successMessage = document.getElementById("successMessage");
   const submitButton = e.target.querySelector('button[type="submit"]');
 
   if (password !== confirmPassword) {
-    showError(errorMessage, 'Passwords do not match');
+    showError(errorMessage, "Passwords do not match");
     return;
   }
 
@@ -96,7 +96,7 @@ const handleResetPassword = async (e, token) => {
   if (!passwordRegex.test(password)) {
     showError(
       errorMessage,
-      'Password must be at least 8 characters and contain uppercase, lowercase, number and special character',
+      "Password must be at least 8 characters and contain uppercase, lowercase, number and special character"
     );
     return;
   }
@@ -110,12 +110,12 @@ const handleResetPassword = async (e, token) => {
     </svg>
     Resetting...`;
 
-    logger.info('Initiating password reset', { token });
+    logger.info("Initiating password reset", { token });
 
     const response = await fetch(`${API_URL}/auth/reset-password`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         token,
@@ -126,36 +126,39 @@ const handleResetPassword = async (e, token) => {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message || 'Failed to reset password');
+      throw new Error(data.message || "Failed to reset password");
     }
 
     // Hide error message if it was shown
-    errorMessage.classList.add('hidden');
+    errorMessage.classList.add("hidden");
 
     // Show success message
-    showSuccess(successMessage, 'Password reset successful! Redirecting to login...');
+    showSuccess(
+      successMessage,
+      "Password reset successful! Redirecting to login..."
+    );
 
     // Redirect to login page after 2 seconds
     setTimeout(() => {
-      window.location.href = 'login.html';
+      window.location.href = "login.html";
     }, 2000);
   } catch (error) {
-    logger.error('Password reset error:', error);
-    showError(errorMessage, error.message || 'An error occurred');
+    logger.error("Password reset error:", error);
+    showError(errorMessage, error.message || "An error occurred");
   } finally {
     submitButton.disabled = false;
-    submitButton.innerHTML = 'Reset Password';
+    submitButton.innerHTML = "Reset Password";
   }
 };
 
 const showError = (element, message) => {
   if (!element) return;
   element.textContent = message;
-  element.classList.remove('hidden');
+  element.classList.remove("hidden");
 };
 
 const showSuccess = (element, message) => {
   if (!element) return;
   element.textContent = message;
-  element.classList.remove('hidden');
+  element.classList.remove("hidden");
 };

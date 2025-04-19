@@ -1,4 +1,4 @@
-import { API_URL } from '../login.js';
+import { API_URL } from '../../../../utils/url.js';
 
 function showLoginWarningToast() {
   const toast = document.getElementById('login-warning-toast');

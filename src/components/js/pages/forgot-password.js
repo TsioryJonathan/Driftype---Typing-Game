@@ -1,19 +1,20 @@
-import { inputStyle, logoStyle } from '../formStyle.js';
-import { API_URL, showError } from './login.js';
-import { Logger } from '../../../utils/Logger.js';
+import { inputStyle, logoStyle } from "../formStyle.js";
+import { showError } from "./login.js";
+import { API_URL } from "../../../utils/url.js";
+import { Logger } from "../../../utils/Logger.js";
 
-const logger = Logger.getLogger('PasswordReset');
+const logger = Logger.getLogger("PasswordReset");
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   logoStyle();
   initForgotPassword();
 });
 
 const initForgotPassword = () => {
-  const form = document.getElementById('forgotPasswordForm');
+  const form = document.getElementById("forgotPasswordForm");
   if (!form) {
-    logger.error('Forgot password form not found', {
-      component: 'ForgotPasswordForm',
+    logger.error("Forgot password form not found", {
+      component: "ForgotPasswordForm",
     });
     return;
   }
@@ -32,19 +33,19 @@ const initForgotPassword = () => {
             </button>`;
 
   inputStyle();
-  form.addEventListener('submit', handleForgotPassword);
+  form.addEventListener("submit", handleForgotPassword);
 };
 
 const handleForgotPassword = async (e) => {
   e.preventDefault();
 
-  const email = document.getElementById('email')?.value.trim();
-  const errorMessage = document.getElementById('errorMessage');
+  const email = document.getElementById("email")?.value.trim();
+  const errorMessage = document.getElementById("errorMessage");
   const submitButton = e.target.querySelector('button[type="submit"]');
 
   if (!email) {
-    logger.warn('Email validation failed', { reason: 'empty_email' });
-    showError(errorMessage, 'Please enter your email');
+    logger.warn("Email validation failed", { reason: "empty_email" });
+    showError(errorMessage, "Please enter your email");
     return;
   }
 
@@ -57,12 +58,12 @@ const handleForgotPassword = async (e) => {
         </svg>
         Sending...`;
 
-    logger.info('Initiating password reset request', { email });
+    logger.info("Initiating password reset request", { email });
 
     const response = await fetch(`${API_URL}/auth/forgot-password`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ email }),
     });
@@ -70,30 +71,30 @@ const handleForgotPassword = async (e) => {
     const data = await response.json();
 
     if (!response.ok) {
-      logger.warn('Password reset request failed', {
+      logger.warn("Password reset request failed", {
         status: response.status,
         message: data.message,
       });
-      throw new Error(data.message || 'Failed to send reset email');
+      throw new Error(data.message || "Failed to send reset email");
     }
 
-    logger.info('Password reset email sent successfully', { email });
+    logger.info("Password reset email sent successfully", { email });
     showSuccess(
       errorMessage,
-      'We have sent a reset password link to your email',
+      "We have sent a reset password link to your email"
     );
   } catch (error) {
-    logger.error('Password reset error', { error: error.message });
-    showError(errorMessage, error.message || 'An error occurred');
+    logger.error("Password reset error", { error: error.message });
+    showError(errorMessage, error.message || "An error occurred");
   } finally {
     submitButton.disabled = false;
-    submitButton.innerHTML = 'Send Reset Link';
+    submitButton.innerHTML = "Send Reset Link";
   }
 };
 
 const showSuccess = (element, message) => {
   if (!element) return;
   element.textContent = message;
-  element.className = 'success-message';
-  element.classList.remove('hidden');
+  element.className = "success-message";
+  element.classList.remove("hidden");
 };
