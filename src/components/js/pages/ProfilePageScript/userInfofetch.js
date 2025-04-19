@@ -13,10 +13,17 @@ const getUsernameNdEmail = async () => {
     navUsername.textContent = "Guest";
     return null;
   }
+  const token = localStorage.getItem("typing_game_token");
 
   const { id } = JSON.parse(localStorage.getItem("typing_game_user"));
 
-  const response = await fetch(`${API_URL}/user/${id}`);
+  const response = await fetch(`${API_URL}/user/${id}`, {
+    method: "Get",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
   if (!response.ok) throw new Error("User not found");
   const data = await response.json();
   const username = data[0].username;

@@ -1,32 +1,33 @@
 import { API_URL } from "../../../../utils/url.js";
 
-const avgWpm = document.querySelectorAll('#avg-wpm');
-const avgAcc = document.querySelectorAll('#avg-accuracy');
-const maxWpm = document.querySelector('#max-wpm');
-const totalTest = document.querySelectorAll('#complete-test');
-const leaderboardAvgWpm = document.querySelector('#leaderboard-avg-wpm');
+const avgWpm = document.querySelectorAll("#avg-wpm");
+const avgAcc = document.querySelectorAll("#avg-accuracy");
+const maxWpm = document.querySelector("#max-wpm");
+const totalTest = document.querySelectorAll("#complete-test");
+const leaderboardAvgWpm = document.querySelector("#leaderboard-avg-wpm");
 const leaderboardAvgAccuracy = document.querySelector(
-  '#leaderboard-avg-accuracy',
+  "#leaderboard-avg-accuracy"
 );
+const token = localStorage.getItem("typing_game_token");
 
 const displayDefaultValues = () => {
   avgAcc.forEach((field) => {
-    field.textContent = '-';
+    field.textContent = "-";
   });
   avgWpm.forEach((field) => {
-    field.textContent = '-';
+    field.textContent = "-";
   });
-  maxWpm.textContent = '-';
-  totalTest.forEach((field) => (field.textContent = '-'));
-  leaderboardAvgWpm.textContent = '-';
-  leaderboardAvgAccuracy.textContent = '-';
+  maxWpm.textContent = "-";
+  totalTest.forEach((field) => (field.textContent = "-"));
+  leaderboardAvgWpm.textContent = "-";
+  leaderboardAvgAccuracy.textContent = "-";
 };
 
 const renderOverallStat = async () => {
-  const user = JSON.parse(localStorage.getItem('typing_game_user'));
+  const user = JSON.parse(localStorage.getItem("typing_game_user"));
 
   if (!user?.id) {
-    console.warn('No user ID found in localStorage.');
+    console.warn("No user ID found in localStorage.");
     displayDefaultValues();
     return;
   }
@@ -37,13 +38,18 @@ const renderOverallStat = async () => {
 
     const res = await fetch(`${API_URL}/stats/global/${user.id}`, {
       signal: controller.signal,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:   `Bearer ${token}`,
+      },
     });
     clearTimeout(timeoutId);
 
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
     const data = await res.json();
-    console.log('Global Stats:', data);
+    console.log("Global Stats:", data);
 
     const { total_test, max_wpm, avg_wpm, avg_accuracy } = data[0] || {};
 
@@ -56,10 +62,8 @@ const renderOverallStat = async () => {
     maxWpm ? (maxWpm.textContent = max_wpm) : null;
 
     totalTest.forEach((field) => (field.textContent = total_test));
-
-   
   } catch (err) {
-    console.error('Failed to fetch global stats:', err);
+    console.error("Failed to fetch global stats:", err);
     displayDefaultValues();
   }
 };

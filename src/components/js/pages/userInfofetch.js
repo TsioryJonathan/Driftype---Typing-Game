@@ -8,6 +8,7 @@ const usernameLabel = document.querySelector("#username-label");
 const emailLabel = document.querySelector("#email-label");
 
 const getUsernameNdEmail = async () => {
+  const token = localStorage.getItem("typing_game_token");
   const userData = localStorage.getItem("typing_game_user");
   if (!userData) {
     console.debug("No user data found, setting as Guest");
@@ -31,7 +32,13 @@ const getUsernameNdEmail = async () => {
       return null;
     }
 
-    const response = await fetch(`${API_URL}/user/${id}`);
+    const response = await fetch(`${API_URL}/user/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (!response.ok) {
       console.error("Failed to fetch user data:", response.statusText);
       return null;

@@ -26,6 +26,7 @@ const fetchRecentStat = async () => {
     displayDefaultState(tbody);
     return;
   }
+  const token = localStorage.getItem("typing_game_token");
 
   const { id } = JSON.parse(userData);
 
@@ -35,6 +36,11 @@ const fetchRecentStat = async () => {
 
     const res = await fetch(`${API_URL}/stats/recent/${id}`, {
       signal: controller.signal,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
     clearTimeout(timeoutId);
 

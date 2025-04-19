@@ -373,10 +373,12 @@ const statPost = async (
   time_taken
 ) => {
   try {
+    const token = localStorage.getItem("typing_game_token");
     const response = await fetch(`${API_URL}/stats/${userId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         wpm,
