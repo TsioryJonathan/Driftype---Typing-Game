@@ -1,0 +1,8 @@
+/login   /src/components/pages/login.html   200
+/dashboard  /src/components/pages/dashboard.html  200
+/register /src/components/pages/register.html 200
+/forgot-password /src/components/pages/forgot-password.html 200
+/reset-password /src/components/pages/reset-password.html 200
+/profile /src/components/pages/profile.html 200
+/setting /src/components/pages/settingPage.html 200
+/statistics /src/components/pages/gameStat.html 200

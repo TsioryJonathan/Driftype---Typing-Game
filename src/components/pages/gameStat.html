@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Driftype - User Stat</title>
+    <script src="../js/toggleTheme.js"></script>
+    <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon" />
+    <link href="/src/css/output.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
+      integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      defer
+    ></script>
+    <script src="https://unpkg.com/i18next@22.4.15/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@2.2.0/i18nextHttpBackend.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  </head>
+  <body class="bg-[var(--color-bg)] text-[var(--color-text)]">
+    <!-- HEADER -->
+    <header
+      class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px] z-50"
+    >
+      <!-- Logo -->
+      <div class="h-full flex items-center">
+        <a href="/">
+          <img
+            src="/src/assets/noBg.png"
+            alt="Drifttype"
+            class="h-full w-40 object-cover"
+          />
+        </a>
+      </div>
+
+      <!-- Nav bar -->
+      <nav class="w-full max-w-md mx-auto h-[40px]">
+        <div
+          class="flex justify-between items-center bg-[var(--color-input)] rounded-full h-full"
+        >
+          <!-- Practice -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-practice"
+              type="button"
+              class="flex flex-col items-center justify-center rounded-s-full hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+              id="practice-btn"
+            >
+              <i
+                class="fa-solid fa-keyboard text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Practice</span>
+            </button>
+            <div
+              id="tooltip-practice"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Practice
+            </div>
+          </div>
+
+          <!-- Statistics -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-statistics"
+              type="button"
+              class="flex flex-col items-center justify-center hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
+              id="stat-btn"
+            >
+              <i
+                class="fa-solid fa-chart-column text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Statistics</span>
+            </button>
+            <div
+              id="tooltip-statistics"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Statistics
+            </div>
+          </div>
+
+          <!-- Settings -->
+          <div class="relative group w-full h-full">
+            <button
+              data-tooltip-target="tooltip-settings"
+              type="button"
+              class="cursor-pointer flex flex-col items-center justify-center rounded-e-full hover:bg-[var(--color-bg)] transition w-full h-full"
+              id="setting-btn"
+            >
+              <i
+                class="fa-solid fa-gear text-[var(--color-text)] text-2xl group-hover:text-amber-500"
+              ></i>
+              <span class="sr-only">Settings</span>
+            </button>
+            <div
+              id="tooltip-settings"
+              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
+            >
+              Settings
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Avatar / User menu -->
+      <div class="relative h-full flex items-center" id="user-menu-container">
+        <button
+          id="user-menu-button"
+          class="flex items-center gap-5 pl-2 pr-10 py-1 bg-[var(--color-input)] rounded-full transition cursor-pointer -translate-y-0.5 group min-w-40 w-fit relative"
+        >
+          <img
+            id="avatar-img"
+            src="https://i.pravatar.cc/40"
+            alt="Avatar"
+            class="w-8 h-8 rounded-full"
+          />
+
+          <span class="text-sm" id="nav_username">
+            <span class="flex justify-center items-center">
+              <span
+                class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+              ></span>
+            </span>
+          </span>
+          <i
+            class="fa-solid fa-angle-down text-xs absolute right-5 group-hover:translate-y-0.5"
+          ></i>
+        </button>
+        <div
+          id="dropdown"
+          class="absolute right-0 -bottom-16 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)] overflow-hidden"
+        >
+          <a
+            href="./profile.html"
+            class="flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+          >
+            Profile
+            <i class="fas fa-user"></i>
+          </a>
+          <button
+            class="w-full text-left flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
+            id="logout-btn"
+          >
+            Sign out
+            <i class="fas fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- MAIN -->
+
+    <main>
+      <div
+        class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] py-6 space-y-8 px-10"
+      >
+        <!-- Title -->
+        <div
+          class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+        >
+          <h1 class="text-3xl font-bold">My Statistics</h1>
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Average WPM -->
+          <div
+            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
+          >
+            <div class="flex items-center gap-2">
+              <i
+                class="fa-solid fa-arrow-trend-up text-[var(--color-primary)]"
+              ></i>
+              <p class="text-sm text-[var(--color-text-secondary)]">
+                Average WPM
+              </p>
+            </div>
+            <div
+              class="text-[var(--color-text)] text-3xl font-bold"
+              id="avg-wpm"
+            >
+              <div class="flex justify-center items-center">
+                <div
+                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Max WPM -->
+          <div
+            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
+          >
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-award text-[var(--color-accent)]"></i>
+              <p class="text-sm text-[var(--color-text-secondary)]">Max WPM</p>
+            </div>
+            <div
+              class="text-[var(--color-text)] text-3xl font-bold"
+              id="max-wpm"
+            >
+              <div class="flex justify-center items-center">
+                <div
+                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Avg. Accuracy -->
+          <div
+            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
+          >
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-bullseye text-[var(--color-success)]"></i>
+              <p class="text-sm text-[var(--color-text-secondary)]">
+                Avg. Accuracy
+              </p>
+            </div>
+            <div
+              class="text-[var(--color-text)] text-3xl font-bold"
+              id="avg-accuracy"
+            >
+              <div class="flex justify-center items-center">
+                <div
+                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Test Completed -->
+          <div
+            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
+          >
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-clock text-[var(--color-warning)]"></i>
+              <p class="text-sm text-[var(--color-text-secondary)]">
+                Test Completed
+              </p>
+            </div>
+            <div
+              class="text-[var(--color-text)] text-3xl font-bold"
+              id="complete-test"
+            >
+              <div class="flex justify-center items-center">
+                <div
+                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Graph and leaderboards -->
+        <div class="flex flex-col md:flex-row gap-5">
+          <!-- Graph -->
+          <div class="flex flex-col gap-3 flex-1">
+            <h1 class="text-2xl text-[var(--color-text)] font-semibold">
+              Stat Of Your Recent Game
+            </h1>
+            <div class="flex-1" id="chart"></div>
+          </div>
+
+          <!-- Leaderboard -->
+          <div
+            class="bg-[var(--color-card)] rounded-lg shadow-md w-full md:w-100 border border-[var(--color-border)]"
+          >
+            <div class="p-6 border-b border-[var(--color-border)]">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <i
+                    class="fa-solid fa-trophy text-[var(--color-active-500)] text-xl"
+                  ></i>
+                  <h2 class="ml-2 text-xl font-bold text-[var(--color-text)]">
+                    Leaderboard
+                  </h2>
+                </div>
+                <button
+                  class="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] font-medium"
+                >
+                  View All
+                </button>
+              </div>
+            </div>
+
+            <ul class="space-y-4 text-sm p-4">
+             
+              <li class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user1.jpg"
+                    alt="AimbotKeys"
+                    class="w-10 h-10 rounded-full object-cover"
+                  />
+                  <span class="text-[var(--color-text)] text-sm"
+                    >#1 AimbotKeys</span
+                  >
+                </div>
+                <div class="flex flex-col gap-1 text-right">
+                  <span class="text-[var(--color-text)] font-bold">
+                    356 WPM
+                  </span>
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    99.8% acc
+                  </span>
+                </div>
+              </li>
+
+              <li class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user2.jpg"
+                    alt="Zer0Latency"
+                    class="w-10 h-10 rounded-full object-cover"
+                  />
+                  <span class="text-[var(--color-text)] text-sm"
+                    >#2 Zer0Latency</span
+                  >
+                </div>
+                <div class="flex flex-col gap-1 text-right">
+                  <span class="text-[var(--color-text)] font-bold"
+                    >322 WPM</span
+                  >
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    96.2% acc
+                  </span>
+                </div>
+              </li>
+
+              <li class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user3.jpg"
+                    alt="ClutchTyper"
+                    class="w-10 h-10 rounded-full object-cover"
+                  />
+                  <span class="text-[var(--color-text)] text-sm"
+                    >#3 ClutchTyper</span
+                  >
+                </div>
+                <div class="flex flex-col gap-1 text-right">
+                  <span class="text-[var(--color-text)] font-bold"
+                    >259 WPM</span
+                  >
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    95.8% acc
+                  </span>
+                </div>
+              </li>
+
+              <li class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user4.jpg"
+                    alt="R4pidFire"
+                    class="w-10 h-10 rounded-full object-cover"
+                  />
+                  <span class="text-[var(--color-text)] text-sm"
+                    >#4 R4pidFire</span
+                  >
+                </div>
+                <div class="flex flex-col gap-1 text-right">
+                  <span class="text-[var(--color-text)] font-bold"
+                    >225 WPM</span
+                  >
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    94.7% acc
+                  </span>
+                </div>
+              </li>
+
+              <li
+                class="flex justify-between items-center border-b border-[var(--color-border)] pb-2"
+              >
+                <div class="flex items-center gap-3">
+                  <img
+                    src="/public/user5.jpg"
+                    alt="DeadKeyz"
+                    class="w-10 h-10 rounded-full object-cover"
+                  />
+                  <span class="text-[var(--color-text)] text-sm">
+                    #5 DeadKeyz
+                  </span>
+                </div>
+                <div class="flex flex-col gap-1 text-right">
+                  <span class="text-[var(--color-text)] font-bold"
+                    >198 WPM</span
+                  >
+                  <span class="text-[var(--color-text-secondary)] text-xs">
+                    94.0% acc
+                  </span>
+                </div>
+              </li>
+
+              <!-- Current user -->
+              <li
+                class="flex justify-between items-center bg-active-600 p-2 rounded-lg"
+              >
+                <div class="flex items-center gap-3">
+                  <img
+                    src="https://i.pravatar.cc/40"
+                    alt="User"
+                    class="w-10 h-10 rounded-full object-cover"
+                  />
+                  <span class="text-[var(--color-text)] text-sm" id="username">
+                  </span>
+                </div>
+                <div class="flex flex-col gap-1 items-end">
+                  <span
+                    class="text-[var(--color-text)] font-bold"
+                    id="leaderboard-avg-wpm"
+                  >
+                    —
+                  </span>
+                  <span
+                    class="text-[var(--color-text-secondary)] text-xs"
+                    id="leaderboard-avg-accuracy"
+                  >
+                    —
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- History -->
+        <div
+          class="bg-[var(--color-card)] rounded-2xl shadow-md border border-[var(--color-border)] overflow-hidden flex-1"
+        >
+          <!-- Header -->
+          <div class="p-6 border-b border-[var(--color-border)]">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <i
+                  class="fa-solid fa-clock text-[var(--color-active-500)] text-2xl"
+                ></i>
+                <h2
+                  class="ml-3 text-2xl font-semibold text-[var(--color-text)]"
+                >
+                  Recent Tests
+                </h2>
+              </div>
+              <button
+                class="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] font-medium transition"
+              >
+                View All
+              </button>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-center">
+              <thead>
+                <tr class="bg-[var(--color-bg-secondary)]">
+                  <th
+                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                  >
+                    Date
+                  </th>
+                  <th
+                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                  >
+                    WPM
+                  </th>
+                  <th
+                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                  >
+                    Accuracy
+                  </th>
+                  <th
+                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                  >
+                    Duration
+                  </th>
+                  <th
+                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                  >
+                    Difficulty
+                  </th>
+                  <th
+                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
+                  >
+                    Language
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--color-border)]" id="tbody">
+                <tr>
+                  <td class="px-6 py-4 text-[var(--color-text)]">
+                    <div class="flex justify-center items-center">
+                      <div class="loader"></div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-[var(--color-text)]">
+                    <div class="flex justify-center items-center">
+                      <div class="loader"></div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">
+                    <div class="flex justify-center items-center">
+                      <div class="loader"></div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-[var(--color-text)]">
+                    <div class="flex justify-center items-center">
+                      <div class="loader"></div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-[var(--color-text)]">
+                    <div class="flex justify-center items-center">
+                      <div class="loader"></div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-[var(--color-text)]">
+                    <div class="flex justify-center items-center">
+                      <div class="loader"></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Login Popup -->
+
+        <div
+          id="login-warning-toast"
+          class="hidden fixed top-6 right-6 z-50 bg-yellow-100 border border-yellow-400 text-yellow-800 px-6 py-4 rounded-xl shadow-lg items-center space-x-3 transition-opacity duration-300 ease-in-out"
+        >
+          <i
+            class="fa-solid fa-triangle-exclamation text-yellow-500 text-xl"
+          ></i>
+          <span class="text-sm font-medium">Please Login To Continue 🔐</span>
+          <button class="bg-[var(--color-bg-secondary)] rounded-md p-3">
+            Login
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="../js/pages/dashboard.js"></script>
+
+    <script src="../js/pages/userInfofetch.js" type="module"></script>
+    <script src="../js/logoutFunc.js" type="module"></script>
+    <script src="../js/navBarRedirection.js" type="module"></script>
+    <script
+      src="../js/pages/StatPageScript/statGraph.js"
+      type="module"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script
+      src="../js/pages/StatPageScript/getOverallStat.js"
+      type="module"
+    ></script>
+    <script
+      src="../js/pages/StatPageScript/getRecentStat.js"
+      type="module"
+    ></script>
+    <script src="../js/appearance.js"></script>
+    <script>loadAppearanceSettings();</script>
+    <script src="../js/gamePreferences.js"></script>
+    <script>loadGamePreferences();</script>
+    <script src="../js/soundAndFeedback.js"></script>
+    <script>loadSoundAndFeedbackSettings();</script>
+    <script src="../js/notificationAndPrivacy.js"></script>
+    <script>loadNotificationAndPrivacySettings();</script>
+  </body>
+</html>

@@ -1,6 +1,9 @@
-.vscode
+/src/css/output.css
+.vscode/
 node_modules/
-*.log
-.env
 .prettierrc
 .prettierignore
+.env
+test-connection.js
+*.log
+application.log

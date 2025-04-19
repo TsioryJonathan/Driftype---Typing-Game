@@ -1,38 +1,638 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/css/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <title>Driftype</title>
+    <script src="/src/components/js/toggleTheme.js"></script>
+    <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typing Test</title>
-</head>
+  <body
+    class="font-poppins relative bg-[var(--color-bg)] text-[var(--color-text)]"
+  >
+    <!-- NAVBAR -->
+    <header
+      class="fixed top-0 left-0 right-0 z-50 h-14 w-full bg-[var(--color-bg-secondary)] backdrop-blur-md shadow-md shadow-black/10 text-[var(--color-text)]"
+    >
+      <nav class="flex h-full items-center justify-between px-6 md:px-10">
+        <div class="flex items-center gap-2">
+          <img
+            src="/src/assets/noBg.png"
+            alt="Logo"
+            class="h-full w-28 object-cover"
+          />
+        </div>
 
-<body>
-    <header>
-        <h1>Typing Test</h1>
-        <label for="mode">Select Mode:</label>
-        <select id="mode">
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-        </select>
+        <!-- Desktop menu -->
+        <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <li>
+            <a
+              href="#"
+              class="hover:text-[var(--color-primary)] transition-colors duration-200"
+              role="link"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="#features"
+              class="hover:text-[var(--color-primary)] transition-colors duration-200"
+              role="link"
+            >
+              Features
+            </a>
+          </li>
+          <li>
+            <a
+              href="#testimonials"
+              class="hover:text-[var(--color-primary)] transition-colors duration-200"
+              role="link"
+            >
+              Testimonials
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="hover:text-[var(--color-primary)] transition-colors duration-200"
+              role="link"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+
+        <div class="hidden md:flex gap-3">
+          <button
+            class="bg-gradient-to-tr from-[var(--color-secondary)] to-[var(--color-input-border)] text-white px-4 py-2 rounded-lg text-sm hover:brightness-110 transition-all duration-200 cursor-pointer"
+            aria-label="Login"
+            id="login-btn"
+          >
+            Login
+            <i class="fa-solid fa-sign-in-alt ml-2"></i>
+          </button>
+          <button
+            class="border border-[var(--color-border)] px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-primary)] hover:text-white transition-all duration-200 cursor-pointer"
+            aria-label="Sign up"
+            id="sign-up-btn"
+          >
+            Sign up
+            <i class="fa-solid fa-user-plus ml-2"></i>
+          </button>
+        </div>
+
+        <!-- Burger-->
+        <div class="md:hidden flex items-center gap-4 backdrop-blur-3xl">
+          <button
+            id="login-btn"
+            aria-label="Login"
+            class="text-[var(--color-primary)]"
+          >
+            <i class="fa-solid fa-user text-xl"></i>
+          </button>
+          <button
+            id="hamburger"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            class="text-[var(--color-primary)]"
+          >
+            <i class="fa-solid fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile menu -->
+      <div
+        id="mobile-menu"
+        class="fixed top-0 right-0 z-50 h-screen w-[80vw] translate-x-[999px] flex flex-col justify-between bg-[var(--color-bg)] px-8 py-6 text-center transition-transform duration-500 ease-in-out md:hidden border-l border-[var(--color-border)] rounded-tl-2xl rounded-tb-2xl"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <!-- Header (logo and close button) -->
+        <div class="flex items-center justify-between mb-10">
+          <div class="flex items-center gap-3">
+            <img
+              src="/src/assets/noBg.png"
+              alt="Driftype"
+              class="h-10 w-10 object-cover"
+            />
+            <h2
+              class="text-2xl font-semibold text-[var(--color-primary)] tracking-wide"
+            >
+              Driftype
+            </h2>
+          </div>
+          <button
+            id="close-button"
+            aria-label="Close menu"
+            class="text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-200"
+          >
+            <i class="fa-solid fa-xmark text-3xl"></i>
+          </button>
+        </div>
+
+        <!-- Navigation Links -->
+        <ul class="flex flex-col items-center gap-6">
+          <li>
+            <a
+              href="#"
+              class="text-lg font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-300"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="#features"
+              class="text-lg font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-300"
+            >
+              Features
+            </a>
+          </li>
+          <li>
+            <a
+              href="#testimonials"
+              class="text-lg font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-300"
+            >
+              Testimonials
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="text-lg font-medium text-[var(--color-text)] hover:text-[var(--color-primary)] transition-colors duration-300"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+
+        <div class="mt-10">
+          <button
+            class="bg-[var(--color-primary)] text-white w-full rounded-xl py-3 px-5 text-base font-medium tracking-wide transition-all duration-300 hover:bg-[var(--color-primary-hover)] flex items-center justify-center gap-2"
+            id="get-started-btn"
+            aria-label="Begin Now"
+          >
+            Begin Now
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
     </header>
 
+    <!-- BODY -->
     <main>
-        <p id="word-display"></p>
-        <input type="text" id="input-field" autofocus>
-        <p id="results">Results : </p>
+      <!-- HERO -->
+      <section id="home" class="relative overflow-hidden">
+        <div
+          class="absolute inset-0 z-10 opacity-[0.5] bg-gradient-to-tr from-[var(--gradient-start)] to-[var(--gradient-end)]"
+        ></div>
+
+        <div id="vanta-bg" class="absolute inset-0 z-0"></div>
+
+        <div
+          class="relative z-10 flex min-h-screen flex-col items-center justify-center gap-8 px-5"
+        >
+          <div class="relative inline-block -mb-10">
+            <img
+              src="/src/assets/noBg.png"
+              alt="Driftype Logo"
+              class="w-100 h-50 rounded-tl-[8px] rounded-full animate__animated animate__fadeIn"
+            />
+          </div>
+
+          <h2
+            class="text-center leading-tight text-[32px] sm:text-[42px] md:text-[54px] lg:text-[60px] font-raleway font-bold bg-gradient-to-r from-[var(--text-gradient-start)] via-[var(--text-gradient-middle)] to-[var(--text-gradient-end)] text-transparent bg-clip-text drop-shadow-[0_4px_16px_#800be4] animate__animated animate__fadeIn"
+          >
+            Level Up Your Typing Skills
+          </h2>
+
+          <p
+            class="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] px-5 max-w-2xl text-center leading-7 animate__animated animate__fadeInUp text-text"
+          >
+            Improve your speed and accuracy with smart training and real-time
+            stats.
+          </p>
+
+          <div
+            class="flex w-full max-w-md justify-center rounded-lg bg-[var(--color-bg)] px-6 py-2 animate__animated animate__fadeInUp"
+          >
+            <h3 class="text-md sm:text-xl md:text-2xl text-[var(--color-text)]">
+              <span id="typed"></span>
+            </h3>
+          </div>
+
+          <div
+            class="flex flex-wrap justify-center gap-4 animate__animated animate__fadeInUp"
+          >
+            <button
+              class="bg-gradient-to-r from-blue-600 to-violet-600 text-sm sm:text-md md:text-lg group flex items-center gap-2 rounded-lg px-4 py-2 text-white transition hover:brightness-110"
+              id="get-started-btn"
+            >
+              <i
+                class="fa-solid fa-rocket group-hover:-translate-y-1 duration-300"
+              ></i>
+              Get Started
+            </button>
+
+            <button
+              class="text-sm sm:text-md md:text-lg flex items-center gap-2 rounded-lg border border-[var(--color-border)] px-4 py-2 transition hover:bg-[var(--color-primary-hover)] text-[var(--color-text)]"
+            >
+              Learn more
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section
+        id="features"
+        class="flex min-h-screen flex-col justify-center gap-5 bg-[var(--color-bg-secondary)] px-8 py-10"
+      >
+        <h2 class="text-center text-4xl font-bold text-[var(--color-text)]">
+          Features
+        </h2>
+        <p class="text-center text-lg text-[var(--color-text-secondary)]">
+          We offer many options for you
+        </p>
+        <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 mt-10">
+          <div
+            class="group flex flex-col gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] p-5 backdrop-blur-md transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_0_4px_var(--color-primary),_0_0_8px_var(--color-primary)]"
+          >
+            <div
+              class="flex w-fit items-center justify-center rounded-md bg-[var(--color-bg-secondary)] p-3 transition-transform duration-150 group-hover:scale-105"
+            >
+              <i
+                class="fa-solid fa-keyboard text-[var(--color-text)] text-lg"
+              ></i>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--color-text)]">
+              Multiple levels
+            </h3>
+            <p class="text-[var(--color-text-secondary)] text-sm">
+              Challenge yourself with various difficulty levels, from beginner
+              to expert, and improve your typing skills step by step.
+            </p>
+          </div>
+
+          <div
+            class="group flex flex-col gap-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] p-6 backdrop-blur-md transition-transform duration-200 hover:-translate-y-1 hover:shadow-[0_0_4px_var(--color-primary),_0_0_8px_var(--color-primary)]"
+          >
+            <div
+              class="flex w-fit items-center justify-center rounded-md bg-[var(--color-bg-secondary)] p-3 transition-transform duration-150 group-hover:scale-105"
+            >
+              <i class="fa-solid fa-clock text-[var(--color-text)] text-lg"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--color-text)]">
+              Time Tracking
+            </h3>
+            <p class="text-[var(--color-text-secondary)] text-sm">
+              Keep track of your typing speed and accuracy with our built-in
+              timer and performance metrics.
+            </p>
+          </div>
+
+          <div
+            class="group flex flex-col gap-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] p-6 backdrop-blur-md transition-transform duration-200 hover:-translate-y-1 hover:shadow-[0_0_4px_var(--color-primary),_0_0_8px_var(--color-primary)]"
+          >
+            <div
+              class="flex w-fit items-center justify-center rounded-md bg-[var(--color-bg-secondary)] p-3 transition-transform duration-150 group-hover:scale-105"
+            >
+              <i
+                class="fa-solid fa-trophy text-[var(--color-text)] text-lg"
+              ></i>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--color-text)]">
+              Achievements
+            </h3>
+            <p class="text-[var(--color-text-secondary)] text-sm">
+              Unlock achievements as you progress and reach new milestones in
+              your typing journey.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+
+      <section
+        class="flex min-h-screen flex-col justify-center gap-10 bg-[var(--color-bg)] px-6 py-16"
+        id="testimonials"
+      >
+        <div class="text-center space-y-3">
+          <h2 class="text-4xl font-bold text-[var(--color-text)]">
+            Testimonials
+          </h2>
+          <p class="text-lg text-[var(--color-text-secondary)]">
+            See what people are saying about us
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="flex items-center justify-center">
+            <img
+              src="./public/feedback.png"
+              alt="User feedback illustration"
+              class="w-[80%] h-full animate-float"
+            />
+          </div>
+
+          <div class="flex flex-col gap-5 px-2 sm:px-16">
+            <div
+              class="bg-[var(--color-card)] rounded-2xl shadow-md p-6 border border-[var(--color-border)] flex flex-col items-center text-center"
+            >
+              <img
+                src="https://i.pravatar.cc/100?img=32"
+                class="w-16 h-16 rounded-full mb-4 border-2 border-[var(--color-primary)]"
+                alt="User Avatar"
+              />
+              <p class="text-[var(--color-text-secondary)] italic mb-4">
+                "This app has completely changed how I type. The stats, the
+                design — everything is perfect!"
+              </p>
+              <h3 class="text-[var(--color-text)] font-semibold">Jane Doe</h3>
+              <span class="text-sm text-[var(--color-text-secondary)]">
+                Developer @TechCorp
+              </span>
+            </div>
+
+            <div
+              class="bg-[var(--color-card)] rounded-2xl shadow-md p-6 border border-[var(--color-border)] flex flex-col items-center text-center"
+            >
+              <img
+                src="https://i.pravatar.cc/100?img=47"
+                class="w-16 h-16 rounded-full mb-4 border-2 border-[var(--color-primary)]"
+                alt="User Avatar"
+              />
+              <p class="text-[var(--color-text-secondary)] italic mb-4">
+                "I improved my typing speed by 30% in just a week. Highly
+                recommended!"
+              </p>
+              <h3 class="text-[var(--color-text)] font-semibold">John Smith</h3>
+              <span class="text-sm text-[var(--color-text-secondary)]">
+                UI/UX Designer
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT  -->
+      <section class="bg-[var(--color-bg-secondary)] p-5">
+        <div
+          class="bg-[var(--color-card)] rounded-2xl shadow-lg p-10 max-w-6xl mx-auto my-16 border border-[var(--color-border)]"
+        >
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <!-- LEFT SIDE -->
+            <div>
+              <h2 class="text-2xl font-bold text-[var(--color-text)] mb-4">
+                Contact Us
+              </h2>
+              <p
+                class="text-[var(--color-text-secondary)] text-md leading-relaxed font-raleway"
+              >
+                We're always happy to connect! Whether you have a question, a
+                project idea, or just want to say hello, feel free to reach out.
+                We'll get back to you as soon as possible.
+              </p>
+              <div class="mt-6 text-[var(--color-text-secondary)] space-y-2">
+                <p class="text-sm flex gap-2 items-center">
+                  <i class="fa-solid fa-envelope"></i>
+
+                  contact@example.com
+                </p>
+                <p class="text-sm flex gap-2 items-center">
+                  <i class="fa-solid fa-phone"></i>
+
+                  +261 34 12 345 67
+                </p>
+                <p class="text-sm flex gap-2 items-center">
+                  <i class="fa-solid fa-location-dot"></i>
+
+                  Antananarivo, Madagascar
+                </p>
+              </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <form
+              class="space-y-2"
+              action="https://formspree.io/f/mblgpkgj"
+              id="contact-form"
+              method="POST"
+            >
+              <div>
+                <label
+                  class="block text-sm text-[var(--color-text-secondary)] mb-1"
+                >
+                  Name*
+                </label>
+                <input
+                  type="text"
+                  class="w-full px-3 py-2 rounded-lg bg-[var(--color-bg-secondary)] text-[var(--color-text)] border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-sm text-[var(--color-text-secondary)] mb-1"
+                >
+                  Email*
+                </label>
+                <input
+                  type="email"
+                  class="w-full px-3 py-2 rounded-lg bg-[var(--color-bg-secondary)] text-[var(--color-text)] border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-sm text-[var(--color-text-secondary)] mb-1"
+                >
+                  Message*
+                </label>
+                <textarea
+                  rows="3"
+                  class="w-full px-3 py-2 rounded-lg bg-[var(--color-bg-secondary)] text-[var(--color-text)] border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+                  required
+                ></textarea>
+              </div>
+              <div>
+                <button
+                  class="group flex w-full cursor-pointer items-center justify-center gap-5 rounded-lg bg-[var(--color-active-600)] px-10 py-3 font-medium text-white transition-all duration-200 hover:bg-[var(--color-active-700)]"
+                  type="submit"
+                >
+                  <i
+                    class="fa-solid fa-paper-plane transition-transform duration-300 ease-in group-hover:-translate-y-1 group-hover:translate-x-1"
+                  ></i>
+                  Send Message
+                </button>
+                <p
+                  class="text-center text-[var(--color-text-secondary)] text-xs mt-8"
+                >
+                  *Required Field. We will get back to you within 24-48 hours.
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- GET STARTED -->
+      <section
+        class="flex min-h-screen flex-col items-center justify-center gap-10 bg-[var(--color-bg)] p-10"
+        id="get-started"
+      >
+        <h2
+          class="mb-4 text-center text-4xl font-bold text-[var(--color-text)]"
+        >
+          Get Started with Us
+        </h2>
+        <p class="mb-6 text-center text-lg text-[var(--color-text)]">
+          Join us today and take your skills to the next level with our
+          platform. Let's get started!
+        </p>
+        <button
+          class="cursor-pointer rounded-lg bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-primary)] px-6 py-3 text-xl text-white transition-all duration-300 hover:scale-105 hover:brightness-110"
+          id="get-started-btn"
+        >
+          Get Started
+        </button>
+      </section>
     </main>
+    <!-- FOOTER -->
+    <footer class="bg-[var(--color-bg-secondary)] text-white px-6 py-10">
+      <div
+        class="max-w-6xl mx-auto grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+      >
+        <!-- Logo and Description -->
+        <div class="flex flex-col items-center gap-3">
+          <img
+            src="/src/assets/noBg.png"
+            alt="Driftype logo"
+            class="h-full w-40 object-cover"
+          />
+          <h2
+            class="text-2xl font-bold bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] bg-clip-text text-transparent"
+          >
+            Driftype
+          </h2>
+          <p
+            class="text-center text-sm text-[var(--color-text-secondary)] mt-2"
+          >
+            Level up your typing skills with personalized exercises.
+          </p>
+        </div>
 
-    <button id="login-btn">Login</button>
+        <!-- Navigation Links -->
+        <div class="flex flex-col items-center gap-5">
+          <h3 class="text-xl font-semibold text-[var(--color-text)]">
+            Navigation
+          </h3>
+          <ul class="flex flex-col gap-3 text-[var(--color-text-secondary)]">
+            <li>
+              <a href="#" class="hover:text-[var(--color-primary)]">Home</a>
+            </li>
+            <li>
+              <a href="#features" class="hover:text-[var(--color-primary)]">
+                Features
+              </a>
+            </li>
+            <li>
+              <a href="#testimonials" class="hover:text-[var(--color-primary)]">
+                Testimonials
+              </a>
+            </li>
+            <li>
+              <a href="#contact" class="hover:text-[var(--color-primary)]">
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </div>
 
-    <script type="module">
-        const loginBtn = document.getElementById('login-btn');
-        loginBtn.addEventListener('click', () => {
-            window.location.href = 'src/components/pages/login.html';
-        });
+        <!-- Contact Information -->
+        <div class="flex flex-col items-center gap-5">
+          <h3 class="text-xl font-semibold text-[var(--color-text)]">
+            Contact
+          </h3>
+          <div
+            class="flex flex-col gap-3 text-[var(--color-text-secondary)] text-center"
+          >
+            <p>📍 123 Rue de la Tech, Paris</p>
+            <p>📧 contact@driftype.com</p>
+            <p>📞 033 12 235 48</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter Subscription -->
+      <div class="mt-10 border-t border-[var(--color-border)] pt-8 text-center">
+        <h3 class="text-lg text-[var(--color-text)]">
+          Subscribe to our newsletter
+        </h3>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          class="mt-4 w-full max-w-xs rounded-xl border-2 border-[var(--color-primary)] bg-[var(--color-bg)] p-2 text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+        />
+        <button
+          class="mt-4 px-6 py-2 rounded-xl bg-[var(--color-primary)] text-white hover:bg-[var(--color-secondary)] focus:outline-none duration-300 ease-in cursor-pointer"
+        >
+          Subscribe
+        </button>
+      </div>
+    </footer>
+
+    <!-- SCRIPT TYPED -->
+
+    <script
+      src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"
+      type="module"
+    ></script>
+    <script src="./src/components/js/toggleMenu.js" type="module"></script>
+    <script
+      src="./src/components/js/redirectionScript.js"
+      type="module"
+    ></script>
+    <script>
+      const typed = new Typed("#typed", {
+        strings: [
+          "Ready to type?",
+          "Let's do this!",
+          "Start practicing, now.",
+          "<b>Type faster</b>, <i>think smarter</i>.",
+          "Become <span style='color: green;'>unstoppable</span>!",
+        ],
+        typeSpeed: 50,
+        backSpeed: 25,
+        backDelay: 1000,
+        startDelay: 500,
+        loop: true,
+      });
     </script>
-    <script type="module" src="script.js"></script>
-</body>
 
+    <!-- VANTA  -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"
+      type="module"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"
+      type="module"
+    ></script>
+    <script src="/src/components/js/vantaStyle.js" type="module"></script>
+    <script src="./src/components/js/contactForm.js" type="module"></script>
+  </body>
 </html>
