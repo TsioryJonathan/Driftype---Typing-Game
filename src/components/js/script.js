@@ -1,4 +1,3 @@
-// Suppression des doublons d'import et de déclaration de variables
 import { getRandomWord } from "./dictionaries.js";
 import { checkBadges, badgeManager } from "./badges.js";
 import { tinykeys } from "./tinykeys.js";
@@ -272,7 +271,7 @@ const endTest = async () => {
   else langLabel = langValue.charAt(0).toUpperCase() + langValue.slice(1);
   let modeLabel = modeValue.charAt(0).toUpperCase() + modeValue.slice(1);
   if (modeValue === "numbers") modeLabel = "Numbers";
-  // Special icon for numbers mode
+  
   const modeIcon =
     modeValue === "numbers"
       ? '<i class="fa-solid fa-hashtag text-[var(--color-warning)]"></i>'
@@ -432,7 +431,7 @@ const launchFireworks = () => {
   }
 };
 
-// Timeline chart: dark theme, yellow (amber-500) for WPM, red-500 for errors
+// Timeline chart
 const updateResults = () => {
   if (!startTime) {
     results.textContent = `Time left: ${timeLeft}s`;
@@ -593,7 +592,7 @@ const updateResults = () => {
   }
 };
 
-// --- Calculate typing consistency (standard deviation of WPM, expressed as % of mean WPM, subtracted from 100) ---
+
 const calcConsistency = () => {
   if (!timelineWpm || timelineWpm.length < 2) return "-";
   const mean = timelineWpm.reduce((a, b) => a + b, 0) / timelineWpm.length;

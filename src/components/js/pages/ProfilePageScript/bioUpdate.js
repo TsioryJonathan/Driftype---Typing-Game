@@ -18,18 +18,18 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// Ouvrir la modale
+// Open modal
 editBtn.addEventListener("click", () => {
   bioInput.value = bioText.textContent.trim();
   bioModal.classList.replace("hidden", "flex");
 });
 
-// Fermer la modale
+// Close modal
 cancelBtn.addEventListener("click", () => {
   bioModal.classList.replace("flex", "hidden");
 });
 
-// Sauvegarder la bio
+// Save the bio
 saveBtn.addEventListener("click", async () => {
   if (!localStorage.getItem("typing_game_user")) {
     console.error("User not logged in");

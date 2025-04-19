@@ -1,7 +1,7 @@
 export const codeDictionaries = {
     python: {
         easy: [
-            // Niveau facile - Bases du langage
+          
             `def greet(name):
     print(f"Hello {name}!")`,
             `def add(a, b):
@@ -12,7 +12,7 @@ export const codeDictionaries = {
 squared = [x**2 for x in numbers]`
         ],
         medium: [
-            // Niveau moyen - Algorithmes et POO
+            
             `def factorial(n):
     if n <= 1:
         return 1
@@ -34,7 +34,7 @@ squared = [x**2 for x in numbers]`
     return [item for sublist in lst for item in sublist]`
         ],
         hard: [
-            // Niveau difficile - Algorithmes avancés
+            
             `def quick_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -76,7 +76,7 @@ squared = [x**2 for x in numbers]`
         return await asyncio.gather(*tasks)`
         ],
         expert: [
-            // Niveau expert - Défis complexes
+            
             `def knapsack(items, max_weight):
     n = len(items)
     dp = [[0] * (max_weight + 1) for _ in range(n + 1)]
@@ -129,7 +129,7 @@ squared = [x**2 for x in numbers]`
     },
     javascript: {
         easy: [
-            // Niveau facile - Bases du langage
+        
             `function greet(name) {
     console.log(\`Hello \${name}!\`);
 }`,
@@ -141,7 +141,7 @@ squared = [x**2 for x in numbers]`
 const squared = numbers.map(x => x * x);`
         ],
         medium: [
-            // Niveau moyen - Algorithmes et POO
+            
             `function factorial(n) {
     if (n <= 1) return 1;
     return n * factorial(n - 1);
@@ -167,7 +167,7 @@ const squared = numbers.map(x => x * x);`
 }`
         ],
         hard: [
-            // Niveau difficile - Algorithmes avancés
+         
             `function quickSort(arr) {
     if (arr.length <= 1) return arr;
     const pivot = arr[Math.floor(arr.length / 2)];
@@ -214,7 +214,7 @@ const squared = numbers.map(x => x * x);`
 }`
         ],
         expert: [
-            // Niveau expert - Défis complexes
+           
             `function* fibonacci() {
     let [prev, curr] = [0, 1];
     while (true) {
@@ -274,7 +274,7 @@ const squared = numbers.map(x => x * x);`
 }`
         ]
     },
-    // Nouveau : Ajout du langage TypeScript
+    
     typescript: {
         medium: [
             `interface User {
@@ -330,10 +330,10 @@ export const getRandomCode = (mode = 'medium', language = 'javascript') => {
     return codeList[Math.floor(Math.random() * codeList.length)];
 };
 
-// Fonction utilitaire supplémentaire
+
 export const getSupportedLanguages = () => Object.keys(codeDictionaries);
 
-// Fonction pour obtenir les modes disponibles pour un langage
+
 export const getAvailableModes = (language) => {
     const dict = codeDictionaries[language];
     return dict ? Object.keys(dict) : [];

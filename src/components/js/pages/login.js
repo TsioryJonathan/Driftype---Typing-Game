@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.handleGoogleSignIn = async (response) => {
   const errorElement = document.getElementById("errorMessage");
+  
 
   try {
     const { credential } = response;

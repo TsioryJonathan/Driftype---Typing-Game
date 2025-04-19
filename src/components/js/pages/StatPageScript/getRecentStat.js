@@ -20,7 +20,7 @@ const fetchRecentStat = async () => {
   const userData = localStorage.getItem("typing_game_user");
   const tbody = document.getElementById("tbody");
 
-  // Si aucun utilisateur n'est trouvé, on arrête l'exécution de la fonction
+  
   if (!userData) {
     console.log("No data");
     displayDefaultState(tbody);

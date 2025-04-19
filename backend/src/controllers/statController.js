@@ -53,7 +53,6 @@ export const getSpecificStat = async (req, res) => {
     const whereParts = [];
     const values = [];
 
-    // Ajout dynamique des filtres
     if (userId) {
       whereParts.push(`user_id = $${values.length + 1}`);
       values.push(userId);

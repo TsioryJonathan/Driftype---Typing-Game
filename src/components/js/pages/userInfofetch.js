@@ -53,7 +53,7 @@ const getUsernameNdEmail = async () => {
     const username = data[0].username;
     console.debug("User data fetched successfully:", username);
 
-    // Update UI elements if they exist
+   
     if (usernameField)
       usernameField.forEach((field) => (field.textContent = username));
     if (usernameInput) usernameInput.value = username;
