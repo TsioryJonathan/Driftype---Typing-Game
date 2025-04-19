@@ -11,7 +11,7 @@ import { API_URL } from "../../utils/url.js";
 // Typewriter click sound: try loading sample, fallback to generated click
 let keyAudio;
 try {
-  keyAudio = new Audio('/src/assets/typewriter-key.mp3');
+  keyAudio = new Audio("/src/assets/typewriter-key.mp3");
   keyAudio.volume = 0.3;
 } catch (e) {
   keyAudio = null;
@@ -27,7 +27,7 @@ const fallbackKeySound = () => {
   noise.buffer = buffer;
   noise.connect(ctx.destination);
   noise.start();
-}
+};
 const playKeySound = () => {
   if (keyAudio && keyAudio.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) {
     keyAudio.currentTime = 0;
@@ -35,7 +35,7 @@ const playKeySound = () => {
   } else {
     fallbackKeySound();
   }
-}
+};
 
 /**
  * Point culture (en Français car je suis un peu obligé):
@@ -66,8 +66,8 @@ const results = document.getElementById("results-container");
 // Initialize the typing test
 const startTest = (wordCount = 200) => {
   // Determine mode vs type
-  const mode = document.getElementById('mode').value;
-  const type = document.getElementById('type')?.value || 'words';
+  const mode = document.getElementById("mode").value;
+  const type = document.getElementById("type")?.value || "words";
   testContainer.classList.remove("hidden");
   results.classList.add("hidden");
   wordsToType.length = 0;
@@ -92,9 +92,10 @@ const startTest = (wordCount = 200) => {
 
   // Generate words list based on type (words vs numbers)
   const language = document.getElementById("language").value;
-  const list = type === "numbers"
-    ? getWordsByDifficulty(mode, "numbers")
-    : getWordsByDifficulty(mode, language);
+  const list =
+    type === "numbers"
+      ? getWordsByDifficulty(mode, "numbers")
+      : getWordsByDifficulty(mode, language);
   for (let i = 0; i < wordCount; i++) {
     wordsToType.push(list[Math.floor(Math.random() * list.length)]);
   }
@@ -184,10 +185,10 @@ const updateLetter = (event) => {
       const letters = wordDisplay.querySelectorAll(".letter");
       const prevLetter = letters[totalLetters - 1];
 
-      if (prevLetter.querySelector('.error-overlay')) {
-        prevLetter.removeChild(prevLetter.querySelector('.error-overlay'));
+      if (prevLetter.querySelector(".error-overlay")) {
+        prevLetter.removeChild(prevLetter.querySelector(".error-overlay"));
       }
-      
+
       prevLetter.classList.remove("text-amber-500", "text-red-500");
       prevLetter.style.textDecoration = "underline";
 
@@ -229,14 +230,14 @@ const updateLetter = (event) => {
 
   // Check if the typed letter matches the current letter
   const isCorrect = key === currentLetter.textContent;
-  
+
   if (isCorrect) {
     currentLetter.classList.add("text-amber-500");
     correctLetters++;
   } else {
-    const errorOverlay = document.createElement('span');
-    errorOverlay.className = 'error-overlay';
-    errorOverlay.textContent = key === ' ' ? '_' : key;
+    const errorOverlay = document.createElement("span");
+    errorOverlay.className = "error-overlay";
+    errorOverlay.textContent = key === " " ? "_" : key;
     currentLetter.appendChild(errorOverlay);
     currentLetter.classList.add("text-red-500");
     incorrectLetters++;
@@ -282,7 +283,16 @@ const endTest = async () => {
   timeLeft = 0;
   const { wpm, accuracy, raw, correct, incorrect, extra, consistency } =
     getCurrentStats();
-  const stats = { wpm, accuracy, raw, correct, incorrect, extra, consistency, type: typeSelect.value };
+  const stats = {
+    wpm,
+    accuracy,
+    raw,
+    correct,
+    incorrect,
+    extra,
+    consistency,
+    type: typeSelect.value,
+  };
   const langSelect = document.getElementById("language");
   const modeSelect = document.getElementById("mode") ||
     document.getElementById("mode-button") || { value: "medium" };
@@ -304,9 +314,10 @@ const endTest = async () => {
   if (modeValue === "numbers") modeLabel = "Numbers";
 
   const typeLabel = stats.type.charAt(0).toUpperCase() + stats.type.slice(1);
-  const typeIcon = stats.type === "numbers"
-    ? '<i class="fa-solid fa-hashtag text-[var(--color-warning)]"></i>'
-    : '<i class="fa-solid fa-font text-[var(--color-primary)]"></i>';
+  const typeIcon =
+    stats.type === "numbers"
+      ? '<i class="fa-solid fa-hashtag text-[var(--color-warning)]"></i>'
+      : '<i class="fa-solid fa-font text-[var(--color-primary)]"></i>';
 
   const modeIcon =
     modeValue === "numbers"
@@ -626,7 +637,6 @@ const updateResults = () => {
   }
 };
 
-
 const calcConsistency = () => {
   if (!timelineWpm || timelineWpm.length < 2) return "-";
   const mean = timelineWpm.reduce((a, b) => a + b, 0) / timelineWpm.length;
@@ -680,16 +690,27 @@ tinykeys(window, {
     testContainer.focus();
   },
 });
-testContainer.addEventListener('keyup', updateLetter);
-modeSelect.addEventListener('change', () => startTest());
-timerSelect.addEventListener('change', () => startTest());
-testContainer.addEventListener('keydown', (event) => {
+testContainer.addEventListener("keyup", updateLetter);
+typeSelect.addEventListener("change", () => {
+  startTest();
+  testContainer.focus();
+});
+modeSelect.addEventListener("change", () => {
+  startTest();
+  testContainer.focus();
+});
+timerSelect.addEventListener("change", () => {
+  startTest();
+  testContainer.focus();
+});
+testContainer.addEventListener("keydown", (event) => {
   // Play key sound if enabled
-  const { keyboardSounds = false } = JSON.parse(localStorage.getItem('soundFeedbackSettings')) || {};
-  if (keyboardSounds && (event.key.length === 1 || event.key === ' ')) {
+  const { keyboardSounds = false } =
+    JSON.parse(localStorage.getItem("soundFeedbackSettings")) || {};
+  if (keyboardSounds && (event.key.length === 1 || event.key === " ")) {
     playKeySound();
   }
-  if (event.key === ' ') {
+  if (event.key === " ") {
     event.preventDefault(); // Prevent scrolling
   }
 });
