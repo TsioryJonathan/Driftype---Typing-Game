@@ -1,9 +1,9 @@
-import sql from '../config/db.js';
+import sql from "../config/db.js";
 
 export const getUserDetail = async (req, res) => {
   const userId = req.params.userId;
 
-  if (!userId) return res.json({ Username: 'Guest' });
+  if (!userId) return res.json({ Username: "Guest" });
   try {
     const username = await sql`select username from users where id = ${userId}`;
     res.json(username);
@@ -18,30 +18,34 @@ export const updateUserDetails = async (req, res) => {
 
   // Validation des paramètres
   if (!userId) {
-    return res.status(400).json({ message: 'User ID is required' });
+    return res.status(400).json({ message: "User ID is required" });
   }
 
   if (!username || !email) {
-    return res.status(400).json({ message: 'Username and email are required' });
+    return res.status(400).json({ message: "Username and email are required" });
   }
 
   // Vérification de l'email avec une expression régulière
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
   if (!emailRegex.test(email)) {
-    return res.status(400).json({ message: 'Invalid email format' });
+    return res.status(400).json({ message: "Invalid email format" });
   }
 
   try {
     // Vérifier si l'email est déjà pris par un autre utilisateur
-    const emailExists = await sql`SELECT 1 FROM users WHERE email = ${email} AND id != ${userId}`;
+    const emailExists =
+      await sql`SELECT 1 FROM users WHERE email = ${email} AND id != ${userId}`;
     if (emailExists.length > 0) {
-      return res.status(400).json({ message: 'Email is already in use by another account' });
+      return res
+        .status(400)
+        .json({ message: "Email is already in use by another account" });
     }
 
     // Vérifier si l'username est déjà pris
-    const usernameExists = await sql`SELECT 1 FROM users WHERE username = ${username} AND id != ${userId}`;
+    const usernameExists =
+      await sql`SELECT 1 FROM users WHERE username = ${username} AND id != ${userId}`;
     if (usernameExists.length > 0) {
-      return res.status(400).json({ message: 'Username is already taken' });
+      return res.status(400).json({ message: "Username is already taken" });
     }
 
     // Mettre à jour l'utilisateur avec les nouveaux détails
@@ -54,21 +58,60 @@ export const updateUserDetails = async (req, res) => {
 
     // Vérification si l'utilisateur a bien été mis à jour
     if (result.length === 0) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
 
     // Retourner les nouvelles informations de l'utilisateur
     const updatedUser = result[0];
     res.json({
-      message: 'User details updated successfully',
+      message: "User details updated successfully",
       user: {
         id: updatedUser.id,
         username: updatedUser.username,
-        email: updatedUser.email
-      }
+        email: updatedUser.email,
+      },
     });
   } catch (e) {
     console.error(e);
-    return res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const updateUserBio = async (req, res) => {
+  const { bio } = req.body;
+  const userId = req.params.userId;
+
+  if (!bio || typeof bio !== "string")
+    return res.status(400).json({ message: "Invalid bio" });
+
+  try {
+    await sql`
+      UPDATE users
+      SET bio = ${bio}
+      WHERE id = ${userId}
+    `;
+    res.status(200).json({ message: "Bio updated successfully" });
+  } catch (error) {
+    console.error("Failed to update bio:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const getUserBio = async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const [user] = await sql`
+      SELECT bio FROM users WHERE id = ${userId}
+    `;
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({ bio: user.bio });
+  } catch (error) {
+    console.error("Error fetching user bio:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };
