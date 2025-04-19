@@ -1,6 +1,6 @@
-const loginBtn = document.querySelectorAll('#login-btn');
+const loginBtn = document.querySelectorAll('.login-btn');
 const signUpBtn = document.getElementById('sign-up-btn');
-const getStarted = document.querySelectorAll('#get-started-btn');
+const getStarted = document.querySelectorAll('.get-started-btn');
 
 loginBtn.forEach((btn) =>
   btn.addEventListener('click', () => {
