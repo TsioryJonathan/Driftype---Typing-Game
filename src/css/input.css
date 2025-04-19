@@ -143,6 +143,10 @@ body {
     color 0.3s;
 }
 
+.loader {
+  @apply h-6 w-6 animate-spin rounded-full border-4 border-[var(--color-border)] border-t-[var(--color-primary)];
+}
+
 #get-started {
   background:
     linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)),

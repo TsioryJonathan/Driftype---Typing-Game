@@ -3,7 +3,11 @@ import { API_URL } from '../login.js';
 const avgWpm = document.querySelectorAll('#avg-wpm');
 const avgAcc = document.querySelectorAll('#avg-accuracy');
 const maxWpm = document.querySelector('#max-wpm');
-const totalTest = document.querySelector('#complete-test');
+const totalTest = document.querySelectorAll('#complete-test');
+const leaderboardAvgWpm = document.querySelector('#leaderboard-avg-wpm');
+const leaderboardAvgAccuracy = document.querySelector(
+  '#leaderboard-avg-accuracy',
+);
 
 const displayDefaultValues = () => {
   avgAcc.forEach((field) => {
@@ -13,7 +17,9 @@ const displayDefaultValues = () => {
     field.textContent = '-';
   });
   maxWpm.textContent = '-';
-  totalTest.textContent = '-';
+  totalTest.forEach((field) => (field.textContent = '-'));
+  leaderboardAvgWpm.textContent = '-';
+  leaderboardAvgAccuracy.textContent = '-';
 };
 
 const renderOverallStat = async () => {
@@ -27,10 +33,10 @@ const renderOverallStat = async () => {
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
 
     const res = await fetch(`${API_URL}/stats/global/${user.id}`, {
-      signal: controller.signal
+      signal: controller.signal,
     });
     clearTimeout(timeoutId);
 
@@ -41,19 +47,17 @@ const renderOverallStat = async () => {
 
     const { total_test, max_wpm, avg_wpm, avg_accuracy } = data[0] || {};
 
-    if (avgWpm && avgAcc && maxWpm && totalTest) {
-      avgAcc.forEach((field) => {
-        field.textContent = `${Number(avg_accuracy).toFixed(1)}%`;
-      });
-      avgWpm.forEach((field) => {
-        field.textContent = `${Number(avg_wpm).toFixed(1)} wpm`;
-      });
-      maxWpm.textContent = max_wpm;
-      totalTest.textContent = total_test;
-    } else {
-      console.warn('Some DOM elements are missing');
-      displayDefaultValues();
-    }
+    avgAcc.forEach((field) => {
+      field.textContent = `${Number(avg_accuracy).toFixed(1)}%`;
+    });
+    avgWpm.forEach((field) => {
+      field.textContent = `${Number(avg_wpm).toFixed(1)} wpm`;
+    });
+    maxWpm ? (maxWpm.textContent = max_wpm) : null;
+
+    totalTest.forEach((field) => (field.textContent = total_test));
+
+   
   } catch (err) {
     console.error('Failed to fetch global stats:', err);
     displayDefaultValues();

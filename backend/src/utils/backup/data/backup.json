@@ -1,73 +1,461 @@
 {
-  "timestamp": "2025-04-17T10:15:33.255Z",
+  "timestamp": "2025-04-19T08:38:56.401Z",
   "data": {
     "users": [
       {
         "id": 1,
+        "username": "Tafita",
         "email": "hei.tafita.2@gmail.com",
-        "password": "$2a$10$iqiXsmB2pqk2eni6o0s4iOToSefTBKuXgDm9qWhI3s7rt1loYRcDO",
+        "password": "$2a$10$T7jmzKM4BBIesQ07jE6C4eulVRYfVPsFj5jGi/Dd6S2vuBCjB2CM6",
         "google_id": null,
         "created_at": "2025-04-08T17:56:02.916Z",
         "updated_at": "2025-04-08T17:56:02.916Z"
       },
       {
         "id": 2,
+        "username": "Tafita2",
         "email": "tafita@mail.hei.school",
         "password": "$2a$10$Z94t9.aY49zuTDfhGRNVBOIw1oyMzqnmfVREnzvdnpXhh4uTpTAMy",
         "google_id": null,
         "created_at": "2025-04-09T20:58:44.640Z",
         "updated_at": "2025-04-09T20:58:44.640Z"
-      }
-    ],
-    "gameStats": [],
-    "resetTokens": [
-      {
-        "id": 1,
-        "user_id": 2,
-        "token": "26e685b18b82b85a2238b56815ac41188ef0e97164b56d003a6765e0275f1cc3",
-        "expires_at": "2025-04-09T22:01:19.650Z",
-        "used": false,
-        "created_at": "2025-04-09T21:01:19.651Z"
-      },
-      {
-        "id": 2,
-        "user_id": 2,
-        "token": "3384870f1180c930bca53c2245d338a78db751e0a7eddc9e681c2088110ad657",
-        "expires_at": "2025-04-09T22:01:23.733Z",
-        "used": false,
-        "created_at": "2025-04-09T21:01:23.734Z"
-      },
-      {
-        "id": 3,
-        "user_id": 2,
-        "token": "56e57e931f22ba017760ed7de7a898e9508f698e108822969400b469b93ea7c6",
-        "expires_at": "2025-04-09T22:01:24.672Z",
-        "used": false,
-        "created_at": "2025-04-09T21:01:24.672Z"
       },
       {
         "id": 4,
-        "user_id": 2,
-        "token": "8671a4b494662450e097f7d7036dfa5e08cad5be7857004a4f25a032d2dce21c",
-        "expires_at": "2025-04-09T22:01:25.473Z",
-        "used": false,
-        "created_at": "2025-04-09T21:01:25.474Z"
+        "username": "badoda",
+        "email": "benjamin@gmail.com",
+        "password": "$2a$10$tVyL85DHBMwZtReqTuroKuNu20W5aNS/ToM3qS0V31DuD.ShDfj22",
+        "google_id": null,
+        "created_at": "2025-04-17T10:45:34.570Z",
+        "updated_at": "2025-04-17T10:45:34.570Z"
       },
       {
         "id": 5,
-        "user_id": 2,
-        "token": "ddc2bf6384fdf9ed8ce9abe9c3935549f0f82627983bc35672199a89c2bc0580",
-        "expires_at": "2025-04-09T22:01:31.181Z",
-        "used": false,
-        "created_at": "2025-04-09T21:01:31.182Z"
+        "username": "elodie_la_poupousy",
+        "email": "elodie@gmail.com",
+        "password": "$2a$10$jz31jtkVEebSE1cJjUL3J.Vh30Wwtn2TYGhtDalYgh61/cObnMxoG",
+        "google_id": null,
+        "created_at": "2025-04-17T11:36:32.426Z",
+        "updated_at": "2025-04-17T11:39:24.674Z"
       },
       {
         "id": 6,
-        "user_id": 2,
-        "token": "9753ad1671f940f7450d320bd975f0f958a9988eee0fa469f9a2b1b7ddcbfaf1",
-        "expires_at": "2025-04-09T22:01:39.806Z",
-        "used": false,
-        "created_at": "2025-04-09T21:01:39.806Z"
+        "username": "joba",
+        "email": "joba@gmail.com",
+        "password": "$2a$10$kL6IJYPjzGgCg//swQ46keb.4/2aD/i05CzWfpEuGbuhfFy5ILtWG",
+        "google_id": null,
+        "created_at": "2025-04-18T08:09:14.302Z",
+        "updated_at": "2025-04-18T08:09:14.302Z"
+      },
+      {
+        "id": 7,
+        "username": "Fiderana17",
+        "email": "fideranalepd@gmail.com",
+        "password": "$2a$10$4C9ZpMLiXSrevGR3SfjDGuTUOBpvNbes/LHA6jkFad31.1CvbNAfi",
+        "google_id": null,
+        "created_at": "2025-04-18T08:48:19.031Z",
+        "updated_at": "2025-04-18T09:02:09.981Z"
+      },
+      {
+        "id": 3,
+        "username": "Jonathan",
+        "email": "hei.jonathan.3@gmail.com",
+        "password": "$2a$10$BDDKhe.zV071FG.vGvSkWOQaqTx2.kvCyKaLZYWUnVckhaxH8rbLi",
+        "google_id": null,
+        "created_at": "2025-04-17T10:35:53.518Z",
+        "updated_at": "2025-04-19T07:29:50.401Z"
+      }
+    ],
+    "gameStats": [
+      {
+        "id": 1,
+        "user_id": 3,
+        "wpm": 58,
+        "accuracy": "98.00",
+        "language": "en",
+        "difficulty": "Hard",
+        "time_taken": 30,
+        "created_at": "2025-04-17T10:43:29.076Z"
+      },
+      {
+        "id": 2,
+        "user_id": 3,
+        "wpm": 49,
+        "accuracy": "98.40",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-17T10:44:53.510Z"
+      },
+      {
+        "id": 3,
+        "user_id": 4,
+        "wpm": 56,
+        "accuracy": "96.58",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-17T10:46:12.096Z"
+      },
+      {
+        "id": 4,
+        "user_id": 4,
+        "wpm": 48,
+        "accuracy": "96.75",
+        "language": "fr",
+        "difficulty": "medium",
+        "time_taken": 30,
+        "created_at": "2025-04-17T10:47:28.959Z"
+      },
+      {
+        "id": 5,
+        "user_id": 3,
+        "wpm": 57,
+        "accuracy": "97.95",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-17T11:02:46.638Z"
+      },
+      {
+        "id": 6,
+        "user_id": 3,
+        "wpm": 36,
+        "accuracy": "91.92",
+        "language": "de",
+        "difficulty": "hard",
+        "time_taken": 30,
+        "created_at": "2025-04-17T11:04:26.608Z"
+      },
+      {
+        "id": 7,
+        "user_id": 3,
+        "wpm": 54,
+        "accuracy": "99.26",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-17T11:05:56.326Z"
+      },
+      {
+        "id": 8,
+        "user_id": 3,
+        "wpm": 49,
+        "accuracy": "95.35",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-17T11:35:28.497Z"
+      },
+      {
+        "id": 9,
+        "user_id": 5,
+        "wpm": 43,
+        "accuracy": "85.60",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-17T11:37:13.754Z"
+      },
+      {
+        "id": 10,
+        "user_id": 3,
+        "wpm": 50,
+        "accuracy": "96.12",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-17T13:16:56.997Z"
+      },
+      {
+        "id": 11,
+        "user_id": 3,
+        "wpm": 35,
+        "accuracy": "69.29",
+        "language": "fr",
+        "difficulty": "medium",
+        "time_taken": 60,
+        "created_at": "2025-04-17T13:55:45.367Z"
+      },
+      {
+        "id": 12,
+        "user_id": 3,
+        "wpm": 46,
+        "accuracy": "97.46",
+        "language": "de",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-17T14:07:16.365Z"
+      },
+      {
+        "id": 13,
+        "user_id": 3,
+        "wpm": 51,
+        "accuracy": "97.69",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-17T14:12:12.424Z"
+      },
+      {
+        "id": 14,
+        "user_id": 3,
+        "wpm": 51,
+        "accuracy": "99.22",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-17T14:36:38.344Z"
+      },
+      {
+        "id": 15,
+        "user_id": 3,
+        "wpm": 53,
+        "accuracy": "97.78",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-17T16:46:14.706Z"
+      },
+      {
+        "id": 16,
+        "user_id": 3,
+        "wpm": 45,
+        "accuracy": "93.31",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 90,
+        "created_at": "2025-04-17T16:50:17.210Z"
+      },
+      {
+        "id": 17,
+        "user_id": 3,
+        "wpm": 26,
+        "accuracy": "86.67",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T05:07:57.263Z"
+      },
+      {
+        "id": 18,
+        "user_id": 3,
+        "wpm": 43,
+        "accuracy": "98.18",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T05:10:19.634Z"
+      },
+      {
+        "id": 19,
+        "user_id": 3,
+        "wpm": 52,
+        "accuracy": "100.00",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T05:11:05.325Z"
+      },
+      {
+        "id": 20,
+        "user_id": 3,
+        "wpm": 47,
+        "accuracy": "96.69",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T05:35:42.063Z"
+      },
+      {
+        "id": 21,
+        "user_id": 3,
+        "wpm": 48,
+        "accuracy": "90.30",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T06:07:55.342Z"
+      },
+      {
+        "id": 22,
+        "user_id": 3,
+        "wpm": 57,
+        "accuracy": "96.60",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T06:13:26.004Z"
+      },
+      {
+        "id": 23,
+        "user_id": 3,
+        "wpm": 53,
+        "accuracy": "98.51",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T06:16:50.243Z"
+      },
+      {
+        "id": 24,
+        "user_id": 3,
+        "wpm": 14,
+        "accuracy": "100.00",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T06:19:07.237Z"
+      },
+      {
+        "id": 25,
+        "user_id": 3,
+        "wpm": 2,
+        "accuracy": "40.00",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T06:19:48.294Z"
+      },
+      {
+        "id": 26,
+        "user_id": 3,
+        "wpm": 48,
+        "accuracy": "96.80",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T06:21:16.774Z"
+      },
+      {
+        "id": 27,
+        "user_id": 3,
+        "wpm": 52,
+        "accuracy": "96.32",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T06:25:33.869Z"
+      },
+      {
+        "id": 28,
+        "user_id": 3,
+        "wpm": 44,
+        "accuracy": "83.97",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T08:26:27.113Z"
+      },
+      {
+        "id": 29,
+        "user_id": 7,
+        "wpm": 12,
+        "accuracy": "34.44",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T08:49:19.966Z"
+      },
+      {
+        "id": 30,
+        "user_id": 7,
+        "wpm": 50,
+        "accuracy": "93.98",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T08:51:44.824Z"
+      },
+      {
+        "id": 31,
+        "user_id": 7,
+        "wpm": 39,
+        "accuracy": "85.84",
+        "language": "de",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T08:59:45.420Z"
+      },
+      {
+        "id": 32,
+        "user_id": 7,
+        "wpm": 45,
+        "accuracy": "87.69",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T09:01:23.721Z"
+      },
+      {
+        "id": 33,
+        "user_id": 3,
+        "wpm": 54,
+        "accuracy": "99.28",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T09:16:40.594Z"
+      },
+      {
+        "id": 34,
+        "user_id": 3,
+        "wpm": 29,
+        "accuracy": "91.36",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T11:14:42.183Z"
+      },
+      {
+        "id": 35,
+        "user_id": 3,
+        "wpm": 29,
+        "accuracy": "98.19",
+        "language": "en",
+        "difficulty": "hard",
+        "time_taken": 90,
+        "created_at": "2025-04-18T11:18:54.578Z"
+      },
+      {
+        "id": 36,
+        "user_id": 3,
+        "wpm": 27,
+        "accuracy": "95.71",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T11:20:14.356Z"
+      },
+      {
+        "id": 37,
+        "user_id": 3,
+        "wpm": 24,
+        "accuracy": "92.31",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T11:21:23.970Z"
+      },
+      {
+        "id": 38,
+        "user_id": 3,
+        "wpm": 35,
+        "accuracy": "96.67",
+        "language": "en",
+        "difficulty": "easy",
+        "time_taken": 30,
+        "created_at": "2025-04-18T11:33:40.809Z"
+      }
+    ],
+    "resetTokens": [
+      {
+        "id": 1,
+        "user_id": 3,
+        "token": "d5e58cd55d5a263b84e9e0ad943e47cdc572fddb93f93ebdc406aca490864571",
+        "expires_at": "2025-04-18T10:06:52.295Z",
+        "used": true,
+        "created_at": "2025-04-18T09:03:57.222Z"
       }
     ]
   }

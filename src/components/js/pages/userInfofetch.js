@@ -1,26 +1,31 @@
 const usernameField = document.querySelectorAll('#username');
+const navUsername = document.querySelector('#nav_username');
 const usernameInput = document.querySelector('#username-input');
 const emailInput = document.querySelectorAll('#email');
 const usernameLabel = document.querySelector('#username-label');
 const emailLabel = document.querySelector('#email-label');
 
-const getUsernameNdEmail = async () => {
-  try {
-    const userData = localStorage.getItem('typing_game_user');
-    if (!userData) {
-      console.debug('No user data found, setting as Guest');
-      if (usernameField)
-        usernameField.forEach((field) => (field.textContent = 'Guest'));
-      if (usernameInput) usernameInput.value = 'Guest';
-      if (emailInput)
-        emailInput.forEach((input) => {
-          if (input) input.value = 'Guest';
-        });
-      if (emailLabel) emailLabel.textContent = 'Guest';
-      if (usernameLabel) usernameLabel.textContent = 'Guest';
-      return null;
-    }
 
+
+
+const getUsernameNdEmail = async () => {
+  const userData = localStorage.getItem('typing_game_user');
+  if (!userData) {
+    console.debug('No user data found, setting as Guest');
+    if (usernameField)
+      usernameField.forEach((field) => (field.textContent = 'Guest'));
+
+    if (usernameInput) usernameInput.value = 'Guest';
+    if (emailInput)
+      emailInput.forEach((input) => {
+        if (input) input.value = 'Guest';
+      });
+    if (emailLabel) emailLabel.textContent = 'Guest';
+    if (usernameLabel) usernameLabel.textContent = 'Guest';
+    navUsername.textContent = 'Guest';
+    return null;
+  }
+  try {
     const { id, email } = JSON.parse(userData);
     if (!id) {
       console.error('Invalid user data: no ID found');
@@ -52,6 +57,7 @@ const getUsernameNdEmail = async () => {
       });
     if (emailLabel) emailLabel.textContent = email;
     if (usernameLabel) usernameLabel.textContent = username;
+    navUsername.textContent = username;
 
     return { id, username, email };
   } catch (error) {
@@ -62,7 +68,7 @@ const getUsernameNdEmail = async () => {
 
 // Only run if we're on a page that needs user info
 if (
-  document.querySelector('h2#username') ||
+  document.querySelector('#username') ||
   document.querySelector('#username-input')
 ) {
   getUsernameNdEmail();
