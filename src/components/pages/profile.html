@@ -162,106 +162,191 @@
     </header>
 
     <main>
-      <div class="max-w-6xl mx-auto py-8 px-4 space-y-8">
+      <div class="max-w-7xl mx-auto py-8 px-4 space-y-8">
         <!-- Header Section -->
         <div
-          class="bg-[var(--color-card)] rounded-xl p-8 border border-[var(--color-border)]"
+          class="flex flex-col md:flex-row gap-8 mt-10 border border-[var(--color-border)] rounded-lg p-8"
         >
-          <div class="flex items-start justify-between">
-            <div class="flex items-center space-x-6">
-              <div
-                class="w-24 h-24 rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center text-white text-4xl font-bold"
-                id="initial"
-              ></div>
+          <!-- Avatar -->
+          <div
+            class="flex-shrink-0 flex justify-center md:justify-start relative"
+          >
+            <div
+              class="w-32 h-32 rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center text-white text-4xl font-bold shadow-lg"
+              id="initial"
+            ></div>
+            <button
+              class="absolute top-[30%] z-50 right-0 border border-[var(--color-border)] bg-[var(--color-bg)] rounded-full w-10 h-10 p-2 transition hover:bg-[var(--color-bg-secondary)] duration-150 ease-in-out cursor-pointer"
+            >
+              <i class="fas fa-camera"></i>
+            </button>
+          </div>
+
+          <!-- Infos + Stats -->
+          <div class="flex-1">
+            <!-- User Info -->
+            <div class="flex flex-col md:flex-row items-start justify-between">
               <div>
                 <div class="flex items-center space-x-3">
-                  <div
-                    class="text-3xl font-bold text-[var(--color-text)] relative flex items-center"
+                  <h1
+                    class="text-3xl font-bold text-[var(--color-text)]"
                     id="username"
-                  >
-                    <div role="status" class="max-w-sm animate-pulse">
-                      <div
-                        class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"
-                      ></div>
-                      <div
-                        class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[120px] mb-2.5"
-                      ></div>
-
-                      <span class="sr-only">Loading...</span>
-                    </div>
-                  </div>
+                  ></h1>
                   <button
-                    class="p-2 rounded-full hover:bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] cursor-pointer flex items-center justify-center"
+                    class="p-2 w-8 h-8 flex items-center justify-center rounded-full hover:bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] cursor-pointer"
                   >
                     <i class="fas fa-pen"></i>
                   </button>
                 </div>
-                <p class="text-[var(--color-text-secondary)] mt-2">
-                  Passionate about typing and always striving to improve my
-                  speed and accuracy.
-                </p>
-                <div
-                  class="flex items-center space-x-4 mt-4 text-sm text-[var(--color-text-secondary)]"
-                >
-                  <span class="flexx items-center gap-2">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Paris, France
-                  </span>
-                  <span class="flexx items-center gap-2">
-                    <i class="fas fa-calendar-alt"></i>
-                    Joined June 2023
-                  </span>
+                <!-- Biography -->
+                <div class="mt-6 space-y-4">
+                  <!-- Section title -->
+                  <h2
+                    class="text-xl font-semibold text-[var(--color-text)] flex items-center gap-2"
+                  >
+                    <i
+                      class="fas fa-info-circle text-[var(--color-primary)]"
+                    ></i>
+                    About
+                  </h2>
+
+                  <!-- Bio text -->
+                  <div
+                    class="text-[var(--color-text-secondary)] text-sm leading-relaxed"
+                  >
+                    <p>
+                      Passionate about typing and always striving to improve my
+                      speed and accuracy. I love challenges, statistics, and the
+                      click-clack of a mechanical keyboard.
+                    </p>
+                  </div>
+
+                  <!-- Details: location & join date -->
+                  <div
+                    class="flex flex-col sm:flex-row sm:items-center gap-3 text-sm text-[var(--color-text-secondary)]"
+                  >
+                    <div class="flex items-center gap-2">
+                      <i
+                        class="fas fa-calendar-alt text-[var(--color-primary)]"
+                      ></i>
+                      <span>Joined June 2023</span>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              <!-- Boutons -->
+              <div class="flex space-x-2 mt-4 md:mt-0">
+                <button
+                  class="px-8 py-2 bg-[var(--color-primary)] text-[var(--color-text)] rounded-md hover:bg-[var(--color-primary-hover)] transition-colors cursor-pointer"
+                >
+                  Follow
+                </button>
+                <button
+                  class="px-5 w-8 rounded-md flex items-center justify-center border border-[var(--color-border)] hover:bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] cursor-pointer"
+                >
+                  <i class="fas fa-share"></i>
+                </button>
+              </div>
             </div>
-            <div class="flex space-x-2">
-              <button
-                class="px-6 py-1 bg-[var(--color-primary)] text-[var(--color-text)] rounded-md hover:bg-[var(--color-primary-hover)] transition-colors cursor-pointer"
+
+            <!-- Stat Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+              <!-- Card 1 -->
+              <div
+                class="p-6 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-all group cursor-pointer"
               >
-                Follow
-              </button>
-              <button
-                class="p-2 rounded-lg border border-[var(--color-border)] hover:bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] cursor-pointer"
+                <div class="flex items-center gap-4">
+                  <div class="p-3 rounded-lg bg-[var(--color-active-500)]/5">
+                    <i class="fas fa-users"></i>
+                  </div>
+                  <div>
+                    <div
+                      class="text-2xl font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)]"
+                    >
+                      -
+                    </div>
+                    <div class="text-sm text-[var(--color-text-secondary)]">
+                      Following
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div
+                class="p-6 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-all group cursor-pointer"
               >
-                <i class="fas fa-share text-[var(--color-text-secondary)]"></i>
-              </button>
-            </div>
-          </div>
-          <div class="grid grid-cols-4 gap-4 mt-8">
-            <div class="text-center">
-              <div class="text-2xl font-bold text-[var(--color-text)]">347</div>
-              <div class="text-sm text-[var(--color-text-secondary)]">
-                Tests
+                <div class="flex items-center gap-4">
+                  <div class="p-3 rounded-lg bg-[var(--color-active-500)]/5">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
+                  <div>
+                    <div
+                      class="text-2xl font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)]"
+                      id="avg-wpm"
+                    >
+                      -
+                    </div>
+                    <div class="text-sm text-[var(--color-text-secondary)]">
+                      Avg. Wpm
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="text-center">
-              <div class="text-2xl font-bold text-[var(--color-text)]">75</div>
-              <div class="text-sm text-[var(--color-text-secondary)]">
-                Avg. WPM
+
+              <!-- Card 3 -->
+              <div
+                class="p-6 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-all group cursor-pointer"
+              >
+                <div class="flex items-center gap-4">
+                  <div class="p-3 rounded-lg bg-[var(--color-active-500)]/5">
+                    <i class="fas fa-bullseye text-blue-500"></i>
+                  </div>
+                  <div>
+                    <div
+                      class="text-2xl font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)]"
+                      id="avg-accuracy"
+                    >
+                      -
+                    </div>
+                    <div class="text-sm text-[var(--color-text-secondary)]">
+                      Accuracy
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="text-center">
-              <div class="text-2xl font-bold text-[var(--color-text)]">
-                98.2%
-              </div>
-              <div class="text-sm text-[var(--color-text-secondary)]">
-                Accuracy
-              </div>
-            </div>
-            <div class="text-center">
-              <div class="text-2xl font-bold text-[var(--color-text)]">45</div>
-              <div class="text-sm text-[var(--color-text-secondary)]">
-                Following
+
+              <!-- Card 4 -->
+              <div
+                class="p-6 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-all group cursor-pointer"
+              >
+                <div class="flex items-center gap-4">
+                  <div class="p-3 rounded-lg bg-[var(--color-active-500)]/5">
+                    <i class="fas fa-keyboard"></i>
+                  </div>
+                  <div>
+                    <div
+                      class="text-2xl font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)]"
+                      id="complete-test"
+                    >
+                      -
+                    </div>
+                    <div class="text-sm text-[var(--color-text-secondary)]">
+                      Tests
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Achievements & Personal Bests -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <!-- Achievements -->
           <div
-            class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)]"
+            class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] col-span-2"
           >
             <h2 class="text-xl font-bold text-[var(--color-text)] mb-4">
               Achievements
@@ -338,37 +423,107 @@
           </div>
         </div>
 
-        <!-- Recent Activity -->
-        <div
-          class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)]"
-        >
-          <h2 class="text-xl font-bold text-[var(--color-text)] mb-4">
-            Recent Activity
-          </h2>
-          <div class="space-y-4">
-            <div
-              class="flex items-center justify-between p-4 rounded-lg bg-[var(--color-bg-secondary)] border border-[var(--color-border)]"
-            >
-              <div class="flex items-center space-x-4">
-                <div
-                  class="p-2 rounded-full bg-[var(--color-success)] bg-opacity-10 text-[var(--color-success)]"
-                >
-                  📈
+        <!-- Recent Activity and social-->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] col-span-2"
+          >
+            <h2 class="text-xl font-bold text-[var(--color-text)] mb-4">
+              Recent Activity
+            </h2>
+            <div class="space-y-4">
+              <div
+                class="flex items-center justify-between p-4 rounded-lg bg-[var(--color-bg-secondary)] border border-[var(--color-border)]"
+              >
+                <div class="flex items-center space-x-4">
+                  <div
+                    class="p-2 rounded-full bg-[var(--color-success)] bg-opacity-10 text-[var(--color-success)]"
+                  >
+                    📈
+                  </div>
+                  <div>
+                    <div class="font-medium text-[var(--color-text)]">
+                      New Personal Best
+                    </div>
+                    <div class="text-sm text-[var(--color-text-secondary)]">
+                      Achieved 120 WPM
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <div class="font-medium text-[var(--color-text)]">
-                    New Personal Best
-                  </div>
-                  <div class="text-sm text-[var(--color-text-secondary)]">
-                    Achieved 120 WPM
-                  </div>
+                <div class="text-xs text-[var(--color-text-secondary)]">
+                  2 hours ago
                 </div>
               </div>
-              <div class="text-xs text-[var(--color-text-secondary)]">
-                2 hours ago
-              </div>
+              <!-- Add others the same way... -->
             </div>
-            <!-- Add others the same way... -->
+          </div>
+          <div
+            class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] flex flex-col gap-2"
+          >
+            <div
+              class="flex items-center justify-between p-3 rounded-lg hover:bg-[var(--color-bg-secondary)] transition-colors cursor-pointer group"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="text-[var(--color-text-secondary)] group-hover:text-[var(--color-primary)] transition-colors"
+                >
+                  <i class="fas fa-user-friends"></i>
+                  <!-- Remplace par l'icône que tu veux -->
+                </div>
+                <span class="text-[var(--color-text-secondary)]">
+                  Following
+                </span>
+              </div>
+              <span class="font-medium text-[var(--color-text)]">45</span>
+            </div>
+            <!-- Following -->
+            <div
+              class="flex items-center justify-between p-3 rounded-lg hover:bg-[var(--color-bg-secondary)] transition-colors cursor-pointer group"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="text-[var(--color-text-secondary)] group-hover:text-[var(--color-primary)] transition-colors"
+                >
+                  <i class="fas fa-user-friends"></i>
+                </div>
+                <span class="text-[var(--color-text-secondary)]">
+                  Following
+                </span>
+              </div>
+              <span class="font-medium text-[var(--color-text)]">45</span>
+            </div>
+
+            <!-- Followers -->
+            <div
+              class="flex items-center justify-between p-3 rounded-lg hover:bg-[var(--color-bg-secondary)] transition-colors cursor-pointer group"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="text-[var(--color-text-secondary)] group-hover:text-[var(--color-primary)] transition-colors"
+                >
+                  <i class="fas fa-users"></i>
+                </div>
+                <span class="text-[var(--color-text-secondary)]">
+                  Followers
+                </span>
+              </div>
+              <span class="font-medium text-[var(--color-text)]">124</span>
+            </div>
+
+            <!-- Likes -->
+            <div
+              class="flex items-center justify-between p-3 rounded-lg hover:bg-[var(--color-bg-secondary)] transition-colors cursor-pointer group"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="text-[var(--color-text-secondary)] group-hover:text-[var(--color-primary)] transition-colors"
+                >
+                  <i class="fas fa-heart"></i>
+                </div>
+                <span class="text-[var(--color-text-secondary)]">Likes</span>
+              </div>
+              <span class="font-medium text-[var(--color-text)]">8.2k</span>
+            </div>
           </div>
         </div>
       </div>
@@ -380,5 +535,9 @@
     ></script>
     <script src="../js/logoutFunc.js" type="module"></script>
     <script src="../js/navBarRedirection.js" type="module"></script>
+    <script
+      src="../js/pages/StatPageScript/getOverallStat.js"
+      type="module"
+    ></script>
   </body>
 </html>

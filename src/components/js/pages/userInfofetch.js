@@ -5,11 +5,8 @@ const emailInput = document.querySelectorAll('#email');
 const usernameLabel = document.querySelector('#username-label');
 const emailLabel = document.querySelector('#email-label');
 
-console.log(navUsername);
-console.log(usernameField);
-console.log(usernameLabel);
-console.log(navUsername);
-console.log(navUsername);
+
+
 
 const getUsernameNdEmail = async () => {
   const userData = localStorage.getItem('typing_game_user');

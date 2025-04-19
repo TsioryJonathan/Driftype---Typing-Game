@@ -18,7 +18,7 @@ const getUsernameNdEmail = async () => {
   if (!response.ok) throw new Error('User not found');
   const data = await response.json();
   const username = data[0].username;
-
+  navUsername.textContent = username;
   usernameField.forEach((field) => (field.innerText = username));
   initial.textContent = username[0];
 };

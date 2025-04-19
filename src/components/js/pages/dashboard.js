@@ -50,6 +50,8 @@ const initDashboard = () => {
       badgeManager.saveBadges(userId, []);
     }
 
+    displayUserBadges(userId);
+
     // Initialisation des menus et dropdowns
   } catch (error) {
     console.error('Erreur initialisation dashboard:', error);
@@ -142,4 +144,3 @@ const initDropdownOptions = (dropdown, select, textElement) => {
 initDashboard();
 initUserMenu();
 initDropdowns();
-displayUserBadges(userId);
