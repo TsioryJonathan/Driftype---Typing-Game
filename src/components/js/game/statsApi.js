@@ -1,4 +1,5 @@
 import { API_URL } from "../../utils/url.js";
+import { getToken } from "../../utils/auth.js";
 
 export const statPost = async (
   userId,
@@ -9,7 +10,7 @@ export const statPost = async (
   time_taken
 ) => {
   try {
-    const token = localStorage.getItem("typing_game_token");
+    const token = getToken();
     const response = await fetch(`${API_URL}/stats/${userId}`, {
       method: "POST",
       headers: {

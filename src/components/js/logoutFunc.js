@@ -1,8 +1,9 @@
+import { clearAuth } from '../../utils/auth.js';
+
 const logoutBtn = document.getElementById("logout-btn");
 
 const logout = () => {
-  localStorage.removeItem("typing_game_user");
-  localStorage.removeItem("typing_game_token");
+  clearAuth();
   window.location.replace("/index.html");
 };
 

@@ -1,4 +1,5 @@
 import { API_URL } from "../../../../utils/url.js";
+import { getUser, getToken } from "../../../../utils/auth.js";
 
 const avgWpm = document.querySelectorAll("#avg-wpm");
 const avgAcc = document.querySelectorAll("#avg-accuracy");
@@ -8,7 +9,6 @@ const leaderboardAvgWpm = document.querySelector("#leaderboard-avg-wpm");
 const leaderboardAvgAccuracy = document.querySelector(
   "#leaderboard-avg-accuracy"
 );
-const token = localStorage.getItem("typing_game_token");
 
 const displayDefaultValues = () => {
   avgAcc.forEach((field) => {
@@ -24,13 +24,15 @@ const displayDefaultValues = () => {
 };
 
 const renderOverallStat = async () => {
-  const user = JSON.parse(localStorage.getItem("typing_game_user"));
+  const user = getUser();
 
   if (!user?.id) {
     console.warn("No user ID found in localStorage.");
     displayDefaultValues();
     return;
   }
+
+  const token = getToken();
 
   try {
     const controller = new AbortController();

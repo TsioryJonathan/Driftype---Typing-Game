@@ -9,6 +9,7 @@ import {
 import { calcConsistency, getTimelineData } from "./chart.js";
 import { statPost } from "./statsApi.js";
 import { checkBadges } from "../badges.js";
+import { getUser } from "../../utils/auth.js";
 
 export const launchFireworks = () => {
   if (window.confetti) {
@@ -117,16 +118,16 @@ export const endTest = async () => {
   renderResults(stats);
   launchFireworks();
 
-  const userInfo = localStorage.getItem("typing_game_user");
+  const user = getUser();
 
-  if (!userInfo) {
+  if (!user) {
     document
       .getElementById("not-logged-popup")
       .classList.replace("hidden", "flex");
     return;
   }
 
-  const { id } = JSON.parse(userInfo);
+  const { id } = user;
 
   document.getElementById("stat-popup").classList.replace("hidden", "flex");
 

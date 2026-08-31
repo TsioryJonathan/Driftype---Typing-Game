@@ -1,4 +1,5 @@
-import { API_URL } from "../../../../utils/url.js";
+import { getUser } from "../../../../utils/auth.js";
+import { apiGet, apiPost } from "../../../../utils/api.js";
 
 const bioText = document.getElementById("bio-text");
 const editBtn = document.getElementById("edit-bio-btn");
@@ -8,12 +9,12 @@ const cancelBtn = document.getElementById("cancel-bio-btn");
 const saveBtn = document.getElementById("save-bio-btn");
 
 window.addEventListener("DOMContentLoaded", async () => {
-  if (!localStorage.getItem("typing_game_user")) {
+  if (!getUser()) {
     console.error("User not logged in");
     bioText.textContent = "";
     return;
   } else {
-    const { id } = JSON.parse(localStorage.getItem("typing_game_user"));
+    const { id } = getUser();
     bioText.textContent = await fetchUserBio(id);
   }
 });
@@ -31,13 +32,12 @@ cancelBtn.addEventListener("click", () => {
 
 // Save the bio
 saveBtn.addEventListener("click", async () => {
-  if (!localStorage.getItem("typing_game_user")) {
+  if (!getUser()) {
     console.error("User not logged in");
     return;
   }
-  const { id } = JSON.parse(localStorage.getItem("typing_game_user"));
+  const { id } = getUser();
   const newBio = bioInput.value.trim();
-  const token = localStorage.getItem("typing_game_token");
 
   if (!newBio) {
     bioText.textContent = "";
@@ -46,16 +46,7 @@ saveBtn.addEventListener("click", async () => {
   }
 
   try {
-    const res = await fetch(`${API_URL}/user/bio/${id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ bio: newBio }),
-    });
-
-    if (!res.ok) throw new Error("Failed to update bio");
+    await apiPost(`/user/bio/${id}`, { bio: newBio });
 
     bioText.textContent = newBio;
     bioModal.classList.replace("flex", "hidden");
@@ -67,21 +58,8 @@ saveBtn.addEventListener("click", async () => {
 // fetch the bio
 
 const fetchUserBio = async (userId) => {
-  const token = localStorage.getItem("typing_game_token");
   try {
-    const response = await fetch(`${API_URL}/user/bio/${userId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch bio: ${response.status}`);
-    }
-
-    const data = await response.json();
+    const data = await apiGet(`/user/bio/${userId}`);
     return data.bio || "";
   } catch (error) {
     console.error("Error fetching user bio:", error);

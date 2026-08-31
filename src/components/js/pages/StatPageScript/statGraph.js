@@ -1,4 +1,5 @@
 import { API_URL } from "../../../../utils/url.js";
+import { getUser, getToken } from "../../../../utils/auth.js";
 
 function showLoginWarningToast() {
   const toast = document.getElementById("login-warning-toast");
@@ -12,12 +13,12 @@ function showLoginWarningToast() {
 }
 
 const getStat = async () => {
-  if (!localStorage.getItem("typing_game_user")) {
+  if (!getUser()) {
     showLoginWarningToast();
     return { wpm: [0], accuracy: [0] };
   }
-  const { id } = JSON.parse(localStorage.getItem("typing_game_user"));
-  const token = localStorage.getItem("typing_game_token");
+  const { id } = getUser();
+  const token = getToken();
 
   try {
     const controller = new AbortController();
