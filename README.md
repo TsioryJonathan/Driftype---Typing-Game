@@ -57,8 +57,8 @@ A modern typing game built with HTML, CSS, and Vanilla JavaScript. Features incl
    ```
 6. Add authorized redirect URIs:
    ```
-   http://localhost:5500/src/components/pages/login.html
-   http://127.0.0.1:5500/src/components/pages/login.html
+    http://localhost:5500/login
+    http://127.0.0.1:5500/login
    ```
 7. Copy credentials to your environment files
 

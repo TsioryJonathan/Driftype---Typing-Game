@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
       rel="shortcut icon"
-      href="../../assets/noBg.png"
+      href="../src/assets/noBg.png"
       type="image/x-icon"
 >
     <title>Driftype - Login</title>
-    <script src="../js/toggleTheme.js"></script>
+    <script src="../src/components/js/toggleTheme.js"></script>
     <link href="/src/css/output.css" rel="stylesheet">
     <link
       rel="stylesheet"
@@ -35,7 +35,7 @@
   >
     <div class="hidden md:block">
       <img
-        src="../../assets/bg-clipboard.png"
+        src="../src/assets/bg-clipboard.png"
         alt="background"
         class="rounded-lg absolute bottom-1/2 translate-y-1/2 md:translate-0 md:relative w-full md:max-w-lg z-[-2]"
 >
@@ -72,7 +72,7 @@
             data-client_id="794752247490-dspn67dppujlm4gupbidvpqah08runh2.apps.googleusercontent.com"
             data-context="signin"
             data-ux_mode="popup"
-            data-login_uri="http://localhost:5500/src/components/pages/login.html"
+            data-login_uri="/login"
             data-callback="handleGoogleSignIn"
             data-auto_prompt="false"
           ></div>
@@ -90,7 +90,7 @@
       <p class="mt-4 text-center text-sm text-[var(--color-text)]/50">
         Not a member?
         <a
-          href="register.html"
+          href="/register"
           class="text-[var(--color-text-secondary)] hover:text-active-600"
         >
           Sign up now
@@ -102,12 +102,12 @@
       ></div>
     </div>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script type="module" src="../js/pages/login.js"></script>
-    <script src="../js/appearance.js"></script>
+    <script type="module" src="../src/components/js/pages/login.js"></script>
+    <script src="../src/components/js/appearance.js"></script>
     <script>
       loadAppearanceSettings();
     </script>
-    <script src="../js/notificationAndPrivacy.js"></script>
+    <script src="../src/components/js/notificationAndPrivacy.js"></script>
     <script>
       loadNotificationAndPrivacySettings();
     </script>

@@ -27,7 +27,7 @@ function loadSoundAndFeedbackSettings() {
     // Play/pause background music on applicable pages
     const enableSounds = settings.enableSounds;
     const page = window.location.pathname.split('/').pop();
-    if (enableSounds && (page === 'dashboard.html' || page === 'gameStat.html')) {
+    if (enableSounds && (page === 'dashboard' || page === 'statistics')) {
         bgMusic.play().catch(() => {
             const retryPlay = () => {
                 bgMusic.play().catch(() => {});

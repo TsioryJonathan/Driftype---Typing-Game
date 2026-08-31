@@ -86,7 +86,7 @@ const initLogin = () => {
             >
           </div>
           <a
-            href="forgot-password.html"
+            href="/forgot-password"
             class="text-[var(--color-text-secondary)] hover:text-active-600 text-sm"
             >Forgot Password?</a
           >
@@ -195,12 +195,7 @@ export const storeAuthData = (token, user) => {
 
 export const redirectToDashboard = () => {
   try {
-    const redirectUrl = new URL(
-      "src/components/pages/dashboard.html",
-      window.location.origin
-    );
-    logger.debug("Redirecting to dashboard", { url: redirectUrl.toString() });
-    window.location.replace(redirectUrl.toString());
+    window.location.replace("/dashboard");
   } catch (e) {
     logger.error("Failed to redirect to dashboard", { error: e.message });
     console.error("Redirection error:", e);

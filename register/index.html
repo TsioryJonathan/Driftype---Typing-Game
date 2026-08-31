@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driftype - Register</title>
-    <script src="../js/toggleTheme.js"></script>
+    <script src="../src/components/js/toggleTheme.js"></script>
     <link href="/src/css/output.css" rel="stylesheet">
     <link
       rel="shortcut icon"
-      href="../../assets/noBg.png"
+      href="../src/assets/noBg.png"
       type="image/x-icon"
 >
     <link
@@ -35,7 +35,7 @@
   >
     <div class="hidden md:block">
       <img
-        src="../../assets/bg-clipboard.png"
+        src="../src/assets/bg-clipboard.png"
         alt="background"
         class="rounded-lg absolute bottom-1/2 translate-y-1/2 md:translate-0 md:relative w-full md:max-w-lg z-[-2]"
 >
@@ -54,7 +54,7 @@
       <p class="mt-4 text-center text-sm text-gray-600">
         Already have an account?
         <a
-          href="login.html"
+          href="/login"
           class="text-[var(--color-text-secondary)] hover:text-active-600"
         >
           Sign in
@@ -66,8 +66,8 @@
       ></div>
     </div>
 
-    <script type="module" src="../js/pages/register.js"></script>
-    <script src="../js/appearance.js"></script>
+    <script type="module" src="../src/components/js/pages/register.js"></script>
+    <script src="../src/components/js/appearance.js"></script>
     <script>
       loadAppearanceSettings();
     </script>

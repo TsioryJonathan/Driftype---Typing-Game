@@ -5,7 +5,7 @@ const getStarted = document.querySelectorAll('.get-started-btn');
 loginBtn.forEach((btn) =>
   btn.addEventListener('click', () => {
     setTimeout(
-      () => (window.location.href = '/src/components/pages/login.html'),
+      () => (window.location.href = '/login'),
       300,
     );
   }),
@@ -13,7 +13,7 @@ loginBtn.forEach((btn) =>
 
 signUpBtn.addEventListener('click', () => {
   setTimeout(
-    () => (window.location.href = '/src/components/pages/register.html'),
+    () => (window.location.href = '/register'),
     300,
   );
 });
@@ -21,7 +21,7 @@ signUpBtn.addEventListener('click', () => {
 getStarted.forEach((btn) =>
   btn.addEventListener('click', () => {
     setTimeout(
-      () => (window.location.href = '/src/components/pages/dashboard.html'),
+      () => (window.location.href = '/dashboard'),
       300,
     );
   }),
