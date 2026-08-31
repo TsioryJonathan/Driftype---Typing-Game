@@ -1,5 +1,6 @@
 import { displayUserBadges } from '../pages/badges-display.js';
 import { badgeManager } from '../badges.js';
+import { getUser, clearAuth } from '../../utils/auth.js';
 
 const DROPDOWNS_CONFIG = [
   {
@@ -27,16 +28,16 @@ const DROPDOWNS_CONFIG = [
 
 const initDashboard = () => {
   try {
-    const userData = localStorage.getItem('typing_game_user');
+    const userData = getUser();
     if (!userData) {
       console.debug('Redirection vers la page de connexion...');
       return;
     }
 
-    const { id: userId } = JSON.parse(userData);
+    const { id: userId } = userData;
     if (!userId) {
       console.error('ID utilisateur invalide');
-      localStorage.removeItem('typing_game_user');
+      clearAuth();
       return;
     }
 
@@ -75,8 +76,8 @@ const initUserMenu = () => {
     }
   });
 
-  console.log('Helloo');
-  
+
+
 };
 
 
@@ -143,5 +144,4 @@ const initDropdownOptions = (dropdown, select, textElement) => {
 
 // Lancement de l'initialisation
 initDashboard();
-initUserMenu();
 initDropdowns();

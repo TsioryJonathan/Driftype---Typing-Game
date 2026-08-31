@@ -122,8 +122,8 @@ Backend server for the TajoType typing game, handling user authentication, passw
    ```
 6. Add your authorized redirect URIs:
    ```
-   http://localhost:5500/src/components/pages/login.html
-   http://your-production-domain.com/src/components/pages/login.html
+    http://localhost:5500/login
+    http://your-production-domain.com/login
    ```
 7. Copy your Client ID and Client Secret
 8. Update your `.env` file with these credentials

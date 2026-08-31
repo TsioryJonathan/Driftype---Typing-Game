@@ -1,10 +1,9 @@
 import { inputStyle, logoStyle, showPassword } from "../formStyle.js";
 import { Logger } from "../../../utils/Logger.js";
 import { API_URL } from "../../../utils/url.js";
+import { setUser, setToken } from "../../../utils/auth.js";
 
 const logger = Logger.getLogger("Authentication");
-export const TOKEN_KEY = "typing_game_token";
-export const USER_KEY = "typing_game_user";
 const DEFAULT_ERROR_MSG = "An error occurred. Please try again.";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -86,7 +85,7 @@ const initLogin = () => {
             >
           </div>
           <a
-            href="forgot-password.html"
+            href="/forgot-password"
             class="text-[var(--color-text-secondary)] hover:text-active-600 text-sm"
             >Forgot Password?</a
           >
@@ -184,8 +183,8 @@ export const storeAuthData = (token, user) => {
       expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
     };
 
-    localStorage.setItem(TOKEN_KEY, token);
-    localStorage.setItem(USER_KEY, JSON.stringify(userData));
+    setToken(token);
+    setUser(userData);
     logger.info("Authentication data stored successfully", { userId: user.id });
   } catch (e) {
     logger.error("Failed to store authentication data", { error: e.message });
@@ -195,12 +194,7 @@ export const storeAuthData = (token, user) => {
 
 export const redirectToDashboard = () => {
   try {
-    const redirectUrl = new URL(
-      "src/components/pages/dashboard.html",
-      window.location.origin
-    );
-    logger.debug("Redirecting to dashboard", { url: redirectUrl.toString() });
-    window.location.replace(redirectUrl.toString());
+    window.location.replace("/dashboard");
   } catch (e) {
     logger.error("Failed to redirect to dashboard", { error: e.message });
     console.error("Redirection error:", e);

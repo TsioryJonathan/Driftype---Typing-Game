@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driftype - Dashboard</title>
-    <script src="../js/toggleTheme.js"></script>
+    <script src="../src/components/js/toggleTheme.js"></script>
     <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon">
     <link href="/src/css/output.css" rel="stylesheet">
     <link
@@ -147,7 +147,7 @@
           class="absolute right-0 -bottom-16 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)] overflow-hidden"
         >
           <a
-            href="./profile.html"
+            href="/profile"
             class="flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
           >
             Profile
@@ -459,7 +459,7 @@
           You should be logged in to save your stat
         </p>
         <button
-          onclick="window.location.href = '/src/components/pages/login.html'"
+          onclick="window.location.href = '/login'"
           class="mt-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-xl hover:scale-105 transition-transform"
         >
           Login
@@ -492,28 +492,29 @@
       <div class="ps-4 text-sm font-normal">Stat saved successfully.</div>
     </div>
 
-    <script src="../js/badges.js" type="module"></script>
-    <script src="../js/pages/badges-display.js" type="module"></script>
-    <script src="../js/pages/dashboard.js" type="module"></script>
-    <script src="../js/script.js" type="module"></script>
-    <script src="../js/pages/userInfofetch.js" type="module"></script>
-    <script src="../js/logoutFunc.js"></script>
-    <script src="../js/fireworks.js"></script>
-    <script src="../js/navBarRedirection.js" type="module"></script>
+    <script src="../src/components/js/badges.js" type="module"></script>
+    <script src="../src/components/js/pages/badges-display.js" type="module"></script>
+    <script src="../src/components/js/pages/dashboard.js" type="module"></script>
+    <script src="../src/components/js/script.js" type="module"></script>
+    <script src="../src/components/js/pages/userInfofetch.js" type="module"></script>
+    <script src="../src/components/js/logoutFunc.js"></script>
+    <script src="../src/components/js/userMenu.js"></script>
+    <script src="../src/components/js/fireworks.js"></script>
+    <script src="../src/components/js/navBarRedirection.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="../js/gamePreferences.js"></script>
+    <script src="../src/components/js/gamePreferences.js"></script>
     <script>
       loadGamePreferences();
     </script>
-    <script src="../js/soundAndFeedback.js"></script>
+    <script src="../src/components/js/soundAndFeedback.js"></script>
     <script>
       loadSoundAndFeedbackSettings();
     </script>
-    <script src="../js/appearance.js"></script>
+    <script src="../src/components/js/appearance.js"></script>
     <script>
       loadAppearanceSettings();
     </script>
-    <script src="../js/notificationAndPrivacy.js"></script>
+    <script src="../src/components/js/notificationAndPrivacy.js"></script>
     <script>
       loadNotificationAndPrivacySettings();
     </script>

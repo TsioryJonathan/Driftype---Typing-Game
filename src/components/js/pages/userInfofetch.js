@@ -1,4 +1,5 @@
-import { API_URL } from "../../../utils/url.js";
+import { getUser } from "../../../utils/auth.js";
+import { apiGet } from "../../../utils/api.js";
 
 const usernameField = document.querySelectorAll("#username");
 const navUsername = document.querySelector("#nav_username");
@@ -8,8 +9,7 @@ const usernameLabel = document.querySelector("#username-label");
 const emailLabel = document.querySelector("#email-label");
 
 const getUsernameNdEmail = async () => {
-  const token = localStorage.getItem("typing_game_token");
-  const userData = localStorage.getItem("typing_game_user");
+  const userData = getUser();
   if (!userData) {
     console.debug("No user data found, setting as Guest");
     if (usernameField)
@@ -26,25 +26,13 @@ const getUsernameNdEmail = async () => {
     return null;
   }
   try {
-    const { id, email } = JSON.parse(userData);
+    const { id, email } = userData;
     if (!id) {
       console.error("Invalid user data: no ID found");
       return null;
     }
 
-    const response = await fetch(`${API_URL}/user/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (!response.ok) {
-      console.error("Failed to fetch user data:", response.statusText);
-      return null;
-    }
-
-    const data = await response.json();
+    const data = await apiGet(`/user/${id}`);
     if (!data || !data[0] || !data[0].username) {
       console.error("Invalid user data received from server");
       return null;

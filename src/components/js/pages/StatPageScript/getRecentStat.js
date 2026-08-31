@@ -1,4 +1,5 @@
 import { API_URL } from "../../../../utils/url.js";
+import { getUser, getToken } from "../../../../utils/auth.js";
 
 const displayDefaultState = (tbody) => {
   const tableRow = document.createElement("tr");
@@ -17,7 +18,7 @@ const displayDefaultState = (tbody) => {
 };
 
 const fetchRecentStat = async () => {
-  const userData = localStorage.getItem("typing_game_user");
+  const userData = getUser();
   const tbody = document.getElementById("tbody");
 
   
@@ -26,9 +27,9 @@ const fetchRecentStat = async () => {
     displayDefaultState(tbody);
     return;
   }
-  const token = localStorage.getItem("typing_game_token");
+  const token = getToken();
 
-  const { id } = JSON.parse(userData);
+  const { id } = userData;
 
   try {
     const controller = new AbortController();

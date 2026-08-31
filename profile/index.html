@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driftype - User Profile</title>
-    <script src="../js/toggleTheme.js"></script>
+    <script src="../src/components/js/toggleTheme.js"></script>
     <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon">
     <link href="/src/css/output.css" rel="stylesheet">
     <link
@@ -144,7 +144,7 @@
           class="absolute right-0 -bottom-16 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)] overflow-hidden"
         >
           <a
-            href="./profile.html"
+            href="/profile"
             class="flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
           >
             Profile
@@ -497,25 +497,26 @@
         </div>
       </div>
     </main>
-    <script src="../js/appearance.js"></script>
+    <script src="../src/components/js/appearance.js"></script>
     <script>
       loadAppearanceSettings();
     </script>
-    <script src="../js/pages/dashboard.js" type="module"></script>
+    <script src="../src/components/js/pages/dashboard.js" type="module"></script>
     <script
-      src="../js/pages/ProfilePageScript/userInfofetch.js"
+      src="../src/components/js/pages/ProfilePageScript/userInfofetch.js"
       type="module"
     ></script>
-    <script src="../js/logoutFunc.js" type="module"></script>
-    <script src="../js/navBarRedirection.js" type="module"></script>
+    <script src="../src/components/js/logoutFunc.js" type="module"></script>
+    <script src="../src/components/js/userMenu.js"></script>
+    <script src="../src/components/js/navBarRedirection.js" type="module"></script>
     <script
-      src="../js/pages/StatPageScript/getOverallStat.js"
+      src="../src/components/js/pages/StatPageScript/getOverallStat.js"
       type="module"
     ></script>
     <script
-      src="../js/pages/ProfilePageScript/bioUpdate.js"
+      src="../src/components/js/pages/ProfilePageScript/bioUpdate.js"
       type="module"
     ></script>
-    <script src="../js/pages/badges-display.js" type="module"></script>
+    <script src="../src/components/js/pages/badges-display.js" type="module"></script>
   </body>
 </html>

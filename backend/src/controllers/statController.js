@@ -15,6 +15,7 @@ export const getRecentUserStat = async (req, res) => {
     res.json(data);
   } catch (e) {
     console.error(e);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 

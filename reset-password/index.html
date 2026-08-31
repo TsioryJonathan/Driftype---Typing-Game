@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
       rel="shortcut icon"
-      href="../../assets/noBg.png"
+      href="../src/assets/noBg.png"
       type="image/x-icon"
 >
-    <title>Driftype - Forgot Password</title>
-    <script src="../js/toggleTheme.js"></script>
+    <title>Driftype - Reset Password</title>
+    <script src="../src/components/js/toggleTheme.js"></script>
     <link href="/src/css/output.css" rel="stylesheet">
     <link
       rel="stylesheet"
@@ -35,7 +35,7 @@
   >
     <div class="hidden md:block">
       <img
-        src="../../assets/bg-clipboard.png"
+        src="../src/assets/bg-clipboard.png"
         alt="illustration"
         class="rounded-lg absolute bottom-1/2 translate-y-1/2 md:translate-0 md:relative w-full md:max-w-lg z-[-2]"
 >
@@ -47,14 +47,14 @@
       <div class="mb-6 text-center">
         <div id="logo"></div>
         <h1 class="text-2xl font-bold text-[var(--color-text)]">
-          Forgot Password
+          Reset Password
         </h1>
       </div>
-      <form id="forgotPasswordForm" class="space-y-4"></form>
+      <form id="resetPasswordForm" class="space-y-4"></form>
       <p class="mt-4 text-center text-sm text-gray-600">
         Remember your password?
         <a
-          href="login.html"
+          href="/login"
           class="text-[var(--color-text-secondary)] hover:text-active-600"
         >
           Sign in
@@ -69,8 +69,13 @@
         class="mt-4 hidden text-center text-sm text-red-700 p-2 rounded-md bg-red-300 border border-red-700"
       ></div>
     </div>
-    <script type="module" src="../js/pages/forgot-password.js"></script>
-    <script src="../js/appearance.js"></script>
+
+    <script
+      type="module"
+      src="../src/components/js/pages/reset-password.js"
+      type="module"
+    ></script>
+    <script src="../src/components/js/appearance.js" type="module"></script>
     <script>
       loadAppearanceSettings();
     </script>

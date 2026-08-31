@@ -1,4 +1,5 @@
 import { API_URL } from "../../../../utils/url.js";
+import { getUser, getToken, setUser } from "../../../../utils/auth.js";
 
 const setLoadingState = (button, isLoading) => {
   if (!button) return;
@@ -30,15 +31,15 @@ const showSuccessToast = () => {
   }, 1500);
 };
 
-const { id } = JSON.parse(localStorage.getItem("typing_game_user"));
+const { id } = getUser();
 const updateBtn = document.getElementById("user-info-update-btn");
 
 const updateUserInfo = async (e) => {
   e.preventDefault();
   const username = document.querySelector("#username-input").value.trim();
   const email = document.querySelector("#email").value.trim();
-  const savedData = JSON.parse(localStorage.getItem("typing_game_user"));
-  const token = localStorage.getItem("typing_game_token");
+  const savedData = getUser();
+  const token = getToken();
 
   setLoadingState(updateBtn, true);
   try {
@@ -62,7 +63,7 @@ const updateUserInfo = async (e) => {
 
     savedData.username = data.user.username;
     savedData.email = data.user.email;
-    localStorage.setItem("typing_game_user", JSON.stringify(savedData));
+    setUser(savedData);
 
     setLoadingState(updateBtn, false);
     showSuccessToast();

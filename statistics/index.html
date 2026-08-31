@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driftype - User Stat</title>
-    <script src="../js/toggleTheme.js"></script>
+    <script src="../src/components/js/toggleTheme.js"></script>
     <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon">
     <link href="/src/css/output.css" rel="stylesheet">
     <link
@@ -148,7 +148,7 @@
           class="absolute right-0 -bottom-16 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)] overflow-hidden"
         >
           <a
-            href="./profile.html"
+            href="/profile"
             class="flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
           >
             Profile
@@ -557,38 +557,39 @@
       </div>
     </main>
 
-    <script type="module" src="../js/pages/dashboard.js"></script>
+    <script type="module" src="../src/components/js/pages/dashboard.js"></script>
 
-    <script src="../js/pages/userInfofetch.js" type="module"></script>
-    <script src="../js/logoutFunc.js" type="module"></script>
-    <script src="../js/navBarRedirection.js" type="module"></script>
+    <script src="../src/components/js/pages/userInfofetch.js" type="module"></script>
+    <script src="../src/components/js/logoutFunc.js" type="module"></script>
+    <script src="../src/components/js/userMenu.js"></script>
+    <script src="../src/components/js/navBarRedirection.js" type="module"></script>
     <script
-      src="../js/pages/StatPageScript/statGraph.js"
+      src="../src/components/js/pages/StatPageScript/statGraph.js"
       type="module"
     ></script>
 
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
     <script
-      src="../js/pages/StatPageScript/getOverallStat.js"
+      src="../src/components/js/pages/StatPageScript/getOverallStat.js"
       type="module"
     ></script>
     <script
-      src="../js/pages/StatPageScript/getRecentStat.js"
+      src="../src/components/js/pages/StatPageScript/getRecentStat.js"
       type="module"
     ></script>
-    <script src="../js/appearance.js"></script>
+    <script src="../src/components/js/appearance.js"></script>
     <script>
       loadAppearanceSettings();
     </script>
-    <script src="../js/gamePreferences.js"></script>
+    <script src="../src/components/js/gamePreferences.js"></script>
     <script>
       loadGamePreferences();
     </script>
-    <script src="../js/soundAndFeedback.js"></script>
+    <script src="../src/components/js/soundAndFeedback.js"></script>
     <script>
       loadSoundAndFeedbackSettings();
     </script>
-    <script src="../js/notificationAndPrivacy.js"></script>
+    <script src="../src/components/js/notificationAndPrivacy.js"></script>
     <script>
       loadNotificationAndPrivacySettings();
     </script>

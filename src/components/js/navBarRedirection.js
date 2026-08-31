@@ -3,11 +3,11 @@ const settingBtn = document.querySelector('#setting-btn');
 const statBtn = document.querySelector('#stat-btn');
 
 practiceBtn.addEventListener('click', () => {
-  window.location.href = '/src/components/pages/dashboard.html';
+  window.location.href = '/dashboard';
 });
 settingBtn.addEventListener('click', () => {
-  window.location.href = '/src/components/pages/settingPage.html';
+  window.location.href = '/setting';
 });
 statBtn.addEventListener('click', () => {
-  window.location.href = '/src/components/pages/gameStat.html';
+  window.location.href = '/statistics';
 });
