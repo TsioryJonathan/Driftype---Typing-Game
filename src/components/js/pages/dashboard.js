@@ -144,5 +144,4 @@ const initDropdownOptions = (dropdown, select, textElement) => {
 
 // Lancement de l'initialisation
 initDashboard();
-initUserMenu();
 initDropdowns();
