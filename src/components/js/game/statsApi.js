@@ -1,5 +1,5 @@
-import { API_URL } from "../../utils/url.js";
-import { getToken } from "../../utils/auth.js";
+import { API_URL } from "../../../utils/url.js";
+import { getToken } from "../../../utils/auth.js";
 
 export const statPost = async (
   userId,

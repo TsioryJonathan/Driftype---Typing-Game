@@ -9,7 +9,7 @@ import {
 import { calcConsistency, getTimelineData } from "./chart.js";
 import { statPost } from "./statsApi.js";
 import { checkBadges } from "../badges.js";
-import { getUser } from "../../utils/auth.js";
+import { getUser } from "../../../utils/auth.js";
 
 export const launchFireworks = () => {
   if (window.confetti) {
