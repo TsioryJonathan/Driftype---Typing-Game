@@ -75,8 +75,8 @@ const initUserMenu = () => {
     }
   });
 
-  console.log('Helloo');
-  
+
+
 };
 
 
