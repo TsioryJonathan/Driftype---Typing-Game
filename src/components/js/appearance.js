@@ -7,8 +7,6 @@ function toggleAppearanceSettings() {
 
 function saveAppearanceSettings() {
     const settings = {};
-    const themeEl = document.getElementById('theme-select');
-    if (themeEl) settings.theme = themeEl.value;
     const fontEl = document.getElementById('font-size-select');
     if (fontEl) settings.fontSize = fontEl.value;
     localStorage.setItem('appearanceSettings', JSON.stringify(settings));
@@ -17,10 +15,6 @@ function saveAppearanceSettings() {
 
 function loadAppearanceSettings() {
     const settings = JSON.parse(localStorage.getItem('appearanceSettings')) || {};
-    if (settings.theme) {
-        const themeEl = document.getElementById('theme-select');
-        if (themeEl) themeEl.value = settings.theme;
-    }
     if (settings.fontSize) {
         const fontEl = document.getElementById('font-size-select');
         if (fontEl) fontEl.value = settings.fontSize;

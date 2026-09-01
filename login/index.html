@@ -3,113 +3,143 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-      rel="shortcut icon"
-      href="../src/assets/noBg.png"
-      type="image/x-icon"
->
+    <link rel="shortcut icon" href="../src/assets/noBg.png" type="image/x-icon">
     <title>Driftype - Login</title>
-    <script src="../src/components/js/toggleTheme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link href="/src/css/output.css" rel="stylesheet">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
-      integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-      defer
-    ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+      :root {
+        --bg-deep: #1C1108;
+        --bg-mid: #24150B;
+        --bg-surface: #2C1A0E;
+        --orange: #D96B27;
+        --orange-light: #E8792E;
+        --cream: #F3E6D0;
+        --cream-muted: #E8D6BC;
+        --text-muted: #B9A895;
+        --text-dim: #806F5D;
+        --border: rgba(243,230,208,0.08);
+        --incorrect: #E85D4A;
+      }
+      body {
+        font-family: 'Space Grotesk', sans-serif;
+        background: var(--bg-deep);
+        color: var(--cream);
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      .auth-card {
+        width: 100%;
+        max-width: 400px;
+        background: var(--bg-mid);
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        padding: 2.5rem 2rem;
+      }
+      .auth-logo {
+        font-family: 'Fraunces', serif;
+        font-weight: 700;
+        font-size: 1.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        color: var(--cream);
+      }
+      .auth-logo span { color: var(--orange); }
+      .auth-subtitle {
+        font-size: 0.8125rem;
+        text-align: center;
+        color: var(--text-muted);
+        margin-bottom: 2rem;
+      }
+      .auth-divider {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 1.25rem 0;
+      }
+      .auth-divider::before,
+      .auth-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+      .auth-divider span {
+        font-size: 0.6875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-dim);
+      }
+      #errorMessage {
+        display: none;
+        text-align: center;
+        font-size: 0.8125rem;
+        color: var(--incorrect);
+        margin-top: 1rem;
+        padding: 0.5rem;
+        border-radius: 2px;
+      }
+      .auth-footer {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-size: 0.8125rem;
+        color: var(--text-dim);
+      }
+      .auth-footer a {
+        color: var(--orange);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .auth-footer a:hover { color: var(--orange-light); }
+    </style>
   </head>
-  <body
-    class="flex min-h-screen items-center justify-center bg-[var(--color-bg)] relative animate__animated animate__fadeIn"
-  >
-    <div class="hidden md:block">
-      <img
-        src="../src/assets/bg-clipboard.png"
-        alt="background"
-        class="rounded-lg absolute bottom-1/2 translate-y-1/2 md:translate-0 md:relative w-full md:max-w-lg z-[-2]"
->
-      <p class="text-[var(--color-text)] text-2xl font-bold text-center">
-        Welcome to Driftype!
+  <body>
+    <div class="auth-card">
+      <div id="logo" class="auth-logo"></div>
+      <p class="auth-subtitle">Sign in to continue</p>
+
+      <form id="loginForm"></form>
+
+      <div class="auth-divider"><span>or</span></div>
+
+      <div id="g_id_onload"
+        data-client_id="794752247490-dspn67dppujlm4gupbidvpqah08runh2.apps.googleusercontent.com"
+        data-context="signin"
+        data-ux_mode="popup"
+        data-login_uri="/login"
+        data-callback="handleGoogleSignIn"
+        data-auto_prompt="false">
+      </div>
+      <div class="g_id_signin w-full"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="outline"
+        data-text="signin_with"
+        data-size="large"
+        data-logo_alignment="center">
+      </div>
+
+      <div id="errorMessage"></div>
+
+      <p class="auth-footer">
+        Don't have an account? <a href="/register">Sign up</a>
       </p>
     </div>
-    <div
-      class="w-96 rounded-lg p-8 shadow-lg bg-[var(--color-bg-secondary)] backdrop-blur-sm"
-    >
-      <div class="mb-6 text-center">
-        <div id="logo"></div>
-        <h1 class="text-2xl font-bold text-[var(--color-text)]">
-          Sign in to your account
-        </h1>
-      </div>
-      <form id="loginForm" class="space-y-4"></form>
-      <div class="mt-4">
-        <div class="relative">
-          <div class="absolute inset-0 flex items-center">
-            <div class="w-full border-t border-gray-300"></div>
-          </div>
-          <div class="relative flex justify-center text-sm">
-            <span
-              class="px-2 bg-[var(--color-bg)] text-[var(--color-text)]/80 rounded-lg"
-            >
-              Or
-            </span>
-          </div>
-        </div>
-        <div class="mt-4">
-          <div
-            id="g_id_onload"
-            data-client_id="794752247490-dspn67dppujlm4gupbidvpqah08runh2.apps.googleusercontent.com"
-            data-context="signin"
-            data-ux_mode="popup"
-            data-login_uri="/login"
-            data-callback="handleGoogleSignIn"
-            data-auto_prompt="false"
-          ></div>
-          <div
-            class="g_id_signin w-full"
-            data-type="standard"
-            data-shape="rectangular"
-            data-theme="outline"
-            data-text="signin_with"
-            data-size="large"
-            data-logo_alignment="center"
-          ></div>
-        </div>
-      </div>
-      <p class="mt-4 text-center text-sm text-[var(--color-text)]/50">
-        Not a member?
-        <a
-          href="/register"
-          class="text-[var(--color-text-secondary)] hover:text-active-600"
-        >
-          Sign up now
-        </a>
-      </p>
-      <div
-        id="errorMessage"
-        class="mt-4 hidden text-center text-sm text-red-700 p-2 rounded-md bg-red-300 border border-red-700"
-      ></div>
-    </div>
+
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script type="module" src="../src/components/js/pages/login.js"></script>
     <script src="../src/components/js/appearance.js"></script>
-    <script>
-      loadAppearanceSettings();
-    </script>
+    <script>loadAppearanceSettings();</script>
     <script src="../src/components/js/notificationAndPrivacy.js"></script>
-    <script>
-      loadNotificationAndPrivacySettings();
-    </script>
+    <script>loadNotificationAndPrivacySettings();</script>
   </body>
 </html>

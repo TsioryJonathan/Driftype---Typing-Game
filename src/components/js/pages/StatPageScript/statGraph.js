@@ -59,23 +59,61 @@ const chartDom = document.getElementById("chart");
 const myChart = echarts.init(chartDom);
 
 const option = {
+  backgroundColor: "transparent",
   tooltip: {
     trigger: "axis",
+    backgroundColor: "#24150B",
+    borderColor: "rgba(243,230,208,0.08)",
+    textStyle: {
+      color: "#F3E6D0",
+      fontFamily: "Space Grotesk",
+      fontSize: 12,
+    },
   },
   legend: {
     data: ["WPM", "Accuracy"],
+    textStyle: {
+      color: "#B9A895",
+      fontFamily: "Space Grotesk",
+      fontSize: 11,
+    },
+    top: 0,
+    right: 0,
+  },
+  grid: {
+    top: 40,
+    right: 16,
+    bottom: 24,
+    left: 48,
   },
   xAxis: {
     type: "category",
     data: labels,
+    axisLine: {
+      lineStyle: {
+        color: "rgba(243,230,208,0.08)",
+      },
+    },
+    axisTick: { show: false },
+    axisLabel: {
+      color: "#806F5D",
+      fontFamily: "Space Grotesk",
+      fontSize: 11,
+    },
   },
   yAxis: {
     type: "value",
-    name: "WPM / Accuracy (%)",
-    axisLine: {
+    axisLine: { show: false },
+    axisTick: { show: false },
+    splitLine: {
       lineStyle: {
-        color: "#1f77b4",
+        color: "rgba(243,230,208,0.06)",
       },
+    },
+    axisLabel: {
+      color: "#806F5D",
+      fontFamily: "Space Grotesk",
+      fontSize: 11,
     },
   },
   series: [
@@ -84,20 +122,41 @@ const option = {
       type: "line",
       data: wpm,
       lineStyle: {
-        color: "#1f77b4",
+        color: "#D96B27",
+        width: 2,
+      },
+      itemStyle: {
+        color: "#D96B27",
       },
       symbol: "circle",
+      symbolSize: 6,
       smooth: true,
+      areaStyle: {
+        color: {
+          type: "linear",
+          x: 0, y: 0, x2: 0, y2: 1,
+          colorStops: [
+            { offset: 0, color: "rgba(217,107,39,0.15)" },
+            { offset: 1, color: "rgba(217,107,39,0)" },
+          ],
+        },
+      },
     },
     {
       name: "Accuracy",
       type: "line",
       data: accuracy,
       lineStyle: {
-        color: "#ff7f0e", 
+        color: "#F28A3D",
+        width: 1.5,
+        type: "dashed",
       },
-      symbol: "circle", 
-      smooth: true, 
+      itemStyle: {
+        color: "#F28A3D",
+      },
+      symbol: "circle",
+      symbolSize: 4,
+      smooth: true,
     },
   ],
 };

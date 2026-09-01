@@ -12,10 +12,11 @@ export const inputStyle = () => {
       'block',
       'h-10',
       'w-full',
-      'bg-[var(--color-primary)]',
-      'border-primary',
+      'bg-[#2C1A0E]',
+      'border',
+      'border-[rgba(243,230,208,0.12)]',
       'shadow-sm',
-      'focus:ring-active-500',
+      'focus:ring-[#D96B27]',
     );
   });
   iconFormStyle();
@@ -27,7 +28,7 @@ export const iconFormStyle = () => {
   icons.forEach((icon) => {
     icon.classList.add(
       'p-2',
-      'bg-active-500/90',
+      'bg-[#D96B27]',
       'text-white',
       'rounded-tl-md',
       'rounded-br-md',
