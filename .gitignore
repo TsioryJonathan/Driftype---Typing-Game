@@ -7,3 +7,4 @@ node_modules/
 test-connection.js
 *.log
 application.log
+.superpowers/

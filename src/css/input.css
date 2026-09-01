@@ -125,6 +125,11 @@ body {
   animation: cursor-blink 1s step-end infinite;
 }
 
+/* Color utilities for game engine */
+.text-amber-500 { color: #D96B27; }
+.text-red-500 { color: #E85D4A; }
+.border-amber-500\/60 { border-color: rgba(217, 107, 39, 0.6); }
+
 /* Grain overlay */
 body::before {
   content: '';

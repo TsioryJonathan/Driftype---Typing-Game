@@ -27,20 +27,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
-  <body class="bg-[var(--bg-deep)] text-[var(--cream)] font-[var(--font-space-grotesk)]">
+  <body class="bg-[var(--bg-deep)] text-[var(--cream)] font-space-grotesk">
 
     <!-- HEADER / NAVBAR -->
     <header class="fixed top-0 left-0 right-0 backdrop-blur-md bg-[rgba(28,17,8,0.85)] border-b border-[var(--border)] h-[56px] z-50 flex items-center justify-between px-6 lg:px-10">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-0.5 tracking-[0.04em]">
-        <span class="font-[var(--font-fraunces)] text-[15px] font-bold uppercase text-[var(--cream)]">DRIFT</span><span class="font-[var(--font-fraunces)] text-[15px] font-bold uppercase text-[var(--orange)]">TYPE</span>
+        <span class="font-fraunces text-[15px] font-bold uppercase text-[var(--cream)]">DRIFT</span><span class="font-fraunces text-[15px] font-bold uppercase text-[var(--orange)]">TYPE</span>
       </a>
 
       <!-- Nav Links -->
       <nav class="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-        <a href="/dashboard" class="text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--orange)] font-[var(--font-space-grotesk)]">PLAY</a>
-        <a href="/statistics" class="text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--text-dim)] hover:text-[var(--cream-muted)] transition-colors font-[var(--font-space-grotesk)]">STATISTICS</a>
-        <a href="/profile" class="text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--text-dim)] hover:text-[var(--cream-muted)] transition-colors font-[var(--font-space-grotesk)]">PROFILE</a>
+        <a href="/dashboard" class="text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--orange)] font-space-grotesk">PLAY</a>
+        <a href="/statistics" class="text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--text-dim)] hover:text-[var(--cream-muted)] transition-colors font-space-grotesk">STATISTICS</a>
+        <a href="/profile" class="text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--text-dim)] hover:text-[var(--cream-muted)] transition-colors font-space-grotesk">PROFILE</a>
       </nav>
 
       <!-- Hidden nav_username for JS compatibility -->
@@ -50,7 +50,7 @@
       <div class="relative h-full flex items-center" id="user-menu-container">
         <button
           id="user-menu-button"
-          class="flex items-center justify-center w-8 h-8 rounded-full border border-[var(--border-accent)] bg-[var(--bg-surface)] text-[var(--orange)] font-[var(--font-fraunces)] text-[13px] font-semibold cursor-pointer hover:border-[var(--orange)] transition-colors"
+          class="flex items-center justify-center w-8 h-8 rounded-full border border-[var(--border-accent)] bg-[var(--bg-surface)] text-[var(--orange)] font-fraunces text-[13px] font-semibold cursor-pointer hover:border-[var(--orange)] transition-colors"
         >
           <span id="avatar-img" class="flex items-center justify-center w-full h-full overflow-hidden">
             <span id="username" class="flex items-center justify-center w-full h-full">
@@ -108,10 +108,10 @@
 
             <!-- Language -->
             <div class="relative inline-flex items-center gap-2" id="language-container">
-              <span class="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--text-dim)] font-[var(--font-space-grotesk)]">Language</span>
+              <span class="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--text-dim)] font-space-grotesk">Language</span>
               <button
                 id="language-button"
-                class="flex items-center gap-1.5 px-2.5 py-1.5 bg-[var(--bg-surface)] border border-[var(--border)] rounded text-[12px] text-[var(--cream-muted)] font-[var(--font-space-grotesk)] cursor-pointer hover:border-[var(--border-accent)] transition-colors"
+                class="flex items-center gap-1.5 px-2.5 py-1.5 bg-[var(--bg-surface)] border border-[var(--border)] rounded text-[12px] text-[var(--cream-muted)] font-space-grotesk cursor-pointer hover:border-[var(--border-accent)] transition-colors"
               >
                 <span id="language-text">English</span>
                 <i class="fa-solid fa-chevron-down text-[8px] text-[var(--text-dim)]"></i>
@@ -144,10 +144,10 @@
 
             <!-- Mode -->
             <div class="relative inline-flex items-center gap-2" id="mode-container">
-              <span class="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--text-dim)] font-[var(--font-space-grotesk)]">Mode</span>
+              <span class="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--text-dim)] font-space-grotesk">Mode</span>
               <button
                 id="mode-button"
-                class="flex items-center gap-1.5 px-2.5 py-1.5 bg-[var(--bg-surface)] border border-[var(--border)] rounded text-[12px] text-[var(--cream-muted)] font-[var(--font-space-grotesk)] cursor-pointer hover:border-[var(--border-accent)] transition-colors"
+                class="flex items-center gap-1.5 px-2.5 py-1.5 bg-[var(--bg-surface)] border border-[var(--border)] rounded text-[12px] text-[var(--cream-muted)] font-space-grotesk cursor-pointer hover:border-[var(--border-accent)] transition-colors"
               >
                 <span id="mode-text">Easy</span>
                 <i class="fa-solid fa-chevron-down text-[8px] text-[var(--text-dim)]"></i>
@@ -176,10 +176,10 @@
 
             <!-- Duration -->
             <div class="relative inline-flex items-center gap-2" id="timer-container">
-              <span class="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--text-dim)] font-[var(--font-space-grotesk)]">Duration</span>
+              <span class="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--text-dim)] font-space-grotesk">Duration</span>
               <button
                 id="timer-button"
-                class="flex items-center gap-1.5 px-2.5 py-1.5 bg-[var(--bg-surface)] border border-[var(--border)] rounded text-[12px] text-[var(--cream-muted)] font-[var(--font-space-grotesk)] cursor-pointer hover:border-[var(--border-accent)] transition-colors"
+                class="flex items-center gap-1.5 px-2.5 py-1.5 bg-[var(--bg-surface)] border border-[var(--border)] rounded text-[12px] text-[var(--cream-muted)] font-space-grotesk cursor-pointer hover:border-[var(--border-accent)] transition-colors"
               >
                 <span id="timer-text">30 s</span>
                 <i class="fa-solid fa-chevron-down text-[8px] text-[var(--text-dim)]"></i>
@@ -204,12 +204,12 @@
 
           <!-- Right: Restart + Timer -->
           <div class="flex items-center gap-4">
-            <span class="text-[11px] text-[var(--text-dim)] font-[var(--font-space-grotesk)] hidden sm:inline">
+            <span class="text-[11px] text-[var(--text-dim)] font-space-grotesk hidden sm:inline">
               Restart <span class="inline-block px-1.5 py-0.5 bg-[var(--bg-surface)] border border-[var(--border)] rounded text-[10px] text-[var(--text-muted)]">Ctrl+Enter</span>
             </span>
             <div class="flex items-center gap-1.5">
               <i class="fa-regular fa-clock text-[10px] text-[var(--text-dim)]"></i>
-              <span id="countdown-timer" class="font-[var(--font-fraunces)] text-[18px] font-semibold text-[var(--cream)] tabular-nums">30s</span>
+              <span id="countdown-timer" class="font-fraunces text-[18px] font-semibold text-[var(--cream)] tabular-nums">30s</span>
             </div>
           </div>
         </div>
@@ -227,59 +227,69 @@
       </div>
 
       <!-- GAME AREA -->
-      <div class="flex-1 flex flex-col items-center justify-center px-4 lg:px-6 py-8 max-w-5xl mx-auto w-full">
+      <div class="relative flex-1 flex flex-col items-center justify-center px-4 lg:px-6 py-8 max-w-5xl mx-auto w-full">
 
         <!-- Technical Annotations -->
         <div class="w-full flex items-center justify-between mb-6">
-          <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--text-dim)] font-[var(--font-space-grotesk)]">SESSION 024</span>
-          <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--text-dim)] font-[var(--font-space-grotesk)]">DRIFTYPE — 2026</span>
+          <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--text-dim)] font-space-grotesk">SESSION 024</span>
+          <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--text-dim)] font-space-grotesk">DRIFTYPE — 2026</span>
         </div>
 
         <!-- Test Container -->
-        <div
-          class="relative w-full p-6 lg:p-8 rounded border border-[var(--border)] bg-[var(--bg-mid)] group outline-none"
-          tabindex="0"
-          id="test-container"
-        >
+        <div class="relative w-full group" id="test-area">
+          <textarea
+            id="test-container"
+            rows="1"
+            class="absolute inset-0 w-full h-full p-6 lg:p-8 rounded border border-[var(--border)] bg-transparent outline-none font-space-grotesk text-justify text-[22px] lg:text-[26px] tracking-wide leading-[1.5em] text-transparent caret-transparent resize-none overflow-hidden hidden focus:ring-0 focus:border-[var(--border-accent)] selection:bg-transparent z-10 opacity-0 cursor-text"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+          ></textarea>
           <div
-            id="word-display-wrapper"
-            class="w-full h-[calc(1.5em*5)] overflow-hidden relative"
+            class="w-full p-6 lg:p-8 rounded border border-[var(--border)] bg-[var(--bg-mid)] cursor-text"
+            onclick="document.getElementById('test-container').focus()"
           >
-            <p
-              id="word-display"
-              class="font-[var(--font-space-grotesk)] text-justify text-[22px] lg:text-[26px] tracking-wide leading-[1.5em] blur-[2px] group-focus:blur-none text-[var(--cream)]/50 absolute top-0 transition-transform duration-200"
-            ></p>
+            <div
+              id="word-display-wrapper"
+              class="w-full h-[calc(1.5em*5)] overflow-hidden relative"
+            >
+              <p
+                id="word-display"
+                class="font-space-grotesk text-justify text-[22px] lg:text-[26px] tracking-wide leading-[1.5em] blur-[2px] group-focus-within:blur-none text-[var(--cream)]/50 absolute top-0 transition-transform duration-200"
+              ></p>
+            </div>
+            <div class="absolute inset-0 w-full h-full flex flex-col justify-center items-center gap-3 cursor-default text-[var(--cream)] group-focus-within:hidden pointer-events-none">
+              <span class="text-[13px] text-[var(--text-muted)] font-space-grotesk">Click here or press</span>
+              <span class="inline-block bg-[var(--bg-surface)] text-[var(--cream-muted)] border border-[var(--border)] rounded px-2.5 py-1 text-[11px] font-space-grotesk">
+                Ctrl + Enter
+              </span>
+            </div>
           </div>
-          <p class="absolute inset-0 w-full h-full flex flex-col justify-center items-center gap-3 cursor-default text-[var(--cream)] group-focus:hidden pointer-events-none">
-            <span class="text-[13px] text-[var(--text-muted)] font-[var(--font-space-grotesk)]">Click here or press</span>
-            <span class="inline-block bg-[var(--bg-surface)] text-[var(--cream-muted)] border border-[var(--border)] rounded px-2.5 py-1 text-[11px] font-[var(--font-space-grotesk)]">
-              Ctrl + Enter
-            </span>
-          </p>
         </div>
 
         <!-- Live Stats -->
         <div class="w-full flex items-center justify-center gap-8 lg:gap-16 mt-8 mb-6">
           <div class="flex flex-col items-center">
-            <span id="live-wpm" class="font-[var(--font-fraunces)] text-[36px] lg:text-[48px] font-bold text-[var(--cream)] leading-none tabular-nums">000</span>
-            <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--text-dim)] font-[var(--font-space-grotesk)] mt-1">WPM</span>
+            <span id="live-wpm" class="font-fraunces text-[36px] lg:text-[48px] font-bold text-[var(--cream)] leading-none tabular-nums">000</span>
+            <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--text-dim)] font-space-grotesk mt-1">WPM</span>
           </div>
           <div class="w-px h-10 bg-[var(--border)]"></div>
           <div class="flex flex-col items-center">
-            <span id="live-accuracy" class="font-[var(--font-fraunces)] text-[36px] lg:text-[48px] font-bold text-[var(--cream)] leading-none tabular-nums">00.0</span>
-            <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--text-dim)] font-[var(--font-space-grotesk)] mt-1">%</span>
+            <span id="live-accuracy" class="font-fraunces text-[36px] lg:text-[48px] font-bold text-[var(--cream)] leading-none tabular-nums">00.0</span>
+            <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--text-dim)] font-space-grotesk mt-1">%</span>
           </div>
           <div class="w-px h-10 bg-[var(--border)]"></div>
           <div class="flex flex-col items-center">
-            <span id="live-errors" class="font-[var(--font-fraunces)] text-[36px] lg:text-[48px] font-bold text-[var(--cream)] leading-none tabular-nums">000</span>
-            <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--text-dim)] font-[var(--font-space-grotesk)] mt-1">ERRORS</span>
+            <span id="live-errors" class="font-fraunces text-[36px] lg:text-[48px] font-bold text-[var(--cream)] leading-none tabular-nums">000</span>
+            <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--text-dim)] font-space-grotesk mt-1">ERRORS</span>
           </div>
         </div>
 
         <!-- Results Container -->
         <div
           id="results-container"
-          class="flex flex-col items-center gap-4 w-full hidden"
+          class="absolute inset-0 flex flex-col items-center gap-4 w-full hidden z-20 bg-[var(--bg-deep)] overflow-y-auto p-6"
         ></div>
 
         <!-- Restart Button -->
@@ -302,7 +312,7 @@
           </div>
           <!-- Right: Character count / meta -->
           <div class="flex items-center gap-3">
-            <span class="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--text-dim)] font-[var(--font-space-grotesk)]">
+            <span class="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--text-dim)] font-space-grotesk">
               01 / 01
             </span>
           </div>
@@ -341,7 +351,7 @@
             <span class="sr-only">Loading...</span>
           </div>
         </div>
-        <p class="text-[var(--cream-muted)] text-[13px] font-[var(--font-space-grotesk)]">
+        <p class="text-[var(--cream-muted)] text-[13px] font-space-grotesk">
           Saving your stats ...
         </p>
       </div>
@@ -358,10 +368,10 @@
         <i
           class="fa-solid fa-circle-exclamation text-[var(--orange)] text-3xl"
         ></i>
-        <h2 class="text-[15px] font-semibold text-[var(--cream)] font-[var(--font-space-grotesk)]">
+        <h2 class="text-[15px] font-semibold text-[var(--cream)] font-space-grotesk">
           not logged in
         </h2>
-        <p class="text-[12px] text-[var(--text-muted)] font-[var(--font-space-grotesk)]">
+        <p class="text-[12px] text-[var(--text-muted)] font-space-grotesk">
           You should be logged in to save your stat
         </p>
         <button
@@ -395,7 +405,7 @@
         >
         </path>
       </svg>
-      <div class="ps-4 text-[12px] font-normal text-[var(--cream-muted)] font-[var(--font-space-grotesk)]">Stat saved successfully.</div>
+      <div class="ps-4 text-[12px] font-normal text-[var(--cream-muted)] font-space-grotesk">Stat saved successfully.</div>
     </div>
 
     <!-- SCRIPTS -->
