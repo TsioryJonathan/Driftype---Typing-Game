@@ -3,520 +3,760 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driftype - User Profile</title>
-    <script src="../src/components/js/toggleTheme.js"></script>
+    <title>Driftype - Profile</title>
     <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon">
     <link href="/src/css/output.css" rel="stylesheet">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
-      integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-      defer
-    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     <script src="https://unpkg.com/i18next@22.4.15/dist/umd/i18next.min.js"></script>
     <script src="https://unpkg.com/i18next-http-backend@2.2.0/i18nextHttpBackend.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <style>
+      :root {
+        --bg-deep: #1C1108;
+        --bg-mid: #24150B;
+        --bg-surface: #2C1A0E;
+        --orange: #D96B27;
+        --orange-light: #E8792E;
+        --orange-bright: #F28A3D;
+        --cream: #F3E6D0;
+        --cream-muted: #E8D6BC;
+        --text-muted: #B9A895;
+        --text-dim: #806F5D;
+        --border: rgba(243,230,208,0.08);
+        --border-accent: rgba(232,121,46,0.20);
+      }
+
+      body {
+        font-family: 'Space Grotesk', sans-serif;
+        background: var(--bg-deep);
+        color: var(--cream);
+        margin: 0;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        background-size: 256px 256px;
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      .profile-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(16px);
+        background: rgba(28,17,8,0.85);
+        border-bottom: 1px solid var(--border);
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+      }
+
+      .nav-logo {
+        font-family: 'Fraunces', serif;
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--cream);
+        text-decoration: none;
+      }
+
+      .nav-logo span {
+        color: var(--orange);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links a {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-dim);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--cream-muted);
+      }
+
+      .nav-links a.active {
+        color: var(--orange);
+      }
+
+      .nav-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid var(--border-accent);
+        background: var(--bg-surface);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .nav-avatar-initial {
+        font-family: 'Fraunces', serif;
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--orange);
+        line-height: 1;
+      }
+
+      .nav-avatar-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        width: 160px;
+        background: var(--bg-mid);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        z-index: 100;
+        display: none;
+      }
+
+      .nav-avatar-menu.show {
+        display: block;
+      }
+
+      .nav-avatar-menu a,
+      .nav-avatar-menu button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 8px 14px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 13px;
+        color: var(--cream);
+        text-decoration: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: background 0.15s;
+        text-align: left;
+      }
+
+      .nav-avatar-menu a:hover,
+      .nav-avatar-menu button:hover {
+        background: var(--orange);
+        color: var(--cream);
+      }
+
+      /* Hamburger */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 20px;
+        height: 1.5px;
+        background: var(--cream);
+        transition: all 0.25s;
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(28,17,8,0.95);
+        backdrop-filter: blur(20px);
+        z-index: 40;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+      }
+
+      .mobile-menu.open {
+        display: flex;
+      }
+
+      .mobile-menu a {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-dim);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .mobile-menu a:hover,
+      .mobile-menu a.active {
+        color: var(--orange);
+      }
+
+      .profile-content {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 60px 24px 100px;
+      }
+
+      /* Annotation */
+      .annotation {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-dim);
+        margin-bottom: 40px;
+      }
+
+      .annotation::after {
+        content: '';
+        display: inline-block;
+        width: 40px;
+        height: 1px;
+        background: var(--border);
+        vertical-align: middle;
+        margin-left: 12px;
+      }
+
+      /* Username */
+      .profile-username {
+        font-family: 'Fraunces', serif;
+        font-weight: 800;
+        font-size: clamp(48px, 8vw, 80px);
+        line-height: 1;
+        color: var(--cream);
+        letter-spacing: -0.02em;
+        margin-bottom: 24px;
+        font-variation-settings: 'opsz' 144;
+      }
+
+      /* Subtitle */
+      .profile-subtitle {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 48px;
+      }
+
+      .profile-role {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--orange);
+      }
+
+      .profile-since {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 11px;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-dim);
+      }
+
+      /* Stats */
+      .profile-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 48px;
+      }
+
+      .stat-block {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .stat-number {
+        font-family: 'Fraunces', serif;
+        font-weight: 700;
+        font-size: clamp(36px, 5vw, 56px);
+        line-height: 1;
+        color: var(--cream);
+        font-variation-settings: 'opsz' 144;
+      }
+
+      .stat-label {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-dim);
+      }
+
+      /* Divider */
+      .profile-divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+        margin: 40px 0;
+      }
+
+      /* Section header */
+      .section-label {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-dim);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .section-label::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--orange);
+      }
+
+      /* Bio */
+      .bio-content {
+        color: var(--cream-muted);
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 12px;
+        min-height: 24px;
+      }
+
+      #edit-bio-btn {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--orange);
+        background: none;
+        border: 1px solid var(--border-accent);
+        padding: 6px 14px;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      #edit-bio-btn:hover {
+        background: rgba(217,107,39,0.1);
+        color: var(--orange-light);
+      }
+
+      /* Badges */
+      #badges-container {
+        margin-top: 8px;
+      }
+
+      .badge-category {
+        margin-bottom: 32px;
+      }
+
+      .category-header {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--cream);
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .badge-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 16px;
+      }
+
+      .badge-card {
+        background: var(--bg-mid);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 20px;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+
+      .badge-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--border-accent);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      }
+
+      .badge-card h4 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--cream);
+        margin: 8px 0 4px;
+      }
+
+      .badge-card p {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 12px;
+        color: var(--text-muted);
+        margin: 0 0 8px;
+      }
+
+      /* Bio Modal */
+      #bio-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(28,17,8,0.8);
+        backdrop-filter: blur(8px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 200;
+      }
+
+      #bio-modal.flex {
+        display: flex;
+      }
+
+      .bio-modal-card {
+        background: var(--bg-mid);
+        border: 1px solid var(--border-accent);
+        border-radius: 4px;
+        padding: 28px;
+        width: 90%;
+        max-width: 440px;
+      }
+
+      .bio-modal-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--orange);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .bio-modal-title i {
+        font-size: 12px;
+      }
+
+      #bio-input {
+        width: 100%;
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        padding: 12px 14px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 14px;
+        color: var(--cream);
+        resize: none;
+        outline: none;
+        transition: border-color 0.2s;
+        box-sizing: border-box;
+      }
+
+      #bio-input:focus {
+        border-color: var(--orange);
+      }
+
+      #bio-input::placeholder {
+        color: var(--text-dim);
+      }
+
+      .bio-modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      #cancel-bio-btn {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-muted);
+        background: none;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+
+      #cancel-bio-btn:hover {
+        color: var(--cream);
+      }
+
+      #save-bio-btn {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--cream);
+        background: var(--orange);
+        border: none;
+        padding: 8px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      #save-bio-btn:hover {
+        background: var(--orange-light);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .profile-header {
+          padding: 0 20px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        .profile-content {
+          padding: 40px 20px 80px;
+        }
+
+        .profile-username {
+          font-size: clamp(40px, 10vw, 56px);
+        }
+
+        .profile-stats {
+          gap: 32px;
+        }
+
+        .stat-number {
+          font-size: clamp(32px, 8vw, 44px);
+        }
+
+        .badge-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .badge-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .profile-stats {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .badge-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .badge-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+    </style>
   </head>
-  <body class="bg-[var(--color-bg)] text-[var(--color-text)]">
-    <!-- HEADER -->
-    <header
-      class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px] z-50"
-    >
-      <!-- Logo -->
-      <div class="h-full flex items-center">
-        <a href="/">
-          <img
-            src="/src/assets/noBg.png"
-            alt="Drifttype"
-            class="h-full w-40 object-cover"
->
-        </a>
-      </div>
+  <body>
+    <!-- NAVBAR -->
+    <header class="profile-header">
+      <a href="/" class="nav-logo">DRIF<span>TYPE</span></a>
 
-      <!-- Nav bar -->
-      <nav class="w-full max-w-md mx-auto h-[40px]">
-        <div
-          class="flex justify-between items-center bg-[var(--color-input)] rounded-full h-full"
-        >
-          <!-- Practice -->
-          <div class="relative group w-full h-full">
-            <button
-              data-tooltip-target="tooltip-practice"
-              type="button"
-              class="flex flex-col items-center justify-center rounded-s-full hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
-              id="practice-btn"
-            >
-              <i
-                class="fa-solid fa-keyboard text-[var(--color-text)] text-2xl group-hover:text-amber-500"
-              ></i>
-              <span class="sr-only">Practice</span>
-            </button>
-            <div
-              id="tooltip-practice"
-              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
-            >
-              Practice
-            </div>
-          </div>
-
-          <!-- Statistics -->
-          <div class="relative group w-full h-full">
-            <button
-              data-tooltip-target="tooltip-statistics"
-              type="button"
-              class="flex flex-col items-center justify-center hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
-              id="stat-btn"
-            >
-              <i
-                class="fa-solid fa-chart-column text-[var(--color-text)] text-2xl group-hover:text-amber-500"
-              ></i>
-              <span class="sr-only">Statistics</span>
-            </button>
-            <div
-              id="tooltip-statistics"
-              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
-            >
-              Statistics
-            </div>
-          </div>
-
-          <!-- Settings -->
-          <div class="relative group w-full h-full">
-            <button
-              data-tooltip-target="tooltip-settings"
-              type="button"
-              class="cursor-pointer flex flex-col items-center justify-center rounded-e-full hover:bg-[var(--color-bg)] transition w-full h-full"
-              id="setting-btn"
-            >
-              <i
-                class="fa-solid fa-gear text-[var(--color-text)] text-2xl group-hover:text-amber-500"
-              ></i>
-              <span class="sr-only">Settings</span>
-            </button>
-            <div
-              id="tooltip-settings"
-              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
-            >
-              Settings
-            </div>
-          </div>
-        </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/dashboard" id="practice-btn">Play</a></li>
+          <li><a href="/statistics" id="stat-btn">Statistics</a></li>
+          <li><a href="/profile" class="active">Profile</a></li>
+        </ul>
       </nav>
 
-      <!-- Avatar / User menu -->
-      <div class="relative h-full flex items-center" id="user-menu-container">
-        <button
-          id="user-menu-button"
-          class="flex items-center gap-5 pl-2 pr-10 py-1 bg-[var(--color-input)] rounded-full transition cursor-pointer -translate-y-0.5 group min-w-40 w-fit relative"
-        >
-          <img
-            id="avatar-img"
-            src="https://i.pravatar.cc/40"
-            alt="Avatar"
-            class="w-8 h-8 rounded-full"
->
+      <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-          <span class="text-sm" id="nav_username">
-            <span class="flex justify-center items-center">
-              <span
-                class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
-              ></span>
-            </span>
-          </span>
-          <i
-            class="fa-solid fa-angle-down text-xs absolute right-5 group-hover:translate-y-0.5"
-          ></i>
+      <div class="relative" id="user-menu-container">
+        <button id="user-menu-button" class="nav-avatar" aria-label="User menu">
+          <img id="avatar-img" src="https://i.pravatar.cc/40" alt="Avatar" class="hidden">
+          <span class="nav-avatar-initial" id="nav_avatar_initial"></span>
         </button>
-        <div
-          id="dropdown"
-          class="absolute right-0 -bottom-16 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)] overflow-hidden"
-        >
-          <a
-            href="/profile"
-            class="flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
-          >
+        <div id="dropdown" class="nav-avatar-menu">
+          <a href="/profile">
             Profile
             <i class="fas fa-user"></i>
           </a>
-          <button
-            class="w-full text-left flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
-            id="logout-btn"
-          >
+          <button id="logout-btn">
             Sign out
             <i class="fas fa-right-from-bracket"></i>
           </button>
         </div>
       </div>
+
+      <span class="hidden" id="nav_username"></span>
+      <button class="hidden" id="setting-btn"></button>
+      <span class="hidden" id="initial"></span>
+      <span class="hidden" id="avg-accuracy"></span>
+      <span class="hidden" id="complete-test"></span>
     </header>
 
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/dashboard" class="active">Play</a>
+      <a href="/statistics">Statistics</a>
+      <a href="/profile">Profile</a>
+    </div>
+
     <main>
-      <div class="max-w-7xl mx-auto py-8 px-4 space-y-8">
-        <!-- Header Section -->
-        <div
-          class="flex flex-col md:flex-row gap-8 mt-10 border border-[var(--color-border)] rounded-lg p-8"
-        >
-          <!-- Avatar -->
-          <div
-            class="flex-shrink-0 flex justify-center md:justify-start relative"
-          >
-            <div
-              class="w-32 h-32 rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center text-white text-4xl font-bold shadow-lg"
-              id="initial"
-            ></div>
-            <button
-              class="absolute top-[30%] z-50 right-0 border border-[var(--color-border)] bg-[var(--color-bg)] rounded-full w-10 h-10 p-2 transition hover:bg-[var(--color-bg-secondary)] duration-150 ease-in-out cursor-pointer"
-            >
-              <i class="fas fa-camera"></i>
-            </button>
+      <div class="profile-content">
+        <!-- Annotation -->
+        <div class="annotation">PROFILE / 01</div>
+
+        <!-- Username -->
+        <h1 class="profile-username" id="username"></h1>
+
+        <!-- Subtitle -->
+        <div class="profile-subtitle">
+          <span class="profile-role">Typewriter</span>
+          <span class="profile-since">Since 2026</span>
+        </div>
+
+        <!-- Stats -->
+        <div class="profile-stats">
+          <div class="stat-block">
+            <div class="stat-number" id="avg-wpm">—</div>
+            <div class="stat-label">Avg WPM</div>
           </div>
+          <div class="stat-block">
+            <div class="stat-number" id="max-wpm">—</div>
+            <div class="stat-label">Best WPM</div>
+          </div>
+        </div>
 
-          <!-- Infos and Stats -->
-          <div class="flex-1">
-            <!-- User Info -->
-            <div class="flex flex-col md:flex-row items-start justify-between">
-              <div>
-                <div class="flex items-center space-x-3">
-                  <h1
-                    class="text-3xl font-bold text-[var(--color-text)]"
-                    id="username"
-                  ></h1>
-                  <button
-                    class="p-2 w-8 h-8 flex items-center justify-center rounded-full hover:bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] cursor-pointer"
-                  >
-                    <i class="fas fa-pen"></i>
-                  </button>
-                </div>
-                <!-- Bio -->
-                <div class="mt-6 space-y-4">
-                  <h2
-                    class="text-xl font-semibold text-[var(--color-text)] flex items-center gap-2"
-                  >
-                    <i
-                      class="fas fa-info-circle text-[var(--color-primary)]"
-                    ></i>
-                    About
-                  </h2>
+        <div class="profile-divider"></div>
 
-                  <div
-                    class="text-[var(--color-text-secondary)] text-sm leading-relaxed"
-                  >
-                    <p id="bio-text"></p>
-                    <button
-                      id="edit-bio-btn"
-                      class="mt-2 text-xs text-blue-500 hover:underline"
-                    >
-                      Edit Bio
-                    </button>
-                  </div>
+        <!-- Bio -->
+        <div class="section-label">Bio</div>
+        <p class="bio-content" id="bio-text"></p>
+        <button id="edit-bio-btn">Edit Bio</button>
 
-                  <!-- Bio Modal -->
-                  <div
-                    id="bio-modal"
-                    class="fixed hidden inset-0 bg-black/40 backdrop-blur-sm items-center justify-center z-50"
-                  >
-                    <div
-                      class="bg-white rounded-2xl border-2 border-blue-100 shadow-xl p-6 w-[90%] max-w-md animate-fadeIn"
-                    >
-                      <div class="flex items-center gap-2 mb-4">
-                        <i class="fas fa-user text-blue-500"></i>
-
-                        <h2 class="text-xl font-semibold text-blue-600">
-                          Edit Your Bio
-                        </h2>
-                      </div>
-
-                      <textarea
-                        id="bio-input"
-                        class="w-full border border-blue-300 focus:border-blue-500 focus:ring focus:ring-blue-100 transition-all duration-200 rounded-md p-3 text-sm text-gray-800 resize-non outline-none"
-                        rows="4"
-                        placeholder="Write something about yourself..."
-                      ></textarea>
-
-                      <div class="mt-5 flex justify-end gap-3">
-                        <button
-                          id="cancel-bio-btn"
-                          class="px-4 py-1.5 text-sm text-gray-500 hover:text-gray-700 transition"
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          id="save-bio-btn"
-                          class="px-4 py-1.5 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-sm transition"
-                        >
-                          Save
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    class="flex flex-col sm:flex-row sm:items-center gap-3 text-sm text-[var(--color-text-secondary)]"
-                  >
-                    <div class="flex items-center gap-2">
-                      <i
-                        class="fas fa-calendar-alt text-[var(--color-primary)]"
-                      ></i>
-                      <span>Joined 2025</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex space-x-2 mt-4 md:mt-0">
-                <button
-                  class="px-8 py-2 bg-[var(--color-primary)] text-[var(--color-text)] rounded-md hover:bg-[var(--color-primary-hover)] transition-colors cursor-pointer"
-                >
-                  Follow
-                </button>
-                <button
-                  class="px-5 w-8 rounded-md flex items-center justify-center border border-[var(--color-border)] hover:bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] cursor-pointer"
-                >
-                  <i class="fas fa-share"></i>
-                </button>
-              </div>
+        <!-- Bio Modal -->
+        <div id="bio-modal">
+          <div class="bio-modal-card">
+            <div class="bio-modal-title">
+              <i class="fas fa-pen-to-square"></i>
+              Edit Bio
             </div>
-
-            <!-- Stat Cards -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-              <div
-                class="p-6 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-all group cursor-pointer"
-              >
-                <div class="flex items-center gap-4">
-                  <div class="p-3 rounded-lg bg-[var(--color-active-500)]/5">
-                    <i class="fas fa-users"></i>
-                  </div>
-                  <div>
-                    <div
-                      class="text-2xl font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)]"
-                    >
-                      -
-                    </div>
-                    <div class="text-sm text-[var(--color-text-secondary)]">
-                      Following
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="p-6 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-all group cursor-pointer"
-              >
-                <div class="flex items-center gap-4">
-                  <div class="p-3 rounded-lg bg-[var(--color-active-500)]/5">
-                    <i class="fas fa-chart-line"></i>
-                  </div>
-                  <div>
-                    <div
-                      class="text-2xl font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)]"
-                      id="avg-wpm"
-                    >
-                      -
-                    </div>
-                    <div class="text-sm text-[var(--color-text-secondary)]">
-                      Avg. Wpm
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="p-6 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-all group cursor-pointer"
-              >
-                <div class="flex items-center gap-4">
-                  <div class="p-3 rounded-lg bg-[var(--color-active-500)]/5">
-                    <i class="fas fa-bullseye text-blue-500"></i>
-                  </div>
-                  <div>
-                    <div
-                      class="text-2xl font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)]"
-                      id="avg-accuracy"
-                    >
-                      -
-                    </div>
-                    <div class="text-sm text-[var(--color-text-secondary)]">
-                      Accuracy
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="p-6 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:border-[var(--color-primary)] transition-all group cursor-pointer"
-              >
-                <div class="flex items-center gap-4">
-                  <div class="p-3 rounded-lg bg-[var(--color-active-500)]/5">
-                    <i class="fas fa-keyboard"></i>
-                  </div>
-                  <div>
-                    <div
-                      class="text-2xl font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)]"
-                      id="complete-test"
-                    >
-                      -
-                    </div>
-                    <div class="text-sm text-[var(--color-text-secondary)]">
-                      Tests
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <textarea id="bio-input" rows="4" placeholder="Write something about yourself..."></textarea>
+            <div class="bio-modal-actions">
+              <button id="cancel-bio-btn">Cancel</button>
+              <button id="save-bio-btn">Save</button>
             </div>
           </div>
         </div>
 
-        <!-- Achievements & Personal Bests -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <!-- Achievements -->
-          <div
-            class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] col-span-2"
-            id="badges-container"
-          ></div>
-          <div class="flex flex-col gap-10">
-            <div
-              class="bg-[var(--color-card)] rounded-xl p-6 border h-fit border-[var(--color-border)]"
-            >
-              <h2 class="text-xl font-bold text-[var(--color-text)] mb-4">
-                Personal Bests
-              </h2>
-              <div class="space-y-4">
-                <div
-                  class="flex items-center p-4 rounded-lg bg-[var(--color-bg-secondary)] border border-[var(--color-border)]"
-                >
-                  <div
-                    class="p-2 rounded-full bg-[var(--color-primary)] bg-opacity-10 text-[var(--color-primary)] mr-4"
-                  >
-                    🏆
-                  </div>
-                  <div>
-                    <div class="font-medium text-[var(--color-text)]">-</div>
-                    <div class="text-sm text-[var(--color-text-secondary)]">
-                      -
-                    </div>
-                  </div>
-                  <div
-                    class="ml-auto text-xs text-[var(--color-text-secondary)]"
-                  >
-                    -
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] flex flex-col gap-2"
-            >
-              <div
-                class="flex items-center justify-between p-3 rounded-lg hover:bg-[var(--color-bg-secondary)] transition-colors cursor-pointer group"
-              >
-                <div class="flex items-center gap-3">
-                  <div
-                    class="text-[var(--color-text-secondary)] group-hover:text-[var(--color-primary)] transition-colors"
-                  >
-                    <i class="fas fa-user-friends"></i>
-                  </div>
-                  <span class="text-[var(--color-text-secondary)]">
-                    Following
-                  </span>
-                </div>
-                <span class="font-medium text-[var(--color-text)]">45</span>
-              </div>
+        <div class="profile-divider"></div>
 
-              <!-- Followers -->
-              <div
-                class="flex items-center justify-between p-3 rounded-lg hover:bg-[var(--color-bg-secondary)] transition-colors cursor-pointer group"
-              >
-                <div class="flex items-center gap-3">
-                  <div
-                    class="text-[var(--color-text-secondary)] group-hover:text-[var(--color-primary)] transition-colors"
-                  >
-                    <i class="fas fa-users"></i>
-                  </div>
-                  <span class="text-[var(--color-text-secondary)]">
-                    Followers
-                  </span>
-                </div>
-                <span class="font-medium text-[var(--color-text)]">124</span>
-              </div>
-
-              <!-- Likes -->
-              <div
-                class="flex items-center justify-between p-3 rounded-lg hover:bg-[var(--color-bg-secondary)] transition-colors cursor-pointer group"
-              >
-                <div class="flex items-center gap-3">
-                  <div
-                    class="text-[var(--color-text-secondary)] group-hover:text-[var(--color-primary)] transition-colors"
-                  >
-                    <i class="fas fa-heart"></i>
-                  </div>
-                  <span class="text-[var(--color-text-secondary)]">Likes</span>
-                </div>
-                <span class="font-medium text-[var(--color-text)]">8.2k</span>
-              </div>
-            </div>
-            <div
-              class="bg-[var(--color-card)] rounded-xl p-6 border border-[var(--color-border)] col-span-2"
-            >
-              <h2 class="text-xl font-bold text-[var(--color-text)] mb-4">
-                Recent Activity
-              </h2>
-              <div class="space-y-4">
-                <div
-                  class="flex items-center justify-between p-4 rounded-lg bg-[var(--color-bg-secondary)] border border-[var(--color-border)]"
-                >
-                  <div class="flex items-center space-x-4">
-                    <div
-                      class="p-2 rounded-full bg-[var(--color-success)] bg-opacity-10 text-[var(--color-success)]"
-                    ></div>
-                    <div>
-                      <div class="font-medium text-[var(--color-text)]">
-                        Register to Driftype
-                      </div>
-                      <div class="text-sm text-[var(--color-text-secondary)]">
-                        -
-                      </div>
-                    </div>
-                  </div>
-                  <div class="text-xs text-[var(--color-text-secondary)]">
-                    -
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- Badges -->
+        <div class="section-label">Badges</div>
+        <div id="badges-container"></div>
       </div>
     </main>
-    <script src="../src/components/js/appearance.js"></script>
-    <script>
-      loadAppearanceSettings();
-    </script>
+
     <script src="../src/components/js/pages/dashboard.js" type="module"></script>
-    <script
-      src="../src/components/js/pages/ProfilePageScript/userInfofetch.js"
-      type="module"
-    ></script>
+    <script src="../src/components/js/pages/ProfilePageScript/userInfofetch.js" type="module"></script>
     <script src="../src/components/js/logoutFunc.js" type="module"></script>
     <script src="../src/components/js/userMenu.js"></script>
     <script src="../src/components/js/navBarRedirection.js" type="module"></script>
-    <script
-      src="../src/components/js/pages/StatPageScript/getOverallStat.js"
-      type="module"
-    ></script>
-    <script
-      src="../src/components/js/pages/ProfilePageScript/bioUpdate.js"
-      type="module"
-    ></script>
+    <script src="../src/components/js/pages/StatPageScript/getOverallStat.js" type="module"></script>
+    <script src="../src/components/js/pages/ProfilePageScript/bioUpdate.js" type="module"></script>
     <script src="../src/components/js/pages/badges-display.js" type="module"></script>
+    <script>
+      // Hamburger toggle
+      const hamburgerBtn = document.getElementById('hamburger-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('open');
+          const spans = hamburgerBtn.querySelectorAll('span');
+          if (mobileMenu.classList.contains('open')) {
+            spans[0].style.transform = 'rotate(45deg) translate(4px, 4px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(4px, -4px)';
+          } else {
+            spans[0].style.transform = '';
+            spans[1].style.opacity = '';
+            spans[2].style.transform = '';
+          }
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            const spans = hamburgerBtn.querySelectorAll('span');
+            spans[0].style.transform = '';
+            spans[1].style.opacity = '';
+            spans[2].style.transform = '';
+          });
+        });
+      }
+
+      // Sync #initial (set by userInfofetch.js) to navbar avatar
+      const navAvatarInitial = document.getElementById('nav_avatar_initial');
+      const initialEl = document.getElementById('initial');
+      if (initialEl && navAvatarInitial) {
+        const syncInitial = () => {
+          const letter = initialEl.textContent?.trim();
+          if (letter) navAvatarInitial.textContent = letter.toUpperCase();
+        };
+        const obs = new MutationObserver(syncInitial);
+        obs.observe(initialEl, { childList: true, characterData: true, subtree: true });
+        syncInitial();
+      }
+    </script>
   </body>
 </html>

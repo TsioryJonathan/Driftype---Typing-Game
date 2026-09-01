@@ -3,25 +3,20 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driftype - User Stat</title>
-    <script src="../src/components/js/toggleTheme.js"></script>
+    <title>Driftype - Statistics</title>
     <link rel="shortcut icon" href="/src/assets/noBg.png" type="image/x-icon">
     <link href="/src/css/output.css" rel="stylesheet">
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
->
-    <link
-      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css"
->
+    >
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
->
+    >
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
       integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
@@ -32,566 +27,669 @@
     <script src="https://unpkg.com/i18next@22.4.15/dist/umd/i18next.min.js"></script>
     <script src="https://unpkg.com/i18next-http-backend@2.2.0/i18nextHttpBackend.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-deep: #1C1108;
+        --bg-mid: #24150B;
+        --bg-surface: #2C1A0E;
+        --orange: #D96B27;
+        --orange-light: #E8792E;
+        --orange-bright: #F28A3D;
+        --cream: #F3E6D0;
+        --cream-muted: #E8D6BC;
+        --text-muted: #B9A895;
+        --text-dim: #806F5D;
+        --border: rgba(243,230,208,0.08);
+        --border-accent: rgba(232,121,46,0.20);
+        --correct: #D96B27;
+        --incorrect: #E85D4A;
+        --font-fraunces: 'Fraunces', serif;
+        --font-space-grotesk: 'Space Grotesk', sans-serif;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      body {
+        font-family: var(--font-space-grotesk);
+        background: var(--bg-deep);
+        color: var(--cream);
+        min-height: 100vh;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        background-size: 256px 256px;
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        height: 60px;
+        background: rgba(28,17,8,0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .navbar-logo {
+        font-family: var(--font-fraunces);
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--cream);
+        text-decoration: none;
+      }
+
+      .navbar-logo span {
+        color: var(--orange);
+      }
+
+      .navbar-links {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+      }
+
+      .navbar-links a {
+        font-family: var(--font-space-grotesk);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .navbar-links a:hover {
+        color: var(--cream);
+      }
+
+      .navbar-links a.active {
+        color: var(--orange);
+      }
+
+      .navbar-avatar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .avatar-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        border-radius: 9999px;
+        padding: 4px 12px 4px 4px;
+        cursor: pointer;
+        transition: border-color 0.2s;
+      }
+
+      .avatar-btn:hover {
+        border-color: var(--border-accent);
+      }
+
+      .avatar-circle {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--bg-mid);
+        border: 1.5px solid var(--orange);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-fraunces);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--orange);
+        overflow: hidden;
+      }
+
+      .avatar-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .dropdown {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 8px);
+        width: 160px;
+        background: var(--bg-mid);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        z-index: 100;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      }
+
+      .dropdown a,
+      .dropdown button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 8px 12px;
+        font-size: 13px;
+        color: var(--cream);
+        text-decoration: none;
+        border: none;
+        background: none;
+        cursor: pointer;
+        transition: background 0.15s;
+        text-align: left;
+      }
+
+      .dropdown a:hover,
+      .dropdown button:hover {
+        background: var(--orange);
+        color: var(--cream);
+      }
+
+      /* Main */
+      .main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 40px 80px;
+      }
+
+      /* Title */
+      .page-title {
+        font-family: var(--font-space-grotesk);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        margin-bottom: 40px;
+      }
+
+      /* Top Stats */
+      .top-stats {
+        display: flex;
+        gap: 64px;
+        margin-bottom: 48px;
+      }
+
+      .stat-block {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .stat-label {
+        font-family: var(--font-space-grotesk);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+      }
+
+      .stat-number {
+        font-family: var(--font-fraunces);
+        font-size: 64px;
+        font-weight: 700;
+        color: var(--cream);
+        line-height: 1;
+        font-variation-settings: 'opsz' 144;
+      }
+
+      /* Secondary stats */
+      .secondary-stats {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 48px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .secondary-stat {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+
+      .secondary-stat-value {
+        font-family: var(--font-fraunces);
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--cream-muted);
+      }
+
+      .secondary-stat-label {
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+      }
+
+      /* Section heading */
+      .section-heading {
+        font-family: var(--font-space-grotesk);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        margin-bottom: 20px;
+      }
+
+      /* Chart */
+      .chart-container {
+        margin-bottom: 48px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      #chart {
+        width: 100%;
+        height: 320px;
+      }
+
+      /* Table */
+      .table-container {
+        overflow-x: auto;
+      }
+
+      .sessions-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+
+      .sessions-table thead {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sessions-table th {
+        font-family: var(--font-space-grotesk);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        padding: 12px 16px;
+        text-align: left;
+        white-space: nowrap;
+      }
+
+      .sessions-table td {
+        padding: 12px 16px;
+        color: var(--cream-muted);
+        border-bottom: 1px solid var(--border);
+        white-space: nowrap;
+      }
+
+      .sessions-table tbody tr {
+        transition: background 0.15s;
+      }
+
+      .sessions-table tbody tr:hover {
+        background: var(--bg-surface);
+      }
+
+      /* Login toast */
+      #login-warning-toast {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 50;
+        display: none;
+        align-items: center;
+        gap: 12px;
+        background: var(--bg-mid);
+        border: 1px solid var(--border-accent);
+        padding: 16px 20px;
+        border-radius: 4px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        transition: opacity 0.3s;
+      }
+
+      #login-warning-toast.show {
+        display: flex;
+        opacity: 1;
+      }
+
+      #login-warning-toast span {
+        font-size: 13px;
+        color: var(--cream-muted);
+      }
+
+      #login-warning-toast i {
+        color: var(--orange-bright);
+      }
+
+      #login-warning-toast button {
+        background: var(--orange);
+        color: var(--cream);
+        border: none;
+        padding: 6px 16px;
+        border-radius: 3px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      #login-warning-toast button:hover {
+        background: var(--orange-light);
+      }
+
+      /* Loading spinner */
+      .loader {
+        width: 20px;
+        height: 20px;
+        border: 3px solid var(--border);
+        border-top-color: var(--orange);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* Mobile hamburger */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+
+      .hamburger span {
+        width: 20px;
+        height: 2px;
+        background: var(--cream);
+        transition: 0.2s;
+      }
+
+      /* Mobile nav overlay */
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: var(--bg-deep);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+      }
+
+      .mobile-nav.open {
+        display: flex;
+      }
+
+      .mobile-nav a {
+        font-family: var(--font-space-grotesk);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .mobile-nav a:hover,
+      .mobile-nav a.active {
+        color: var(--orange);
+      }
+
+      .mobile-nav-close {
+        position: absolute;
+        top: 20px;
+        right: 24px;
+        background: none;
+        border: none;
+        color: var(--cream);
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 0 20px;
+        }
+
+        .navbar-links {
+          display: none;
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        .main {
+          padding: 24px 20px 60px;
+        }
+
+        .top-stats {
+          flex-direction: column;
+          gap: 32px;
+        }
+
+        .stat-number {
+          font-size: 48px;
+        }
+
+        .secondary-stats {
+          flex-wrap: wrap;
+          gap: 20px;
+        }
+
+        #chart {
+          height: 240px;
+        }
+
+        .sessions-table th,
+        .sessions-table td {
+          padding: 10px 12px;
+          font-size: 12px;
+        }
+      }
+
+      @media (max-width: 390px) {
+        .stat-number {
+          font-size: 40px;
+        }
+
+        .navbar-avatar {
+          display: none;
+        }
+      }
+    </style>
   </head>
-  <body class="bg-[var(--color-bg)] text-[var(--color-text)]">
-    <!-- HEADER -->
-    <header
-      class="sticky top-0 backdrop-blur-md bg-[var(--color-bg-secondary)] flex items-center justify-between px-10 h-[60px] z-50"
-    >
-      <!-- Logo -->
-      <div class="h-full flex items-center">
-        <a href="/">
-          <img
-            src="/src/assets/noBg.png"
-            alt="Drifttype"
-            class="h-full w-40 object-cover"
->
-        </a>
-      </div>
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <a href="/" class="navbar-logo">DRIF<span>TYPE</span></a>
 
-      <!-- Nav bar -->
-      <nav class="w-full max-w-md mx-auto h-[40px]">
-        <div
-          class="flex justify-between items-center bg-[var(--color-input)] rounded-full h-full"
-        >
-          <!-- Practice -->
-          <div class="relative group w-full h-full">
-            <button
-              data-tooltip-target="tooltip-practice"
-              type="button"
-              class="flex flex-col items-center justify-center rounded-s-full hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
-              id="practice-btn"
-            >
-              <i
-                class="fa-solid fa-keyboard text-[var(--color-text)] text-2xl group-hover:text-amber-500"
-              ></i>
-              <span class="sr-only">Practice</span>
-            </button>
-            <div
-              id="tooltip-practice"
-              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
-            >
-              Practice
-            </div>
-          </div>
-
-          <!-- Statistics -->
-          <div class="relative group w-full h-full">
-            <button
-              data-tooltip-target="tooltip-statistics"
-              type="button"
-              class="flex flex-col items-center justify-center hover:bg-[var(--color-bg)] transition w-full h-full cursor-pointer"
-              id="stat-btn"
-            >
-              <i
-                class="fa-solid fa-chart-column text-[var(--color-text)] text-2xl group-hover:text-amber-500"
-              ></i>
-              <span class="sr-only">Statistics</span>
-            </button>
-            <div
-              id="tooltip-statistics"
-              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
-            >
-              Statistics
-            </div>
-          </div>
-
-          <!-- Settings -->
-          <div class="relative group w-full h-full">
-            <button
-              data-tooltip-target="tooltip-settings"
-              type="button"
-              class="cursor-pointer flex flex-col items-center justify-center rounded-e-full hover:bg-[var(--color-bg)] transition w-full h-full"
-              id="setting-btn"
-            >
-              <i
-                class="fa-solid fa-gear text-[var(--color-text)] text-2xl group-hover:text-amber-500"
-              ></i>
-              <span class="sr-only">Settings</span>
-            </button>
-            <div
-              id="tooltip-settings"
-              class="absolute bottom-full mb-2 left-1/2 px-3 py-2 text-sm font-medium text-[var(--color-text)] bg-[var(--color-bg-secondary)] rounded-lg shadow opacity-0 group-hover:opacity-100 transition"
-            >
-              Settings
-            </div>
-          </div>
-        </div>
+      <nav class="navbar-links">
+        <a href="/dashboard" id="practice-btn">Play</a>
+        <a href="/statistics" id="stat-btn" class="active">Statistics</a>
+        <a href="/profile">Profile</a>
       </nav>
 
-      <!-- Avatar / User menu -->
-      <div class="relative h-full flex items-center" id="user-menu-container">
-        <button
-          id="user-menu-button"
-          class="flex items-center gap-5 pl-2 pr-10 py-1 bg-[var(--color-input)] rounded-full transition cursor-pointer -translate-y-0.5 group min-w-40 w-fit relative"
-        >
-          <img
-            id="avatar-img"
-            src="https://i.pravatar.cc/40"
-            alt="Avatar"
-            class="w-8 h-8 rounded-full"
->
+      <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-          <span class="text-sm" id="nav_username">
-            <span class="flex justify-center items-center">
-              <span
-                class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
-              ></span>
-            </span>
-          </span>
-          <i
-            class="fa-solid fa-angle-down text-xs absolute right-5 group-hover:translate-y-0.5"
-          ></i>
+      <div class="navbar-avatar" id="user-menu-container">
+        <button class="avatar-btn" id="user-menu-button">
+          <div class="avatar-circle" id="avatar-img">
+            <span id="nav_username"></span>
+          </div>
         </button>
-        <div
-          id="dropdown"
-          class="absolute right-0 -bottom-16 w-36 bg-[var(--color-bg)] text-midnight-800 rounded-lg shadow-g hidden z-50 border border-[var(--color-input)] overflow-hidden"
-        >
-          <a
-            href="/profile"
-            class="flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
-          >
-            Profile
-            <i class="fas fa-user"></i>
-          </a>
-          <button
-            class="w-full text-left flex justify-between items-center px-2 py-1 hover:bg-[var(--color-primary)] hover:text-[var(--color-text)] text-[var(--color-text)]"
-            id="logout-btn"
-          >
-            Sign out
-            <i class="fas fa-right-from-bracket"></i>
-          </button>
+        <div id="dropdown" class="dropdown" style="display:none;">
+          <a href="/profile">Profile <i class="fas fa-user"></i></a>
+          <button id="logout-btn">Sign out <i class="fas fa-right-from-bracket"></i></button>
         </div>
       </div>
     </header>
-    <!-- MAIN -->
 
-    <main>
-      <div
-        class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] py-6 space-y-8 px-10"
-      >
-        <!-- Title -->
-        <div
-          class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
-        >
-          <h1 class="text-3xl font-bold">My Statistics</h1>
-        </div>
+    <!-- Mobile nav -->
+    <div class="mobile-nav" id="mobile-nav">
+      <button class="mobile-nav-close" id="mobile-nav-close">&times;</button>
+      <a href="/dashboard">Play</a>
+      <a href="/statistics" class="active">Statistics</a>
+      <a href="/profile">Profile</a>
+    </div>
 
-        <!-- Stat Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <!-- Average WPM -->
-          <div
-            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
-          >
-            <div class="flex items-center gap-2">
-              <i
-                class="fa-solid fa-arrow-trend-up text-[var(--color-primary)]"
-              ></i>
-              <p class="text-sm text-[var(--color-text-secondary)]">
-                Average WPM
-              </p>
-            </div>
-            <div
-              class="text-[var(--color-text)] text-3xl font-bold"
-              id="avg-wpm"
-            >
-              <div class="flex justify-center items-center">
-                <div
-                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
-                ></div>
-              </div>
-            </div>
-          </div>
+    <!-- Main -->
+    <main class="main">
+      <h1 class="page-title">Statistics</h1>
 
-          <!-- Max WPM -->
-          <div
-            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
-          >
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-award text-[var(--color-accent)]"></i>
-              <p class="text-sm text-[var(--color-text-secondary)]">Max WPM</p>
-            </div>
-            <div
-              class="text-[var(--color-text)] text-3xl font-bold"
-              id="max-wpm"
-            >
-              <div class="flex justify-center items-center">
-                <div
-                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
-                ></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Avg. Accuracy -->
-          <div
-            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
-          >
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-bullseye text-[var(--color-success)]"></i>
-              <p class="text-sm text-[var(--color-text-secondary)]">
-                Avg. Accuracy
-              </p>
-            </div>
-            <div
-              class="text-[var(--color-text)] text-3xl font-bold"
-              id="avg-accuracy"
-            >
-              <div class="flex justify-center items-center">
-                <div
-                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
-                ></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Test Completed -->
-          <div
-            class="bg-[var(--color-card)] rounded-lg px-4 py-5 shadow-md border border-[var(--color-border)] flex flex-col gap-5 transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]"
-          >
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-clock text-[var(--color-warning)]"></i>
-              <p class="text-sm text-[var(--color-text-secondary)]">
-                Test Completed
-              </p>
-            </div>
-            <div
-              class="text-[var(--color-text)] text-3xl font-bold"
-              id="complete-test"
-            >
-              <div class="flex justify-center items-center">
-                <div
-                  class="w-6 h-6 border-4 border-[var(--color-border)] border-t-[var(--color-primary)] rounded-full animate-spin"
-                ></div>
-              </div>
-            </div>
+      <!-- Top Stats -->
+      <div class="top-stats">
+        <div class="stat-block">
+          <span class="stat-label">Avg WPM</span>
+          <div class="stat-number" id="avg-wpm">
+            <div class="loader"></div>
           </div>
         </div>
-
-        <!-- Graph and leaderboards -->
-        <div class="flex flex-col md:flex-row gap-5">
-          <!-- Graph -->
-          <div class="flex flex-col gap-3 flex-1">
-            <h1 class="text-2xl text-[var(--color-text)] font-semibold">
-              Stat Of Your Recent Game
-            </h1>
-            <div class="flex-1" id="chart"></div>
-          </div>
-
-          <!-- Leaderboard -->
-          <div
-            class="bg-[var(--color-card)] rounded-lg shadow-md w-full md:w-100 border border-[var(--color-border)]"
-          >
-            <div class="p-6 border-b border-[var(--color-border)]">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                  <i
-                    class="fa-solid fa-trophy text-[var(--color-active-500)] text-xl"
-                  ></i>
-                  <h2 class="ml-2 text-xl font-bold text-[var(--color-text)]">
-                    Leaderboard
-                  </h2>
-                </div>
-                <button
-                  class="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] font-medium"
-                >
-                  View All
-                </button>
-              </div>
-            </div>
-
-            <ul class="space-y-4 text-sm p-4">
-              <li class="flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                  <img
-                    src="/public/user1.jpg"
-                    alt="AimbotKeys"
-                    class="w-10 h-10 rounded-full object-cover"
->
-                  <span class="text-[var(--color-text)] text-sm"
-                    >#1 AimbotKeys</span
-                  >
-                </div>
-                <div class="flex flex-col gap-1 text-right">
-                  <span class="text-[var(--color-text)] font-bold">
-                    356 WPM
-                  </span>
-                  <span class="text-[var(--color-text-secondary)] text-xs">
-                    99.8% acc
-                  </span>
-                </div>
-              </li>
-
-              <li class="flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                  <img
-                    src="/public/user2.jpg"
-                    alt="Zer0Latency"
-                    class="w-10 h-10 rounded-full object-cover"
->
-                  <span class="text-[var(--color-text)] text-sm"
-                    >#2 Zer0Latency</span
-                  >
-                </div>
-                <div class="flex flex-col gap-1 text-right">
-                  <span class="text-[var(--color-text)] font-bold"
-                    >322 WPM</span
-                  >
-                  <span class="text-[var(--color-text-secondary)] text-xs">
-                    96.2% acc
-                  </span>
-                </div>
-              </li>
-
-              <li class="flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                  <img
-                    src="/public/user3.jpg"
-                    alt="ClutchTyper"
-                    class="w-10 h-10 rounded-full object-cover"
->
-                  <span class="text-[var(--color-text)] text-sm"
-                    >#3 ClutchTyper</span
-                  >
-                </div>
-                <div class="flex flex-col gap-1 text-right">
-                  <span class="text-[var(--color-text)] font-bold"
-                    >259 WPM</span
-                  >
-                  <span class="text-[var(--color-text-secondary)] text-xs">
-                    95.8% acc
-                  </span>
-                </div>
-              </li>
-
-              <li class="flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                  <img
-                    src="/public/user4.jpg"
-                    alt="R4pidFire"
-                    class="w-10 h-10 rounded-full object-cover"
->
-                  <span class="text-[var(--color-text)] text-sm"
-                    >#4 R4pidFire</span
-                  >
-                </div>
-                <div class="flex flex-col gap-1 text-right">
-                  <span class="text-[var(--color-text)] font-bold"
-                    >225 WPM</span
-                  >
-                  <span class="text-[var(--color-text-secondary)] text-xs">
-                    94.7% acc
-                  </span>
-                </div>
-              </li>
-
-              <li
-                class="flex justify-between items-center border-b border-[var(--color-border)] pb-2"
-              >
-                <div class="flex items-center gap-3">
-                  <img
-                    src="/public/user5.jpg"
-                    alt="DeadKeyz"
-                    class="w-10 h-10 rounded-full object-cover"
->
-                  <span class="text-[var(--color-text)] text-sm">
-                    #5 DeadKeyz
-                  </span>
-                </div>
-                <div class="flex flex-col gap-1 text-right">
-                  <span class="text-[var(--color-text)] font-bold"
-                    >198 WPM</span
-                  >
-                  <span class="text-[var(--color-text-secondary)] text-xs">
-                    94.0% acc
-                  </span>
-                </div>
-              </li>
-
-              <!-- Current user -->
-              <li
-                class="flex justify-between items-center bg-active-600 p-2 rounded-lg"
-              >
-                <div class="flex items-center gap-3">
-                  <img
-                    src="https://i.pravatar.cc/40"
-                    alt="User"
-                    class="w-10 h-10 rounded-full object-cover"
->
-                  <span class="text-[var(--color-text)] text-sm" id="username">
-                  </span>
-                </div>
-                <div class="flex flex-col gap-1 items-end">
-                  <span
-                    class="text-[var(--color-text)] font-bold"
-                    id="leaderboard-avg-wpm"
-                  >
-                    —
-                  </span>
-                  <span
-                    class="text-[var(--color-text-secondary)] text-xs"
-                    id="leaderboard-avg-accuracy"
-                  >
-                    —
-                  </span>
-                </div>
-              </li>
-            </ul>
+        <div class="stat-block">
+          <span class="stat-label">Best WPM</span>
+          <div class="stat-number" id="max-wpm">
+            <div class="loader"></div>
           </div>
         </div>
+      </div>
 
-        <!-- History -->
-        <div
-          class="bg-[var(--color-card)] rounded-2xl shadow-md border border-[var(--color-border)] overflow-hidden flex-1"
-        >
-          <!-- Header -->
-          <div class="p-6 border-b border-[var(--color-border)]">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <i
-                  class="fa-solid fa-clock text-[var(--color-active-500)] text-2xl"
-                ></i>
-                <h2
-                  class="ml-3 text-2xl font-semibold text-[var(--color-text)]"
-                >
-                  Recent Tests
-                </h2>
-              </div>
-              <button
-                class="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] font-medium transition"
-              >
-                View All
-              </button>
-            </div>
-          </div>
-
-          <!-- Table -->
-          <div class="overflow-x-auto">
-            <table class="w-full text-sm text-center">
-              <thead>
-                <tr class="bg-[var(--color-bg-secondary)]">
-                  <th
-                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
-                  >
-                    Date
-                  </th>
-                  <th
-                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
-                  >
-                    WPM
-                  </th>
-                  <th
-                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
-                  >
-                    Accuracy
-                  </th>
-                  <th
-                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
-                  >
-                    Duration
-                  </th>
-                  <th
-                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
-                  >
-                    Difficulty
-                  </th>
-                  <th
-                    class="px-6 py-4 font-medium text-[var(--color-text-secondary)] uppercase tracking-wider"
-                  >
-                    Language
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-[var(--color-border)]" id="tbody">
-                <tr>
-                  <td class="px-6 py-4 text-[var(--color-text)]">
-                    <div class="flex justify-center items-center">
-                      <div class="loader"></div>
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 text-[var(--color-text)]">
-                    <div class="flex justify-center items-center">
-                      <div class="loader"></div>
-                    </div>
-                  </td>
-                  <td class="px-6 py-4">
-                    <div class="flex justify-center items-center">
-                      <div class="loader"></div>
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 text-[var(--color-text)]">
-                    <div class="flex justify-center items-center">
-                      <div class="loader"></div>
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 text-[var(--color-text)]">
-                    <div class="flex justify-center items-center">
-                      <div class="loader"></div>
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 text-[var(--color-text)]">
-                    <div class="flex justify-center items-center">
-                      <div class="loader"></div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+      <!-- Secondary Stats -->
+      <div class="secondary-stats">
+        <div class="secondary-stat">
+          <span class="secondary-stat-value" id="avg-accuracy">
+            <div class="loader"></div>
+          </span>
+          <span class="secondary-stat-label">Avg Accuracy</span>
         </div>
-
-        <!-- Login Popup -->
-
-        <div
-          id="login-warning-toast"
-          class="hidden fixed top-6 right-6 z-50 bg-yellow-100 border border-yellow-400 text-yellow-800 px-6 py-4 rounded-xl shadow-lg items-center space-x-3 transition-opacity duration-300 ease-in-out"
-        >
-          <i
-            class="fa-solid fa-triangle-exclamation text-yellow-500 text-xl"
-          ></i>
-          <span class="text-sm font-medium">Please Login To Continue 🔐</span>
-          <button class="bg-[var(--color-bg-secondary)] rounded-md p-3">
-            Login
-          </button>
+        <div class="secondary-stat">
+          <span class="secondary-stat-value" id="complete-test">
+            <div class="loader"></div>
+          </span>
+          <span class="secondary-stat-label">Tests Completed</span>
         </div>
+      </div>
+
+      <!-- Performance Over Time -->
+      <p class="section-heading">Performance Over Time</p>
+      <div class="chart-container">
+        <div id="chart"></div>
+      </div>
+
+      <!-- Recent Sessions -->
+      <p class="section-heading">Recent Sessions</p>
+      <div class="table-container">
+        <table class="sessions-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>WPM</th>
+              <th>Accuracy</th>
+              <th>Duration</th>
+              <th>Difficulty</th>
+              <th>Language</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr>
+              <td><div class="loader"></div></td>
+              <td><div class="loader"></div></td>
+              <td><div class="loader"></div></td>
+              <td><div class="loader"></div></td>
+              <td><div class="loader"></div></td>
+              <td><div class="loader"></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Hidden elements preserved for JS -->
+      <div style="display:none;">
+        <span id="leaderboard-avg-wpm"></span>
+        <span id="leaderboard-avg-accuracy"></span>
+        <span id="username"></span>
+      </div>
+
+      <!-- Login warning toast -->
+      <div id="login-warning-toast">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Please Login To Continue</span>
+        <button onclick="window.location.href='/login'">Login</button>
       </div>
     </main>
 
     <script type="module" src="../src/components/js/pages/dashboard.js"></script>
-
     <script src="../src/components/js/pages/userInfofetch.js" type="module"></script>
     <script src="../src/components/js/logoutFunc.js" type="module"></script>
     <script src="../src/components/js/userMenu.js"></script>
     <script src="../src/components/js/navBarRedirection.js" type="module"></script>
-    <script
-      src="../src/components/js/pages/StatPageScript/statGraph.js"
-      type="module"
-    ></script>
-
+    <script src="../src/components/js/pages/StatPageScript/statGraph.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-    <script
-      src="../src/components/js/pages/StatPageScript/getOverallStat.js"
-      type="module"
-    ></script>
-    <script
-      src="../src/components/js/pages/StatPageScript/getRecentStat.js"
-      type="module"
-    ></script>
+    <script src="../src/components/js/pages/StatPageScript/getOverallStat.js" type="module"></script>
+    <script src="../src/components/js/pages/StatPageScript/getRecentStat.js" type="module"></script>
     <script src="../src/components/js/appearance.js"></script>
-    <script>
-      loadAppearanceSettings();
-    </script>
+    <script>loadAppearanceSettings();</script>
     <script src="../src/components/js/gamePreferences.js"></script>
-    <script>
-      loadGamePreferences();
-    </script>
+    <script>loadGamePreferences();</script>
     <script src="../src/components/js/soundAndFeedback.js"></script>
-    <script>
-      loadSoundAndFeedbackSettings();
-    </script>
+    <script>loadSoundAndFeedbackSettings();</script>
     <script src="../src/components/js/notificationAndPrivacy.js"></script>
+    <script>loadNotificationAndPrivacySettings();</script>
+
     <script>
-      loadNotificationAndPrivacySettings();
+      // Mobile nav
+      const hamburgerBtn = document.getElementById('hamburger-btn');
+      const mobileNav = document.getElementById('mobile-nav');
+      const mobileNavClose = document.getElementById('mobile-nav-close');
+
+      hamburgerBtn?.addEventListener('click', () => mobileNav.classList.add('open'));
+      mobileNavClose?.addEventListener('click', () => mobileNav.classList.remove('open'));
+
+      // User menu dropdown toggle
+      const userMenuContainer = document.getElementById('user-menu-container');
+      const userMenuButton = document.getElementById('user-menu-button');
+      const dropdown = document.getElementById('dropdown');
+
+      userMenuButton?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dropdown.style.display !== 'none';
+        dropdown.style.display = isOpen ? 'none' : 'block';
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!userMenuContainer.contains(e.target)) {
+          dropdown.style.display = 'none';
+        }
+      });
     </script>
   </body>
 </html>
