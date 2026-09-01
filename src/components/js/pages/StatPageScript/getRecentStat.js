@@ -3,13 +3,8 @@ import { getUser, getToken } from "../../../../utils/auth.js";
 
 const displayDefaultState = (tbody) => {
   const tableRow = document.createElement("tr");
-  tableRow.classList.add(
-    "transition-colors",
-    "duration-150",
-    "hover:bg-[var(--color-bg-secondary)]"
-  );
   tableRow.innerHTML = `
-    <td colspan="5" class="px-6 py-4 text-center text-[var(--color-text)]">
+    <td colspan="6" style="text-align:center;padding:16px;color:var(--cream-muted);">
       No data available
     </td>
   `;
@@ -86,41 +81,21 @@ const fetchRecentStat = async () => {
       const date = new Date(stat.created_at).toLocaleString("en-GB", {
         timeZone: "Africa/Nairobi",
       });
-      tableRow.classList.add(
-        "transition-colors",
-        "duration-150",
-        "hover:bg-[var(--color-bg-secondary)]"
-      );
 
-      tableRow.innerHTML = `
-          <td class="px-6 py-4 text-[var(--color-text)]">
-            ${date}
-          </td>
-          <td class="px-6 py-4 font-medium text-[var(--color-text)]">
-            ${stat.wpm} wpm
-          </td>
-          <td class="px-6 py-4">
-            <div class="flex items-center justify-center gap-2">
-              <div class="h-2 w-20 rounded-full bg-[var(--color-bg)]">
-                <div
-                  class="h-2 rounded-full bg-[var(--color-success)]"
-                  style="width: ${Number(stat.accuracy)}%"
-                ></div>
+    tableRow.innerHTML = `
+          <td>${date}</td>
+          <td style="font-weight:500;">${stat.wpm} wpm</td>
+          <td>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="height:4px;width:80px;border-radius:2px;background:rgba(243,230,208,0.06);overflow:hidden;">
+                <div style="height:100%;border-radius:2px;background:#D96B27;width:${Number(stat.accuracy)}%;"></div>
               </div>
-              <span class="text-[var(--color-text)]">
-                ${stat.accuracy}%
-              </span>
+              <span>${stat.accuracy}%</span>
             </div>
           </td>
-          <td class="px-6 py-4 text-[var(--color-text)]">
-            ${stat.time_taken} sec
-          </td>
-          <td class="px-6 py-4 text-[var(--color-text)]">
-          ${stat.difficulty}
-          </td>
-          <td class="px-6 py-4 text-[var(--color-text)]">
-          ${language}   ${icon}
-          </td>
+          <td>${stat.time_taken} sec</td>
+          <td>${stat.difficulty}</td>
+          <td>${language} ${icon}</td>
         `;
 
       tbody.appendChild(tableRow);

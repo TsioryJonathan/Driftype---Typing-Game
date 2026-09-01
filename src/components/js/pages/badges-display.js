@@ -18,7 +18,6 @@ export const displayUserBadges = (userId, language = "en") => {
     const allCategories = Object.entries(badgeConfig.categories);
     const hasSpecialBadges = badgeConfig.specialBadges.length > 0;
 
-    // Create category sections
     allCategories.forEach(([categoryId, category]) => {
       const categoryBadges = category.levels.map((level) => ({
         ...level,
@@ -32,7 +31,6 @@ export const displayUserBadges = (userId, language = "en") => {
       }
     });
 
-    // Create special badges section
     if (hasSpecialBadges) {
       const specialBadges = badgeConfig.specialBadges.map((badge) => ({
         ...badge,
@@ -69,7 +67,7 @@ const createCategorySection = (category, badges, language) => {
   section.className = "badge-category";
   section.innerHTML = `
     <div class="category-header flex items-center gap-3 mb-4 pb-2 border-b-2" style="border-color: ${getCategoryColor(category)}">
-      <i class="${category.icon} text-gray-4xl" style="color: ${getCategoryColor(category)};"></i>
+      <i class="${category.icon} text-3xl" style="color: ${getCategoryColor(category)};"></i>
       <h3 class="text-xl text-[var(--color-text)] m-0">${category.name[language]}</h3>
     </div>
     <div class="badge-grid grid gap-4 p-4" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));"></div>
@@ -86,17 +84,18 @@ const createCategorySection = (category, badges, language) => {
 const createBadgeCard = (badge, language) => {
   const card = document.createElement("div");
   card.className = `
-    badge-card relative overflow-hidden rounded-2xl p-5 shadow-md transition-all duration-200 cursor-pointer 
+    badge-card relative overflow-hidden rounded p-5 shadow-sm transition-all duration-200 cursor-pointer
     ${badge.unlocked ? "border" : "opacity-70 grayscale"}
   `;
   card.style.borderColor = badge.unlocked ? getBadgeColor(badge) : "";
+  card.style.background = "rgba(243,230,208,0.04)";
 
   card.innerHTML = `
     <div class="badge-icon relative w-16 h-16 mx-auto mb-2 flex items-center justify-center">
-      <div class="w-full h-full rounded-full flex items-center justify-center" style="background: ${badge.unlocked ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}">
+      <div class="w-full h-full rounded-full flex items-center justify-center" style="background: ${badge.unlocked ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.15)"}">
         <i class="${badge.icon} ${badge.animated ? "fa-beat-fade" : ""} z-10 text-4xl" style="color: ${getBadgeColor(badge)};"></i>
       </div>
-     
+
     </div>
     <div class="badge-info text-center min-h-[80px]">
       <h4 class="text-base font-semibold text-[var(--color-text)] my-2">${badge.name[language]}</h4>
@@ -123,7 +122,7 @@ const lockedBadgeUI = (badge) => {
   const progress = badge.progress || 0;
   return `
     <div class="mt-3">
-      <div class="w-full h-1 bg-black/10 rounded overflow-hidden">
+      <div class="w-full h-1 bg-[rgba(243,230,208,0.06)] rounded overflow-hidden">
         <div class="h-full transition-all duration-500" style="width: ${progress}%; background: ${getBadgeColor(badge)}"></div>
       </div>
       <p class="text-[0.7rem] text-[var(--color-text-secondary)] text-center mt-1">${progress}% complete</p>
@@ -156,10 +155,9 @@ const injectBadgeStyles = () => {
     const style = document.createElement("style");
     style.id = "badge-styles";
     style.textContent = `
-      
       .badge-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
       }
       .share-btn:hover {
         transform: scale(1.2);
