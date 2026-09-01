@@ -1,131 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Fira+Code:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Space+Grotesk:wght@300..700&display=swap');
 @import 'tailwindcss';
 
 @theme {
-  /* Improved Font Definitions */
-  --font-poppins: 'Poppins';
-  --font-fira-code: 'Fira Code';
-  --font-playfair-display: 'Playfair Display';
-  --font-architects: 'Architects Daughter';
-  --font-raleway: 'Raleway';
+  --font-fraunces: 'Fraunces';
+  --font-space-grotesk: 'Space Grotesk';
 
-  /* Enhanced Color System */
-  --color-midnight-50: #f9f5ff;
-  --color-midnight-100: #f0e7fe;
-  --color-midnight-200: #d8c4fc;
-  --color-midnight-300: #b794f6;
-  --color-midnight-400: #9c64f0;
-  --color-midnight-500: #7e3af2;
-  --color-midnight-600: #6c2bd9;
-  --color-midnight-700: #5522b0;
-  --color-midnight-800: #3e1a87;
-  --color-midnight-900: #29125e;
-  --color-midnight-950: #150a35;
+  --color-warm-50: #F3E6D0;
+  --color-warm-100: #E8D6BC;
+  --color-warm-200: #B9A895;
+  --color-warm-300: #806F5D;
+  --color-warm-400: #2C1A0E;
+  --color-warm-500: #24150B;
+  --color-warm-600: #1C1108;
 
-  --color-active-50: #eef2ff;
-  --color-active-100: #e0e7ff;
-  --color-active-200: #c7d2fe;
-  --color-active-300: #a5b4fc;
-  --color-active-400: #818cf8;
-  --color-active-500: #6366f1;
-  --color-active-600: #4f46e5;
-  --color-active-700: #4338ca;
-  --color-active-800: #3730a3;
-  --color-active-900: #312e81;
+  --color-accent-50: #F28A3D;
+  --color-accent-100: #E8792E;
+  --color-accent-200: #D96B27;
+  --color-accent-300: #B9572B;
+  --color-accent-400: #9E4825;
 
-  /* Neutral Colors */
-  --color-neutral-50: #f8fafc;
-  --color-neutral-100: #f1f5f9;
-  --color-neutral-200: #e2e8f0;
-  --color-neutral-300: #cbd5e1;
-  --color-neutral-400: #94a3b8;
-  --color-neutral-500: #64748b;
-  --color-neutral-600: #475569;
-  --color-neutral-700: #334155;
-  --color-neutral-800: #1e293b;
-  --color-neutral-900: #0f172a;
+  --color-incorrect: #E85D4A;
+
+  --color-neutral-50: #F3E6D0;
+  --color-neutral-100: #E8D6BC;
+  --color-neutral-200: #B9A895;
+  --color-neutral-300: #806F5D;
+  --color-neutral-400: #5A4D40;
+  --color-neutral-500: #3D3328;
+  --color-neutral-600: #2C1A0E;
+  --color-neutral-700: #24150B;
+  --color-neutral-800: #1C1108;
+  --color-neutral-900: #120B04;
 }
 
-/* Thème clair */
-:root,
-[data-theme='light'] {
-  --color-bg: #ffffff; /* Blanc pur */
-  --color-bg-secondary: #f1f5f9; /* Gris très clair bleuté */
-  --color-text: #0f172a; /* Bleu-gris très foncé (presque noir) */
-  --color-text-secondary: #475569; /* Bleu-gris moyen */
-  --color-primary: #3b82f6; /* Bleu Tailwind */
-  --color-primary-hover: #2563eb; /* Bleu plus saturé */
-  --color-secondary: #64748b; /* Gris bleuté */
-  --color-accent: #ec4899; /* Rose framboise */
-  --color-border: #e2e8f0; /* Gris clair pour délimitation */
-  --color-input: #ffffff; /* Blanc pur pour champs */
-  --color-input-border: #cbd5e1; /* Bordure grise subtile */
-  --color-card: #f8fafc; /* Fond carte très clair */
-  --color-success: #10b981; /* Vert succès */
-  --color-warning: #f59e0b; /* Jaune/orangé */
-  --color-error: #ef4444; /* Rouge erreur */
+:root {
+  --color-bg: #1C1108;
+  --color-bg-secondary: #24150B;
+  --color-text: #F3E6D0;
+  --color-text-secondary: #B9A895;
+  --color-primary: #D96B27;
+  --color-primary-hover: #E8792E;
+  --color-secondary: #9E4825;
+  --color-accent: #F28A3D;
+  --color-border: rgba(243,230,208,0.08);
+  --color-input: #2C1A0E;
+  --color-input-border: rgba(243,230,208,0.12);
+  --color-card: #24150B;
+  --color-success: #D96B27;
+  --color-warning: #F28A3D;
+  --color-error: #E85D4A;
 
-  --gradient-start: #e0f2fe; /* Bleu clair */
-  --gradient-end: #93c5fd; /* Bleu moyen */
+  --gradient-start: #1C1108;
+  --gradient-end: #2C1A0E;
 
-  --text-gradient-start: #fca5a5; /* Rose pastel */
-  --text-gradient-middle: #c4b5fd; /* Violet pastel */
-  --text-gradient-end: #60a5fa; /* Bleu clair */
-}
-
-/* Thème sombre */
-[data-theme='dark'] {
-  --color-bg: #0b0f19;
-  --color-bg-secondary: #111827;
-  --color-text: #e5f0ff;
-  --color-text-secondary: #94a3b8;
-  --color-primary: #3b82f6;
-  --color-primary-hover: #2563eb;
-  --color-secondary: #0ea5e9;
-  --color-accent: #38bdf8;
-  --color-border: #1e293b;
-  --color-input: #1f2937;
-  --color-input-border: #3b82f6;
-  --color-card: #111827;
-  --color-success: #22c55e;
-  --color-warning: #eab308;
-  --color-error: #ef4444;
-
-  --gradient-start: #0f172a;
-  --gradient-end: #2563eb;
-
-  --text-gradient-start: #60a5fa;
-  --text-gradient-middle: #3b82f6;
-  --text-gradient-end: #0ea5e9;
-}
-
-/* Auto - basés sur les préférences du système */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]),
-  [data-theme='auto'] {
-    --color-bg: #0b0f19;
-    --color-bg-secondary: #111827;
-    --color-text: #e5f0ff;
-    --color-text-secondary: #94a3b8;
-    --color-primary: #3b82f6;
-    --color-primary-hover: #2563eb;
-    --color-secondary: #0ea5e9;
-    --color-accent: #38bdf8;
-    --color-border: #1e293b;
-    --color-input: #1f2937;
-    --color-input-border: #3b82f6;
-    --color-card: #111827;
-    --color-success: #22c55e;
-    --color-warning: #eab308;
-    --color-error: #ef4444;
-
-    --gradient-start: #0f172a;
-    --gradient-end: #2563eb;
-
-    --text-gradient-start: #60a5fa;
-    --text-gradient-middle: #3b82f6;
-    --text-gradient-end: #0ea5e9;
-  }
+  --text-gradient-start: #F28A3D;
+  --text-gradient-middle: #D96B27;
+  --text-gradient-end: #E8792E;
 }
 
 * {
@@ -137,22 +67,11 @@ html {
 }
 
 body {
-  @apply font-poppins bg-[--color-bg] text-[--color-text];
-  transition:
-    background-color 0.3s,
-    color 0.3s;
+  @apply font-space-grotesk bg-[--color-bg] text-[--color-text];
 }
 
 .loader {
   @apply h-6 w-6 animate-spin rounded-full border-4 border-[var(--color-border)] border-t-[var(--color-primary)];
-}
-
-#get-started {
-  background:
-    linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)),
-    url('/public/typing.jpg');
-  background-position: center;
-  background-size: cover;
 }
 
 #blinker {
@@ -160,7 +79,7 @@ body {
   animation-duration: 0.7s;
   animation-iteration-count: infinite;
   opacity: 0;
-  background-color: aliceblue;
+  background-color: var(--color-accent);
 }
 
 @keyframes blink {
@@ -194,4 +113,31 @@ body {
 
 .animate-float {
   animation: float 2s ease-in-out infinite;
+}
+
+/* Cursor blink for typing */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+/* Color utilities for game engine */
+.text-amber-500 { color: #D96B27; }
+.text-red-500 { color: #E85D4A; }
+.border-amber-500\/60 { border-color: rgba(217, 107, 39, 0.6); }
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
 }
